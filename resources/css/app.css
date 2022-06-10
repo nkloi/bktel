@@ -1,2 +1,3 @@
 @import "./auth/auth.css";
 @import "./auth/main.css";
+@import '~jquery-ui/themes/base/all.css';
