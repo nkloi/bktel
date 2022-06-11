@@ -4,7 +4,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="modal-login row align-items-center">
-            <div class="wrap-login100 aligh-items-center">
+            <div class="wrap-login100 align-items-center">
                 <div class="pb-5" data-tilt>
                     <img src="images/img-01.png" alt="IMG">
                 </div>
@@ -49,10 +49,15 @@
     
                     <div class="text-center p-t-12">
     
+                    <!-- Reset password page when confirm email, need a token that sent to email, example 123 -->
+                        <!-- <a class="txt2"  href="{{ route('password.reset', 123) }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    </div> -->
+
                         <a class="txt2"  href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                    </div>
     
                     <div class="text-center p-t-50">
                         <a class="txt2" href="{{ route('register') }}">

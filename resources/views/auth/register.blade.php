@@ -33,7 +33,7 @@
                          required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
     
@@ -62,13 +62,6 @@
                         <button class="login100-form-btn">
                             Sign Up
                         </button>
-                    </div>
-    
-                    <div class="text-center p-t-12">
-    
-                        <a class="txt2"  href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
                     </div>
     
                     <div class="text-center p-t-50">

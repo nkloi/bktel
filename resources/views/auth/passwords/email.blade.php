@@ -11,7 +11,7 @@
     
                 <form class="login100-form validate-form"  action="{{ route('login') }}">
                     <span class="login100-form-title">
-                        Reset Password
+                        Confirm Account
                     </span>
     
                     <div class="wrap-input100 validate-input">
@@ -30,17 +30,16 @@
     
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
-                            Get OTP
+                            SEND
                         </button>
                     </div>
     
                     <div class="text-center p-t-12">
     
-                        <a class="txt2"  href="{{ route('password.request') }}">
-                            {{ __('Resend OTP') }}
+                        <a class="txt2"  href="#">
+                            {{ __('Resend to email') }}
                         </a>
                     </div>
-z
                 </form>
             </div>
         </div>
