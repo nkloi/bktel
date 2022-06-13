@@ -9,7 +9,8 @@
                     <img src="images/img-01.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="{{ route('login') }}">
+                <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+                    @csrf
                     <span class="login100-form-title">
                         Member Login
                     </span>

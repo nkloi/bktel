@@ -9,7 +9,7 @@
                     <img src="images/img-01.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="{{ route('login') }}">
+                <form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
                     <span class="login100-form-title">
                         Member Register
                     </span>
@@ -29,16 +29,6 @@
                     </div>
 
                     <div class="wrap-input pb-2">
-                        <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="name" placeholder="{{ __('Username') }}" required>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="wrap-input pb-2">
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
                             <input class="input100" type="password" name="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             <span class="focus-input100"></span>
@@ -55,7 +45,7 @@
 
                     <div class="wrap-input pb-2">
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
-                            <input class="input100" type="password" name="confirmPass" placeholder="{{ __('Confirm Password') }}" class="form-control" name="confirmPassword" required>
+                            <input class="input100" type="password" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" class="form-control" name="confirmPassword" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -74,6 +64,7 @@
                             You have an Account?
                         </a>
                     </div>
+                    @csrf
                 </form>
             </div>
         </div>
