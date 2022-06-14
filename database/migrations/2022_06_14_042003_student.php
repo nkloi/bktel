@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentTable extends Migration
+class Student extends Migration
 {
     /**
      * Run the migrations.
@@ -26,14 +26,10 @@ class CreateStudentTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('student', function ($table) {
-            $table->integer('id')->unsigned();
         
-            $table->foreign('student_id')->references('id')->on('users');
-        });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void
