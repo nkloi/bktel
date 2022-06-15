@@ -29,8 +29,8 @@ class StudentController extends Controller
         $student = new Student();
         $student->fill($request->all());
         $student->save();
-        $user->student_id = $student->id;
-        $user->save();
+
+        $student->user()->save($user);
 
         return response()->json($user);
     }
@@ -38,7 +38,7 @@ class StudentController extends Controller
     //acction update student
     public function update(Request $request, $student_id)
     {
-        $student = Student::find($student_id)->update($request->all());
+        Student::find($student_id)->update($request->all());
         return response('success', 200);
     }
 
