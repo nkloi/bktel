@@ -19,7 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Route::get('/information', function () {
+//     return view('auth/information');
+// })->name('information');
+
+
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -29,3 +34,5 @@ Route::group(['prefix' => 'students'], function () {
 	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
 	Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
 });
+
+Route::get('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');

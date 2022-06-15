@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    
+                    <a href="{{route('auth.information')}}">  information</a>
                 </div>
             </div>
         </div>

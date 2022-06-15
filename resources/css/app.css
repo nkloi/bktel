@@ -1,2 +1,4 @@
 @import "./auth/auth.css";
 @import "./auth/main.css";
+@import "./auth/register.css";
+@import "./auth/information.css";
