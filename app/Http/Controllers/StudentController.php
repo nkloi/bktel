@@ -12,11 +12,10 @@ class StudentController extends Controller
     public function show(Request $request, $student_id)
     {
         $studentEntity = Student::find($student_id);
-        $student = $studentEntity->get()[0];
         $user = $studentEntity->user;
 
         $email = $user->email;
-        $studentArr = $student->attributesToArray();
+        $studentArr = $studentEntity->attributesToArray();
         $studentArr["email"] = $email;
 
         return response()->json($studentArr);

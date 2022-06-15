@@ -22,7 +22,7 @@
                             </span>
                         </div>
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -30,14 +30,14 @@
 
                     <div class="wrap-input pb-2">
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="name" placeholder="{{ __('Username') }}" class="form-control @error('password') is-invalid @enderror" name="name">
+                            <input class="input100" type="text" name="name" placeholder="{{ __('Username') }}" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        @error('name')
+                        <span class="invalid" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -52,7 +52,7 @@
                             </span>
                         </div>
                         @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror

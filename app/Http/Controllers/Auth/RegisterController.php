@@ -54,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[^\s]+(?=@hcmut.edu.vn)/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ], ['email.regex' => 'Email must be @hcmut.edu.vn']);
+        ], ['email.regex' => 'Email must be @hcmut.edu.vn', 'password.min' => 'Password must have at least 8 characters']);
     }
 
     /**
