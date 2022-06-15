@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\StudentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'students'], function () {
+	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
+	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
+	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
+	Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
+});
