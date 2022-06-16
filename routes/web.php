@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\StudentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/', function () {
 // })->name('information');
 
 
-
+Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -32,7 +33,12 @@ Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
 	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
 	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
-	Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
+	//Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
+	Route::any('/delete/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
 });
 
+
+
 Route::get('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
+ 
+Route::get('unicode', [StudentsController::class, 'unicode'])->middleware('auth')->name('auth.unicode');

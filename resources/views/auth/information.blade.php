@@ -22,21 +22,23 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Information</h3>
                                 <div class="row register-form">
+                                    <form method="POST" action="{{ route('student.store') }}">
+                                        @csrf
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="first_name" value="" />
+                                            <input type="text" class="form-control" placeholder="first_name"  name="first_name" require />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="last_name" value="" />
+                                            <input type="text" class="form-control" placeholder="last_name" value="" name="last_name" require />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="student_code" value="" />
+                                            <input type="text" class="form-control" placeholder="student_code" value="" name="student_code" require/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="department" value="" />
+                                            <input type="text" class="form-control"  placeholder="department" value="" name="department" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="faculty" value="" />
+                                            <input type="text" class="form-control"  placeholder="faculty" value=""  name="faculty"/>
                                         </div>
                                         
                                         <div class="form-group">
@@ -54,13 +56,17 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="adress" value="" />
+                                            <input type="text" class="form-control" placeholder="address" value="" name="address" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="phone" value="" /> 
+                                            <input type="text" class="form-control" placeholder="phone" value="" name="phone"/> 
                                         </div>
-                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="note" value="" name="note"/> 
+                                        </div>
+                                        <button type="submit" class="btnRegister">Submit</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTablesUpdateName extends Migration
+class AddStudentIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class CreateUsersTablesUpdateName extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::table('users', function (Blueprint $table) {
             $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('cascade');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->timestamps();
         });
     }
 
@@ -31,6 +25,8 @@ class CreateUsersTablesUpdateName extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_tables_update_name');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }
