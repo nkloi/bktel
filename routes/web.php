@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'students'], function () {
+	Route::get('/{student_id}', 'Admin\StudentsController@show')->name('student.show');
+	Route::post('/', 'Admin\StudentsController@store')->name('student.store');
+	Route::put('/{student_id}', 'Admin\StudentsController@update')->name('student.update');
+	Route::delete('/{student_id}', 'Admin\StudentsController@destroy')->name('student.destroy');
+});
+
