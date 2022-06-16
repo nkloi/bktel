@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\studentController;
+use Illuminate\Database\Eloquent\Model\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'students'], function () {
+	Route::get('/{student_id}', [studentController::class, 'show'])->name('student.show');
+	Route::post('/', [studentController::class, 'store'])->name('student.store');
+	Route::put('/{student_id}', [studentController::class, 'update'])->name('student.update');
+	Route::delete('/{student_id}',  [studentController::class, 'delete'])->name('student.destroy');
+});
