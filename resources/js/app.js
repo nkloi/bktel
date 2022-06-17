@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 require('./main');
+require('./adminlte');
+require('./demo');
+require('./dashboard3');
 
 
 window.Vue = require('vue').default;
