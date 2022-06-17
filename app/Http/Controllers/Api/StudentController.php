@@ -27,7 +27,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+        $student = new Student();
+        $student->fill($request->all());
+        $student->save();
+
+        $student->user()->save($user);
+
+        return response()->json($user);
     }
 
     /**
@@ -38,9 +45,10 @@ class StudentController extends Controller
      */
     public function show(Request $request, $student_id)
     {
-        $studentEntity = Student::find($student_id);
+        
+        $studentEntity = student::find($student_id);
         $student = $studentEntity->get()[0];
-        $user = $studentEntity->user;
+        $user = $studentEntity->userss;
 
         $email = $user->email;
         $studentArr = $student->attributesToArray();
@@ -58,7 +66,8 @@ class StudentController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        Student::find($student_id)->update($request->all());
+        return response('success', 200);
     }
 
     /**
@@ -69,6 +78,10 @@ class StudentController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $student = Student::find($student_id);
+
+        $student->delete();
+
+        return response('suceess', 200);
     }
 }

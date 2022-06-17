@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Userss extends Migration
+class Users extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,7 @@ class Userss extends Migration
      */
     public function up()
     {
-        Schema::create('userss', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-
-            $table->string('email')->unique();
-            $table->foreignId('student_id')->constrained('student');
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ class Userss extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userss');
+        //
     }
 }
