@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\InsertController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'students'], function () {
+	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
+	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
+	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
+	Route::delete('/{student_id}',  [StudentsController::class, 'destroy'])->name('student.destroy');
+});
+
+// Route::get('relationship', [InsertController::class, 'relationship'])->name('relatioship');
+
+
