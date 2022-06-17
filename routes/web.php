@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'students'], function () {
+    Route::get('/create', [App\Http\Controllers\StudentsController::class, 'create'])->name('student.create');
+    Route::get('/{id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
+    Route::post('/stored', [App\Http\Controllers\StudentsController::class, 'store'])->name('student.store');
+    Route::post('update/{id}', [App\Http\Controllers\StudentsController::class, 'update'])->name('student.update');
+    Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
+    Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
+});
