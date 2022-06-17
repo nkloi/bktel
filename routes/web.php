@@ -21,11 +21,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
 	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
 	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
-	Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
+	Route::any('/delete/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
 });
+
+Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
