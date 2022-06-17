@@ -2,3 +2,5 @@
 @import "./auth/main.css";
 @import "./auth/register.css";
 @import "./auth/information.css";
+@import "./auth/adminlte.min.css";
+@import "./auth/all.min.css";

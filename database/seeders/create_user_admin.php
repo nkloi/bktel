@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 class create_user_admin extends Seeder
 {
@@ -15,12 +15,14 @@ class create_user_admin extends Seeder
      */
     public function run()
     {
-        // DB::table('users')->insert([
-        //     ['name' => 'Administrator'],
-        //     ['name' => 'Supervisor'],
-        //     ['name' => 'Teacher'],
-        //     ['name' => 'Student'],
-            
-        // ]);
+        
+        DB::table('users')->insert([
+            'name' => 'Le Thanh Nha',
+            'email' => 'nhale@hcmut.edu.vn',
+            'password' => Hash::make('123123123'),
+            'role_id'=> 4,
+        ]);
+           
+       
     }
 }

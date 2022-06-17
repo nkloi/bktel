@@ -14,7 +14,7 @@ class create_new_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('roles')->insert([
             ['name' => 'Administrator'],
             ['name' => 'Supervisor'],
             ['name' => 'Teacher'],
