@@ -19,10 +19,10 @@ class roleSeeder extends Seeder
         //
         DB::table('users')->insert([
 
-            'email'=> 'bmvt@hcmut.edu.vn',
-            'name'=> 'BMVT',
+            'name'=> 'duykhanh',
+            'email'=> 'duykhanh88899@gmail.com',
             'password' => Hash::make('Bmvt@hcmut'),
-            'role_id'=> '1',
+            'role_id'=> '4',
 
 
         ]);

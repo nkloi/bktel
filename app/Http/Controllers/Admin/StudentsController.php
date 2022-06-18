@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\students;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -56,11 +57,20 @@ class StudentsController extends Controller
     }
 
 
-    public function edit(Request $request, $id)
-    {
-        $student = students::where('id', $id)->first();
-        return view('edit', ['info' => $student]);
+    public function getstudent()
+    {   
+        $user = Auth::user();
+        $studentid = $user->student_id;
+        if ($studentid != null){
+            $student = students::where('id', $studentid)->get();
+            return response()->json($student);
+        }
+        else{
+            return redirect()->route('student.information');
+        }
+
     }
+
 
     public function update(Request $request, $id)
     {

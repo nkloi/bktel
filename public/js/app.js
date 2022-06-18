@@ -5676,6 +5676,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var browserslist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! browserslist */ "./node_modules/browserslist/index.js");
+/* harmony import */ var browserslist__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(browserslist__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -5692,9 +5706,109 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      articles: []
+    };
+  },
+  methods: {
+    getArticles: function getArticles() {
+      var _this = this;
+
+      fetch('http://127.0.0.1:8000/getstudent', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (resp) {
+        return resp.json();
+      }).then(function (data) {
+        var _this$articles;
+
+        (_this$articles = _this.articles).push.apply(_this$articles, _toConsumableArray(data));
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  created: function created() {
+    this.getArticles();
   }
 });
 
@@ -14878,6 +14992,1335 @@ defineJQueryPlugin(Toast);
 
 /***/ }),
 
+/***/ "./node_modules/browserslist/browser.js":
+/*!**********************************************!*\
+  !*** ./node_modules/browserslist/browser.js ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var BrowserslistError = __webpack_require__(/*! ./error */ "./node_modules/browserslist/error.js")
+
+function noop() {}
+
+module.exports = {
+  loadQueries: function loadQueries() {
+    throw new BrowserslistError(
+      'Sharable configs are not supported in client-side build of Browserslist'
+    )
+  },
+
+  getStat: function getStat(opts) {
+    return opts.stats
+  },
+
+  loadConfig: function loadConfig(opts) {
+    if (opts.config) {
+      throw new BrowserslistError(
+        'Browserslist config are not supported in client-side build'
+      )
+    }
+  },
+
+  loadCountry: function loadCountry() {
+    throw new BrowserslistError(
+      'Country statistics are not supported ' +
+        'in client-side build of Browserslist'
+    )
+  },
+
+  loadFeature: function loadFeature() {
+    throw new BrowserslistError(
+      'Supports queries are not available in client-side build of Browserslist'
+    )
+  },
+
+  currentNode: function currentNode(resolve, context) {
+    return resolve(['maintained node versions'], context)[0]
+  },
+
+  parseConfig: noop,
+
+  readConfig: noop,
+
+  findConfig: noop,
+
+  clearCaches: noop,
+
+  oldDataWarning: noop
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/browserslist/error.js":
+/*!********************************************!*\
+  !*** ./node_modules/browserslist/error.js ***!
+  \********************************************/
+/***/ ((module) => {
+
+function BrowserslistError(message) {
+  this.name = 'BrowserslistError'
+  this.message = message
+  this.browserslist = true
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, BrowserslistError)
+  }
+}
+
+BrowserslistError.prototype = Error.prototype
+
+module.exports = BrowserslistError
+
+
+/***/ }),
+
+/***/ "./node_modules/browserslist/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/browserslist/index.js ***!
+  \********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+var jsReleases = __webpack_require__(/*! node-releases/data/processed/envs.json */ "./node_modules/node-releases/data/processed/envs.json")
+var agents = (__webpack_require__(/*! caniuse-lite/dist/unpacker/agents */ "./node_modules/caniuse-lite/dist/unpacker/agents.js").agents)
+var jsEOL = __webpack_require__(/*! node-releases/data/release-schedule/release-schedule.json */ "./node_modules/node-releases/data/release-schedule/release-schedule.json")
+var path = __webpack_require__(/*! path */ "?3274")
+var e2c = __webpack_require__(/*! electron-to-chromium/versions */ "./node_modules/electron-to-chromium/versions.js")
+
+var BrowserslistError = __webpack_require__(/*! ./error */ "./node_modules/browserslist/error.js")
+var env = __webpack_require__(/*! ./node */ "./node_modules/browserslist/browser.js") // Will load browser.js in webpack
+
+var YEAR = 365.259641 * 24 * 60 * 60 * 1000
+var ANDROID_EVERGREEN_FIRST = 37
+
+var QUERY_OR = 1
+var QUERY_AND = 2
+
+function isVersionsMatch(versionA, versionB) {
+  return (versionA + '.').indexOf(versionB + '.') === 0
+}
+
+function isEolReleased(name) {
+  var version = name.slice(1)
+  return browserslist.nodeVersions.some(function (i) {
+    return isVersionsMatch(i, version)
+  })
+}
+
+function normalize(versions) {
+  return versions.filter(function (version) {
+    return typeof version === 'string'
+  })
+}
+
+function normalizeElectron(version) {
+  var versionToUse = version
+  if (version.split('.').length === 3) {
+    versionToUse = version.split('.').slice(0, -1).join('.')
+  }
+  return versionToUse
+}
+
+function nameMapper(name) {
+  return function mapName(version) {
+    return name + ' ' + version
+  }
+}
+
+function getMajor(version) {
+  return parseInt(version.split('.')[0])
+}
+
+function getMajorVersions(released, number) {
+  if (released.length === 0) return []
+  var majorVersions = uniq(released.map(getMajor))
+  var minimum = majorVersions[majorVersions.length - number]
+  if (!minimum) {
+    return released
+  }
+  var selected = []
+  for (var i = released.length - 1; i >= 0; i--) {
+    if (minimum > getMajor(released[i])) break
+    selected.unshift(released[i])
+  }
+  return selected
+}
+
+function uniq(array) {
+  var filtered = []
+  for (var i = 0; i < array.length; i++) {
+    if (filtered.indexOf(array[i]) === -1) filtered.push(array[i])
+  }
+  return filtered
+}
+
+// Helpers
+
+function fillUsage(result, name, data) {
+  for (var i in data) {
+    result[name + ' ' + i] = data[i]
+  }
+}
+
+function generateFilter(sign, version) {
+  version = parseFloat(version)
+  if (sign === '>') {
+    return function (v) {
+      return parseFloat(v) > version
+    }
+  } else if (sign === '>=') {
+    return function (v) {
+      return parseFloat(v) >= version
+    }
+  } else if (sign === '<') {
+    return function (v) {
+      return parseFloat(v) < version
+    }
+  } else {
+    return function (v) {
+      return parseFloat(v) <= version
+    }
+  }
+}
+
+function generateSemverFilter(sign, version) {
+  version = version.split('.').map(parseSimpleInt)
+  version[1] = version[1] || 0
+  version[2] = version[2] || 0
+  if (sign === '>') {
+    return function (v) {
+      v = v.split('.').map(parseSimpleInt)
+      return compareSemver(v, version) > 0
+    }
+  } else if (sign === '>=') {
+    return function (v) {
+      v = v.split('.').map(parseSimpleInt)
+      return compareSemver(v, version) >= 0
+    }
+  } else if (sign === '<') {
+    return function (v) {
+      v = v.split('.').map(parseSimpleInt)
+      return compareSemver(version, v) > 0
+    }
+  } else {
+    return function (v) {
+      v = v.split('.').map(parseSimpleInt)
+      return compareSemver(version, v) >= 0
+    }
+  }
+}
+
+function parseSimpleInt(x) {
+  return parseInt(x)
+}
+
+function compare(a, b) {
+  if (a < b) return -1
+  if (a > b) return +1
+  return 0
+}
+
+function compareSemver(a, b) {
+  return (
+    compare(parseInt(a[0]), parseInt(b[0])) ||
+    compare(parseInt(a[1] || '0'), parseInt(b[1] || '0')) ||
+    compare(parseInt(a[2] || '0'), parseInt(b[2] || '0'))
+  )
+}
+
+// this follows the npm-like semver behavior
+function semverFilterLoose(operator, range) {
+  range = range.split('.').map(parseSimpleInt)
+  if (typeof range[1] === 'undefined') {
+    range[1] = 'x'
+  }
+  // ignore any patch version because we only return minor versions
+  // range[2] = 'x'
+  switch (operator) {
+    case '<=':
+      return function (version) {
+        version = version.split('.').map(parseSimpleInt)
+        return compareSemverLoose(version, range) <= 0
+      }
+    case '>=':
+    default:
+      return function (version) {
+        version = version.split('.').map(parseSimpleInt)
+        return compareSemverLoose(version, range) >= 0
+      }
+  }
+}
+
+// this follows the npm-like semver behavior
+function compareSemverLoose(version, range) {
+  if (version[0] !== range[0]) {
+    return version[0] < range[0] ? -1 : +1
+  }
+  if (range[1] === 'x') {
+    return 0
+  }
+  if (version[1] !== range[1]) {
+    return version[1] < range[1] ? -1 : +1
+  }
+  return 0
+}
+
+function resolveVersion(data, version) {
+  if (data.versions.indexOf(version) !== -1) {
+    return version
+  } else if (browserslist.versionAliases[data.name][version]) {
+    return browserslist.versionAliases[data.name][version]
+  } else {
+    return false
+  }
+}
+
+function normalizeVersion(data, version) {
+  var resolved = resolveVersion(data, version)
+  if (resolved) {
+    return resolved
+  } else if (data.versions.length === 1) {
+    return data.versions[0]
+  } else {
+    return false
+  }
+}
+
+function filterByYear(since, context) {
+  since = since / 1000
+  return Object.keys(agents).reduce(function (selected, name) {
+    var data = byName(name, context)
+    if (!data) return selected
+    var versions = Object.keys(data.releaseDate).filter(function (v) {
+      var date = data.releaseDate[v]
+      return date !== null && date >= since
+    })
+    return selected.concat(versions.map(nameMapper(data.name)))
+  }, [])
+}
+
+function cloneData(data) {
+  return {
+    name: data.name,
+    versions: data.versions,
+    released: data.released,
+    releaseDate: data.releaseDate
+  }
+}
+
+function mapVersions(data, map) {
+  data.versions = data.versions.map(function (i) {
+    return map[i] || i
+  })
+  data.released = data.released.map(function (i) {
+    return map[i] || i
+  })
+  var fixedDate = {}
+  for (var i in data.releaseDate) {
+    fixedDate[map[i] || i] = data.releaseDate[i]
+  }
+  data.releaseDate = fixedDate
+  return data
+}
+
+function byName(name, context) {
+  name = name.toLowerCase()
+  name = browserslist.aliases[name] || name
+  if (context.mobileToDesktop && browserslist.desktopNames[name]) {
+    var desktop = browserslist.data[browserslist.desktopNames[name]]
+    if (name === 'android') {
+      return normalizeAndroidData(cloneData(browserslist.data[name]), desktop)
+    } else {
+      var cloned = cloneData(desktop)
+      cloned.name = name
+      if (name === 'op_mob') {
+        cloned = mapVersions(cloned, { '10.0-10.1': '10' })
+      }
+      return cloned
+    }
+  }
+  return browserslist.data[name]
+}
+
+function normalizeAndroidVersions(androidVersions, chromeVersions) {
+  var firstEvergreen = ANDROID_EVERGREEN_FIRST
+  var last = chromeVersions[chromeVersions.length - 1]
+  return androidVersions
+    .filter(function (version) {
+      return /^(?:[2-4]\.|[34]$)/.test(version)
+    })
+    .concat(chromeVersions.slice(firstEvergreen - last - 1))
+}
+
+function normalizeAndroidData(android, chrome) {
+  android.released = normalizeAndroidVersions(android.released, chrome.released)
+  android.versions = normalizeAndroidVersions(android.versions, chrome.versions)
+  return android
+}
+
+function checkName(name, context) {
+  var data = byName(name, context)
+  if (!data) throw new BrowserslistError('Unknown browser ' + name)
+  return data
+}
+
+function unknownQuery(query) {
+  return new BrowserslistError(
+    'Unknown browser query `' +
+      query +
+      '`. ' +
+      'Maybe you are using old Browserslist or made typo in query.'
+  )
+}
+
+function filterAndroid(list, versions, context) {
+  if (context.mobileToDesktop) return list
+  var released = browserslist.data.android.released
+  var last = released[released.length - 1]
+  var diff = last - ANDROID_EVERGREEN_FIRST - versions
+  if (diff > 0) {
+    return list.slice(-1)
+  } else {
+    return list.slice(diff - 1)
+  }
+}
+
+/**
+ * Resolves queries into a browser list.
+ * @param {string|string[]} queries Queries to combine.
+ * Either an array of queries or a long string of queries.
+ * @param {object} [context] Optional arguments to
+ * the select function in `queries`.
+ * @returns {string[]} A list of browsers
+ */
+function resolve(queries, context) {
+  if (Array.isArray(queries)) {
+    queries = flatten(queries.map(parse))
+  } else {
+    queries = parse(queries)
+  }
+
+  return queries.reduce(function (result, query, index) {
+    var selection = query.queryString
+
+    var isExclude = selection.indexOf('not ') === 0
+    if (isExclude) {
+      if (index === 0) {
+        throw new BrowserslistError(
+          'Write any browsers query (for instance, `defaults`) ' +
+            'before `' +
+            selection +
+            '`'
+        )
+      }
+      selection = selection.slice(4)
+    }
+
+    for (var i = 0; i < QUERIES.length; i++) {
+      var type = QUERIES[i]
+      var match = selection.match(type.regexp)
+      if (match) {
+        var args = [context].concat(match.slice(1))
+        var array = type.select.apply(browserslist, args).map(function (j) {
+          var parts = j.split(' ')
+          if (parts[1] === '0') {
+            return parts[0] + ' ' + byName(parts[0], context).versions[0]
+          } else {
+            return j
+          }
+        })
+
+        switch (query.type) {
+          case QUERY_AND:
+            if (isExclude) {
+              return result.filter(function (j) {
+                return array.indexOf(j) === -1
+              })
+            } else {
+              return result.filter(function (j) {
+                return array.indexOf(j) !== -1
+              })
+            }
+          case QUERY_OR:
+          default:
+            if (isExclude) {
+              var filter = {}
+              array.forEach(function (j) {
+                filter[j] = true
+              })
+              return result.filter(function (j) {
+                return !filter[j]
+              })
+            }
+            return result.concat(array)
+        }
+      }
+    }
+
+    throw unknownQuery(selection)
+  }, [])
+}
+
+var cache = {}
+
+/**
+ * Return array of browsers by selection queries.
+ *
+ * @param {(string|string[])} [queries=browserslist.defaults] Browser queries.
+ * @param {object} [opts] Options.
+ * @param {string} [opts.path="."] Path to processed file.
+ *                                 It will be used to find config files.
+ * @param {string} [opts.env="production"] Processing environment.
+ *                                         It will be used to take right
+ *                                         queries from config file.
+ * @param {string} [opts.config] Path to config file with queries.
+ * @param {object} [opts.stats] Custom browser usage statistics
+ *                              for "> 1% in my stats" query.
+ * @param {boolean} [opts.ignoreUnknownVersions=false] Do not throw on unknown
+ *                                                     version in direct query.
+ * @param {boolean} [opts.dangerousExtend] Disable security checks
+ *                                         for extend query.
+ * @param {boolean} [opts.throwOnMissing] Throw error on missing env.
+ * @param {boolean} [opts.mobileToDesktop] Alias mobile browsers to the desktop
+ *                                         version when Can I Use doesn't have
+ *                                         data about the specified version.
+ * @returns {string[]} Array with browser names in Can I Use.
+ *
+ * @example
+ * browserslist('IE >= 10, IE 8') //=> ['ie 11', 'ie 10', 'ie 8']
+ */
+function browserslist(queries, opts) {
+  if (typeof opts === 'undefined') opts = {}
+
+  if (typeof opts.path === 'undefined') {
+    opts.path = path.resolve ? path.resolve('.') : '.'
+  }
+
+  if (typeof queries === 'undefined' || queries === null) {
+    var config = browserslist.loadConfig(opts)
+    if (config) {
+      queries = config
+    } else {
+      queries = browserslist.defaults
+    }
+  }
+
+  if (!(typeof queries === 'string' || Array.isArray(queries))) {
+    throw new BrowserslistError(
+      'Browser queries must be an array or string. Got ' + typeof queries + '.'
+    )
+  }
+
+  var context = {
+    ignoreUnknownVersions: opts.ignoreUnknownVersions,
+    dangerousExtend: opts.dangerousExtend,
+    mobileToDesktop: opts.mobileToDesktop,
+    path: opts.path,
+    env: opts.env
+  }
+
+  env.oldDataWarning(browserslist.data)
+  var stats = env.getStat(opts, browserslist.data)
+  if (stats) {
+    context.customUsage = {}
+    for (var browser in stats) {
+      fillUsage(context.customUsage, browser, stats[browser])
+    }
+  }
+
+  var cacheKey = JSON.stringify([queries, context])
+  if (cache[cacheKey]) return cache[cacheKey]
+
+  var result = uniq(resolve(queries, context)).sort(function (name1, name2) {
+    name1 = name1.split(' ')
+    name2 = name2.split(' ')
+    if (name1[0] === name2[0]) {
+      // assumptions on caniuse data
+      // 1) version ranges never overlaps
+      // 2) if version is not a range, it never contains `-`
+      var version1 = name1[1].split('-')[0]
+      var version2 = name2[1].split('-')[0]
+      return compareSemver(version2.split('.'), version1.split('.'))
+    } else {
+      return compare(name1[0], name2[0])
+    }
+  })
+  if (!process.env.BROWSERSLIST_DISABLE_CACHE) {
+    cache[cacheKey] = result
+  }
+  return result
+}
+
+function parse(queries) {
+  var qs = []
+  do {
+    queries = doMatch(queries, qs)
+  } while (queries)
+  return qs
+}
+
+function doMatch(string, qs) {
+  var or = /^(?:,\s*|\s+or\s+)(.*)/i
+  var and = /^\s+and\s+(.*)/i
+
+  return find(string, function (parsed, n, max) {
+    if (and.test(parsed)) {
+      qs.unshift({ type: QUERY_AND, queryString: parsed.match(and)[1] })
+      return true
+    } else if (or.test(parsed)) {
+      qs.unshift({ type: QUERY_OR, queryString: parsed.match(or)[1] })
+      return true
+    } else if (n === max) {
+      qs.unshift({ type: QUERY_OR, queryString: parsed.trim() })
+      return true
+    }
+    return false
+  })
+}
+
+function find(string, predicate) {
+  for (var n = 1, max = string.length; n <= max; n++) {
+    var parsed = string.substr(-n, n)
+    if (predicate(parsed, n, max)) {
+      return string.slice(0, -n)
+    }
+  }
+  return ''
+}
+
+function flatten(array) {
+  if (!Array.isArray(array)) return [array]
+  return array.reduce(function (a, b) {
+    return a.concat(flatten(b))
+  }, [])
+}
+
+// Will be filled by Can I Use data below
+browserslist.cache = {}
+browserslist.data = {}
+browserslist.usage = {
+  global: {},
+  custom: null
+}
+
+// Default browsers query
+browserslist.defaults = ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
+
+// Browser names aliases
+browserslist.aliases = {
+  fx: 'firefox',
+  ff: 'firefox',
+  ios: 'ios_saf',
+  explorer: 'ie',
+  blackberry: 'bb',
+  explorermobile: 'ie_mob',
+  operamini: 'op_mini',
+  operamobile: 'op_mob',
+  chromeandroid: 'and_chr',
+  firefoxandroid: 'and_ff',
+  ucandroid: 'and_uc',
+  qqandroid: 'and_qq'
+}
+
+// Can I Use only provides a few versions for some browsers (e.g. and_chr).
+// Fallback to a similar browser for unknown versions
+browserslist.desktopNames = {
+  and_chr: 'chrome',
+  and_ff: 'firefox',
+  ie_mob: 'ie',
+  op_mob: 'opera',
+  android: 'chrome' // has extra processing logic
+}
+
+// Aliases to work with joined versions like `ios_saf 7.0-7.1`
+browserslist.versionAliases = {}
+
+browserslist.clearCaches = env.clearCaches
+browserslist.parseConfig = env.parseConfig
+browserslist.readConfig = env.readConfig
+browserslist.findConfig = env.findConfig
+browserslist.loadConfig = env.loadConfig
+
+/**
+ * Return browsers market coverage.
+ *
+ * @param {string[]} browsers Browsers names in Can I Use.
+ * @param {string|object} [stats="global"] Which statistics should be used.
+ *                                         Country code or custom statistics.
+ *                                         Pass `"my stats"` to load statistics
+ *                                         from Browserslist files.
+ *
+ * @return {number} Total market coverage for all selected browsers.
+ *
+ * @example
+ * browserslist.coverage(browserslist('> 1% in US'), 'US') //=> 83.1
+ */
+browserslist.coverage = function (browsers, stats) {
+  var data
+  if (typeof stats === 'undefined') {
+    data = browserslist.usage.global
+  } else if (stats === 'my stats') {
+    var opts = {}
+    opts.path = path.resolve ? path.resolve('.') : '.'
+    var customStats = env.getStat(opts)
+    if (!customStats) {
+      throw new BrowserslistError('Custom usage statistics was not provided')
+    }
+    data = {}
+    for (var browser in customStats) {
+      fillUsage(data, browser, customStats[browser])
+    }
+  } else if (typeof stats === 'string') {
+    if (stats.length > 2) {
+      stats = stats.toLowerCase()
+    } else {
+      stats = stats.toUpperCase()
+    }
+    env.loadCountry(browserslist.usage, stats, browserslist.data)
+    data = browserslist.usage[stats]
+  } else {
+    if ('dataByBrowser' in stats) {
+      stats = stats.dataByBrowser
+    }
+    data = {}
+    for (var name in stats) {
+      for (var version in stats[name]) {
+        data[name + ' ' + version] = stats[name][version]
+      }
+    }
+  }
+
+  return browsers.reduce(function (all, i) {
+    var usage = data[i]
+    if (usage === undefined) {
+      usage = data[i.replace(/ \S+$/, ' 0')]
+    }
+    return all + (usage || 0)
+  }, 0)
+}
+
+function nodeQuery(context, version) {
+  var matched = browserslist.nodeVersions.filter(function (i) {
+    return isVersionsMatch(i, version)
+  })
+  if (matched.length === 0) {
+    if (context.ignoreUnknownVersions) {
+      return []
+    } else {
+      throw new BrowserslistError('Unknown version ' + version + ' of Node.js')
+    }
+  }
+  return ['node ' + matched[matched.length - 1]]
+}
+
+function sinceQuery(context, year, month, date) {
+  year = parseInt(year)
+  month = parseInt(month || '01') - 1
+  date = parseInt(date || '01')
+  return filterByYear(Date.UTC(year, month, date, 0, 0, 0), context)
+}
+
+function coverQuery(context, coverage, statMode) {
+  coverage = parseFloat(coverage)
+  var usage = browserslist.usage.global
+  if (statMode) {
+    if (statMode.match(/^my\s+stats$/i)) {
+      if (!context.customUsage) {
+        throw new BrowserslistError('Custom usage statistics was not provided')
+      }
+      usage = context.customUsage
+    } else {
+      var place
+      if (statMode.length === 2) {
+        place = statMode.toUpperCase()
+      } else {
+        place = statMode.toLowerCase()
+      }
+      env.loadCountry(browserslist.usage, place, browserslist.data)
+      usage = browserslist.usage[place]
+    }
+  }
+  var versions = Object.keys(usage).sort(function (a, b) {
+    return usage[b] - usage[a]
+  })
+  var coveraged = 0
+  var result = []
+  var version
+  for (var i = 0; i < versions.length; i++) {
+    version = versions[i]
+    if (usage[version] === 0) break
+    coveraged += usage[version]
+    result.push(version)
+    if (coveraged >= coverage) break
+  }
+  return result
+}
+
+var QUERIES = [
+  {
+    regexp: /^last\s+(\d+)\s+major\s+versions?$/i,
+    select: function (context, versions) {
+      return Object.keys(agents).reduce(function (selected, name) {
+        var data = byName(name, context)
+        if (!data) return selected
+        var list = getMajorVersions(data.released, versions)
+        list = list.map(nameMapper(data.name))
+        if (data.name === 'android') {
+          list = filterAndroid(list, versions, context)
+        }
+        return selected.concat(list)
+      }, [])
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+versions?$/i,
+    select: function (context, versions) {
+      return Object.keys(agents).reduce(function (selected, name) {
+        var data = byName(name, context)
+        if (!data) return selected
+        var list = data.released.slice(-versions)
+        list = list.map(nameMapper(data.name))
+        if (data.name === 'android') {
+          list = filterAndroid(list, versions, context)
+        }
+        return selected.concat(list)
+      }, [])
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+electron\s+major\s+versions?$/i,
+    select: function (context, versions) {
+      var validVersions = getMajorVersions(Object.keys(e2c), versions)
+      return validVersions.map(function (i) {
+        return 'chrome ' + e2c[i]
+      })
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+node\s+major\s+versions?$/i,
+    select: function (context, versions) {
+      return getMajorVersions(browserslist.nodeVersions, versions).map(
+        function (version) {
+          return 'node ' + version
+        }
+      )
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+(\w+)\s+major\s+versions?$/i,
+    select: function (context, versions, name) {
+      var data = checkName(name, context)
+      var validVersions = getMajorVersions(data.released, versions)
+      var list = validVersions.map(nameMapper(data.name))
+      if (data.name === 'android') {
+        list = filterAndroid(list, versions, context)
+      }
+      return list
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+electron\s+versions?$/i,
+    select: function (context, versions) {
+      return Object.keys(e2c)
+        .slice(-versions)
+        .map(function (i) {
+          return 'chrome ' + e2c[i]
+        })
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+node\s+versions?$/i,
+    select: function (context, versions) {
+      return browserslist.nodeVersions.slice(-versions).map(function (version) {
+        return 'node ' + version
+      })
+    }
+  },
+  {
+    regexp: /^last\s+(\d+)\s+(\w+)\s+versions?$/i,
+    select: function (context, versions, name) {
+      var data = checkName(name, context)
+      var list = data.released.slice(-versions).map(nameMapper(data.name))
+      if (data.name === 'android') {
+        list = filterAndroid(list, versions, context)
+      }
+      return list
+    }
+  },
+  {
+    regexp: /^unreleased\s+versions$/i,
+    select: function (context) {
+      return Object.keys(agents).reduce(function (selected, name) {
+        var data = byName(name, context)
+        if (!data) return selected
+        var list = data.versions.filter(function (v) {
+          return data.released.indexOf(v) === -1
+        })
+        list = list.map(nameMapper(data.name))
+        return selected.concat(list)
+      }, [])
+    }
+  },
+  {
+    regexp: /^unreleased\s+electron\s+versions?$/i,
+    select: function () {
+      return []
+    }
+  },
+  {
+    regexp: /^unreleased\s+(\w+)\s+versions?$/i,
+    select: function (context, name) {
+      var data = checkName(name, context)
+      return data.versions
+        .filter(function (v) {
+          return data.released.indexOf(v) === -1
+        })
+        .map(nameMapper(data.name))
+    }
+  },
+  {
+    regexp: /^last\s+(\d*.?\d+)\s+years?$/i,
+    select: function (context, years) {
+      return filterByYear(Date.now() - YEAR * years, context)
+    }
+  },
+  {
+    regexp: /^since (\d+)$/i,
+    select: sinceQuery
+  },
+  {
+    regexp: /^since (\d+)-(\d+)$/i,
+    select: sinceQuery
+  },
+  {
+    regexp: /^since (\d+)-(\d+)-(\d+)$/i,
+    select: sinceQuery
+  },
+  {
+    regexp: /^(>=?|<=?)\s*(\d+|\d+\.\d+|\.\d+)%$/,
+    select: function (context, sign, popularity) {
+      popularity = parseFloat(popularity)
+      var usage = browserslist.usage.global
+      return Object.keys(usage).reduce(function (result, version) {
+        if (sign === '>') {
+          if (usage[version] > popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<') {
+          if (usage[version] < popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<=') {
+          if (usage[version] <= popularity) {
+            result.push(version)
+          }
+        } else if (usage[version] >= popularity) {
+          result.push(version)
+        }
+        return result
+      }, [])
+    }
+  },
+  {
+    regexp: /^(>=?|<=?)\s*(\d+|\d+\.\d+|\.\d+)%\s+in\s+my\s+stats$/,
+    select: function (context, sign, popularity) {
+      popularity = parseFloat(popularity)
+      if (!context.customUsage) {
+        throw new BrowserslistError('Custom usage statistics was not provided')
+      }
+      var usage = context.customUsage
+      return Object.keys(usage).reduce(function (result, version) {
+        var percentage = usage[version]
+        if (percentage == null) {
+          return result
+        }
+
+        if (sign === '>') {
+          if (percentage > popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<') {
+          if (percentage < popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<=') {
+          if (percentage <= popularity) {
+            result.push(version)
+          }
+        } else if (percentage >= popularity) {
+          result.push(version)
+        }
+        return result
+      }, [])
+    }
+  },
+  {
+    regexp: /^(>=?|<=?)\s*(\d+|\d+\.\d+|\.\d+)%\s+in\s+(\S+)\s+stats$/,
+    select: function (context, sign, popularity, name) {
+      popularity = parseFloat(popularity)
+      var stats = env.loadStat(context, name, browserslist.data)
+      if (stats) {
+        context.customUsage = {}
+        for (var browser in stats) {
+          fillUsage(context.customUsage, browser, stats[browser])
+        }
+      }
+      if (!context.customUsage) {
+        throw new BrowserslistError('Custom usage statistics was not provided')
+      }
+      var usage = context.customUsage
+      return Object.keys(usage).reduce(function (result, version) {
+        var percentage = usage[version]
+        if (percentage == null) {
+          return result
+        }
+
+        if (sign === '>') {
+          if (percentage > popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<') {
+          if (percentage < popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<=') {
+          if (percentage <= popularity) {
+            result.push(version)
+          }
+        } else if (percentage >= popularity) {
+          result.push(version)
+        }
+        return result
+      }, [])
+    }
+  },
+  {
+    regexp: /^(>=?|<=?)\s*(\d+|\d+\.\d+|\.\d+)%\s+in\s+((alt-)?\w\w)$/,
+    select: function (context, sign, popularity, place) {
+      popularity = parseFloat(popularity)
+      if (place.length === 2) {
+        place = place.toUpperCase()
+      } else {
+        place = place.toLowerCase()
+      }
+      env.loadCountry(browserslist.usage, place, browserslist.data)
+      var usage = browserslist.usage[place]
+      return Object.keys(usage).reduce(function (result, version) {
+        var percentage = usage[version]
+        if (percentage == null) {
+          return result
+        }
+
+        if (sign === '>') {
+          if (percentage > popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<') {
+          if (percentage < popularity) {
+            result.push(version)
+          }
+        } else if (sign === '<=') {
+          if (percentage <= popularity) {
+            result.push(version)
+          }
+        } else if (percentage >= popularity) {
+          result.push(version)
+        }
+        return result
+      }, [])
+    }
+  },
+  {
+    regexp: /^cover\s+(\d+|\d+\.\d+|\.\d+)%$/i,
+    select: coverQuery
+  },
+  {
+    regexp: /^cover\s+(\d+|\d+\.\d+|\.\d+)%\s+in\s+(my\s+stats|(alt-)?\w\w)$/i,
+    select: coverQuery
+  },
+  {
+    regexp: /^supports\s+([\w-]+)$/,
+    select: function (context, feature) {
+      env.loadFeature(browserslist.cache, feature)
+      var features = browserslist.cache[feature]
+      return Object.keys(features).reduce(function (result, version) {
+        var flags = features[version]
+        if (flags.indexOf('y') >= 0 || flags.indexOf('a') >= 0) {
+          result.push(version)
+        }
+        return result
+      }, [])
+    }
+  },
+  {
+    regexp: /^electron\s+([\d.]+)\s*-\s*([\d.]+)$/i,
+    select: function (context, from, to) {
+      var fromToUse = normalizeElectron(from)
+      var toToUse = normalizeElectron(to)
+      if (!e2c[fromToUse]) {
+        throw new BrowserslistError('Unknown version ' + from + ' of electron')
+      }
+      if (!e2c[toToUse]) {
+        throw new BrowserslistError('Unknown version ' + to + ' of electron')
+      }
+      from = parseFloat(from)
+      to = parseFloat(to)
+      return Object.keys(e2c)
+        .filter(function (i) {
+          var parsed = parseFloat(i)
+          return parsed >= from && parsed <= to
+        })
+        .map(function (i) {
+          return 'chrome ' + e2c[i]
+        })
+    }
+  },
+  {
+    regexp: /^node\s+([\d.]+)\s*-\s*([\d.]+)$/i,
+    select: function (context, from, to) {
+      return browserslist.nodeVersions
+        .filter(semverFilterLoose('>=', from))
+        .filter(semverFilterLoose('<=', to))
+        .map(function (v) {
+          return 'node ' + v
+        })
+    }
+  },
+  {
+    regexp: /^(\w+)\s+([\d.]+)\s*-\s*([\d.]+)$/i,
+    select: function (context, name, from, to) {
+      var data = checkName(name, context)
+      from = parseFloat(normalizeVersion(data, from) || from)
+      to = parseFloat(normalizeVersion(data, to) || to)
+      function filter(v) {
+        var parsed = parseFloat(v)
+        return parsed >= from && parsed <= to
+      }
+      return data.released.filter(filter).map(nameMapper(data.name))
+    }
+  },
+  {
+    regexp: /^electron\s*(>=?|<=?)\s*([\d.]+)$/i,
+    select: function (context, sign, version) {
+      var versionToUse = normalizeElectron(version)
+      return Object.keys(e2c)
+        .filter(generateFilter(sign, versionToUse))
+        .map(function (i) {
+          return 'chrome ' + e2c[i]
+        })
+    }
+  },
+  {
+    regexp: /^node\s*(>=?|<=?)\s*([\d.]+)$/i,
+    select: function (context, sign, version) {
+      return browserslist.nodeVersions
+        .filter(generateSemverFilter(sign, version))
+        .map(function (v) {
+          return 'node ' + v
+        })
+    }
+  },
+  {
+    regexp: /^(\w+)\s*(>=?|<=?)\s*([\d.]+)$/,
+    select: function (context, name, sign, version) {
+      var data = checkName(name, context)
+      var alias = browserslist.versionAliases[data.name][version]
+      if (alias) {
+        version = alias
+      }
+      return data.released
+        .filter(generateFilter(sign, version))
+        .map(function (v) {
+          return data.name + ' ' + v
+        })
+    }
+  },
+  {
+    regexp: /^(firefox|ff|fx)\s+esr$/i,
+    select: function () {
+      return ['firefox 91']
+    }
+  },
+  {
+    regexp: /(operamini|op_mini)\s+all/i,
+    select: function () {
+      return ['op_mini all']
+    }
+  },
+  {
+    regexp: /^electron\s+([\d.]+)$/i,
+    select: function (context, version) {
+      var versionToUse = normalizeElectron(version)
+      var chrome = e2c[versionToUse]
+      if (!chrome) {
+        throw new BrowserslistError(
+          'Unknown version ' + version + ' of electron'
+        )
+      }
+      return ['chrome ' + chrome]
+    }
+  },
+  {
+    regexp: /^node\s+(\d+)$/i,
+    select: nodeQuery
+  },
+  {
+    regexp: /^node\s+(\d+\.\d+)$/i,
+    select: nodeQuery
+  },
+  {
+    regexp: /^node\s+(\d+\.\d+\.\d+)$/i,
+    select: nodeQuery
+  },
+  {
+    regexp: /^current\s+node$/i,
+    select: function (context) {
+      return [env.currentNode(resolve, context)]
+    }
+  },
+  {
+    regexp: /^maintained\s+node\s+versions$/i,
+    select: function (context) {
+      var now = Date.now()
+      var queries = Object.keys(jsEOL)
+        .filter(function (key) {
+          return (
+            now < Date.parse(jsEOL[key].end) &&
+            now > Date.parse(jsEOL[key].start) &&
+            isEolReleased(key)
+          )
+        })
+        .map(function (key) {
+          return 'node ' + key.slice(1)
+        })
+      return resolve(queries, context)
+    }
+  },
+  {
+    regexp: /^phantomjs\s+1.9$/i,
+    select: function () {
+      return ['safari 5']
+    }
+  },
+  {
+    regexp: /^phantomjs\s+2.1$/i,
+    select: function () {
+      return ['safari 6']
+    }
+  },
+  {
+    regexp: /^(\w+)\s+(tp|[\d.]+)$/i,
+    select: function (context, name, version) {
+      if (/^tp$/i.test(version)) version = 'TP'
+      var data = checkName(name, context)
+      var alias = normalizeVersion(data, version)
+      if (alias) {
+        version = alias
+      } else {
+        if (version.indexOf('.') === -1) {
+          alias = version + '.0'
+        } else {
+          alias = version.replace(/\.0$/, '')
+        }
+        alias = normalizeVersion(data, alias)
+        if (alias) {
+          version = alias
+        } else if (context.ignoreUnknownVersions) {
+          return []
+        } else {
+          throw new BrowserslistError(
+            'Unknown version ' + version + ' of ' + name
+          )
+        }
+      }
+      return [data.name + ' ' + version]
+    }
+  },
+  {
+    regexp: /^browserslist config$/i,
+    select: function (context) {
+      return browserslist(undefined, context)
+    }
+  },
+  {
+    regexp: /^extends (.+)$/i,
+    select: function (context, name) {
+      return resolve(env.loadQueries(context, name), context)
+    }
+  },
+  {
+    regexp: /^defaults$/i,
+    select: function (context) {
+      return resolve(browserslist.defaults, context)
+    }
+  },
+  {
+    regexp: /^dead$/i,
+    select: function (context) {
+      var dead = [
+        'Baidu >= 0',
+        'ie <= 10',
+        'ie_mob <= 11',
+        'bb <= 10',
+        'op_mob <= 12.1',
+        'samsung 4'
+      ]
+      return resolve(dead, context)
+    }
+  },
+  {
+    regexp: /^(\w+)$/i,
+    select: function (context, name) {
+      if (byName(name, context)) {
+        throw new BrowserslistError(
+          'Specify versions in Browserslist query for browser ' + name
+        )
+      } else {
+        throw unknownQuery(name)
+      }
+    }
+  }
+]
+
+// Get and convert Can I Use data
+
+;(function () {
+  for (var name in agents) {
+    var browser = agents[name]
+    browserslist.data[name] = {
+      name: name,
+      versions: normalize(agents[name].versions),
+      released: normalize(agents[name].versions.slice(0, -3)),
+      releaseDate: agents[name].release_date
+    }
+    fillUsage(browserslist.usage.global, name, browser.usage_global)
+
+    browserslist.versionAliases[name] = {}
+    for (var i = 0; i < browser.versions.length; i++) {
+      var full = browser.versions[i]
+      if (!full) continue
+
+      if (full.indexOf('-') !== -1) {
+        var interval = full.split('-')
+        for (var j = 0; j < interval.length; j++) {
+          browserslist.versionAliases[name][interval[j]] = full
+        }
+      }
+    }
+  }
+
+  browserslist.versionAliases.op_mob['59'] = '58'
+
+  browserslist.nodeVersions = jsReleases.map(function (release) {
+    return release.version
+  })
+})()
+
+module.exports = browserslist
+
+
+/***/ }),
+
 /***/ "./node_modules/buffer/index.js":
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
@@ -16675,6 +18118,226 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/data/agents.js":
+/*!**************************************************!*\
+  !*** ./node_modules/caniuse-lite/data/agents.js ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports={A:{A:{J:0.0131217,D:0.00621152,E:0.0166941,F:0.038953,A:0.00556471,B:0.8514,xB:0.009298},B:"ms",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","xB","J","D","E","F","A","B","","",""],E:"IE",F:{xB:962323200,J:998870400,D:1161129600,E:1237420800,F:1300060800,A:1346716800,B:1381968000}},B:{A:{C:0.007734,K:0.004267,L:0.004268,G:0.058005,M:0.003867,N:0.007734,O:0.023202,P:0,Q:0.004298,R:0.00944,S:0.004043,T:0.007734,U:0.007734,V:0.003867,W:0.011601,Z:0.004318,a:0.007734,b:0.004118,c:0.003939,d:0.007734,e:0.004118,f:0.003939,g:0.007734,h:0.011601,i:0.015468,j:0.015468,k:0.054138,l:0.212685,H:3.52284,X:0},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","C","K","L","G","M","N","O","P","Q","R","S","T","U","V","W","Z","a","b","c","d","e","f","g","h","i","j","k","l","H","X","","",""],E:"Edge",F:{C:1438128000,K:1447286400,L:1470096000,G:1491868800,M:1508198400,N:1525046400,O:1542067200,P:1579046400,Q:1581033600,R:1586736000,S:1590019200,T:1594857600,U:1598486400,V:1602201600,W:1605830400,Z:1611360000,a:1614816000,b:1618358400,c:1622073600,d:1626912000,e:1630627200,f:1632441600,g:1634774400,h:1637539200,i:1641427200,j:1643932800,k:1646265600,l:1649635200,H:1651190400,X:1653955200},D:{C:"ms",K:"ms",L:"ms",G:"ms",M:"ms",N:"ms",O:"ms"}},C:{A:{"0":0.004471,"1":0.009284,"2":0.004707,"3":0.009076,"4":0.003867,"5":0.004783,"6":0.004271,"7":0.004783,"8":0.00487,"9":0.005029,yB:0.004118,lB:0.004271,I:0.019335,m:0.004879,J:0.020136,D:0.005725,E:0.004525,F:0.00533,A:0.004283,B:0.007734,C:0.004471,K:0.004486,L:0.00453,G:0.008322,M:0.004417,N:0.004425,O:0.004161,n:0.004443,o:0.004283,p:0.008322,q:0.013698,r:0.004161,s:0.008786,t:0.004118,u:0.004317,v:0.004393,w:0.004418,x:0.008834,y:0.008322,z:0.008928,AB:0.0047,BB:0.023202,CB:0.007734,DB:0.003867,EB:0.004525,FB:0.004293,GB:0.003867,HB:0.004538,IB:0.008282,JB:0.011601,KB:0.069606,LB:0.011601,MB:0.007734,NB:0.015468,OB:0.011601,PB:0.011601,QB:0.003939,mB:0.007734,RB:0.003867,nB:0.004356,SB:0.004425,TB:0.008322,Y:0.00415,UB:0.004267,VB:0.003867,WB:0.004267,XB:0.007734,YB:0.00415,ZB:0.004293,aB:0.004425,bB:0.003867,cB:0.00415,dB:0.00415,eB:0.004318,fB:0.004356,gB:0.003867,hB:0.042537,P:0.007734,Q:0.007734,R:0.011601,oB:0.007734,S:0.003867,T:0.003867,U:0.004268,V:0.003867,W:0.011601,Z:0.011601,a:0.007734,b:0.007734,c:0.096675,d:0.003867,e:0.007734,f:0.03867,g:0.011601,h:0.015468,i:0.015468,j:0.034803,k:0.421503,l:1.84456,H:0.023202,X:0,pB:0,zB:0.008786,"0B":0.00487},B:"moz",C:["yB","lB","zB","0B","I","m","J","D","E","F","A","B","C","K","L","G","M","N","O","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","AB","BB","CB","DB","EB","FB","GB","HB","IB","JB","KB","LB","MB","NB","OB","PB","QB","mB","RB","nB","SB","TB","Y","UB","VB","WB","XB","YB","ZB","aB","bB","cB","dB","eB","fB","gB","hB","P","Q","R","oB","S","T","U","V","W","Z","a","b","c","d","e","f","g","h","i","j","k","l","H","X","pB",""],E:"Firefox",F:{"0":1409616000,"1":1413244800,"2":1417392000,"3":1421107200,"4":1424736000,"5":1428278400,"6":1431475200,"7":1435881600,"8":1439251200,"9":1442880000,yB:1161648000,lB:1213660800,zB:1246320000,"0B":1264032000,I:1300752000,m:1308614400,J:1313452800,D:1317081600,E:1317081600,F:1320710400,A:1324339200,B:1327968000,C:1331596800,K:1335225600,L:1338854400,G:1342483200,M:1346112000,N:1349740800,O:1353628800,n:1357603200,o:1361232000,p:1364860800,q:1368489600,r:1372118400,s:1375747200,t:1379376000,u:1386633600,v:1391472000,w:1395100800,x:1398729600,y:1402358400,z:1405987200,AB:1446508800,BB:1450137600,CB:1453852800,DB:1457395200,EB:1461628800,FB:1465257600,GB:1470096000,HB:1474329600,IB:1479168000,JB:1485216000,KB:1488844800,LB:1492560000,MB:1497312000,NB:1502150400,OB:1506556800,PB:1510617600,QB:1516665600,mB:1520985600,RB:1525824000,nB:1529971200,SB:1536105600,TB:1540252800,Y:1544486400,UB:1548720000,VB:1552953600,WB:1558396800,XB:1562630400,YB:1567468800,ZB:1571788800,aB:1575331200,bB:1578355200,cB:1581379200,dB:1583798400,eB:1586304000,fB:1588636800,gB:1591056000,hB:1593475200,P:1595894400,Q:1598313600,R:1600732800,oB:1603152000,S:1605571200,T:1607990400,U:1611619200,V:1614038400,W:1616457600,Z:1618790400,a:1622505600,b:1626134400,c:1628553600,d:1630972800,e:1633392000,f:1635811200,g:1638835200,h:1641859200,i:1644364800,j:1646697600,k:1649116800,l:1651536000,H:1653955200,X:null,pB:null}},D:{A:{"0":0.004566,"1":0.004118,"2":0.007734,"3":0.007878,"4":0.004335,"5":0.004464,"6":0.019335,"7":0.003867,"8":0.019335,"9":0.007734,I:0.004706,m:0.004879,J:0.004879,D:0.005591,E:0.005591,F:0.005591,A:0.004534,B:0.004464,C:0.010424,K:0.0083,L:0.004706,G:0.015087,M:0.004393,N:0.004393,O:0.008652,n:0.008322,o:0.004393,p:0.004317,q:0.007734,r:0.008786,s:0.003939,t:0.004461,u:0.004141,v:0.004326,w:0.0047,x:0.004538,y:0.008322,z:0.008596,AB:0.007734,BB:0.011601,CB:0.003867,DB:0.003867,EB:0.003867,FB:0.015468,GB:0.023202,HB:0.061872,IB:0.003867,JB:0.007734,KB:0.007734,LB:0.015468,MB:0.003867,NB:0.007734,OB:0.027069,PB:0.007734,QB:0.011601,mB:0.007734,RB:0.015468,nB:0.015468,SB:0.015468,TB:0.015468,Y:0.007734,UB:0.015468,VB:0.027069,WB:0.023202,XB:0.007734,YB:0.046404,ZB:0.019335,aB:0.011601,bB:0.019335,cB:0.007734,dB:0.023202,eB:0.058005,fB:0.073473,gB:0.011601,hB:0.030936,P:0.204951,Q:0.042537,R:0.03867,S:0.131478,T:0.081207,U:0.088941,V:0.092808,W:0.104409,Z:0.019335,a:0.058005,b:0.034803,c:0.081207,d:0.065739,e:0.054138,f:0.061872,g:0.042537,h:0.143079,i:0.143079,j:0.204951,k:0.351897,l:4.17636,H:15.4487,X:1.5468,pB:0.015468,"1B":0.007734,"2B":0},B:"webkit",C:["","","","","I","m","J","D","E","F","A","B","C","K","L","G","M","N","O","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","AB","BB","CB","DB","EB","FB","GB","HB","IB","JB","KB","LB","MB","NB","OB","PB","QB","mB","RB","nB","SB","TB","Y","UB","VB","WB","XB","YB","ZB","aB","bB","cB","dB","eB","fB","gB","hB","P","Q","R","S","T","U","V","W","Z","a","b","c","d","e","f","g","h","i","j","k","l","H","X","pB","1B","2B"],E:"Chrome",F:{"0":1389657600,"1":1392940800,"2":1397001600,"3":1400544000,"4":1405468800,"5":1409011200,"6":1412640000,"7":1416268800,"8":1421798400,"9":1425513600,I:1264377600,m:1274745600,J:1283385600,D:1287619200,E:1291248000,F:1296777600,A:1299542400,B:1303862400,C:1307404800,K:1312243200,L:1316131200,G:1316131200,M:1319500800,N:1323734400,O:1328659200,n:1332892800,o:1337040000,p:1340668800,q:1343692800,r:1348531200,s:1352246400,t:1357862400,u:1361404800,v:1364428800,w:1369094400,x:1374105600,y:1376956800,z:1384214400,AB:1429401600,BB:1432080000,CB:1437523200,DB:1441152000,EB:1444780800,FB:1449014400,GB:1453248000,HB:1456963200,IB:1460592000,JB:1464134400,KB:1469059200,LB:1472601600,MB:1476230400,NB:1480550400,OB:1485302400,PB:1489017600,QB:1492560000,mB:1496707200,RB:1500940800,nB:1504569600,SB:1508198400,TB:1512518400,Y:1516752000,UB:1520294400,VB:1523923200,WB:1527552000,XB:1532390400,YB:1536019200,ZB:1539648000,aB:1543968000,bB:1548720000,cB:1552348800,dB:1555977600,eB:1559606400,fB:1564444800,gB:1568073600,hB:1571702400,P:1575936000,Q:1580860800,R:1586304000,S:1589846400,T:1594684800,U:1598313600,V:1601942400,W:1605571200,Z:1611014400,a:1614556800,b:1618272000,c:1621987200,d:1626739200,e:1630368000,f:1632268800,g:1634601600,h:1637020800,i:1641340800,j:1643673600,k:1646092800,l:1648512000,H:1650931200,X:1653350400,pB:null,"1B":null,"2B":null}},E:{A:{I:0,m:0.008322,J:0.004656,D:0.004465,E:0.004356,F:0.004891,A:0.004425,B:0.004318,C:0.003867,K:0.034803,L:0.158547,G:0.058005,"3B":0,qB:0.008692,"4B":0.007734,"5B":0.00456,"6B":0.004283,"7B":0.015468,rB:0.007734,iB:0.023202,jB:0.046404,"8B":0.266823,"9B":0.491109,AC:0.108276,sB:0.108276,tB:1.67054,uB:0.189483,kB:0,BC:0},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","3B","qB","I","m","4B","J","5B","D","6B","E","F","7B","A","rB","B","iB","C","jB","K","8B","L","9B","G","AC","sB","tB","uB","BC","",""],E:"Safari",F:{"3B":1205798400,qB:1226534400,I:1244419200,m:1275868800,"4B":1311120000,J:1343174400,"5B":1382400000,D:1382400000,"6B":1410998400,E:1413417600,F:1443657600,"7B":1458518400,A:1474329600,rB:1490572800,B:1505779200,iB:1522281600,C:1537142400,jB:1553472000,K:1568851200,"8B":1585008000,L:1600214400,"9B":1619395200,G:1632096000,AC:1635292800,sB:1639353600,tB:1647216000,uB:1652745600,kB:null,BC:null}},F:{A:{"0":0.005152,"1":0.005014,"2":0.009758,"3":0.004879,"4":0.003867,"5":0.004283,"6":0.004367,"7":0.004534,"8":0.007734,"9":0.004227,F:0.0082,B:0.016581,C:0.004317,G:0.00685,M:0.00685,N:0.00685,O:0.005014,n:0.006015,o:0.004879,p:0.006597,q:0.006597,r:0.013434,s:0.006702,t:0.006015,u:0.005595,v:0.004393,w:0.007734,x:0.004879,y:0.004879,z:0.003867,AB:0.004418,BB:0.004161,CB:0.004227,DB:0.004725,EB:0.011601,FB:0.008942,GB:0.004707,HB:0.004827,IB:0.004707,JB:0.004707,KB:0.004326,LB:0.008922,MB:0.014349,NB:0.004425,OB:0.00472,PB:0.004425,QB:0.004425,RB:0.00472,SB:0.004532,TB:0.004566,Y:0.02283,UB:0.00867,VB:0.004656,WB:0.004642,XB:0.003867,YB:0.00944,ZB:0.004293,aB:0.003867,bB:0.004298,cB:0.096692,dB:0.004201,eB:0.004141,fB:0.004257,gB:0.003939,hB:0.008236,P:0.003939,Q:0.003939,R:0.008514,oB:0.003939,S:0.003939,T:0.007734,U:0.448572,V:0.475641,W:0.027069,CC:0.00685,DC:0,EC:0.008392,FC:0.004706,iB:0.006229,vB:0.004879,GC:0.008786,jB:0.00472},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","F","CC","DC","EC","FC","B","iB","vB","GC","C","jB","G","M","N","O","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","AB","BB","CB","DB","EB","FB","GB","HB","IB","JB","KB","LB","MB","NB","OB","PB","QB","RB","SB","TB","Y","UB","VB","WB","XB","YB","ZB","aB","bB","cB","dB","eB","fB","gB","hB","P","Q","R","oB","S","T","U","V","W","",""],E:"Opera",F:{"0":1442448000,"1":1445904000,"2":1449100800,"3":1454371200,"4":1457308800,"5":1462320000,"6":1465344000,"7":1470096000,"8":1474329600,"9":1477267200,F:1150761600,CC:1223424000,DC:1251763200,EC:1267488000,FC:1277942400,B:1292457600,iB:1302566400,vB:1309219200,GC:1323129600,C:1323129600,jB:1352073600,G:1372723200,M:1377561600,N:1381104000,O:1386288000,n:1390867200,o:1393891200,p:1399334400,q:1401753600,r:1405987200,s:1409616000,t:1413331200,u:1417132800,v:1422316800,w:1425945600,x:1430179200,y:1433808000,z:1438646400,AB:1481587200,BB:1486425600,CB:1490054400,DB:1494374400,EB:1498003200,FB:1502236800,GB:1506470400,HB:1510099200,IB:1515024000,JB:1517961600,KB:1521676800,LB:1525910400,MB:1530144000,NB:1534982400,OB:1537833600,PB:1543363200,QB:1548201600,RB:1554768000,SB:1561593600,TB:1566259200,Y:1570406400,UB:1573689600,VB:1578441600,WB:1583971200,XB:1587513600,YB:1592956800,ZB:1595894400,aB:1600128000,bB:1603238400,cB:1613520000,dB:1612224000,eB:1616544000,fB:1619568000,gB:1623715200,hB:1627948800,P:1631577600,Q:1633392000,R:1635984000,oB:1638403200,S:1642550400,T:1644969600,U:1647993600,V:1650412800,W:null},D:{F:"o",B:"o",C:"o",CC:"o",DC:"o",EC:"o",FC:"o",iB:"o",vB:"o",GC:"o",jB:"o"}},G:{A:{E:0,qB:0.00303644,HC:0,wB:0.00151822,IC:0.00455466,JC:0.00455466,KC:0.0167004,LC:0.00759111,MC:0.0197369,NC:0.0774293,OC:0.013664,PC:0.0926115,QC:0.0379555,RC:0.0318826,SC:0.0303644,TC:0.57996,UC:0.0288462,VC:0.0121458,WC:0.0607288,XC:0.189778,YC:0.592106,ZC:1.50911,aC:0.513159,sB:1.20395,tB:10.1478,uB:0,kB:0},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","qB","HC","wB","IC","JC","KC","E","LC","MC","NC","OC","PC","QC","RC","SC","TC","UC","VC","WC","XC","YC","ZC","aC","sB","tB","uB","kB","",""],E:"Safari on iOS",F:{qB:1270252800,HC:1283904000,wB:1299628800,IC:1331078400,JC:1359331200,KC:1394409600,E:1410912000,LC:1413763200,MC:1442361600,NC:1458518400,OC:1473724800,PC:1490572800,QC:1505779200,RC:1522281600,SC:1537142400,TC:1553472000,UC:1568851200,VC:1572220800,WC:1580169600,XC:1585008000,YC:1600214400,ZC:1619395200,aC:1632096000,sB:1639353600,tB:1647216000,uB:1652659200,kB:null}},H:{A:{bC:0.998688},B:"o",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","bC","","",""],E:"Opera Mini",F:{bC:1426464000}},I:{A:{lB:0,I:0.0149357,H:0,cC:0,dC:0,eC:0,fC:0.0199142,wB:0.0597426,gC:0,hC:0.328584},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","cC","dC","eC","lB","I","fC","wB","gC","hC","H","","",""],E:"Android Browser",F:{cC:1256515200,dC:1274313600,eC:1291593600,lB:1298332800,I:1318896000,fC:1341792000,wB:1374624000,gC:1386547200,hC:1401667200,H:1651017600}},J:{A:{D:0,A:0},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","D","A","","",""],E:"Blackberry Browser",F:{D:1325376000,A:1359504000}},K:{A:{A:0,B:0,C:0,Y:0.0111391,iB:0,vB:0,jB:0},B:"o",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","A","B","iB","vB","C","jB","Y","","",""],E:"Opera Mobile",F:{A:1287100800,B:1300752000,iB:1314835200,vB:1318291200,C:1330300800,jB:1349740800,Y:1613433600},D:{Y:"webkit"}},L:{A:{X:41.3354},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","X","","",""],E:"Chrome for Android",F:{X:1653350400}},M:{A:{H:0.30665},B:"moz",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","H","","",""],E:"Firefox for Android",F:{H:1653955200}},N:{A:{A:0.0115934,B:0.022664},B:"ms",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","A","B","","",""],E:"IE Mobile",F:{A:1340150400,B:1353456000}},O:{A:{iC:0.766625},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","iC","","",""],E:"UC Browser for Android",F:{iC:1471392000},D:{iC:"webkit"}},P:{A:{I:0.209346,jC:0.0103543,kC:0.010304,lC:0.0628037,mC:0.0103584,nC:0.0104673,rB:0.0105043,oC:0.0418691,pC:0.0209346,qC:0.0942055,rC:0.0942055,sC:0.0942055,kB:0.889718},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","I","jC","kC","lC","mC","nC","rB","oC","pC","qC","rC","sC","kB","","",""],E:"Samsung Internet",F:{I:1461024000,jC:1481846400,kC:1509408000,lC:1528329600,mC:1546128000,nC:1554163200,rB:1567900800,oC:1582588800,pC:1593475200,qC:1605657600,rC:1618531200,sC:1629072000,kB:1640736000}},Q:{A:{tC:0.153325},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","tC","","",""],E:"QQ Browser",F:{tC:1589846400}},R:{A:{uC:0},B:"webkit",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","uC","","",""],E:"Baidu Browser",F:{uC:1491004800}},S:{A:{vC:0.073596},B:"moz",C:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","vC","","",""],E:"KaiOS Browser",F:{vC:1527811200}}};
+
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/data/browserVersions.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/caniuse-lite/data/browserVersions.js ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+module.exports={"0":"32","1":"33","2":"34","3":"35","4":"36","5":"37","6":"38","7":"39","8":"40","9":"41",A:"10",B:"11",C:"12",D:"7",E:"8",F:"9",G:"15",H:"101",I:"4",J:"6",K:"13",L:"14",M:"16",N:"17",O:"18",P:"79",Q:"80",R:"81",S:"83",T:"84",U:"85",V:"86",W:"87",X:"102",Y:"64",Z:"88",a:"89",b:"90",c:"91",d:"92",e:"93",f:"94",g:"95",h:"96",i:"97",j:"98",k:"99",l:"100",m:"5",n:"19",o:"20",p:"21",q:"22",r:"23",s:"24",t:"25",u:"26",v:"27",w:"28",x:"29",y:"30",z:"31",AB:"42",BB:"43",CB:"44",DB:"45",EB:"46",FB:"47",GB:"48",HB:"49",IB:"50",JB:"51",KB:"52",LB:"53",MB:"54",NB:"55",OB:"56",PB:"57",QB:"58",RB:"60",SB:"62",TB:"63",UB:"65",VB:"66",WB:"67",XB:"68",YB:"69",ZB:"70",aB:"71",bB:"72",cB:"73",dB:"74",eB:"75",fB:"76",gB:"77",hB:"78",iB:"11.1",jB:"12.1",kB:"16.0",lB:"3",mB:"59",nB:"61",oB:"82",pB:"103",qB:"3.2",rB:"10.1",sB:"15.2-15.3",tB:"15.4",uB:"15.5",vB:"11.5",wB:"4.2-4.3",xB:"5.5",yB:"2",zB:"3.5","0B":"3.6","1B":"104","2B":"105","3B":"3.1","4B":"5.1","5B":"6.1","6B":"7.1","7B":"9.1","8B":"13.1","9B":"14.1",AC:"15.1",BC:"TP",CC:"9.5-9.6",DC:"10.0-10.1",EC:"10.5",FC:"10.6",GC:"11.6",HC:"4.0-4.1",IC:"5.0-5.1",JC:"6.0-6.1",KC:"7.0-7.1",LC:"8.1-8.4",MC:"9.0-9.2",NC:"9.3",OC:"10.0-10.2",PC:"10.3",QC:"11.0-11.2",RC:"11.3-11.4",SC:"12.0-12.1",TC:"12.2-12.5",UC:"13.0-13.1",VC:"13.2",WC:"13.3",XC:"13.4-13.7",YC:"14.0-14.4",ZC:"14.5-14.8",aC:"15.0-15.1",bC:"all",cC:"2.1",dC:"2.2",eC:"2.3",fC:"4.1",gC:"4.4",hC:"4.4.3-4.4.4",iC:"12.12",jC:"5.0-5.4",kC:"6.2-6.4",lC:"7.2-7.4",mC:"8.2",nC:"9.2",oC:"11.1-11.2",pC:"12.0",qC:"13.0",rC:"14.0",sC:"15.0",tC:"10.4",uC:"7.12",vC:"2.5"};
+
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/data/browsers.js":
+/*!****************************************************!*\
+  !*** ./node_modules/caniuse-lite/data/browsers.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+module.exports={A:"ie",B:"edge",C:"firefox",D:"chrome",E:"safari",F:"opera",G:"ios_saf",H:"op_mini",I:"android",J:"bb",K:"op_mob",L:"and_chr",M:"and_ff",N:"ie_mob",O:"and_uc",P:"samsung",Q:"and_qq",R:"baidu",S:"kaios"};
+
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/dist/unpacker/agents.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/caniuse-lite/dist/unpacker/agents.js ***!
+  \***********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+const browsers = (__webpack_require__(/*! ./browsers */ "./node_modules/caniuse-lite/dist/unpacker/browsers.js").browsers)
+const versions = (__webpack_require__(/*! ./browserVersions */ "./node_modules/caniuse-lite/dist/unpacker/browserVersions.js").browserVersions)
+const agentsData = __webpack_require__(/*! ../../data/agents */ "./node_modules/caniuse-lite/data/agents.js")
+
+function unpackBrowserVersions(versionsData) {
+  return Object.keys(versionsData).reduce((usage, version) => {
+    usage[versions[version]] = versionsData[version]
+    return usage
+  }, {})
+}
+
+module.exports.agents = Object.keys(agentsData).reduce((map, key) => {
+  let versionsData = agentsData[key]
+  map[browsers[key]] = Object.keys(versionsData).reduce((data, entry) => {
+    if (entry === 'A') {
+      data.usage_global = unpackBrowserVersions(versionsData[entry])
+    } else if (entry === 'C') {
+      data.versions = versionsData[entry].reduce((list, version) => {
+        if (version === '') {
+          list.push(null)
+        } else {
+          list.push(versions[version])
+        }
+        return list
+      }, [])
+    } else if (entry === 'D') {
+      data.prefix_exceptions = unpackBrowserVersions(versionsData[entry])
+    } else if (entry === 'E') {
+      data.browser = versionsData[entry]
+    } else if (entry === 'F') {
+      data.release_date = Object.keys(versionsData[entry]).reduce(
+        (map2, key2) => {
+          map2[versions[key2]] = versionsData[entry][key2]
+          return map2
+        },
+        {}
+      )
+    } else {
+      // entry is B
+      data.prefix = versionsData[entry]
+    }
+    return data
+  }, {})
+  return map
+}, {})
+
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/dist/unpacker/browserVersions.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/caniuse-lite/dist/unpacker/browserVersions.js ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports.browserVersions = __webpack_require__(/*! ../../data/browserVersions */ "./node_modules/caniuse-lite/data/browserVersions.js")
+
+
+/***/ }),
+
+/***/ "./node_modules/caniuse-lite/dist/unpacker/browsers.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/caniuse-lite/dist/unpacker/browsers.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports.browsers = __webpack_require__(/*! ../../data/browsers */ "./node_modules/caniuse-lite/data/browsers.js")
+
+
+/***/ }),
+
+/***/ "./node_modules/electron-to-chromium/versions.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/electron-to-chromium/versions.js ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+module.exports = {
+	"0.20": "39",
+	"0.21": "41",
+	"0.22": "41",
+	"0.23": "41",
+	"0.24": "41",
+	"0.25": "42",
+	"0.26": "42",
+	"0.27": "43",
+	"0.28": "43",
+	"0.29": "43",
+	"0.30": "44",
+	"0.31": "45",
+	"0.32": "45",
+	"0.33": "45",
+	"0.34": "45",
+	"0.35": "45",
+	"0.36": "47",
+	"0.37": "49",
+	"1.0": "49",
+	"1.1": "50",
+	"1.2": "51",
+	"1.3": "52",
+	"1.4": "53",
+	"1.5": "54",
+	"1.6": "56",
+	"1.7": "58",
+	"1.8": "59",
+	"2.0": "61",
+	"2.1": "61",
+	"3.0": "66",
+	"3.1": "66",
+	"4.0": "69",
+	"4.1": "69",
+	"4.2": "69",
+	"5.0": "73",
+	"6.0": "76",
+	"6.1": "76",
+	"7.0": "78",
+	"7.1": "78",
+	"7.2": "78",
+	"7.3": "78",
+	"8.0": "80",
+	"8.1": "80",
+	"8.2": "80",
+	"8.3": "80",
+	"8.4": "80",
+	"8.5": "80",
+	"9.0": "83",
+	"9.1": "83",
+	"9.2": "83",
+	"9.3": "83",
+	"9.4": "83",
+	"10.0": "85",
+	"10.1": "85",
+	"10.2": "85",
+	"10.3": "85",
+	"10.4": "85",
+	"11.0": "87",
+	"11.1": "87",
+	"11.2": "87",
+	"11.3": "87",
+	"11.4": "87",
+	"11.5": "87",
+	"12.0": "89",
+	"12.1": "89",
+	"12.2": "89",
+	"13.0": "91",
+	"13.1": "91",
+	"13.2": "91",
+	"13.3": "91",
+	"13.4": "91",
+	"13.5": "91",
+	"13.6": "91",
+	"14.0": "93",
+	"14.1": "93",
+	"14.2": "93",
+	"15.0": "94",
+	"15.1": "94",
+	"15.2": "94",
+	"15.3": "94",
+	"15.4": "94",
+	"15.5": "94",
+	"16.0": "96",
+	"16.1": "96",
+	"16.2": "96",
+	"17.0": "98",
+	"17.1": "98",
+	"17.2": "98",
+	"17.3": "98",
+	"17.4": "98",
+	"18.0": "100",
+	"18.1": "100",
+	"18.2": "100",
+	"18.3": "100",
+	"19.0": "102",
+	"20.0": "104"
+};
 
 /***/ }),
 
@@ -47536,29 +49199,91 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card card-primary" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "form",
+      [
+        _vm._l(_vm.articles, function (article) {
+          return _c("div", { key: article.id, staticClass: "card-body" }, [
+            _c("table", { staticClass: "table" }, [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(article.id)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.first_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.last_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.student_code))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.department))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.faculty))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.phone))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.address))]),
+                ]),
+              ]),
+            ]),
+          ])
+        }),
+        _vm._v(" "),
+        _vm._m(2),
+      ],
+      2
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Quick Example")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("First")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Last")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Student_Code")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Department")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Faculty")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Address")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Submit")]
+      ),
     ])
   },
 ]
@@ -59722,6 +61447,38 @@ Vue.compile = compileToFunctions;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vue);
 
+
+/***/ }),
+
+/***/ "?3274":
+/*!**********************!*\
+  !*** path (ignored) ***!
+  \**********************/
+/***/ (() => {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "./node_modules/node-releases/data/processed/envs.json":
+/*!*************************************************************!*\
+  !*** ./node_modules/node-releases/data/processed/envs.json ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('[{"name":"nodejs","version":"0.2.0","date":"2011-08-26","lts":false,"security":false},{"name":"nodejs","version":"0.3.0","date":"2011-08-26","lts":false,"security":false},{"name":"nodejs","version":"0.4.0","date":"2011-08-26","lts":false,"security":false},{"name":"nodejs","version":"0.5.0","date":"2011-08-26","lts":false,"security":false},{"name":"nodejs","version":"0.6.0","date":"2011-11-04","lts":false,"security":false},{"name":"nodejs","version":"0.7.0","date":"2012-01-17","lts":false,"security":false},{"name":"nodejs","version":"0.8.0","date":"2012-06-22","lts":false,"security":false},{"name":"nodejs","version":"0.9.0","date":"2012-07-20","lts":false,"security":false},{"name":"nodejs","version":"0.10.0","date":"2013-03-11","lts":false,"security":false},{"name":"nodejs","version":"0.11.0","date":"2013-03-28","lts":false,"security":false},{"name":"nodejs","version":"0.12.0","date":"2015-02-06","lts":false,"security":false},{"name":"nodejs","version":"4.0.0","date":"2015-09-08","lts":false,"security":false},{"name":"nodejs","version":"4.1.0","date":"2015-09-17","lts":false,"security":false},{"name":"nodejs","version":"4.2.0","date":"2015-10-12","lts":"Argon","security":false},{"name":"nodejs","version":"4.3.0","date":"2016-02-09","lts":"Argon","security":false},{"name":"nodejs","version":"4.4.0","date":"2016-03-08","lts":"Argon","security":false},{"name":"nodejs","version":"4.5.0","date":"2016-08-16","lts":"Argon","security":false},{"name":"nodejs","version":"4.6.0","date":"2016-09-27","lts":"Argon","security":true},{"name":"nodejs","version":"4.7.0","date":"2016-12-06","lts":"Argon","security":false},{"name":"nodejs","version":"4.8.0","date":"2017-02-21","lts":"Argon","security":false},{"name":"nodejs","version":"4.9.0","date":"2018-03-28","lts":"Argon","security":true},{"name":"nodejs","version":"5.0.0","date":"2015-10-29","lts":false,"security":false},{"name":"nodejs","version":"5.1.0","date":"2015-11-17","lts":false,"security":false},{"name":"nodejs","version":"5.2.0","date":"2015-12-09","lts":false,"security":false},{"name":"nodejs","version":"5.3.0","date":"2015-12-15","lts":false,"security":false},{"name":"nodejs","version":"5.4.0","date":"2016-01-06","lts":false,"security":false},{"name":"nodejs","version":"5.5.0","date":"2016-01-21","lts":false,"security":false},{"name":"nodejs","version":"5.6.0","date":"2016-02-09","lts":false,"security":false},{"name":"nodejs","version":"5.7.0","date":"2016-02-23","lts":false,"security":false},{"name":"nodejs","version":"5.8.0","date":"2016-03-09","lts":false,"security":false},{"name":"nodejs","version":"5.9.0","date":"2016-03-16","lts":false,"security":false},{"name":"nodejs","version":"5.10.0","date":"2016-04-01","lts":false,"security":false},{"name":"nodejs","version":"5.11.0","date":"2016-04-21","lts":false,"security":false},{"name":"nodejs","version":"5.12.0","date":"2016-06-23","lts":false,"security":false},{"name":"nodejs","version":"6.0.0","date":"2016-04-26","lts":false,"security":false},{"name":"nodejs","version":"6.1.0","date":"2016-05-05","lts":false,"security":false},{"name":"nodejs","version":"6.2.0","date":"2016-05-17","lts":false,"security":false},{"name":"nodejs","version":"6.3.0","date":"2016-07-06","lts":false,"security":false},{"name":"nodejs","version":"6.4.0","date":"2016-08-12","lts":false,"security":false},{"name":"nodejs","version":"6.5.0","date":"2016-08-26","lts":false,"security":false},{"name":"nodejs","version":"6.6.0","date":"2016-09-14","lts":false,"security":false},{"name":"nodejs","version":"6.7.0","date":"2016-09-27","lts":false,"security":true},{"name":"nodejs","version":"6.8.0","date":"2016-10-12","lts":false,"security":false},{"name":"nodejs","version":"6.9.0","date":"2016-10-18","lts":"Boron","security":false},{"name":"nodejs","version":"6.10.0","date":"2017-02-21","lts":"Boron","security":false},{"name":"nodejs","version":"6.11.0","date":"2017-06-06","lts":"Boron","security":false},{"name":"nodejs","version":"6.12.0","date":"2017-11-06","lts":"Boron","security":false},{"name":"nodejs","version":"6.13.0","date":"2018-02-10","lts":"Boron","security":false},{"name":"nodejs","version":"6.14.0","date":"2018-03-28","lts":"Boron","security":true},{"name":"nodejs","version":"6.15.0","date":"2018-11-27","lts":"Boron","security":true},{"name":"nodejs","version":"6.16.0","date":"2018-12-26","lts":"Boron","security":false},{"name":"nodejs","version":"6.17.0","date":"2019-02-28","lts":"Boron","security":true},{"name":"nodejs","version":"7.0.0","date":"2016-10-25","lts":false,"security":false},{"name":"nodejs","version":"7.1.0","date":"2016-11-08","lts":false,"security":false},{"name":"nodejs","version":"7.2.0","date":"2016-11-22","lts":false,"security":false},{"name":"nodejs","version":"7.3.0","date":"2016-12-20","lts":false,"security":false},{"name":"nodejs","version":"7.4.0","date":"2017-01-04","lts":false,"security":false},{"name":"nodejs","version":"7.5.0","date":"2017-01-31","lts":false,"security":false},{"name":"nodejs","version":"7.6.0","date":"2017-02-21","lts":false,"security":false},{"name":"nodejs","version":"7.7.0","date":"2017-02-28","lts":false,"security":false},{"name":"nodejs","version":"7.8.0","date":"2017-03-29","lts":false,"security":false},{"name":"nodejs","version":"7.9.0","date":"2017-04-11","lts":false,"security":false},{"name":"nodejs","version":"7.10.0","date":"2017-05-02","lts":false,"security":false},{"name":"nodejs","version":"8.0.0","date":"2017-05-30","lts":false,"security":false},{"name":"nodejs","version":"8.1.0","date":"2017-06-08","lts":false,"security":false},{"name":"nodejs","version":"8.2.0","date":"2017-07-19","lts":false,"security":false},{"name":"nodejs","version":"8.3.0","date":"2017-08-08","lts":false,"security":false},{"name":"nodejs","version":"8.4.0","date":"2017-08-15","lts":false,"security":false},{"name":"nodejs","version":"8.5.0","date":"2017-09-12","lts":false,"security":false},{"name":"nodejs","version":"8.6.0","date":"2017-09-26","lts":false,"security":false},{"name":"nodejs","version":"8.7.0","date":"2017-10-11","lts":false,"security":false},{"name":"nodejs","version":"8.8.0","date":"2017-10-24","lts":false,"security":false},{"name":"nodejs","version":"8.9.0","date":"2017-10-31","lts":"Carbon","security":false},{"name":"nodejs","version":"8.10.0","date":"2018-03-06","lts":"Carbon","security":false},{"name":"nodejs","version":"8.11.0","date":"2018-03-28","lts":"Carbon","security":true},{"name":"nodejs","version":"8.12.0","date":"2018-09-10","lts":"Carbon","security":false},{"name":"nodejs","version":"8.13.0","date":"2018-11-20","lts":"Carbon","security":false},{"name":"nodejs","version":"8.14.0","date":"2018-11-27","lts":"Carbon","security":true},{"name":"nodejs","version":"8.15.0","date":"2018-12-26","lts":"Carbon","security":false},{"name":"nodejs","version":"8.16.0","date":"2019-04-16","lts":"Carbon","security":false},{"name":"nodejs","version":"8.17.0","date":"2019-12-17","lts":"Carbon","security":true},{"name":"nodejs","version":"9.0.0","date":"2017-10-31","lts":false,"security":false},{"name":"nodejs","version":"9.1.0","date":"2017-11-07","lts":false,"security":false},{"name":"nodejs","version":"9.2.0","date":"2017-11-14","lts":false,"security":false},{"name":"nodejs","version":"9.3.0","date":"2017-12-12","lts":false,"security":false},{"name":"nodejs","version":"9.4.0","date":"2018-01-10","lts":false,"security":false},{"name":"nodejs","version":"9.5.0","date":"2018-01-31","lts":false,"security":false},{"name":"nodejs","version":"9.6.0","date":"2018-02-21","lts":false,"security":false},{"name":"nodejs","version":"9.7.0","date":"2018-03-01","lts":false,"security":false},{"name":"nodejs","version":"9.8.0","date":"2018-03-07","lts":false,"security":false},{"name":"nodejs","version":"9.9.0","date":"2018-03-21","lts":false,"security":false},{"name":"nodejs","version":"9.10.0","date":"2018-03-28","lts":false,"security":true},{"name":"nodejs","version":"9.11.0","date":"2018-04-04","lts":false,"security":false},{"name":"nodejs","version":"10.0.0","date":"2018-04-24","lts":false,"security":false},{"name":"nodejs","version":"10.1.0","date":"2018-05-08","lts":false,"security":false},{"name":"nodejs","version":"10.2.0","date":"2018-05-23","lts":false,"security":false},{"name":"nodejs","version":"10.3.0","date":"2018-05-29","lts":false,"security":false},{"name":"nodejs","version":"10.4.0","date":"2018-06-06","lts":false,"security":false},{"name":"nodejs","version":"10.5.0","date":"2018-06-20","lts":false,"security":false},{"name":"nodejs","version":"10.6.0","date":"2018-07-04","lts":false,"security":false},{"name":"nodejs","version":"10.7.0","date":"2018-07-18","lts":false,"security":false},{"name":"nodejs","version":"10.8.0","date":"2018-08-01","lts":false,"security":false},{"name":"nodejs","version":"10.9.0","date":"2018-08-15","lts":false,"security":false},{"name":"nodejs","version":"10.10.0","date":"2018-09-06","lts":false,"security":false},{"name":"nodejs","version":"10.11.0","date":"2018-09-19","lts":false,"security":false},{"name":"nodejs","version":"10.12.0","date":"2018-10-10","lts":false,"security":false},{"name":"nodejs","version":"10.13.0","date":"2018-10-30","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.14.0","date":"2018-11-27","lts":"Dubnium","security":true},{"name":"nodejs","version":"10.15.0","date":"2018-12-26","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.16.0","date":"2019-05-28","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.17.0","date":"2019-10-22","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.18.0","date":"2019-12-17","lts":"Dubnium","security":true},{"name":"nodejs","version":"10.19.0","date":"2020-02-05","lts":"Dubnium","security":true},{"name":"nodejs","version":"10.20.0","date":"2020-03-26","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.21.0","date":"2020-06-02","lts":"Dubnium","security":true},{"name":"nodejs","version":"10.22.0","date":"2020-07-21","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.23.0","date":"2020-10-27","lts":"Dubnium","security":false},{"name":"nodejs","version":"10.24.0","date":"2021-02-23","lts":"Dubnium","security":true},{"name":"nodejs","version":"11.0.0","date":"2018-10-23","lts":false,"security":false},{"name":"nodejs","version":"11.1.0","date":"2018-10-30","lts":false,"security":false},{"name":"nodejs","version":"11.2.0","date":"2018-11-15","lts":false,"security":false},{"name":"nodejs","version":"11.3.0","date":"2018-11-27","lts":false,"security":true},{"name":"nodejs","version":"11.4.0","date":"2018-12-07","lts":false,"security":false},{"name":"nodejs","version":"11.5.0","date":"2018-12-18","lts":false,"security":false},{"name":"nodejs","version":"11.6.0","date":"2018-12-26","lts":false,"security":false},{"name":"nodejs","version":"11.7.0","date":"2019-01-17","lts":false,"security":false},{"name":"nodejs","version":"11.8.0","date":"2019-01-24","lts":false,"security":false},{"name":"nodejs","version":"11.9.0","date":"2019-01-30","lts":false,"security":false},{"name":"nodejs","version":"11.10.0","date":"2019-02-14","lts":false,"security":false},{"name":"nodejs","version":"11.11.0","date":"2019-03-05","lts":false,"security":false},{"name":"nodejs","version":"11.12.0","date":"2019-03-14","lts":false,"security":false},{"name":"nodejs","version":"11.13.0","date":"2019-03-28","lts":false,"security":false},{"name":"nodejs","version":"11.14.0","date":"2019-04-10","lts":false,"security":false},{"name":"nodejs","version":"11.15.0","date":"2019-04-30","lts":false,"security":false},{"name":"nodejs","version":"12.0.0","date":"2019-04-23","lts":false,"security":false},{"name":"nodejs","version":"12.1.0","date":"2019-04-29","lts":false,"security":false},{"name":"nodejs","version":"12.2.0","date":"2019-05-07","lts":false,"security":false},{"name":"nodejs","version":"12.3.0","date":"2019-05-21","lts":false,"security":false},{"name":"nodejs","version":"12.4.0","date":"2019-06-04","lts":false,"security":false},{"name":"nodejs","version":"12.5.0","date":"2019-06-26","lts":false,"security":false},{"name":"nodejs","version":"12.6.0","date":"2019-07-03","lts":false,"security":false},{"name":"nodejs","version":"12.7.0","date":"2019-07-23","lts":false,"security":false},{"name":"nodejs","version":"12.8.0","date":"2019-08-06","lts":false,"security":false},{"name":"nodejs","version":"12.9.0","date":"2019-08-20","lts":false,"security":false},{"name":"nodejs","version":"12.10.0","date":"2019-09-04","lts":false,"security":false},{"name":"nodejs","version":"12.11.0","date":"2019-09-25","lts":false,"security":false},{"name":"nodejs","version":"12.12.0","date":"2019-10-11","lts":false,"security":false},{"name":"nodejs","version":"12.13.0","date":"2019-10-21","lts":"Erbium","security":false},{"name":"nodejs","version":"12.14.0","date":"2019-12-17","lts":"Erbium","security":true},{"name":"nodejs","version":"12.15.0","date":"2020-02-05","lts":"Erbium","security":true},{"name":"nodejs","version":"12.16.0","date":"2020-02-11","lts":"Erbium","security":false},{"name":"nodejs","version":"12.17.0","date":"2020-05-26","lts":"Erbium","security":false},{"name":"nodejs","version":"12.18.0","date":"2020-06-02","lts":"Erbium","security":true},{"name":"nodejs","version":"12.19.0","date":"2020-10-06","lts":"Erbium","security":false},{"name":"nodejs","version":"12.20.0","date":"2020-11-24","lts":"Erbium","security":false},{"name":"nodejs","version":"12.21.0","date":"2021-02-23","lts":"Erbium","security":true},{"name":"nodejs","version":"12.22.0","date":"2021-03-30","lts":"Erbium","security":false},{"name":"nodejs","version":"13.0.0","date":"2019-10-22","lts":false,"security":false},{"name":"nodejs","version":"13.1.0","date":"2019-11-05","lts":false,"security":false},{"name":"nodejs","version":"13.2.0","date":"2019-11-21","lts":false,"security":false},{"name":"nodejs","version":"13.3.0","date":"2019-12-03","lts":false,"security":false},{"name":"nodejs","version":"13.4.0","date":"2019-12-17","lts":false,"security":true},{"name":"nodejs","version":"13.5.0","date":"2019-12-18","lts":false,"security":false},{"name":"nodejs","version":"13.6.0","date":"2020-01-07","lts":false,"security":false},{"name":"nodejs","version":"13.7.0","date":"2020-01-21","lts":false,"security":false},{"name":"nodejs","version":"13.8.0","date":"2020-02-05","lts":false,"security":true},{"name":"nodejs","version":"13.9.0","date":"2020-02-18","lts":false,"security":false},{"name":"nodejs","version":"13.10.0","date":"2020-03-04","lts":false,"security":false},{"name":"nodejs","version":"13.11.0","date":"2020-03-12","lts":false,"security":false},{"name":"nodejs","version":"13.12.0","date":"2020-03-26","lts":false,"security":false},{"name":"nodejs","version":"13.13.0","date":"2020-04-14","lts":false,"security":false},{"name":"nodejs","version":"13.14.0","date":"2020-04-29","lts":false,"security":false},{"name":"nodejs","version":"14.0.0","date":"2020-04-21","lts":false,"security":false},{"name":"nodejs","version":"14.1.0","date":"2020-04-29","lts":false,"security":false},{"name":"nodejs","version":"14.2.0","date":"2020-05-05","lts":false,"security":false},{"name":"nodejs","version":"14.3.0","date":"2020-05-19","lts":false,"security":false},{"name":"nodejs","version":"14.4.0","date":"2020-06-02","lts":false,"security":true},{"name":"nodejs","version":"14.5.0","date":"2020-06-30","lts":false,"security":false},{"name":"nodejs","version":"14.6.0","date":"2020-07-20","lts":false,"security":false},{"name":"nodejs","version":"14.7.0","date":"2020-07-29","lts":false,"security":false},{"name":"nodejs","version":"14.8.0","date":"2020-08-11","lts":false,"security":false},{"name":"nodejs","version":"14.9.0","date":"2020-08-27","lts":false,"security":false},{"name":"nodejs","version":"14.10.0","date":"2020-09-08","lts":false,"security":false},{"name":"nodejs","version":"14.11.0","date":"2020-09-15","lts":false,"security":true},{"name":"nodejs","version":"14.12.0","date":"2020-09-22","lts":false,"security":false},{"name":"nodejs","version":"14.13.0","date":"2020-09-29","lts":false,"security":false},{"name":"nodejs","version":"14.14.0","date":"2020-10-15","lts":false,"security":false},{"name":"nodejs","version":"14.15.0","date":"2020-10-27","lts":"Fermium","security":false},{"name":"nodejs","version":"14.16.0","date":"2021-02-23","lts":"Fermium","security":true},{"name":"nodejs","version":"14.17.0","date":"2021-05-11","lts":"Fermium","security":false},{"name":"nodejs","version":"14.18.0","date":"2021-09-28","lts":"Fermium","security":false},{"name":"nodejs","version":"14.19.0","date":"2022-02-01","lts":"Fermium","security":false},{"name":"nodejs","version":"15.0.0","date":"2020-10-20","lts":false,"security":false},{"name":"nodejs","version":"15.1.0","date":"2020-11-04","lts":false,"security":false},{"name":"nodejs","version":"15.2.0","date":"2020-11-10","lts":false,"security":false},{"name":"nodejs","version":"15.3.0","date":"2020-11-24","lts":false,"security":false},{"name":"nodejs","version":"15.4.0","date":"2020-12-09","lts":false,"security":false},{"name":"nodejs","version":"15.5.0","date":"2020-12-22","lts":false,"security":false},{"name":"nodejs","version":"15.6.0","date":"2021-01-14","lts":false,"security":false},{"name":"nodejs","version":"15.7.0","date":"2021-01-25","lts":false,"security":false},{"name":"nodejs","version":"15.8.0","date":"2021-02-02","lts":false,"security":false},{"name":"nodejs","version":"15.9.0","date":"2021-02-18","lts":false,"security":false},{"name":"nodejs","version":"15.10.0","date":"2021-02-23","lts":false,"security":true},{"name":"nodejs","version":"15.11.0","date":"2021-03-03","lts":false,"security":false},{"name":"nodejs","version":"15.12.0","date":"2021-03-17","lts":false,"security":false},{"name":"nodejs","version":"15.13.0","date":"2021-03-31","lts":false,"security":false},{"name":"nodejs","version":"15.14.0","date":"2021-04-06","lts":false,"security":false},{"name":"nodejs","version":"16.0.0","date":"2021-04-20","lts":false,"security":false},{"name":"nodejs","version":"16.1.0","date":"2021-05-04","lts":false,"security":false},{"name":"nodejs","version":"16.2.0","date":"2021-05-19","lts":false,"security":false},{"name":"nodejs","version":"16.3.0","date":"2021-06-03","lts":false,"security":false},{"name":"nodejs","version":"16.4.0","date":"2021-06-23","lts":false,"security":false},{"name":"nodejs","version":"16.5.0","date":"2021-07-14","lts":false,"security":false},{"name":"nodejs","version":"16.6.0","date":"2021-07-29","lts":false,"security":true},{"name":"nodejs","version":"16.7.0","date":"2021-08-18","lts":false,"security":false},{"name":"nodejs","version":"16.8.0","date":"2021-08-25","lts":false,"security":false},{"name":"nodejs","version":"16.9.0","date":"2021-09-07","lts":false,"security":false},{"name":"nodejs","version":"16.10.0","date":"2021-09-22","lts":false,"security":false},{"name":"nodejs","version":"16.11.0","date":"2021-10-08","lts":false,"security":false},{"name":"nodejs","version":"16.12.0","date":"2021-10-20","lts":false,"security":false},{"name":"nodejs","version":"16.13.0","date":"2021-10-26","lts":"Gallium","security":false},{"name":"nodejs","version":"16.14.0","date":"2022-02-08","lts":"Gallium","security":false},{"name":"nodejs","version":"16.15.0","date":"2022-04-26","lts":"Gallium","security":false},{"name":"nodejs","version":"17.0.0","date":"2021-10-19","lts":false,"security":false},{"name":"nodejs","version":"17.1.0","date":"2021-11-09","lts":false,"security":false},{"name":"nodejs","version":"17.2.0","date":"2021-11-30","lts":false,"security":false},{"name":"nodejs","version":"17.3.0","date":"2021-12-17","lts":false,"security":false},{"name":"nodejs","version":"17.4.0","date":"2022-01-18","lts":false,"security":false},{"name":"nodejs","version":"17.5.0","date":"2022-02-10","lts":false,"security":false},{"name":"nodejs","version":"17.6.0","date":"2022-02-22","lts":false,"security":false},{"name":"nodejs","version":"17.7.0","date":"2022-03-09","lts":false,"security":false},{"name":"nodejs","version":"17.8.0","date":"2022-03-22","lts":false,"security":false},{"name":"nodejs","version":"17.9.0","date":"2022-04-07","lts":false,"security":false},{"name":"nodejs","version":"18.0.0","date":"2022-04-18","lts":false,"security":false},{"name":"nodejs","version":"18.1.0","date":"2022-05-03","lts":false,"security":false},{"name":"nodejs","version":"18.2.0","date":"2022-05-17","lts":false,"security":false}]');
+
+/***/ }),
+
+/***/ "./node_modules/node-releases/data/release-schedule/release-schedule.json":
+/*!********************************************************************************!*\
+  !*** ./node_modules/node-releases/data/release-schedule/release-schedule.json ***!
+  \********************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"v0.8":{"start":"2012-06-25","end":"2014-07-31"},"v0.10":{"start":"2013-03-11","end":"2016-10-31"},"v0.12":{"start":"2015-02-06","end":"2016-12-31"},"v4":{"start":"2015-09-08","lts":"2015-10-12","maintenance":"2017-04-01","end":"2018-04-30","codename":"Argon"},"v5":{"start":"2015-10-29","maintenance":"2016-04-30","end":"2016-06-30"},"v6":{"start":"2016-04-26","lts":"2016-10-18","maintenance":"2018-04-30","end":"2019-04-30","codename":"Boron"},"v7":{"start":"2016-10-25","maintenance":"2017-04-30","end":"2017-06-30"},"v8":{"start":"2017-05-30","lts":"2017-10-31","maintenance":"2019-01-01","end":"2019-12-31","codename":"Carbon"},"v9":{"start":"2017-10-01","maintenance":"2018-04-01","end":"2018-06-30"},"v10":{"start":"2018-04-24","lts":"2018-10-30","maintenance":"2020-05-19","end":"2021-04-30","codename":"Dubnium"},"v11":{"start":"2018-10-23","maintenance":"2019-04-22","end":"2019-06-01"},"v12":{"start":"2019-04-23","lts":"2019-10-21","maintenance":"2020-11-30","end":"2022-04-30","codename":"Erbium"},"v13":{"start":"2019-10-22","maintenance":"2020-04-01","end":"2020-06-01"},"v14":{"start":"2020-04-21","lts":"2020-10-27","maintenance":"2021-10-19","end":"2023-04-30","codename":"Fermium"},"v15":{"start":"2020-10-20","maintenance":"2021-04-01","end":"2021-06-01"},"v16":{"start":"2021-04-20","lts":"2021-10-26","maintenance":"2022-10-18","end":"2024-04-30","codename":"Gallium"},"v17":{"start":"2021-10-19","maintenance":"2022-04-01","end":"2022-06-01"},"v18":{"start":"2022-04-19","lts":"2022-10-25","maintenance":"2023-10-18","end":"2025-04-30","codename":""},"v19":{"start":"2022-10-18","maintenance":"2023-04-01","end":"2023-06-01"},"v20":{"start":"2023-04-18","lts":"2023-10-24","maintenance":"2024-10-22","end":"2026-04-30","codename":""}}');
 
 /***/ })
 

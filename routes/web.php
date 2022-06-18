@@ -29,7 +29,7 @@ Route::get('', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('isStudent')->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'show' ])->name('student.show');
@@ -41,6 +41,6 @@ Route::group(['prefix' => 'students'], function () {
 
 Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
 Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
-
+Route::get('getstudent', [App\Http\Controllers\Admin\StudentsController::class, 'getstudent'])->name('get.student');
 
 

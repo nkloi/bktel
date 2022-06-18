@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\students;
 
 class HomeController extends Controller
 {
@@ -22,7 +24,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+
+        $user = Auth::user();
+        $student_id = $user->student_id;
+        if ($student_id != null){
+
+            return view('home');
+            
+        }
+        else{
+            return redirect()->route('student.information');
+        }
+
     }
 }
