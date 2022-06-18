@@ -5,8 +5,15 @@
  */
 
 require('./bootstrap');
+require('./adminlte');
+require('./dashboard3');
 
 window.Vue = require('vue').default;
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+import 'jquery-ui/ui/widgets/datepicker.js';
+$('#datepicker').datepicker();
 
 /**
  * The following block of code may be used to automatically register your
