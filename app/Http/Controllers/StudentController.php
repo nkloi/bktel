@@ -2,33 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
 
+    public function showRegister()
+    {
+        $student = auth()->user()->student;
+        return $student != null ? view('student.register')->with('student_id', $student->id) : view('student.register')->with('student_id', null);
+    }
+
     public function index()
     {
-        return view('layouts.student');
+        return view('student.home');
     }
 
     //action get student with id
     public function show(Request $request, $student_id)
     {
         $studentEntity = Student::find($student_id);
-        $user = $studentEntity->user;
+        $studentEntity->user->toArray();
 
-        $email = $user->email;
-        $studentArr = $studentEntity->attributesToArray();
-        $studentArr["email"] = $email;
-
-        return response()->json($studentArr);
+        return response()->json($studentEntity);
     }
 
     //action save student
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
+        // info($request);
         $user = auth()->user();
         $student = new Student();
         $student->fill($request->all());
@@ -36,12 +41,13 @@ class StudentController extends Controller
 
         $student->user()->save($user);
 
-        return response()->json($user);
+        return response()->json($student);
     }
 
     //acction update student
-    public function update(Request $request, $student_id)
+    public function update(StudentRequest $request, $student_id)
     {
+        info($request);
         Student::find($student_id)->update($request->all());
         return response('success', 200);
     }

@@ -10,26 +10,30 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body>
     <div id="app">
         <div class="wrapper">
             <header-component></header-component>
-            <sidebar-component></sidebar-component>
-            <content-component></content-component>
+            <sidebar-component url="{{ route('student.register') }}" base_url="{{ url('/') }}"></sidebar-component>
+            @yield('content')
             <footer-component></footer-component>
         </div>
     </div>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src=" {{ asset('js/jquery.min.js') }}">
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('/js/toastr.min.js') }}"></script>
+    <!-- jQuery -->
 </body>
 
 </html>

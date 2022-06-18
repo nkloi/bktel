@@ -27,17 +27,18 @@ Vue.component(
     "header-component",
     require("./components/HeaderComponent.vue").default
 );
-Vue.component(
-    "content-component",
-    require("./components/ContentComponent.vue").default
-);
+
 Vue.component(
     "footer-component",
     require("./components/FooterComponent.vue").default
 );
 Vue.component(
     "sidebar-component",
-    require("./components/SidebarComponent.vue").default
+    require("./components/student/SidebarComponent.vue").default
+);
+Vue.component(
+    "register-component",
+    require("./components/student/FormStudentComponent.vue").default
 );
 
 /**

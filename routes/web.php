@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role')->name('home');
 
-Route::group(['prefix' => 'students'], function () {
-    Route::get('/', [StudentController::class, 'index'])->name('student.index');
+Route::group(['prefix' => 'students', 'middleware' => ['auth']], function () {
+    Route::get('/', [StudentController::class, 'index'])->name('student.home');
+    Route::get('/register', [StudentController::class, 'showRegister'])->name('student.register');
     Route::get('/{student_id}', [StudentController::class, 'show'])->name('student.show');
     Route::post('/', [StudentController::class, 'store'])->name('student.store');
     Route::put('/{student_id}', [StudentController::class, 'update'])->name('student.update');

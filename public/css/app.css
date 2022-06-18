@@ -22821,7 +22821,7 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: #80bdff !important;
     outline: 0;
     box-shadow: inset 0 0 0 transparent;
 }
@@ -31658,7 +31658,6 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
     }
 }
 body:not(.layout-fixed) .main-sidebar {
-    height: inherit;
     min-height: 100%;
     position: absolute;
     top: 0;
