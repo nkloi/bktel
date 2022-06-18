@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/adminlte.js": "/js/adminlte.js",
+    "/js/dashboard3.js": "/js/dashboard3.js",
     "/css/app.css": "/css/app.css",
     "/css/adminlte.min.css": "/css/adminlte.min.css"
 }
