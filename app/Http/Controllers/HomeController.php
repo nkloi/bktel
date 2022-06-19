@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return auth()->user()->email_verified_at != null ? view('home') : redirect(route('verification.notice'));
     }
 }
