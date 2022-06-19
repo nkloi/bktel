@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role')->name('home');
+
+Route::group(['prefix' => 'students', 'middleware' => ['auth']], function () {
+    Route::get('/', [StudentController::class, 'index'])->name('student.home');
+    Route::get('/register', [StudentController::class, 'showRegister'])->name('student.register');
+    Route::get('/{student_id}', [StudentController::class, 'show'])->name('student.show');
+    Route::post('/', [StudentController::class, 'store'])->name('student.store');
+    Route::put('/{student_id}', [StudentController::class, 'update'])->name('student.update');
+    Route::delete('/{student_id}', [StudentController::class, 'destroy'])->name('student.destroy');
+});

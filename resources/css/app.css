@@ -1,2 +1,4 @@
 @import "./auth/auth.css";
 @import "./auth/main.css";
+@import "./adminlte.min.css";
+@import "./toastr.min.css";
