@@ -43,8 +43,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Student::class);
     }
 
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function hasRole($role)
+    {
+        if ($this->roles()->where('role_id', $role)->first()) {
+            return true;
+        }
+        return false;
     }
 }

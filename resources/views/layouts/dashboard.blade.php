@@ -21,7 +21,7 @@
     <div id="app">
         <div class="wrapper">
             <header-component></header-component>
-            <sidebar-component url="{{ route('student.register') }}" base_url="{{ url('/') }}"></sidebar-component>
+            <sidebar-component base_url="{{ url('/') }}" user="{{ auth()->user() }}"></sidebar-component>
             @yield('content')
             <footer-component></footer-component>
         </div>

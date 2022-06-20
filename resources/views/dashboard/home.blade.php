@@ -1,4 +1,4 @@
-@extends('layouts.student')
+@extends('layouts.dashboard')
 
 @section('content')
 <h1>sadaaaaaaaaaaaaaaasd</h1>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -13,12 +12,12 @@ class StudentController extends Controller
     public function showRegister()
     {
         $student = auth()->user()->student;
-        return $student != null ? view('student.register')->with('student_id', $student->id) : view('student.register')->with('student_id', null);
+        return $student != null ? view('dashboard.student.register')->with('student_id', $student->id) : view('dashboard.student.register')->with('student_id', null);
     }
 
     public function index()
     {
-        return view('student.home');
+        return view('dashboard.home');
     }
 
     //action get student with id

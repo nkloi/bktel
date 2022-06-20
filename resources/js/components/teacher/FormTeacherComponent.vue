@@ -10,8 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 v-if="hasStudent == false">Register Student</h1>
-                        <h1 v-else>Update Student</h1>
+                        <h1>Register Teacher</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -45,6 +44,50 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1"
+                                            >Email</label
+                                        >
+                                        <i
+                                            class="fa fa-asterisk required-icon"
+                                        ></i>
+                                        <input
+                                            type="text"
+                                            v-model.lazy="teacher.email"
+                                            class="form-control"
+                                            placeholder="Email"
+                                            :class="{
+                                                'is-invalid': this.errorForm
+                                                    ? this.errorForm.email
+                                                        ? true
+                                                        : false
+                                                    : false,
+                                            }"
+                                        />
+                                        <InvalidComponent
+                                            :class="{
+                                                'd-block':
+                                                    this.errorForm != null
+                                                        ? this.errorForm.email
+                                                            ? true
+                                                            : false
+                                                        : false,
+                                                'd-none':
+                                                    this.errorForm != null
+                                                        ? this.errorForm.email
+                                                            ? false
+                                                            : true
+                                                        : true,
+                                            }"
+                                            :content="
+                                                this.errorForm != null
+                                                    ? this.errorForm.email
+                                                        ? errorForm.email[0]
+                                                        : 'default  '
+                                                    : 'default'
+                                            "
+                                        ></InvalidComponent>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"
                                             >First Name</label
                                         >
                                         <i
@@ -52,7 +95,7 @@
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.first_name"
+                                            v-model.lazy="teacher.first_name"
                                             class="form-control"
                                             placeholder="First Name"
                                             :class="{
@@ -91,13 +134,15 @@
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Last Name</label>
+                                        <label for="exampleInputEmail1"
+                                            >Last Name</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.last_name"
+                                            v-model.lazy="teacher.last_name"
                                             class="form-control"
                                             placeholder="Last Name"
                                             :class="{
@@ -135,19 +180,21 @@
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Student Code</label>
+                                        <label for="exampleInputEmail1"
+                                            >Teacher Code</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.student_code"
+                                            v-model.lazy="teacher.teacher_code"
                                             class="form-control"
-                                            placeholder="Student Code"
+                                            placeholder="Teacher Code"
                                             :class="{
                                                 'is-invalid': this.errorForm
                                                     ? this.errorForm
-                                                          .student_code
+                                                          .teacher_code
                                                         ? true
                                                         : false
                                                     : false,
@@ -158,14 +205,14 @@
                                                 'd-block':
                                                     this.errorForm != null
                                                         ? this.errorForm
-                                                              .student_code
+                                                              .teacher_code
                                                             ? true
                                                             : false
                                                         : false,
                                                 'd-none':
                                                     this.errorForm != null
                                                         ? this.errorForm
-                                                              .student_code
+                                                              .teacher_code
                                                             ? false
                                                             : true
                                                         : true,
@@ -173,22 +220,24 @@
                                             :content="
                                                 this.errorForm != null
                                                     ? this.errorForm
-                                                          .student_code
+                                                          .teacher_code
                                                         ? errorForm
-                                                              .student_code[0]
+                                                              .teacher_code[0]
                                                         : 'default  '
                                                     : 'default'
                                             "
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Department</label>
+                                        <label for="exampleInputEmail1"
+                                            >Department</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.department"
+                                            v-model.lazy="teacher.department"
                                             class="form-control"
                                             placeholder="Department"
                                             :class="{
@@ -227,13 +276,15 @@
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Faculty</label>
+                                        <label for="exampleInputEmail1"
+                                            >Faculty</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.faculty"
+                                            v-model.lazy="teacher.faculty"
                                             class="form-control"
                                             placeholder="Faculty"
                                             :class="{
@@ -269,13 +320,15 @@
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Address</label>
+                                        <label for="exampleInputEmail1"
+                                            >Address</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.address"
+                                            v-model.lazy="teacher.address"
                                             class="form-control"
                                             placeholder="Address"
                                             :class="{
@@ -311,15 +364,17 @@
                                         ></InvalidComponent>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Phone</label>
+                                        <label for="exampleInputEmail1"
+                                            >Phone</label
+                                        >
                                         <i
                                             class="fa fa-asterisk required-icon"
                                         ></i>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.phone"
+                                            v-model.lazy="teacher.phone"
                                             class="form-control"
-                                            placeholder="Phone Number"
+                                            placeholder="Phone"
                                             :class="{
                                                 'is-invalid': this.errorForm
                                                     ? this.errorForm.phone
@@ -356,7 +411,7 @@
                                         <label for="">Note</label>
                                         <input
                                             type="text"
-                                            v-model.lazy="student.note"
+                                            v-model.lazy="teacher.note"
                                             class="form-control"
                                             placeholder="Note"
                                         />
@@ -365,18 +420,10 @@
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <button
-                                        v-if="hasStudent == false"
                                         class="btn btn-primary"
                                         type="submit"
                                     >
                                         Register
-                                    </button>
-                                    <button
-                                        v-else
-                                        class="btn btn-primary"
-                                        type="submit"
-                                    >
-                                        Update
                                     </button>
                                 </div>
                             </form>
@@ -403,47 +450,36 @@ export default {
     props: {
         base_url: String,
         student_id: String,
-        user: String,
     },
     components: {
         InvalidComponent,
     },
     data() {
         return {
-            student: {
+            teacher: {
+                email: "",
                 first_name: "",
                 last_name: "",
                 faculty: "",
-                student_code: "",
+                teacher_code: "",
                 department: "",
                 address: "",
                 phone: "",
                 note: "",
             },
-            hasStudent: false,
             errorForm: null,
-            users: {},
         };
     },
     methods: {
         async register() {
-            const url = this.base_url + "/students";
-            this.errorForm = null;
             try {
-                if (this.hasStudent == false) {
-                    const data = await axios.post(url, this.student);
-                    console.log("result post data", data);
-                    toastr.success("You register student success");
-                } else {
-                    const data = await axios.put(
-                        url + "/" + this.student_id,
-                        this.student
-                    );
-                    console.log("result put data", data);
-                    toastr.success("You update your information success");
-                }
                 this.errorForm = null;
-                console.log(this.errorForm);
+                const url = this.base_url + "/teachers";
+                console.log(url);
+                const data = await axios.post(url, this.teacher);
+                console.log(data);
+                toastr.success("You update your information success");
+                this.errorForm = null;
             } catch (error) {
                 toastr.error("Have something wrong with your information");
                 this.errorForm = {
@@ -453,18 +489,6 @@ export default {
                 console.log(this.errorForm);
             }
         },
-    },
-    async mounted() {
-        console.log;
-        if (this.student_id != "") {
-            const url = this.base_url + "/students/" + this.student_id;
-            const data = await axios.get(url);
-            this.student = data.data;
-            console.log(data.data.faculty);
-            this.hasStudent = true;
-        } else {
-            this.hasStudent = false;
-        }
     },
 };
 </script>

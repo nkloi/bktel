@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Role
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,6 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-        $role = $request->user()->role->name;
-        $studentId = $request->user()->student_id;
-        switch ($role) {
-            case "Student":
-                return $studentId != null ? redirect(route('student.home')) : redirect(route('student.register'));
-                break;
-            case "Administrator":
-                return redirect(route('dashboard.home'));
-                break;
-        }
+        return $next($request);
     }
 }

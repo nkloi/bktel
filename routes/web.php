@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,10 +43,25 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role')->name('home');
 
 Route::group(['prefix' => 'students', 'middleware' => ['auth']], function () {
-    Route::get('/', [StudentController::class, 'index'])->name('student.home');
-    Route::get('/register', [StudentController::class, 'showRegister'])->name('student.register');
     Route::get('/{student_id}', [StudentController::class, 'show'])->name('student.show');
     Route::post('/', [StudentController::class, 'store'])->name('student.store');
     Route::put('/{student_id}', [StudentController::class, 'update'])->name('student.update');
     Route::delete('/{student_id}', [StudentController::class, 'destroy'])->name('student.destroy');
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    Route::get('/', function () {
+        return view('dashboard.home');
+    })->name('dashboard.home');
+    Route::group(['prefix' => 'students'], function () {
+        Route::get('/', [StudentController::class, 'index'])->name('student.home');
+        Route::get('/register', [StudentController::class, 'showRegister'])->name('student.register');
+    });
+    Route::group(['prefix' => 'teachers'], function () {
+        Route::get('/register', [TeacherController::class, 'showRegister'])->name('teacher.register');
+    });
+});
+
+Route::group(['prefix' => 'teachers', 'middleware' => ['auth']], function () {
+    Route::post('/', [TeacherController::class, 'store'])->name('teacher.store');
 });

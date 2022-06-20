@@ -40,6 +40,10 @@ Vue.component(
     "register-component",
     require("./components/student/FormStudentComponent.vue").default
 );
+Vue.component(
+    "register_teacher-component",
+    require("./components/teacher/FormTeacherComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -491,3 +491,10 @@ iframe {
         opacity: 1;
     }
 }
+
+.required-icon {
+    font-size: 8px;
+    color: #dc3545;
+    position: absolute;
+    margin-left: 2px;
+}

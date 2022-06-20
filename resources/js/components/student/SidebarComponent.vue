@@ -315,19 +315,34 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a :href="url" class="nav-link active">
+                            <li
+                                class="nav-item"
+                                v-if="this.users.role_id === 4"
+                            >
+                                <a
+                                    :href="
+                                        base_url +
+                                        '/dashboard/students/register'
+                                    "
+                                    class="nav-link active"
+                                >
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>Form Student</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li
+                                class="nav-item"
+                                v-else-if="this.users.role_id === 1"
+                            >
                                 <a
-                                    href="../forms/advanced.html"
+                                    :href="
+                                        base_url +
+                                        '/dashboard/teachers/register'
+                                    "
                                     class="nav-link"
                                 >
                                     <i class="fa fa-circle nav-icon"></i>
-                                    <p>Advanced Elements</p>
+                                    <p>Form Taecher</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -767,11 +782,17 @@
 <script>
 export default {
     mounted() {
-        console.log("Component mounted.");
+        this.users = JSON.parse(this.user);
+        console.log(this.users);
     },
     props: {
-        url: String,
         base_url: String,
+        user: String,
+    },
+    data() {
+        return {
+            users: {},
+        };
     },
 };
 </script>
