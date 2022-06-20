@@ -11,8 +11,8 @@ class StudentController extends Controller
 
     public function showRegister()
     {
-        $student = auth()->user()->student;
-        return $student != null ? view('dashboard.student.register')->with('student_id', $student->id) : view('dashboard.student.register')->with('student_id', null);
+        auth()->user()->student;
+        return view('dashboard.student.register');
     }
 
     public function index()

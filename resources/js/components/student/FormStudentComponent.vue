@@ -402,7 +402,6 @@ import InvalidComponent from "../InvalidComponent.vue";
 export default {
     props: {
         base_url: String,
-        student_id: String,
         user: String,
     },
     components: {
@@ -422,7 +421,7 @@ export default {
             },
             hasStudent: false,
             errorForm: null,
-            users: {},
+            student_id: null,
         };
     },
     methods: {
@@ -455,12 +454,11 @@ export default {
         },
     },
     async mounted() {
-        console.log;
-        if (this.student_id != "") {
-            const url = this.base_url + "/students/" + this.student_id;
-            const data = await axios.get(url);
-            this.student = data.data;
-            console.log(data.data.faculty);
+        const user = JSON.parse(this.user);
+        this.student_id = user.student.id;
+        console.log(user.student);
+        if (user.student != null) {
+            this.student = user.student;
             this.hasStudent = true;
         } else {
             this.hasStudent = false;
