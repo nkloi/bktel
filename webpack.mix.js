@@ -19,4 +19,7 @@ mix.js("resources/js/app.js", "public/js")
         },
     })
     .css("resources/css/app.css", "public/css");
-mix.css("resources/css/auth/adminlte.min.css", "public/css");
+
+mix.autoload({
+    jquery: ["$", "jQuery", "window.jQuery"],
+});

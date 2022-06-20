@@ -5,14 +5,10 @@
  */
 
 require("./bootstrap");
-require("./adminlte");
+require("./bootstrap.bundle.min");
 require("./dashboard3");
-import $ from "jquery";
-window.$ = window.jQuery = $;
-
-import "jquery-ui/ui/widgets/datepicker.js";
-$("#datepicker").datepicker();
-
+require("./jquery.min");
+require("./adminlte");
 window.Vue = require("vue").default;
 
 /**
