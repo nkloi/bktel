@@ -21,20 +21,11 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/app.css', 'public/css');
 
 mix.css('resources/css/auth/adminlte.min.css', 'public/css');
-mix.css('resources/css/auth/all.min.css', 'public/css');
 
 mix.js('resources/js/adminlte.js', 'public/js');
 
 mix.js('resources/js/dashboard3.js', 'public/js');
-    
+mix.js('resources/js/demo.js', 'public/js');
 
 
-// mix.js('resources/js/dashboard3.js', 'public/js')
-//      .vue()
-    // .sass('resources/sass/app.scss', 'public/css',{
-    //     sassOptions: {
-    //       quietDeps: true,
-    //     },
-    //   })
-    // .css('resources/css/dashboard3.css', 'public/css');
 

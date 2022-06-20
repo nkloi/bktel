@@ -11,9 +11,10 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
-        "axios": "^0.19",
+        "axios": "^0.27.2",
         "bootstrap": "^5.1.3",
         "cross-env": "^7.0",
+        "css-loader": "^6.7.1",
         "jquery-ui": "^1.13.1",
         "laravel-mix": "^6.0.48",
         "lodash": "^4.17.19",

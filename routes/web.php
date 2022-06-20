@@ -40,5 +40,7 @@ Route::group(['prefix' => 'students'], function () {
 
 
 Route::get('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
- 
+Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 Route::get('unicode', [StudentsController::class, 'unicode'])->middleware('auth')->name('auth.unicode');
+
+//Route::get('checkadmin', [StudentsController::class, 'checkadmin'])->middleware('checkadmin')->name('auth.checkadmin');

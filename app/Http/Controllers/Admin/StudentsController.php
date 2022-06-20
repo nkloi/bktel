@@ -10,12 +10,12 @@ use App\auth;
 
 class StudentsController extends Controller
 {
-   
-   
-    
+
+
+
     public function show(Request $request, $student_id)
     {
-        
+
         $studentEntity = Student::find($student_id);
         $user = $studentEntity->user;
 
@@ -27,7 +27,7 @@ class StudentsController extends Controller
     }
     public function store(Request $request)
     {
-        
+
         $user = auth()->user();
         //DD($user);
         $student = new Student();
@@ -36,23 +36,33 @@ class StudentsController extends Controller
 
         $student->user()->save($user);
         $users = User::all();
- 
+
         return $users->toArray();
 
         //return view('auth.unicode');
         //return response()->json($user);
-        
-        
+
+
     }
     public function information(Request $request )
 
     {
         return view('auth.information');
     }
+    public function checkadmin(Request $request )
+
+    {
+        return view('auth.guest');
+    }
     public function unicode(Request $request)
     {
         return view('auth.unicode');
     }
+
+
+
+
+
 
     //acction update student
     public function update(Request $request, $student_id)
@@ -69,6 +79,6 @@ class StudentsController extends Controller
         $student->delete();
 
         return response('suceess', 200);
-    }  
-  
+    }
+
 }

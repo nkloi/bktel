@@ -16,7 +16,7 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Information</h3>
                                 <div class="row register-form">
-                                  
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="first_name"  name="first_name" require />
