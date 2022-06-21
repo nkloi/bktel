@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'students'], function () {
+	Route::get('/{student_id}', [StudentsController::class,'show'])->name('student.show');
+	Route::post('/',[StudentsController::class,'store'])->name('student.store');
+	Route::put('/{student_id}', [StudentsController::class,'update'])->name('student.update');
+	Route::delete('/{student_id}', [StudentsController::class,'destroy'])->name('student.destroy');
+
+});
