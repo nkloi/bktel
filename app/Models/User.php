@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function received()
     {
-        return $this->belongsTo('App\Models\students');
+        return $this->belongsTo('App\Models\Student');
     }
 }

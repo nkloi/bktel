@@ -43,4 +43,4 @@ Route::get('information', [StudentsController::class, 'information'])->middlewar
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 Route::get('unicode', [StudentsController::class, 'unicode'])->middleware('auth')->name('auth.unicode');
 
-//Route::get('checkadmin', [StudentsController::class, 'checkadmin'])->middleware('checkadmin')->name('auth.checkadmin');
+//Route::get('home', [HomeController::class, 'index'])->middleware('StudentRole')->name('home');

@@ -15,14 +15,14 @@ class create_user_admin extends Seeder
      */
     public function run()
     {
-        
+
         DB::table('users')->insert([
-            'name' => 'Le Thanh Nha',
-            'email' => 'nhale@hcmut.edu.vn',
+            'name' => 'role 2 co thong tin',
+            'email' => 'nha1234@hcmut.edu.vn',
             'password' => Hash::make('123123123'),
-            'role_id'=> 4,
+            'role_id'=> 2,
         ]);
-           
-       
+
+
     }
 }

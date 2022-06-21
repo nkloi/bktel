@@ -26,23 +26,18 @@ class StudentRole
             {
                 return $next($request);
             }
-            else
+            else if (Auth::user() -> role_id == '4')
             {
-                if (Auth::user()->role_id == '4'){
-                    return $next($request);
-                }
-                else
-                {
-                    return $next($request);
-                }
+                return ($next($request));
             }
-        }
-        else
-        {
+            else if (Auth::user() -> role_id == '2')
+            {
 
             return response()->json('Login First');
-        }
+            }
+            else{}
 
 
+    }
     }
 }

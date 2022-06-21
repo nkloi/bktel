@@ -12,7 +12,16 @@
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Welcome</h3>
 
-                        <input type="submit" name="" value="Login"/><br/>
+                        
+                        <a href="{{ route('logout') }}"onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Logout User</p>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" style="display:none;">
+                                @csrf
+                            </form>
+						</a>
                     </div>
                     <div class="col-md-9 register-right">
                         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
