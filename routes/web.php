@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Model\Student;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('ui', function (){
+	return view('task04');
+});
 
 Auth::routes();
 

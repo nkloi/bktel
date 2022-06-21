@@ -16,8 +16,7 @@ class Admin extends Seeder
         User::create([
             'email'=>'bmvt@hcmut.edu.vn',
             'password'=>'Bmvt@hcmut',
-            'role_id'=>'1',s
-        
+            'role_id'=>'1',
         ]);
     }
 }
