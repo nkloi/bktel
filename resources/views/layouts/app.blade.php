@@ -27,10 +27,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
     
     <div >
 
         <main class="py">
+=======
+    <div id="app">
+        
+
+        <main class="">
+>>>>>>> 717e233633566efdb66007b8324b0cb42cdf1123
             @yield('content')
 
         </main>

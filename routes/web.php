@@ -42,5 +42,11 @@ Route::group(['prefix' => 'students'], function () {
 Route::get('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 Route::get('unicode', [StudentsController::class, 'unicode'])->middleware('auth')->name('auth.unicode');
+Route::post('addteacher', [StudentsController::class, 'addteacher'])->middleware('auth')->name('auth.addteacher');
+
+Route::group(['prefix' => 'teacher'], function () {
+	Route::get('/{teacher_id}', [StudentsController::class, 'show2'])->name('teacher.show');
+	Route::post('/', [StudentsController::class, 'store2'])->name('teacher.store');
+});
 
 //Route::get('home', [HomeController::class, 'index'])->middleware('StudentRole')->name('home');

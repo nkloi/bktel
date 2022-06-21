@@ -29,9 +29,9 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Information Student</h3>
+                                <h3 class="register-heading">Information Teacher</h3>
                                 <div class="row register-form">
-                                    <form method="POST" action="{{ route('student.store') }}">
+                                    <form method="POST" action="{{ route('teacher.store') }}">
                                         @csrf
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -41,7 +41,7 @@
                                             <input type="text" class="form-control" placeholder="last_name" value="" name="last_name" require />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="student_code" value="" name="student_code" require/>
+                                            <input type="text" class="form-control" placeholder="teacher_code" value="" name="teacher_code" require/>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control"  placeholder="department" value="" name="department" />

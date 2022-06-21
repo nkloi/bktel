@@ -47345,12 +47345,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nSyntaxError\n\n(41:9) D:\\XAMPP\\htdocs\\bktel\\resources\\css\\auth\\main.css Unknown word\n\n \u001b[90m 39 | \u001b[39ma \u001b[33m{\u001b[39m\n \u001b[90m 40 | \u001b[39m    font-family\u001b[33m:\u001b[39m Poppins-Regular\u001b[33m;\u001b[39m\n\u001b[1m\u001b[31m>\u001b[39m\u001b[22m\u001b[90m 41 | \u001b[39m<<<<<<< HEAD\n \u001b[90m    | \u001b[39m        \u001b[1m\u001b[31m^\u001b[39m\u001b[22m\n \u001b[90m 42 | \u001b[39m    font-size\u001b[33m:\u001b[39m 14px\u001b[33m;\u001b[39m\n \u001b[90m 43 | \u001b[39m    line-height\u001b[33m:\u001b[39m 1.7\u001b[33m;\u001b[39m\n\n    at processResult (D:\\XAMPP\\htdocs\\bktel\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at D:\\XAMPP\\htdocs\\bktel\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at D:\\XAMPP\\htdocs\\bktel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at D:\\XAMPP\\htdocs\\bktel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (D:\\XAMPP\\htdocs\\bktel\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (D:\\XAMPP\\htdocs\\bktel\\node_modules\\postcss-loader\\dist\\index.js:140:7)");
 
 /***/ }),
 

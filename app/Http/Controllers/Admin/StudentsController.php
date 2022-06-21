@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\auth;
+use App\Models\Teacher;
 
 class StudentsController extends Controller
 {
@@ -27,7 +28,6 @@ class StudentsController extends Controller
     }
     public function store(Request $request)
     {
-
         $user = auth()->user();
         //DD($user);
         $student = new Student();
@@ -41,8 +41,6 @@ class StudentsController extends Controller
 
         //return view('auth.unicode');
         //return response()->json($user);
-
-
     }
     public function information(Request $request )
 
@@ -58,10 +56,10 @@ class StudentsController extends Controller
     {
         return view('auth.unicode');
     }
-
-
-
-
+    public function addteacher(Request $request)
+    {
+        return view('auth.addteacher');
+    }
 
 
     //acction update student
@@ -79,6 +77,34 @@ class StudentsController extends Controller
         $student->delete();
 
         return response('suceess', 200);
+    }
+
+    // public function show2(Request $request, $teacher_id)
+    // {
+    //     $studentEntity = Student::find($teacher_id);
+    //     $user = $studentEntity->user;
+
+    //     $email = $user->email;
+    //     $studentArr = $studentEntity->attributesToArray();
+    //     $studentArr["email"] = $email;
+
+    //     return response()->json($studentArr);
+    // }
+    public function store2(Request $request)
+    {
+        $user = auth()->user();
+        //DD($user);
+        $teacher = new Teacher();
+        $teacher->fill($request->all());
+        $teacher->save();
+
+        $teacher->user()->save($user);
+        $users = User::all();
+
+        return $users->toArray();
+
+        //return view('auth.unicode');
+        return response()->json($user);
     }
 
 }

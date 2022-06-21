@@ -87,7 +87,7 @@
                   </h3>
                   <p class="text-sm">I got your message bro</p>
                   <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
+                </div>2
               </div>
               <!-- Message End -->
             </a>
@@ -744,11 +744,11 @@
                   </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('auth.information')}} " onclick="event.preventDefault();
-                            document.getElementById('information').submit();" class="nav-link">
+            <a href="{{route('auth.addteacher')}} " onclick="event.preventDefault();
+                            document.getElementById('addteacher').submit();" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>add teacher </p>
-                    <form id="information" action="{{ route('auth.information') }}" method="POST" class="d-none" style="display:none;">
+                    <form id="addteacher" action="{{ route('auth.addteacher') }}" method="POST" class="d-none" style="display:none;">
                                 @csrf
                             </form>
                   </a>

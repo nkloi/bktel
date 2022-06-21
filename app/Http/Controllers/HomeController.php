@@ -27,12 +27,13 @@ class HomeController extends Controller
         $user = Auth::user();
         $student_id= $user -> student_id;
         $role_id = $user -> role_id;
-        if($student_id == null){
-        return view('home');}    //de cap nhat thong tin nhung chua submit duoc. cap nhat thong tin o nut information
-
-        else if($role_id == 1) {
+        if($role_id == 1) {
             return view('auth.admin');
         }
+
+
+        else if($student_id == null){
+            return view('home');}    //de cap nhat thong tin nhung chua submit duoc. cap nhat thong tin o nut information
         else if($role_id == 4) {
             return view('auth.guest');
         }
