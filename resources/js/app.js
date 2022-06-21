@@ -27,6 +27,26 @@ $('#datepicker').datepicker();
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    "content-wrapper",
+    require("./components/content-wrapper.vue").default
+);
+Vue.component(
+    "control-sidebar",
+    require("./components/control-sidebar.vue").default
+);
+Vue.component(
+    "main-footer",
+    require("./components/main-footer.vue").default
+);
+Vue.component(
+    "navbar",
+    require("./components/navbar.vue").default
+);
+Vue.component(
+    "sidebar",
+    require("./components/sidebar.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
