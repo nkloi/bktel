@@ -18,4 +18,4 @@ mix.js('resources/js/app.js', 'public/js')
           quietDeps: true,
         },
       })
-    .css('resources/css/app.css', 'public/css');
+    .css('resources/css/app.css', 'public/css');//
