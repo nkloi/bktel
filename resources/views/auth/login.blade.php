@@ -10,7 +10,7 @@
 
             <form class="login100-form validate-form"  action="{{ route('login') }}">
                 <span class="login100-form-title">
-                    Member Login
+                     Member Login 
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
