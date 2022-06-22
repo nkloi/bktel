@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\TeachersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('checkuser')->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
@@ -41,12 +42,11 @@ Route::group(['prefix' => 'students'], function () {
 
 Route::get('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
-Route::get('unicode', [StudentsController::class, 'unicode'])->middleware('auth')->name('auth.unicode');
-Route::post('addteacher', [StudentsController::class, 'addteacher'])->middleware('auth')->name('auth.addteacher');
 
 Route::group(['prefix' => 'teacher'], function () {
-	Route::get('/{teacher_id}', [StudentsController::class, 'show2'])->name('teacher.show');
-	Route::post('/', [StudentsController::class, 'store2'])->name('teacher.store');
+	Route::get('/{teacher_id}', [TeachersController::class, 'show2'])->name('teacher.show');
+	Route::post('/', [TeachersController::class, 'store2'])->name('teacher.store');
 });
 
-//Route::get('home', [HomeController::class, 'index'])->middleware('StudentRole')->name('home');
+//Route::get('test', [TeachersController::class, 'test'])->name('test');
+

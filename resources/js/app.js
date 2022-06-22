@@ -5,32 +5,15 @@
  */
 
 require('./bootstrap');
-require( './demo');
-require('./adminlte');
-require('./dashboard3');
 
-// require('./bootstrap');
-import $ from 'jquery';
-window.$ = window.jQuery = $;
-
-import 'jquery-ui/ui/widgets/datepicker.js';
-$('#datepicker').datepicker();
 
 window.Vue = require('vue').default;
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('information', require('./components/information.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+Vue.component('header-component', require('./components/HeaderComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -40,6 +23,4 @@ Vue.component('information', require('./components/information.vue').default);
 const app = new Vue({
     el: '#app',
 });
-const inf = new Vue({
-    el: '#inf',
-});
+

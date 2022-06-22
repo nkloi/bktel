@@ -24,27 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $student_id= $user -> student_id;
-        $role_id = $user -> role_id;
-        if($role_id == 1) {
-            return view('auth.admin');
-        }
 
+            return view('home');
 
-        else if($student_id == null){
-            return view('home');}    //de cap nhat thong tin nhung chua submit duoc. cap nhat thong tin o nut information
-        else if($role_id == 4) {
-            return view('auth.guest');
-        }
-        else if(($role_id == 2) )
-        {
-            return response()->json('Role nay la supervisor');
-        }
-        else if($role_id == 3)
-        {
-            return response()->json('Role nay la techer');
-        }
-        else;
     }
 }
