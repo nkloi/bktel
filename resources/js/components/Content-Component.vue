@@ -38,7 +38,7 @@
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
+                      <i class="fa fa-arrow-up"></i> 12.5%
                     </span>
                     <span class="text-muted">Since last week</span>
                   </p>
@@ -51,11 +51,11 @@
 
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This Week
+                    <i class="fa fa-square text-primary"></i> This Week
                   </span>
 
                   <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
+                    <i class="fa fa-square text-gray"></i> Last Week
                   </span>
                 </div>
               </div>
@@ -67,10 +67,10 @@
                 <h3 class="card-title">Products</h3>
                 <div class="card-tools">
                   <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-download"></i>
+                    <i class="fa fa-download"></i>
                   </a>
                   <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-bars"></i>
+                    <i class="fa fa-bars"></i>
                   </a>
                 </div>
               </div>
@@ -93,14 +93,14 @@
                     <td>$13 USD</td>
                     <td>
                       <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
+                        <i class="fa fa-arrow-up"></i>
                         12%
                       </small>
                       12,000 Sold
                     </td>
                     <td>
                       <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
+                        <i class="fa fa-search"></i>
                       </a>
                     </td>
                   </tr>
@@ -112,14 +112,14 @@
                     <td>$29 USD</td>
                     <td>
                       <small class="text-warning mr-1">
-                        <i class="fas fa-arrow-down"></i>
+                        <i class="fa fa-arrow-down"></i>
                         0.5%
                       </small>
                       123,234 Sold
                     </td>
                     <td>
                       <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
+                        <i class="fa fa-search"></i>
                       </a>
                     </td>
                   </tr>
@@ -131,14 +131,14 @@
                     <td>$1,230 USD</td>
                     <td>
                       <small class="text-danger mr-1">
-                        <i class="fas fa-arrow-down"></i>
+                        <i class="fa fa-arrow-down"></i>
                         3%
                       </small>
                       198 Sold
                     </td>
                     <td>
                       <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
+                        <i class="fa fa-search"></i>
                       </a>
                     </td>
                   </tr>
@@ -151,14 +151,14 @@
                     <td>$199 USD</td>
                     <td>
                       <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
+                        <i class="fa fa-arrow-up"></i>
                         63%
                       </small>
                       87 Sold
                     </td>
                     <td>
                       <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
+                        <i class="fa fa-search"></i>
                       </a>
                     </td>
                   </tr>
@@ -185,7 +185,7 @@
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 33.1%
+                      <i class="fa fa-arrow-up"></i> 33.1%
                     </span>
                     <span class="text-muted">Since last month</span>
                   </p>
@@ -198,11 +198,11 @@
 
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
+                    <i class="fa fa-square text-primary"></i> This year
                   </span>
 
                   <span>
-                    <i class="fas fa-square text-gray"></i> Last year
+                    <i class="fa fa-square text-gray"></i> Last year
                   </span>
                 </div>
               </div>
@@ -214,10 +214,10 @@
                 <h3 class="card-title">Online Store Overview</h3>
                 <div class="card-tools">
                   <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-download"></i>
+                    <i class="fa fa-download"></i>
                   </a>
                   <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-bars"></i>
+                    <i class="fa fa-bars"></i>
                   </a>
                 </div>
               </div>

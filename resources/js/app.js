@@ -5,12 +5,12 @@
  */
 
 require('./bootstrap');
-require('./adminlte');
-require('./dashboard3');
+
 
 window.Vue = require('vue').default;
 import $ from 'jquery';
 window.$ = window.jQuery = $;
+
 
 import 'jquery-ui/ui/widgets/datepicker.js';
 $('#datepicker').datepicker();
@@ -29,23 +29,19 @@ $('#datepicker').datepicker();
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component(
     "content-wrapper",
-    require("./components/content-wrapper.vue").default
-);
-Vue.component(
-    "control-sidebar",
-    require("./components/control-sidebar.vue").default
+    require("./components/Content-Component.vue").default
 );
 Vue.component(
     "main-footer",
-    require("./components/main-footer.vue").default
+    require("./components/Footer-Component.vue").default
 );
 Vue.component(
     "navbar",
-    require("./components/navbar.vue").default
+    require("./components/Header-Component.vue").default
 );
 Vue.component(
     "sidebar",
-    require("./components/sidebar.vue").default
+    require("./components/Sidebar-Component.vue").default
 );
 
 /**
