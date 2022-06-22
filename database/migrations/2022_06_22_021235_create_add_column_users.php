@@ -32,6 +32,6 @@ class CreateAddColumnUsers extends Migration
      */
     public function down()
     {
-        
+        Schema::dropIfExists('add_column_users');
     }
 }

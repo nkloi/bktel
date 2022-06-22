@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
+    public function index() {
+        return view('home');
+    }
+
+
+    public function showRegister() {
+        return view('student.register');
+    }
+
     //action with student_id
     public function show(Request $request, $student_id)
     {

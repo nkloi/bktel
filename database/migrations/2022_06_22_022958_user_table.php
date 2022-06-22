@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddRolesIdUserstable extends Migration
+class UserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateAddRolesIdUserstable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('cascade');
-            $table->foreignId('roles_id')->constrained('roles');
+            $table->foreignId('role_id')->constrained('roles');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -33,6 +33,6 @@ class CreateAddRolesIdUserstable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('add_roles_id_userstable');
+        //
     }
 }

@@ -22,13 +22,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('redirectlogin')->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
 	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
 	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
 	Route::delete('/{student_id}',  [StudentsController::class, 'destroy'])->name('student.destroy');
+});
+ //register_student street
+Route::group(['prefix' => 'dashboard'], function () {
+	
+	Route::group(['prefix' => 'students'], function () {
+		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
+		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+	});
 });
 
 // Route::get('relationship', [InsertController::class, 'relationship'])->name('relatioship');

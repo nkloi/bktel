@@ -21,7 +21,7 @@
 <body>
     <div class="wrapper" id="app">
         <header-component></header-component>
-        <sidebar-component></sidebar-component>
+        <sidebar-component domain="{{ url('/') }}"></sidebar-component>
         <main class="">
             @yield('content')
         </main>

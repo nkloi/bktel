@@ -20,7 +20,7 @@ class Student extends Model
     // }
 
     protected $fillable = [
-        'first_name', 'last_name', 'student_code', 'department', '​faculty', 'address', 'phone', 'note'
+        'first_name', 'last_name', 'student_code', 'department', 'faculty', 'address', 'phone', 'note'
     ];
 
     public function user()
