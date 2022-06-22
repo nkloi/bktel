@@ -24,6 +24,7 @@ Vue.component('header-component', require('./components/HeaderComponent.vue').de
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
+Vue.component('register_students-component', require('./components/Students/RegisterStudentsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

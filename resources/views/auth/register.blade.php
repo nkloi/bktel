@@ -83,8 +83,4 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> feature/student-crud-KL

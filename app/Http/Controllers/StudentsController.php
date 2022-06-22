@@ -8,6 +8,17 @@ use Students;
 
 class StudentsController extends Controller
 {
+
+    public function index()
+    {
+        return view('home');
+    }
+
+    public function showRegister()
+    {
+        return view('student.register');
+    }
+
     //action get student with id
     public function show($student_id)
     {

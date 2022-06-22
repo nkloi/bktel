@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('redirectLogin')->name('home');
 Auth::routes();
 
 Route::group(['prefix' => 'students'], function () {
@@ -28,4 +28,12 @@ Route::group(['prefix' => 'students'], function () {
 	Route::put('/{student_id}', [StudentsController::class,'update'])->name('student.update');
 	Route::delete('/{student_id}', [StudentsController::class,'destroy'])->name('student.destroy');
 
+});
+
+Route::group(['prefix' => 'dashboard'], function () {
+	
+	Route::group(['prefix' => 'students'], function () {
+		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
+		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+	});
 });
