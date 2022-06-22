@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\students;
+use App\Models\teachers;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id', 'student_id'
     ];
 
     /**
@@ -43,5 +44,21 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\students');
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\Models\teachers');
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\roles');
+    }
+
+    // public function roles()
+    // {
+    //     return $this->belongsToMany('App\Models\roles');
+    // }
+
 
 }

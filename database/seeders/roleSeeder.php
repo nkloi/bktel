@@ -16,15 +16,20 @@ class roleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
         DB::table('users')->insert([
 
-            'name'=> 'duykhanh',
-            'email'=> 'duykhanh88899@gmail.com',
+            'name'=> 'bmvt',
+            'email'=> 'bmvtbk@gmail.com',
             'password' => Hash::make('Bmvt@hcmut'),
-            'role_id'=> '4',
-
+            'role_id'=> 1,
 
         ]);
+        // DB::table('roles')->insert([
+        //     ['name' => 'Administrator'],
+        //     ['name' => 'Supervisor'],
+        //     ['name' => 'Teacher'],
+        //     ['name' => 'Student'],
+        // ]);
     }
 }

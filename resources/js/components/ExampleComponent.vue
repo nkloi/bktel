@@ -37,55 +37,23 @@
 
                     </tbody>
                 </table>
-                <!-- <h1>{{article.last_name}}</h1> -->
-                <!-- <div class="form-group">
-                    <label for="exampleInputEmail1">Last Name</label>
-                    <input type="email" class="form-control" placeholder="Enter Last Name" value="{{article.last_name}}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
-                    <input type="email" class="form-control"  placeholder="Enter First Name" value="{{article.last_name}}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Student-Code</label>
-                    <input type="email" class="form-control" placeholder="Enter Student-Code" value="{{article.student_code}}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Department</label>
-                    <input type="email" class="form-control"  placeholder="Enter Department" value="{{article.department}}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Faculty</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Faculty" value="{{article.faculty}}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">Address</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            
-                            <span class="input-group-text">Upload</span>
-                        </div>
-                    </div>
-                </div> -->
-                    <!-- <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div> -->
+
             </div>
-                    <!-- /.card-body -->
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+                    
         </form>
-            </div>
+
+    </div>
+
+
+    
 </template>
 
 <script>
+
 import { data } from 'browserslist'
 
     export default {

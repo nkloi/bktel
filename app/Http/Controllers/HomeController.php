@@ -27,14 +27,29 @@ class HomeController extends Controller
     {   
 
         $user = Auth::user();
+        
         $student_id = $user->student_id;
+
         if ($student_id != null){
 
             return view('home');
             
         }
         else{
-            return redirect()->route('student.information');
+
+            if (Auth::user()-> role_id == '1'){
+
+                return view('home');
+
+            }
+            else{
+
+                return redirect()->route('student.information');
+                // return view('home');
+            }
+
+            // return redirect()->route('student.information');
+
         }
 
     }

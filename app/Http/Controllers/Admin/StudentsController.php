@@ -39,6 +39,7 @@ class StudentsController extends Controller
         $userArr = $user->toArray();
         if ($userArr != null) {
             students::create([
+
                 'last_name' => $data["last_name"],
                 'first_name' => $data["first_name"],
                 'student_code' => $data["student_code"],
@@ -46,8 +47,10 @@ class StudentsController extends Controller
                 'faculty' => $data["faculty"],
                 'address' => $data["address"],
                 'phone' => $data["phone"],
-                'note' => $data["note"],
+                'note' => $data["note"]
+
             ]);
+
             $lastId = students::max('id');
             User::where('email', $data["email"])->update(['student_id' => $lastId]);
             return redirect()->route('login');

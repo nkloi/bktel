@@ -7,7 +7,6 @@
 require('./bootstrap');
 require('./main');
 require('./adminlte');
-require('./demo');
 require('./dashboard3');
 
 
@@ -20,6 +19,7 @@ import $ from 'jquery';
 window.$ = window.jQuery = $;
 
 import 'jquery-ui/ui/widgets/datepicker.js';
+import Vue from 'vue';
 //add as many widget as you may need
 
 // resources/assets/js/app.js
@@ -37,6 +37,10 @@ $('.datepicker').datepicker();
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('sidebar-component', require('./components/Sidebar.vue').default);
+Vue.component('content-component', require('./components/NewContent.vue').default);
+Vue.component('footer-component', require('./components/Footer.vue').default);
+Vue.component('add-teacher', require('./components/Content.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -47,3 +51,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+const new_app = new Vue({
+    el: '#newapp',
+})

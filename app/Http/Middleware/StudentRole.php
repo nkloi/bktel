@@ -22,24 +22,31 @@ class StudentRole
 
         if (Auth::check()){
 
-            if (Auth::user()->role_id == '4')
-            {
+            if (Auth::user()->role_id == '4'){
+
                 return $next($request);
             }
-            else
-            {
+            else{
+
                 if (Auth::user()->role_id == '1'){
+
+                    // return response()->json(' You are login with Admin Account! ');
+                    // return redirect()->route('register');
                     return $next($request);
+
                 }
-                else
-                {
-                    return $next($request);
+                else{
+
+                    // return response()->json('Login First');
+                    return response()->json('Authorize Denied!');
                 }
+
+                // return response()->json('Login First');
+
             }
         }
         else
         {
-            
             return response()->json('Login First');
         }
  
