@@ -17,8 +17,12 @@
                     <input type="text" required class="form-control" id="last-name" v-model="form.last_name" placeholder="Last Name">
                   </div>
                    <div class="form-group">
-                    <label for="student-code">Student Code</label>
-                    <input type="text" required class="form-control" id="student-code" v-model="form.student_code" placeholder="Student Code">
+                    <label for="email">Email</label>
+                    <input type="email" required class="form-control" id="email" v-model="form.email" placeholder="Email">
+                  </div>
+                   <div class="form-group">
+                    <label for="teacher-code">Teacher Code</label>
+                    <input type="text" required class="form-control" id="teacher-code" v-model="form.teacher_code" placeholder="Teacher Code">
                   </div>
                     <div class="form-group">
                     <label for="department">Department</label>
@@ -57,7 +61,8 @@
             form: {
                 first_name: '',
                 last_name: '',
-                student_code: '',
+                email: '',
+                teacher_code: '',
                 department: '',
                 faculty: '',
                 address: '',
@@ -69,7 +74,7 @@
         methods: {
        submit() {
       this.errors = {};
-      axios.post('/students/stored',  this.form).then(response => {
+      axios.post('/teachers/stored',  this.form).then(response => {
        window.location.href = '/home'
       });
     },

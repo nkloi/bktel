@@ -395,15 +395,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home/forms" class="nav-link active">
+                                    <a href="/home/student_form" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student Register</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/advanced.html" class="nav-link">
+                                    <a href="/home/teacher_form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Advanced Elements</p>
+                                        <p>Teacher Register</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -875,5 +875,4 @@
     </div>
 </body>
 
-</html>
 @endsections
