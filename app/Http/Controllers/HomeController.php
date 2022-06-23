@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+
 class HomeController extends Controller
 {
     /**
@@ -24,5 +26,14 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function student_form()
+    {
+        return view('student_form');
+    }
+    public function teacher_form()
+    {
+
+        return view('teacher_form');
     }
 }
