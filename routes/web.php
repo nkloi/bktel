@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth','verify')->name('home');
+Route::get('/home/form', function (){
+	return view('layouts.form');
+})->name('forms');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');

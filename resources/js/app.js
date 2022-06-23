@@ -43,7 +43,10 @@ Vue.component(
     "sidebar",
     require("./components/Sidebar-Component.vue").default
 );
-
+Vue.component(
+    "form-component",
+    require("./components/Form-Component.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

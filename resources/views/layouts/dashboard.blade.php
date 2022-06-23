@@ -13,33 +13,51 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
   <script src="{{ mix('js/app.js') }}" defer></script>
+  
 
-<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" id="app">
+  <div class="wrapper" id="app">
 
-  
-  <navbar></navbar>
-  
-
-
-  
-  <sidebar domain="{{ url('/') }}"></sidebar>
-
-    @yield('content')
-
-  
-  <main-footer></main-footer>
+    
+    <navbar></navbar>
+    
 
 
-  
-</div>
+    
+    <sidebar domain="{{ url('/') }}"></sidebar>
 
-<script src="{{ asset('js/adminlte.js') }}"></script>
-<script src="{{ asset('js/dashboard3.js') }}"></script>
+   
+      @yield('content')
+    
 
+    
+    <main-footer></main-footer>
+
+
+    
+  </div>
+
+  <script src="{{ asset('js/adminlte.js') }}"></script>
+  <script src="{{ asset('js/dashboard3.js') }}"></script>
+
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- Page specific script -->
+  <script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
 
 
 </body>

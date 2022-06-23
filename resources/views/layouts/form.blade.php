@@ -2,6 +2,6 @@
 
 @section('content')
 
-<content-wrapper></content-wrapper>
+<form-component></form-component>
 
 @endsection
