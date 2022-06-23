@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
+    public function index() {
+        return view('home');
+    }
+
+
+    public function showRegister() {
+        return view('students.register');
+    }
+    
     public function show(Request $request, $student_id)
     {
         $studentEntity = Student::find($student_id);
@@ -27,7 +36,6 @@ class StudentsController extends Controller
         $student->fill($request->all());
         $student->save();
         $user->student_id = $student->id;
-        $user->save();
 
         return response()->json($user);
     }

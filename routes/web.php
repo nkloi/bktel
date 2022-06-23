@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('redirect')->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class,'show'])->name('student.show');
@@ -30,3 +30,10 @@ Route::group(['prefix' => 'students'], function () {
 	Route::delete('/{student_id}', [StudentsController::class,'destroy'])->name('student.destroy');
 });
 
+Route::group(['prefix' => 'dashboard'], function () {
+	
+	Route::group(['prefix' => 'students'], function () {
+		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
+		Route::get('/home',[StudentsController::class, 'index'])->name('student.index');
+	});
+});

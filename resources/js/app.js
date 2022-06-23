@@ -7,7 +7,6 @@ import $ from 'jquery';
 window.$ = window.jQuery = $;
 
 require('./bootstrap');
-
 window.Vue = require('vue').default;
 
 // resources/js/app.js
@@ -33,6 +32,7 @@ Vue.component('header-component', require('./components/HeaderComponent.vue').de
 Vue.component('content-component', require('./components/ContentComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
+Vue.component('registerstudent-component', require('./components/students/RegisterStudentComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<content-component></content-component>
+<registerstudent-component></registerstudent-component>
 
 @endsection
