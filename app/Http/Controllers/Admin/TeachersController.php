@@ -9,18 +9,18 @@ use Illuminate\Http\Request;
 
 class TeachersController extends Controller
 {
-     // public function show2(Request $request, $teacher_id)
-    // {
-    //     $studentEntity = Student::find($teacher_id);
-    //     $user = $studentEntity->user;
+     public function show2(Request $request, $teacher_id)
+    {
+        $studentEntity = Teacher::find($teacher_id);
+        $user = $studentEntity->user;
 
-    //     $email = $user->email;
-    //     $studentArr = $studentEntity->attributesToArray();
-    //     $studentArr["email"] = $email;
+        $email = $user->email;
+        $studentArr = $studentEntity->attributesToArray();
+        $studentArr["email"] = $email;
 
-    //     return response()->json($studentArr);
-    // }
-    //
+        return response()->json($studentArr);
+    }
+
     public function store2(Request $request)
     {
         $user = auth()->user();
@@ -33,10 +33,11 @@ class TeachersController extends Controller
         $users = User::all();
 
         return $users->toArray();
-
-        //return view('auth.unicode');
         return response()->json($teacher);
     }
-    
+    public function register()
+    {
+        return view ('auth.addteacher');
+    }
 
 }

@@ -47,13 +47,7 @@ class StudentsController extends Controller
     {
         return view('auth.information');
     }
-    public function checkadmin(Request $request )
-
-    {
-        return view('auth.guest');
-    }
-
-
+ 
 
 
     //acction update student

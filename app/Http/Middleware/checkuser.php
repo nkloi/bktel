@@ -17,26 +17,18 @@ class checkuser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()){
-
-            if (Auth::user()->role_id == '1')
-            {
-                return view('home');
-            }
-            else if (Auth::user() -> role_id == '4')
-            {
-                return view('auth.guest');
-            }
-            else if (Auth::user() -> role_id == '2')
-            {
-
-            return response()->json('Login First');
-            }
-            else{
-                return response()->json('Login First');
-            }
-
-
+        $role = $request->user()->role_id;
+        $studentId = $request->user()->student_id;
+        switch ($role) {
+            case "4":
+                return $studentId != null ? redirect(route('student.home')) : redirect(route('student.register'));
+                break;
+            case "1":
+                //DD('admin');
+                return redirect(route('auth.information'));
+                break;
         }
     }
+
+
 }

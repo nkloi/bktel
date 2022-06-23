@@ -13,7 +13,8 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
-
+Vue.component('register_teacher-component', require('./components/Teacher/TeacherComponent.vue').default);
+Vue.component('register_student-component', require('./components/Student/StudentComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
