@@ -50307,7 +50307,7 @@ var staticRenderFns = [
           _c("img", {
             staticClass: "brand-image img-circle elevation-3",
             staticStyle: { opacity: ".8" },
-            attrs: { src: "images/user.jpg", alt: "AdminLTE Logo" },
+            attrs: { src: "images/AdminLTELogo.png", alt: "AdminLTE Logo" },
           }),
           _vm._v(" "),
           _c("span", { staticClass: "brand-text font-weight-light" }, [

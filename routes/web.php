@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Models\roles;
 use Whoops\Run;
+use App\Http\Middleware\AdminCheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('isStudent')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [App\Http\Controllers\Admin\StudentsController::class, 'show'])->name('student.show');
@@ -45,10 +46,15 @@ Route::get('getstudent', [App\Http\Controllers\Admin\StudentsController::class, 
 Route::get('teacher_menu', [App\Http\Controllers\Admin\TeacherController::class, 'teacher_menu'])->name('get.teacher');
 Route::post('add_teacher', [App\Http\Controllers\Admin\TeacherController::class, 'add_teacher'])->name('add.teacher');
 
-Route::get('getCurrentUser', function() {
+Route::get('getCurrentUser', function () {
 
 	$role = Auth::user()->role_id;
 
 	return response()->json($role);
+});
 
- });
+Route::group(['prefix' => 'teachers'], function () {
+	Route::get('/upload-teachers', [App\Http\Controllers\Admin\UploadController::class, 'uploadTeachers'])->middleware('isAdmin')->name('upload.teachers');
+	Route::post('/import-teachers', [App\Http\Controllers\Admin\UploadController::class, 'importTeachers'])->name('import.teachers');
+	Route::get('/testloop', [App\Http\Controllers\Admin\UploadController::class, 'testLoop'])->name('loops.teachers');
+});

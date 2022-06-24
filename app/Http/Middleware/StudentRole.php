@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 class StudentRole
 {
     /**
@@ -22,13 +23,13 @@ class StudentRole
 
         if (Auth::check()){
 
-            if (Auth::user()->role_id == '4'){
+            if (Auth::user()->role_id == 4){
 
                 return $next($request);
             }
             else{
 
-                if (Auth::user()->role_id == '1'){
+                if (Auth::user()->role_id == 1){
 
                     // return response()->json(' You are login with Admin Account! ');
                     // return redirect()->route('register');
@@ -39,6 +40,7 @@ class StudentRole
 
                     // return response()->json('Login First');
                     return response()->json('Authorize Denied!');
+
                 }
 
                 // return response()->json('Login First');
