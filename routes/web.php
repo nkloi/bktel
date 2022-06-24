@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StudentsController;
-use App\Http\Controllers\Admin\InsertController;
+use App\Http\Controllers\Admin\TeachersController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -31,13 +31,25 @@ Route::group(['prefix' => 'students'], function () {
 	Route::delete('/{student_id}',  [StudentsController::class, 'destroy'])->name('student.destroy');
 });
  //register_student street
-Route::group(['prefix' => 'dashboard'], function () {
+ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+
+	Route::get('/', function() {
+		return view('dashboard.home');
+	})->name('dashboard.home');
 	
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
 	});
+
+	Route::group(['prefix' => 'teachers'], function () {
+		Route::get('/register', [TeachersController::class, 'showRegister'])->name('teacher.register');
+		Route::get('/home',[TeachersController::class, 'index'])->name('teacher.home');
+		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
+		
+	});
 });
+
 
 // Route::get('relationship', [InsertController::class, 'relationship'])->name('relatioship');
 

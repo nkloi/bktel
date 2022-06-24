@@ -21,7 +21,7 @@
 <body>
     <div class="wrapper" id="app">
         <header-component></header-component>
-        <sidebar-component domain="{{ url('/') }}"></sidebar-component>
+        <sidebar-component domain="{{ url('/') }}" role_id="{{ auth()->user()->role_id }}"></sidebar-component>
         <main class="">
             @yield('content')
         </main>
