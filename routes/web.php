@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\StudentController;
@@ -59,6 +60,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'teachers'], function () {
         Route::get('/register', [TeacherController::class, 'showRegister'])->name('teacher.register');
+    });
+    Route::group(['prefix' => 'admins'], function () {
+        Route::get('/import', [ImportController::class, 'showImport'])->name('admin.import');
+        Route::post('/import', [ImportController::class, 'store'])->name('admin.import.store');
     });
 });
 

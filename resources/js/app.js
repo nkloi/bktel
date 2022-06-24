@@ -44,6 +44,10 @@ Vue.component(
     "register_teacher-component",
     require("./components/teacher/FormTeacherComponent.vue").default
 );
+Vue.component(
+    "import_teacher-component",
+    require("./components/admin/ImportTeacherComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -3,7 +3,7 @@
         <!-- Brand Logo -->
         <a href="../../index3.html" class="brand-link">
             <img
-                :src="base_url + '/images/AdminLTELogo.png'"
+                src="/images/AdminLTELogo.png"
                 alt="AdminLTE Logo"
                 class="brand-image img-circle elevation-3"
                 style="opacity: 0.8"
@@ -17,7 +17,7 @@
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img
-                        :src="base_url + '/images/user2-160x160.jpg'"
+                        src="/images/user2-160x160.jpg"
                         class="img-circle elevation-2"
                         alt="User Image"
                     />
@@ -263,7 +263,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../UI/icons.html" class="nav-link">
+                                <a href="../UI/icons.html" class="nav-link"
+                                    >rd
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>Icons</p>
                                 </a>
@@ -315,45 +316,37 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li
-                                class="nav-item"
-                                v-if="this.users.role_id === 4"
-                            >
-                                <a
-                                    :href="
-                                        base_url +
-                                        '/dashboard/students/register'
-                                    "
-                                    class="nav-link active"
-                                >
-                                    <i class="fa fa-circle nav-icon"></i>
-                                    <p>Form Student</p>
-                                </a>
-                            </li>
-                            <li
-                                class="nav-item"
-                                v-else-if="this.users.role_id === 1"
-                            >
-                                <a
-                                    :href="
-                                        base_url +
-                                        '/dashboard/teachers/register'
-                                    "
-                                    class="nav-link"
-                                >
-                                    <i class="fa fa-circle nav-icon"></i>
-                                    <p>Form Taecher</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    href="../forms/editors.html"
-                                    class="nav-link"
-                                >
-                                    <i class="fa fa-circle nav-icon"></i>
-                                    <p>Editors</p>
-                                </a>
-                            </li>
+                            <div v-if="this.users.role_id === 4">
+                                <li class="nav-item">
+                                    <a
+                                        href="/dashboard/students/register"
+                                        class="nav-link active"
+                                    >
+                                        <i class="fa fa-circle nav-icon"></i>
+                                        <p>Form Student</p>
+                                    </a>
+                                </li>
+                            </div>
+                            <div v-else-if="this.users.role_id === 1">
+                                <li class="nav-item">
+                                    <a
+                                        href="/dashboard/teachers/register"
+                                        class="nav-link"
+                                    >
+                                        <i class="fa fa-circle nav-icon"></i>
+                                        <p>Form Taecher</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        href="/dashboard/admins/import"
+                                        class="nav-link"
+                                    >
+                                        <i class="fa fa-circle nav-icon"></i>
+                                        <p>Import Taecher</p>
+                                    </a>
+                                </li>
+                            </div>
                             <li class="nav-item">
                                 <a
                                     href="../forms/validation.html"
