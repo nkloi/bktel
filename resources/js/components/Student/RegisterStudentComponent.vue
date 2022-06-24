@@ -30,39 +30,39 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" novalidate="novalidate" >
+              <form id="quickForm" @submit.prevent="register()" >
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">First name</label>
-                    <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" placeholder="Enter First_name">
+                    <input type="text" required v-model.lazy="student.first_name" name="first_name" class="form-control" id="exampleInputEmail1" placeholder="Enter First_name">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Last name</label>
-                    <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Last_name">
+                    <input type="text" required v-model.lazy="student.last_name" name="last_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Last_name">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Student code</label>
-                    <input type="text" name="student_code" class="form-control" id="exampleInputEmail1" placeholder="Enter Student_code">
+                    <input type="text" required v-model.lazy="student.student_code" name="student_code" class="form-control" id="exampleInputEmail1" placeholder="Enter Student_code">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Departement</label>
-                    <input type="text" name="department" class="form-control" id="exampleInputEmail1" placeholder="Enter Department">
+                    <input type="text" required v-model.lazy="student.department" name="department" class="form-control" id="exampleInputEmail1" placeholder="Enter Department">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Faculty</label>
-                    <input type="text" name="faculty" class="form-control" id="exampleInputEmail1" placeholder="Enter Faculty">
+                    <input type="text" required v-model.lazy="student.faculty" name="faculty" class="form-control" id="exampleInputEmail1" placeholder="Enter Faculty">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
-                    <input type="text" name="address" class="form-control" id="exampleInputEmail1" placeholder="Enter Address">
+                    <input type="text" required v-model.lazy="student.address" name="address" class="form-control" id="exampleInputEmail1" placeholder="Enter Address">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Phone</label>
-                    <input type="text" name="phone" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone">
+                    <input type="text" required v-model.lazy="student.phone" name="phone" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Note</label>
-                    <input type="text" name="note" class="form-control" id="exampleInputPassword1" placeholder="Note">
+                    <input type="text" required v-model.lazy="student.note" name="note" class="form-control" id="exampleInputPassword1" placeholder="Note">
                   </div>
                   
                 </div>
@@ -89,15 +89,42 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         props: {
-            domain: String,
+            domain: String
+        },
+        data() {
+            return {
+                student: {
+                first_name: "",
+                last_name: "",
+                faculty: "",
+                student_code: "",
+                department: "",
+                address: "",
+                phone: "",
+                note: "",
+                }
+            }
         },
         methods: {
-            
-        },
+            async register() {
+                console.log(this.student);
+                try {
+                    const url = "/dashboard/students/register";
+                    const data = await axios.post(url, this.student);
+                    console.log(data);
+                    window.location.href = "/dashboard";
+                } catch (error) {
+
+                    console.log(error);
+                    
+                }   
+            }
+        }, 
         mounted() {
-            console.log('this is domain of my project', this.domain)
+            console.log('Component mounted.')
         }
     }
 </script>

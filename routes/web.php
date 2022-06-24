@@ -40,6 +40,7 @@ Route::group(['prefix' => 'students'], function () {
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {

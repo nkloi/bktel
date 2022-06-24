@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 
 class StudentsController extends Controller
 {
@@ -18,6 +18,7 @@ class StudentsController extends Controller
     public function showRegister() {
         return view('student.register');
     }
+
 
     //action with student_id
     public function show(Request $request, $student_id)
