@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TeachersController extends Controller
 {
@@ -23,16 +24,20 @@ class TeachersController extends Controller
 
     public function store2(Request $request)
     {
-        $user = auth()->user();
-        //DD($user);
+
+        $user = new User();
         $teacher = new Teacher();
-        $teacher->fill($request->all());
-        $teacher->save();
 
-        $teacher->user()->save($user);
-        $users = User::all();
+        $user->email = $request->email;
+        $user->password = Hash::make('Bmvt@2022');
+        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->role_id = 3;
+        $user->save();
+        $teacher->fill($request->all())->save();
 
-        return $users->toArray();
+        $teacher->user()->save($user)->toArray();
+        $teacher["email"] = $user->email;
+
         return response()->json($teacher);
     }
     public function register()

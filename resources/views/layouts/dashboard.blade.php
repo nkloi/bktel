@@ -20,19 +20,21 @@
 <body>
         <div id="app">
         <div class="wrapper">
-        <header-component></header-component>
+        <header-component base_url="{{ url('/') }}" ></header-component>
             @yield('content')
-        <sidebar-component></sidebar-component>
+        <sidebar-component base_url="{{ url('/') }}" role_id="{{ auth()->user() -> role_id }}" ></sidebar-component>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('/js/adminlte.js') }}"></script>
-    </script>
+
     <!-- Bootstrap 4 -->
-
-
-
     <!-- jQuery -->
+    <script src="  {{ asset('/js/jquery.min.js') }} "></script>
+
+    <script src=" {{ asset('/js/bootstrap.bundle.min.js') }} "></script>
+    <script src="{{ asset('/js/Chart.min.js') }} "></script>
+
 </body>
 
 </html>

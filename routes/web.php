@@ -48,7 +48,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     })->name('dashboard.home');
 
     Route::group(['prefix' => 'students'], function () {
-                Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');
+                Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register'); 
     });
     Route::group(['prefix' => 'teachers'], function () {
               Route::get('/register', [DashboardController::class, 'RegisterTeacher'])->name('teacher.register');

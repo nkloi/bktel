@@ -47,7 +47,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                    <img src="images/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                    <img :src="base_url + '/images/user1-128x128.jpg'" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
                         Brad Diesel
@@ -63,7 +63,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                    <img src="images/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                    <img :src="base_url + '/images/user8-128x128.jpg'" alt="User Avatar" class="img-size-50 img-circle mr-3">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
                         John Pierce
@@ -79,7 +79,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                    <img src="images/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                    <img :src="base_url + '/images/user3-128x128.jpg'" alt="User Avatar" class="img-size-50 img-circle mr-3">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
                         Nora Silvester
@@ -138,6 +138,12 @@
 
 <script>
 export default {
+   props: {
+
+        base_url: String,
+        user: String,
+        role_id: String,
+    },
     mounted() {
         console.log("Component mounted.");
     },
