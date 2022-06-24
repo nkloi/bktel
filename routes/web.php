@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\Teachers;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +32,19 @@ Route::group(['prefix' => 'students'], function () {
 
 });
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+
+	Route::get('/', function() {
+		return view('dashboard.home');
+	})->name('dashboard.home');
 	
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+	});
+
+	Route::group(['prefix' => 'teachers'], function () {
+		Route::get('/register', [Teachers::class, 'showRegister'])->name('teacher.register');
+		Route::post('register', [Teachers::class, 'store'])->name('teacher.store');
 	});
 });

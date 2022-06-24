@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        <sidebar-component domain="{{ url('/') }}"></sidebar-component>
+        <sidebar-component domain="{{ url('/') }}" role_id="{{ auth()->user()->role_id }}"></sidebar-component>
         <main class="">
             @yield('content')
         </main>
@@ -34,5 +34,6 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
 </body>
 </html>
