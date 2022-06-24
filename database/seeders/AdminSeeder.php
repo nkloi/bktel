@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
             'email'=>'bmvt@hcmut.edu.vn',
             'name'=>'BMVT',
             'password'=>Hash::make('Bmvt@hcmut'),
-            'role_id'=>1
+            'role_id'=>config('constant.roles.administrator')
         ]);
     }
 }

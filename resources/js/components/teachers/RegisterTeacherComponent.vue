@@ -27,43 +27,47 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Register Student</h3>
+                <h3 class="card-title">Register Teacher</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form id="quickForm" @submit.prevent="register()">
                 <div class="card-body">
                   <div class="form-group">
+                    <label for="exampleInputEmail">Email</label>
+                    <input type="text" required v-model.lazy="teacher.email" name="email" class="form-control" id="exampleInputEmail" placeholder="Email">
+                  </div>
+                  <div class="form-group">
                     <label for="exampleInputLastName">Last Name</label>
-                    <input type="text" required v-model.lazy="student.last_name" name="last_name" class="form-control" id="exampleInputLastName" placeholder="Last Name">
+                    <input type="text" required v-model.lazy="teacher.last_name" name="last_name" class="form-control" id="exampleInputLastName" placeholder="Last Name">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFirstName">First Name</label>
-                    <input type="text" required v-model.lazy="student.first_name" name="first_name" class="form-control" id="exampleInputFirstName" placeholder="First Name">
+                    <input type="text" required v-model.lazy="teacher.first_name" name="first_name" class="form-control" id="exampleInputFirstName" placeholder="First Name">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputStudentCode">Student Code</label>
-                    <input type="text" required v-model.lazy="student.student_code" name="student_code" class="form-control" id="exampleInputStudentCode" placeholder="Student Code">
+                    <label for="exampleInputTeacherCode">Teacher Code</label>
+                    <input type="text" required v-model.lazy="teacher.teacher_code" name="teacher_code" class="form-control" id="exampleInputTeacherCode" placeholder="Teacher Code">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputDepartment">Department</label>
-                    <input type="text" required v-model.lazy="student.department" name="department" class="form-control" id="exampleInputDepartment" placeholder="Department">
+                    <input type="text" required v-model.lazy="teacher.department" name="department" class="form-control" id="exampleInputDepartment" placeholder="Department">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFaculty">Faculty</label>
-                    <input type="text" required v-model.lazy="student.faculty" name="faculty" class="form-control" id="exampleInputFaculty" placeholder="Faculty">
+                    <input type="text" required v-model.lazy="teacher.faculty" name="faculty" class="form-control" id="exampleInputFaculty" placeholder="Faculty">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputAddress">Address</label>
-                    <input type="text" required v-model.lazy="student.address" name="address" class="form-control" id="exampleInputAddress" placeholder="Address">
+                    <input type="text" required v-model.lazy="teacher.address" name="address" class="form-control" id="exampleInputAddress" placeholder="Address">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPhone">Phone</label>
-                    <input type="text" required v-model.lazy="student.phone" name="phone" class="form-control" id="exampleInputPhone" placeholder="Phone">
+                    <input type="text" required v-model.lazy="teacher.phone" name="phone" class="form-control" id="exampleInputPhone" placeholder="Phone">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputNote">Note</label>
-                    <input type="text" v-model.lazy="student.note" name="note" class="form-control" id="exampleInputNote" placeholder="Note">
+                    <input type="text" v-model.lazy="teacher.note" name="note" class="form-control" id="exampleInputNote" placeholder="Note">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
@@ -103,11 +107,12 @@
         },
         data() {
             return {
-                student: {
+                teacher: {
+                email: "",
                 first_name: "",
                 last_name: "",
                 faculty: "",
-                student_code: "",
+                teacher_code: "",
                 department: "",
                 address: "",
                 phone: "",
@@ -117,10 +122,10 @@
         },
         methods: {
             async register() {
-                console.log(this.student);
+                console.log(this.teacher);
                 try {
-                    const url = this.domain + "/dashboard/students/register";
-                    const data = await axios.post(url, this.student);
+                    const url = this.domain + "/dashboard/teachers/register";
+                    const data = await axios.post(url, this.teacher);
                     console.log(data);
                     window.location.href="/dashboard";
                 } catch (error) {

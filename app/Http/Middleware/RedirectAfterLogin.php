@@ -23,7 +23,7 @@ class RedirectAfterLogin
                 return $studentId != null ? redirect(route('student.home')) : redirect(route('student.register'));
                 break;
             case "Administrator":
-                dd("administrator role");
+                return redirect(route('dashboard.home'));
         }
     }
 }

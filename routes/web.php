@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,10 +31,21 @@ Route::group(['prefix' => 'students'], function () {
 	Route::delete('/{student_id}', [StudentsController::class,'destroy'])->name('student.destroy');
 });
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+
+	Route::get('/', function() {
+		return view('dashboard.home');
+	})->name('dashboard.home');
 	
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.index');
+		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
+	});
+
+	Route::group(['prefix' => 'teachers'], function () {
+		Route::get('/register', [TeachersController::class, 'showRegister'])->name('teacher.register');
+		Route::get('/home',[TeachersController::class, 'index'])->name('teacher.index');
+		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
 	});
 });

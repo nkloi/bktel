@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        <sidebar-component domain="{{ url('/') }}"></sidebar-component>
+        <sidebar-component domain="{{ url('/') }}" role_id="{{ auth()->user()->role_id }}"></sidebar-component>
         <main class="">
             @yield('content')
         </main>
@@ -29,10 +29,7 @@
     </div>
     <!-- jQuery -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE -->
-    <script src="{{ asset('js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('js/adminlte.js') }}"></script>
 </body>
 </html>

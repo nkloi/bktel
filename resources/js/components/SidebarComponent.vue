@@ -237,18 +237,23 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <div v-if="this.role_id==4">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="/dashboard/students/register" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Students</p>
                 </a>
-              </li>
+              </li>  
+              </div>
+              <div v-else-if="this.role_id==1">
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/dashboard/teachers/register" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
+                  <p>Teachers</p>
                 </a>
-              </li>
+              </li> 
+              </div>
+              
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
@@ -677,9 +682,16 @@
 </template>
 
 <script>
-    export default {
+   export default {
+        props: {
+            domain: String, 
+            role_id: String,
+        },
+        methods: {
+            
+        },
         mounted() {
-            console.log('Component mounted.')
+            console.log('this of my role_id', this.role_id)
         }
     }
 </script>

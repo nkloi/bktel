@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentsController extends Controller
 {
@@ -29,17 +31,6 @@ class StudentsController extends Controller
         return response()->json($studentArr);
     }
 
-    public function store(Request $request)
-    {
-        $user = auth()->user();
-        $student = new Student();
-        $student->fill($request->all());
-        $student->save();
-        $user->student_id = $student->id;
-
-        return response()->json($user);
-    }
-
     public function update(Request $request, $student_id)
     {
         $student = Student::find($student_id)->update($request->all());
@@ -54,4 +45,16 @@ class StudentsController extends Controller
 
         return response('suceess', 200);
     }
+
+    public function store(Request $request)
+    {
+        $user = auth()->user();
+        $student = new Student();
+        $student->fill($request->all());
+        $student->save();
+        $student->user()->save($user)->toArray();
+
+        return response()->json($student);
+    }
+
 }
