@@ -316,7 +316,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <div v-if="this.users.role_id === 4">
+                            <div v-if="this.users.role_id == 4">
                                 <li class="nav-item">
                                     <a
                                         href="/dashboard/students/register"
@@ -327,7 +327,7 @@
                                     </a>
                                 </li>
                             </div>
-                            <div v-else-if="this.users.role_id === 1">
+                            <div v-else-if="this.users.role_id == 1">
                                 <li class="nav-item">
                                     <a
                                         href="/dashboard/teachers/register"
