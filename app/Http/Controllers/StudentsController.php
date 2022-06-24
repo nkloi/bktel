@@ -48,11 +48,13 @@ class StudentsController extends Controller
 
     public function store(Request $request)
     {
+        // info($request);
         $user = auth()->user();
         $student = new Student();
         $student->fill($request->all());
         $student->save();
-        $student->user()->save($user)->toArray();
+
+        $student->user()->save($user);
 
         return response()->json($student);
     }
