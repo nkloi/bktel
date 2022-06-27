@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('last_name');
             $table->string('student_code');
             $table->string('department');
-            $table->string('faculty');
+            $table->string('faculty')->nullable();
             $table->string('address');
             $table->string('phone');
             $table->string('note');
