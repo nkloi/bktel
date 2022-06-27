@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ImportJob;
+use App\Models\Import;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -22,7 +28,33 @@ class DashboardController extends Controller
     {
 
         return view('dashboard.teacher.register');
+
+    }
+    public function showform()
+    {
+        return view('dashboard.admin.import');
     }
 
+    public function import(Request $request)
+    {
+        $path = storage_path('app\data\\');
+        $name = $request->name;
+
+        $generated_new_name = date('Ymd_His') . '_' . $request-> file-> getClientOriginalName();
+        $path_import = '\app\data\\' . $generated_new_name;
+        $request->file->move($path, $generated_new_name);
+
+        $import = new Import();
+        $import->name = $name;
+        $import->path = $path_import;
+        $import->created_by =  $name ;
+        $import->status = 0;
+        $import->save();
+
+        dispatch(new ImportJob($path_import, $request->name, $import));
+
+        return response()->json('success');
+
+    }
 
 }

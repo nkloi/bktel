@@ -97,7 +97,17 @@
             role_id: String,
         },
         methods: {
-
+                     async register() {
+                         console.log(this.student);
+                         try {
+                            const url = this.domain + "/dashboard/students/register";
+                            const data = await axios.post(url, this.student);
+                            console.log(data);
+                            window.location.href = "/dashboard";
+                             }catch (error) {
+                            console.log(error);
+                }
+            },
         },
         mounted() {
             console.log('Component mounted.')

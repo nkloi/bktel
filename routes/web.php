@@ -19,6 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,26 +34,24 @@ Route::group(['prefix' => 'students'], function () {
 	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
 	//Route::delete('/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
 	Route::any('/delete/{student_id}',  [StudentsController::class, 'delete'])->name('student.destroy');
-
 });
 
 //Route::post('/dashboard', [DashboardController::class, 'index'])->name('dashboard.home');
 
-
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
-    Route::get('/', function () {
-        return view('dashboard.home');
-    })->name('dashboard.home');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'] ], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.home');
+    Route::get('/import',[DashboardController::class, 'showform']) -> name('dashboard.showform');
+    Route::post('/import',[DashboardController::class, 'import']) -> name('dashboard.import');
 
-    Route::group(['prefix' => 'students'], function () {
-                Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register'); 
-    });
-    Route::group(['prefix' => 'teachers'], function () {
+        Route::group(['prefix' => 'students'], function () {
+                Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');
+                 });
+        Route::group(['prefix' => 'teachers'], function () {
               Route::get('/register', [DashboardController::class, 'RegisterTeacher'])->name('teacher.register');
-    });
+                 });
 
 });
 
@@ -62,4 +61,3 @@ Route::group(['prefix' => 'teachers'], function () {
 	Route::post('/', [TeachersController::class, 'store2'])->name('teacher.store');
 
 });
-

@@ -3,25 +3,25 @@
 @section('content')
 
 
-        <!-- Navbar -->
+         <!-- Navbar -->
 
-        <!-- /.navbar -->
+         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
+         <!-- Main Sidebar Container -->
 
-        <!-- Content Wrapper. Contains page content -->
+         <!-- Content Wrapper. Contains page content -->
 
-        <!-- /.content -->
+         <!-- /.content -->
 
-  <!-- /.content-wrapper -->
+         <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
+         <!-- Control Sidebar -->
 
-    <!-- Control sidebar content goes here -->
- 
-  <!-- /.control-sidebar -->
+          <!-- Control sidebar content goes here -->
 
-  <!-- Main Footer -->
+         <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
 
 </div>
 

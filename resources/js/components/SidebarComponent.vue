@@ -1,6 +1,7 @@
 <template>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img :src="base_url + '/images/AdminLTELogo.png'" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -274,15 +275,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-table"></i>
               <p>
-                Tables
+                Logout
                 <i class="fa fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a v-on:click = "logout" href="#" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Logout</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -587,6 +588,7 @@
 </template>
 
 <script>
+
 export default {
     mounted() {
         //this.users = JSON.parse(this.user);
@@ -599,7 +601,17 @@ export default {
         user: String,
         role_id: String,
     },
- data() {
+   methods: {
+            logout() {
+                axios.post('/logout').then(response => {
+                    this.$router.push("/login")
+
+                }).catch(error => {
+                    location.reload();
+                });
+            }
+            },
+       data() {
         return {
             users: {},
         };

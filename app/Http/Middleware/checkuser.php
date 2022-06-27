@@ -19,15 +19,19 @@ class checkuser
     {
         $role = $request->user()->role_id;
         $studentId = $request->user()->student_id;
-        switch ($role) {
-            case "4":
-                return $studentId != null ? redirect(route('student.home')) : redirect(route('student.register'));
-                break;
-            case "1":
-                //DD('admin');
-                return redirect(route('auth.information'));
-                break;
+        if ($role == null) {
+            return response() -> json(['Khong co quyen dang nhap']);
         }
+        else {
+            switch ($role) {
+                        case "4":
+                            return $studentId != null ? redirect(route('dashboard.home')) : redirect(route('student.register'));
+                            break;
+                        case "1":
+                            return redirect(route('dashboard.home'));
+                            break;
+                            }
+                }
     }
 
 

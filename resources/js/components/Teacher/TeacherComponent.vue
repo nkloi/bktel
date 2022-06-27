@@ -449,7 +449,7 @@ import InvalidComponent from "../InvalidComponent.vue";
 export default {
     props: {
         base_url: String,
-        student_id: String,
+        
     },
     components: {
         InvalidComponent,

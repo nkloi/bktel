@@ -15,6 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkuser');
     }
 
     /**
@@ -25,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return redirect('/dashboard');
+        return redirect(route('dashboard.home'));
 
     }
 }
