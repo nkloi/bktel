@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\TeachersImport;
+use Throwable;
 
 class UploadCsvFile implements ShouldQueue
 {
@@ -39,17 +40,19 @@ class UploadCsvFile implements ShouldQueue
      */
     public function handle()
     {
-    
-        Excel::import(new TeachersImport, $this->path);
+        
+        $result = false;
 
         $this->userimport->update(['status' => 1]);
+        
+        Excel::import(new TeachersImport, $this->path);
 
-        // imports::create([
+        $this->userimport->update(['status' => 2]);
 
-        //     'name' => $file->username,
-        //     'path' => $path,
+    }
 
-        // ]);
-
+    public function failed(Throwable $exception)
+    {
+        $this->userimport->update(['status' => 3]);
     }
 }

@@ -16,29 +16,19 @@ class AdminCheck
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {   
-        if (Auth::check()){
+    {
+        if (Auth::check()) {
 
-            if (Auth::user()->role_id == 1)
-            {
+            if (Auth::user()->role_id == 1) {
 
                 return $next($request);
-
-            }
-            else{
+            } else {
 
                 return response()->json('Unauthorized!');
-
             }
-            
-        }
-        else{
+        } else {
 
             return response()->json('Unauthorized!');
-            
         }
-
-
-
     }
 }

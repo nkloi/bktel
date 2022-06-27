@@ -31,8 +31,6 @@ class UploadController extends Controller
     public function importTeachers(Request $request)
     {
 
-        // Excel::import(new TeachersImport, $request->file);
-
         $file = $request->file('file');
 
         $fullname = $file->getClientOriginalName();
@@ -46,21 +44,10 @@ class UploadController extends Controller
         $userimport->name = $request->username;
         $userimport->path = $path;
         $userimport->status = 0;
-        $userimport->name = Auth::user()->name;
         $userimport->note = "ok";
         $userimport->save();
 
-        // imports::create([
-
-        //     'name' => $request->username,
-        //     'path' => $path,
-        //     'status' => 0,
-        //     'create_by' => Auth::user()->name,
-        //     'note' => 'ok', 
-
-        // ]);
-
-        UploadCsvFile::dispatch($path,$userimport);
+        UploadCsvFile::dispatch($path,$userimport)->delay(10);
 
         return response()->json('success!');
 
@@ -68,14 +55,6 @@ class UploadController extends Controller
 
     public function testLoop()
     {
-        // $teachers = teachers::all()->first();
-
-        // $teachers_id = $teachers->id;
-
-        // $teachers_id = DB::table('teachers')->lists('last_name');
-
-        // $roles = DB::table('roles')->lists('title');
-
 
         $teachers = DB::table('teachers')->get();
 
