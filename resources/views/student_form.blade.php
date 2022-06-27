@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('content')
 
 <head>
     <meta charset="utf-8">
@@ -874,5 +873,3 @@
         <!-- /.control-sidebar -->
     </div>
 </body>
-
-@endsections

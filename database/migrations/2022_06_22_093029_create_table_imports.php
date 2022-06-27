@@ -20,6 +20,7 @@ class CreateTableImports extends Migration
             $table->string('status');
             $table->string('created_by');
             $table->string('note')->nullable();
+            $table->timestamps();
         });
     }
 

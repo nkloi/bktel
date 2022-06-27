@@ -9,6 +9,8 @@ require("./bootstrap.bundle.min");
 require("./dashboard3");
 require("./jquery.min");
 require("./adminlte");
+require("./bs-custom-file-input.min");
+require("./adminlte.min");
 window.Vue = require("vue").default;
 
 /**
