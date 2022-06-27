@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +24,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'students'], function () {
-	Route::get('/{student_id}', [StudentController::class, 'show'])->name('student.show');
-	Route::post('/', [StudentController::class, 'store'])->name('student.store');
-	Route::put('/{student_id}', [StudentController::class, 'update'])->name('student.update');
-	Route::delete('/{student_id}', [StudentController::class, 'delete'])->name('student.destroy');
+	
+	
+	
+	Route::get('/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
+	Route::get('/{id}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+	Route::post('/', [App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+	Route::any('update/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+	Route::get('/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
+	Route::get('delete/{id}', [App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
+	
+	
 });
 

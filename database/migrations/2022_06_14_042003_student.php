@@ -13,7 +13,7 @@ class Student extends Migration
      */
     public function up()
     {
-        Schema::create('student', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('last_name',30);
             $table->string('first_name',30);
@@ -36,6 +36,6 @@ class Student extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('students');
     }
 }

@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    protected $table='students';
     protected $fillable = [
-        'first_name', 'last_name', 'student_code', 'department', '​faculty', 'address', 'phone', 'note'
+        'first_name', 'last_name', 'student_code', 'department', 'faculty', 'address', 'phone', 'note'
     ];
 
     public function user()
     {
-        return $this->hasOne(Userr::class, 'student_id');
+        return $this->hasOne(User::class, 'student_id');
     }
 }
