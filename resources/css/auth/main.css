@@ -264,7 +264,6 @@ iframe {
     position: relative;
     width: 100%;
     z-index: 1;
-    margin-bottom: 10px;
 }
 
 .input100 {
@@ -491,4 +490,11 @@ iframe {
         visibility: visible;
         opacity: 1;
     }
+}
+
+.required-icon {
+    font-size: 8px;
+    color: #dc3545;
+    position: absolute;
+    margin-left: 2px;
 }
