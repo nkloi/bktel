@@ -19,12 +19,16 @@ class Users extends Migration
             
             $table->string('name');
             $table->string('email')->unique();
-            $table->foreign('student_id')->references('id')->on('student');
+            $table->foreign('student_id')->references('id')->on('students');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+        // Schema::table('users', function(Blueprint $table){
+        //     $table->string('role_id');
+            
+        // });
     }
 
     /**
