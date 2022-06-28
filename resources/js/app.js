@@ -13,6 +13,7 @@ window.$ = window.jQuery = $;
 
 
 import 'jquery-ui/ui/widgets/datepicker.js';
+import Vue from 'vue';
 $('#datepicker').datepicker();
 
 /**
@@ -44,6 +45,7 @@ Vue.component(
     require("./components/Sidebar-Component.vue").default
 );
 
+Vue.component('teacher-component', require("./components/Teacher-Component.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
