@@ -16,16 +16,11 @@ class rolesseeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            config('constants.role.role_adminstrator')
-        ]);
-        DB::table('roles')->insert([
-            config('constants.role.role_supervisor')
-        ]);
-        DB::table('roles')->insert([
-            config('constants.role.role_teacher')
-        ]);
-        DB::table('roles')->insert([
-            config('constants.role.role_student')
+            ['id'=> 1, 'name' => 'Administrator'],
+            ['id'=> 2, 'name' =>'Supervisor'],
+            ['id'=> 3, 'name' =>'Teacher'],
+            ['id'=> 4, 'name' =>'Student'],
+
         ]);
     }
 }

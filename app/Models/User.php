@@ -38,9 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function student()
+    public function students()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Students::class);
     
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo(Roles::class);
     }
 }
