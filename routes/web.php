@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\TeacherController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +23,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth','verify')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('admin')->name('home');
 Route::get('/home/form', function (){
 	return view('layouts.form');
 })->name('forms');
+Route::get('/home/teacher', function (){
+	return view('layouts.teacher');
+})->name('teachers');
+
+Route::post('/add.teacher', [App\Http\Controllers\TeacherController::class, 'store'])->name('add.teacher');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewStudentTable extends Migration
+class CreateStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -34,6 +34,6 @@ class AddNewStudentTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('students');
     }
 }

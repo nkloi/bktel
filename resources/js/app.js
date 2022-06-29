@@ -47,6 +47,10 @@ Vue.component(
     "form-component",
     require("./components/Form-Component.vue").default
 );
+Vue.component(
+    "teacher-component",
+    require("./components/Teacher-Component.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -16,9 +16,9 @@ class admin extends Seeder
     public function run()
     {
         User::create([
-        'name' => 'BMVT',
-        'email' => 'bmvt@hcmut.edu.vn',
-        'password' => Hash::make('Bmvt@hcmut'),
+        'name' => 'BMIT',
+        'email' => 'bmit@hcmut.edu.vn',
+        'password' => Hash::make('Bmit@hcmut'),
         'role_id' => '1'
         ]);
     }
