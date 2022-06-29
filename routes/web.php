@@ -46,6 +46,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'teachers'], function () {
 		Route::get('/register', [Teachers::class, 'showRegister'])->name('teacher.register');
+		Route::get('/import', [Teachers::class, 'showImport'])->name('teacher.import');
+		Route::post('/import', [Teachers::class, 'storeImport'])->name('teacher.import.store');
 		Route::post('register', [Teachers::class, 'store'])->name('teacher.store');
 	});
 });

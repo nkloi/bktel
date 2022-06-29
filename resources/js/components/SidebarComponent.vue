@@ -252,6 +252,12 @@
                   <p>Form Teacher</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a :href="domain + '/dashboard/teachers/import'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Import</p>
+                </a>
+              </li>
             </div>
               <li class="nav-item">
                 <a href="../forms/editors.html" class="nav-link">
