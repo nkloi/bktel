@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Exports\TeachersExport;
 use App\Imports\TeachersImport;
+use App\Jobs\StudentCsvUpload;
 use App\Jobs\UploadCsvFile;
 use App\Models\imports;
 use App\Models\teachers;
@@ -26,6 +27,36 @@ class UploadController extends Controller
     public function uploadTeachers()
     {
         return view('auth.upload');
+    }
+
+    public function uploadStudents()
+    {
+        return view('auth.upload_student');
+    }
+
+    public function importStudents(Request $request)
+    {
+
+        $file = $request->file('student_file');
+
+        $fullname = $file->getClientOriginalName();
+
+        $name = date('Ymd_His_') . $fullname;
+
+        $path = $request->file('student_file')->storeAs( 'data', $name);
+
+        $userimport = new imports();
+
+        $userimport->name = $request->username;
+        $userimport->path = $path;
+        $userimport->status = 0;
+        $userimport->note = "ok";
+        $userimport->save();
+
+        StudentCsvUpload::dispatch($path,$userimport)->delay(10);
+
+        return response()->json('Adding Students successfully!');
+
     }
 
     public function importTeachers(Request $request)

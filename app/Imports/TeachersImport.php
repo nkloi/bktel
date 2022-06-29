@@ -37,21 +37,21 @@ class TeachersImport implements WithHeadingRow, ToCollection
 
             ]);
 
-            // $lastId = teachers::max('id');
+            $lastId = teachers::max('id');
 
-            // User::create([
+            User::create([
 
-            //     'name' => $row["last_name"] . $row["first_name"],
-            //     'email' => $row['email'],
-            //     'password' => Hash::make($row['default_password']),
-            //     'role_id' => 3,
-            //     'teacher_id' => $lastId,
+                'name' => $row["last_name"] . $row["first_name"],
+                'email' => $row['email'],
+                'password' => Hash::make($row['default_password']),
+                'role_id' => 3,
+                'teacher_id' => $lastId,
 
-            // ]);
+            ]);
 
-            // $user_id = User::max('id');
+            $user_id = User::max('id');
 
-            // User::where('id', $user_id)->update(['teacher_id' => $lastId]);
+            User::where('id', $user_id)->update(['teacher_id' => $lastId]);
 
         }
     }

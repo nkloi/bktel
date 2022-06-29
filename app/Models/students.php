@@ -16,6 +16,6 @@ class students extends Model
 
     public function studentid()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->hasOne('App\Models\User', 'student_id');
     }
 }

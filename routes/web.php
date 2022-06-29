@@ -24,20 +24,19 @@ Route::get('', function () {
 	return view('welcome');
 });
 
-// Route::get('/{any}', function () {
-//     return view('welcome');
-// })->where('any','.*');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'students'], function () {
+	Route::get('/upload-students', [App\Http\Controllers\Admin\UploadController::class, 'uploadStudents'])->name('upload.students');
+	Route::post('/import-students', [App\Http\Controllers\Admin\UploadController::class, 'importStudents'])->name('import.students');
 	Route::get('/{student_id}', [App\Http\Controllers\Admin\StudentsController::class, 'show'])->name('student.show');
 	Route::post('/', [App\Http\Controllers\Admin\StudentsController::class, 'store'])->name('student.store');
 	Route::put('/{student_id}', [App\Http\Controllers\Admin\StudentsController::class, 'update'])->name('student.update');
 	Route::any('/delete/{student_id}', [App\Http\Controllers\Admin\StudentsController::class, 'delete'])->name('student.destroy');
 	Route::any('/delete/{user_id}', [App\Http\Controllers\Admin\StudentsController::class, 'delete_user'])->name('user.destroy');
+
 });
 
 Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
@@ -58,3 +57,4 @@ Route::group(['prefix' => 'teachers'], function () {
 	Route::post('/import-teachers', [App\Http\Controllers\Admin\UploadController::class, 'importTeachers'])->name('import.teachers');
 	Route::get('/testloop', [App\Http\Controllers\Admin\UploadController::class, 'testLoop'])->name('loops.teachers');
 });
+
