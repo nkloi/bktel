@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Students;
 
 class StudentController extends Controller
 {
+
+    public function index()
+    {
+        return view('layouts.student');
+    }
 
     //action get student with id
     public function show(Request $request, $student_id)

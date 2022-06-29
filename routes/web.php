@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\StudentController;
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'students'], function () {
+	Route::get('/', [ App\Http\Controllers\Admin\StudentsController::class, 'index' ])->name('student.index');
 	Route::get('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'show' ])->name('student.show');
 	Route::post('/', [ App\Http\Controllers\Admin\StudentsController::class, 'store' ] )->name('student.store');
 	Route::put('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'update' ])->name('student.update');

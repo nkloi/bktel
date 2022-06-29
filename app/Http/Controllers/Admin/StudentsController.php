@@ -12,6 +12,11 @@ use function PHPUnit\Framework\returnSelf;
 class StudentsController extends Controller
 {   
 
+    public function index()
+    {
+        return view('layouts.student');
+    }
+
     public function show( Request $request){
 
         $students = students::all();
