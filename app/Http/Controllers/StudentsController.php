@@ -1,43 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Students;
-use App\Models\User;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\returnSelf;
+use App\Models\Student;
+use App\Models\User;
 
 class StudentsController extends Controller
-{   
-
-    public function show( Request $request){
-
-        $students = students::all();
-        
-        return response()->json($students);
-
-    }
-
-    public function show_user(){
-        $user = User::all();
-        return response()->json($user);
-    }
-
-    public function information(){
-
-        return view('auth.information');
-
-    }
-
+{
     public function store(Request $request)
     {
         $data = $request->all();
         $user = User::where('email', $data["email"])->get();
+
         $userArr = $user->toArray();
+
         if ($userArr != null) {
-            students::create([
+            Student::create([
                 'last_name' => $data["last_name"],
                 'first_name' => $data["first_name"],
                 'student_code' => $data["student_code"],
@@ -47,26 +27,31 @@ class StudentsController extends Controller
                 'phone' => $data["phone"],
                 'note' => $data["note"],
             ]);
-            $lastId = students::max('id');
+            $lastId = Student::max('id');
             User::where('email', $data["email"])->update(['student_id' => $lastId]);
-            return redirect()->route('login');
+            return redirect()->route('student.show', ['id' => $lastId]);
         } else {
-            echo "User Not Found";
+            echo "<script type='text/javascript'>alert('Email not found');</script>";
         }
     }
-
-
+    public function create(Request $request)
+    {
+        return view('auth.create');
+    }
+    public function show(Request $request, $id)
+    {
+        $student = Student::where('id', $id)->first();
+        return view('auth.info', ['info' => $student]);
+    }
     public function edit(Request $request, $id)
     {
-        $student = students::where('id', $id)->first();
-        return view('edit', ['info' => $student]);
+        $student = Student::where('id', $id)->first();
+        return view('auth.edit', ['info' => $student]);
     }
-
     public function update(Request $request, $id)
     {
         $data = $request->all();
-
-        students::where('id', $id)->update([
+        Student::where('id', $id)->update([
             'last_name' => $data["last_name"],
             'first_name' => $data["first_name"],
             'student_code' => $data["student_code"],
@@ -78,21 +63,10 @@ class StudentsController extends Controller
         ]);
         return redirect()->route('student.edit', ['id' => $id]);
     }
-
-    public function delete(Request $request, $student_id)
+    public function destroy(Request $request, $id)
     {
-        User::where('student_id', $student_id)->update(['student_id' => NULL]);
-        students::where('id',  $student_id)->delete();
-        
-        return redirect()->route('show.user');
+        User::where('student_id', $id)->update(['student_id' => NULL]);
+        Student::where('id', $id)->delete();
+        return redirect()->route('home');
     }
-
-    public function delete_user(Request $request, $user_id)
-    {
-        User::where('id', $user_id)->delete();
-        
-        return redirect()->route('show.user');
-    }
-
-
 }

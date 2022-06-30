@@ -16,6 +16,13 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
+								document.getElementById('logout-form').submit();" class="nav-link">
+                        Logout
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" style="display:none;">
+                            @csrf
+                        </form>
+                    </a>
             </div>
         </div>
     </div>

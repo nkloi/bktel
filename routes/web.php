@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,15 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 Route::group(['prefix' => 'students'], function () {
-	Route::get('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'show' ])->name('student.show');
-	Route::post('/', [ App\Http\Controllers\Admin\StudentsController::class, 'store' ] )->name('student.store');
-	Route::put('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'update' ])->name('student.update');
-	Route::any('/delete/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'delete' ])->name('student.destroy');
-    Route::any('/delete/{user_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'delete_user' ])->name('user.destroy');
+    Route::get('/create', [App\Http\Controllers\StudentsController::class, 'create'])->name('student.create');
+    Route::get('/{id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
+    Route::post('/stored', [App\Http\Controllers\StudentsController::class, 'store'])->name('student.store');
+    Route::post('update/{id}', [App\Http\Controllers\StudentsController::class, 'update'])->name('student.update');
+    Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
+    Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
 });
-
-Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
-Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
