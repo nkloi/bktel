@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Import as JobsImport;
+use App\Jobs\ImportTeacher;
+use App\Models\Import;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,6 +20,10 @@ class TeachersController extends Controller
 
     public function showRegister() {
         return view('teacher.registerteacher');
+    }
+
+    public function showImport() {
+        return view('teacher.importteacher');
     }
     
     public function store(Request $request)
@@ -35,5 +42,25 @@ class TeachersController extends Controller
         $teacher["email"] = $user->email;
 
         return response()->json($teacher);
+    }
+
+    public function storeImport(Request $request){
+        $path = storage_path('app\data\\');
+        // $file_name = $request->file->getClientOriginalName();
+        $name = $request->name;
+
+        $generated_new_name = date('Ymd_His') . '_' . $request->file->getClientOriginalName();
+        $path_import = 'app\data\\' . $generated_new_name;
+        $request->file->move($path, $generated_new_name);
+
+        $import = new Import();
+        $import->name = $name;
+        $import->path = $path_import;
+        $import->status = 0;
+        $import->save();
+
+        dispatch(new ImportTeacher($path_import, $request->name, $import));
+
+        return response()->json($request);
     }
 }
