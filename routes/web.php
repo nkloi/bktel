@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,17 +22,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role')->name('home');
 
-
-Route::group(['prefix' => 'students'], function () {
-	Route::get('/', [ App\Http\Controllers\Admin\StudentsController::class, 'index' ])->name('student.index');
-	Route::get('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'show' ])->name('student.show');
-	Route::post('/', [ App\Http\Controllers\Admin\StudentsController::class, 'store' ] )->name('student.store');
-	Route::put('/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'update' ])->name('student.update');
-	Route::any('/delete/{student_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'delete' ])->name('student.destroy');
-    Route::any('/delete/{user_id}', [ App\Http\Controllers\Admin\StudentsController::class, 'delete_user' ])->name('user.destroy');
+Route::group(['prefix' => 'students', /*'middleware' => ['auth']*/], function () {
+    Route::get('/', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+    Route::get('/register', [App\Http\Controllers\StudentController::class, 'showRegister'])->name('student.register');
+    Route::get('/{student_id}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+    Route::post('/', [App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+    Route::put('/{student_id}', [App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+    Route::delete('/{student_id}', [App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');
 });
 
-Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
-Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
+Route::get('show_user', [App\Http\Controllers\StudentController::class, 'show_user'])->name('show.user');
+Route::get('information', [App\Http\Controllers\StudentController::class, 'information'])->name('information');
