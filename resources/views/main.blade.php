@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,7 @@
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <script src="{{ mix('js/app.js') }}" defer></script>
+  
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <!--
@@ -28,13 +30,17 @@
 <div class="wrapper">
   <div id="app">
   <header-component></header-component>
-  <sidebar-component></sidebar-component>
+  <sidebar-component domain="{{url('/')}}"></sidebar-component>
   <content-component></content-component>
   <footer-component></footer-component>
   </div>
- 
 
 </div> 
-
+<script src="{{ mix('js/app.js') }}" defer></script>
+<script src="{{ asset('/js/jquery.min.js') }}"></script> 
+<script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/adminlte.js') }}"></script>
+<script src="{{ asset('js/dashboard3.js') }}"></script>
 </body>
 </html>
+@endsection

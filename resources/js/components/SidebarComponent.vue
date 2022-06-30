@@ -673,3 +673,13 @@
     <!-- /.sidebar -->
   </aside>
   </template>
+<script>
+    export default {
+        props: {
+            domain: String,
+        },
+        mounted() {
+            console.log('this is my domain', this.domain)
+        }
+    }
+</script>

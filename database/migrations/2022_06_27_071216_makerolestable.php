@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Roles extends Migration
+class Makerolestable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class Roles extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-          $table->id();
-            $table->string('name');
+            $table->id();
+            $table->string('name')->nulable();
             $table->string('note')->nullable();
-           $table->timestamps();
-         });
+            $table->timestamps();
+            });
     }
 
     /**

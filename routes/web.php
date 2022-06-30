@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -25,4 +27,8 @@ Route::group(['prefix' => 'students'], function () {
 	Route::post('/',[StudentController::class,'store'])->name('student.store');
 	Route::put('/{student_id}', [StudentController::class,'update'])->name('student.update');
 	Route::delete('/{student_id}', [StudentController::class,'destroy'])->name('student.destroy');
+});
+Route::get('/main', function () {
+    return view('main');
+	
 });
