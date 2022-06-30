@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportUsers;
+use App\Imports\UsersImport;
+use App\Jobs\ProcessImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\teacher;
 use App\Models\User;
+use App\Models\import;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Process\Process;
+
 class TeacherController extends Controller
 {
     /**
@@ -13,6 +20,39 @@ class TeacherController extends Controller
     *
     * @return void
     */
+    public function upload()
+    {
+        return view('layouts.uploadTeacher');
+
+    }
+
+   public function importExport()
+    {
+
+        $datafile = request()->file('teachers_file');
+        $name = $datafile->getClientOriginalName();
+        $fullname = date('Ymd_His_') . $name;
+        $path = request() -> file('teachers_file')->storeAs('data', $fullname);
+        Excel::import(new UsersImport, request()->file('teachers_file'));
+
+        $userimport = new import();
+
+        $userimport->name = request()->username;
+        $userimport->path = $path;
+        $userimport->status = 0;
+        $userimport->note = "ok";
+        $userimport->save();
+
+        ProcessImport::dispatch($path, $userimport)->delay(10);
+        return response()->json('success!');
+    }
+
+    public function export() 
+    {
+        
+    }
+    
+
    public function __construct()
    {
     //    $this->middleware('admin');

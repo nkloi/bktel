@@ -30,6 +30,10 @@ Route::get('/home/form', function (){
 Route::get('/home/teacher', function (){
 	return view('layouts.teacher');
 })->name('teachers');
+Route::group(['prefix' => 'uploads'], function () {
+		Route::get('/teacher', [TeacherController::class, 'upload']);
+		Route::post('/teacherimp', [TeacherController:: class, 'importExport'])->name('import.teachers');
+});
 
 Route::post('/add.teacher', [App\Http\Controllers\TeacherController::class, 'store'])->name('add.teacher');
 
