@@ -17,6 +17,8 @@ class CreateTableTeacherToSubjects extends Migration
             $table->id();
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->unsignedInteger('semester');
             $table->unsignedInteger('year');
             $table->string('note')->nullable();

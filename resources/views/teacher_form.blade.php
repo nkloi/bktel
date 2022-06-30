@@ -407,9 +407,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/editors.html" class="nav-link">
+                                    <a href="/home/add_subject" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Editors</p>
+                                        <p>Subjects</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

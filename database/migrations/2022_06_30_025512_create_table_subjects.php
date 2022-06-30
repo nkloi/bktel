@@ -13,10 +13,10 @@ class CreateTableSubjects extends Migration
      */
     public function up()
     {
-        Schema::create('subjectcs', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('note')->nullable();
             $table->timestamps();
         });

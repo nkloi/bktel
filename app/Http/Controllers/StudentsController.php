@@ -89,6 +89,6 @@ class StudentsController extends Controller
             $content[] = fgetcsv($file, 0, ',');
         }
         UpLoadCsvFile_Student::dispatch($content, $id)->delay(5);
-        return redirect()->route('home');
+        return redirect()->route('home.add_student');
     }
 }

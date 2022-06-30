@@ -34,6 +34,11 @@ Route::group(['prefix' => 'teachers'], function () {
     Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
     Route::post('/uploaded', [App\Http\Controllers\TeachersController::class, 'upload'])->name('teacher.upload');
 });
+Route::group(['prefix' => 'subjects'], function () {
+    Route::post('/stored', [App\Http\Controllers\SubjectsController::class, 'store'])->name('subject.store');
+    Route::post('/uploaded', [App\Http\Controllers\SubjectsController::class, 'upload'])->name('subject.upload');
+});
 Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
 Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
 Route::get('/home/add_student', [App\Http\Controllers\HomeController::class, 'add_student'])->middleware('checkadmin')->name('home.add_student');
+Route::get('/home/add_subject', [App\Http\Controllers\HomeController::class, 'add_subject'])->middleware('checkadmin')->name('home.add_subject');
