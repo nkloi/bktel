@@ -25,11 +25,13 @@ class roleSeeder extends Seeder
             'role_id'=> 1,
 
         ]);
+
         // DB::table('roles')->insert([
         //     ['name' => 'Administrator'],
         //     ['name' => 'Supervisor'],
         //     ['name' => 'Teacher'],
         //     ['name' => 'Student'],
         // ]);
+
     }
 }

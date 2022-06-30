@@ -38,12 +38,6 @@ Route::group(['prefix' => 'students'], function () {
 	Route::any('/delete/{user_id}', [App\Http\Controllers\Admin\StudentsController::class, 'delete_user'])->name('user.destroy');
 });
 
-Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
-Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
-Route::get('getstudent', [App\Http\Controllers\Admin\StudentsController::class, 'getstudent'])->name('get.student');
-Route::get('teacher_menu', [App\Http\Controllers\Admin\TeacherController::class, 'teacher_menu'])->name('get.teacher');
-Route::post('add_teacher', [App\Http\Controllers\Admin\TeacherController::class, 'add_teacher'])->name('add.teacher');
-
 Route::get('getCurrentUser', function () {
 
 	$role = Auth::user()->role_id;
@@ -63,3 +57,14 @@ Route::group(['prefix' => 'subjects'], function () {
 	Route::get('/byhand-subjects', [App\Http\Controllers\Admin\SubjectUploadController::class, 'uploadbyhand'])->name('byhand.subjects');
 	Route::post('/createbyhand-subjects', [App\Http\Controllers\Admin\SubjectUploadController::class, 'importbyhand'])->name('importbyhand.subjects');
 });
+
+Route::group(['prefix' => 'TeacherToSubject'], function () {
+	Route::get('/show', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'show'])->middleware('isAdmin')->name('teacher.subject');
+	Route::get('/add-subject', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'AddSubjectToTeacher'])->middleware('isAdmin')->name('add.subject');
+});
+
+Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
+Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
+Route::get('getstudent', [App\Http\Controllers\Admin\StudentsController::class, 'getstudent'])->name('get.student');
+Route::get('teacher_menu', [App\Http\Controllers\Admin\TeacherController::class, 'teacher_menu'])->name('get.teacher');
+Route::post('add_teacher', [App\Http\Controllers\Admin\TeacherController::class, 'add_teacher'])->name('add.teacher');
