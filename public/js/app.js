@@ -9819,6 +9819,8 @@ __webpack_require__(/*! ./adminlte */ "./resources/js/adminlte.js");
 
 __webpack_require__(/*! ./dashboard3 */ "./resources/js/dashboard3.js");
 
+__webpack_require__(/*! ./global */ "./resources/js/global.js");
+
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // resources/assets/js/app.js
 
@@ -10038,6 +10040,48 @@ $(function () {
     }
   });
 }); // lgtm [js/unused-local-variable]
+
+/***/ }),
+
+/***/ "./resources/js/global.js":
+/*!********************************!*\
+  !*** ./resources/js/global.js ***!
+  \********************************/
+/***/ (() => {
+
+(function ($) {
+  'use strict';
+  /*[ File Input Config ]
+      ===========================================================*/
+
+  try {
+    var file_input_container = $('.js-input-file');
+
+    if (file_input_container[0]) {
+      file_input_container.each(function () {
+        var that = $(this);
+        var fileInput = that.find(".input-file");
+        var info = that.find(".input-file__info");
+        fileInput.on("change", function () {
+          var fileName;
+          fileName = $(this).val();
+
+          if (fileName.substring(3, 11) == 'fakepath') {
+            fileName = fileName.substring(12);
+          }
+
+          if (fileName == "") {
+            info.text("No file chosen");
+          } else {
+            info.text(fileName);
+          }
+        });
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+})(jQuery);
 
 /***/ }),
 

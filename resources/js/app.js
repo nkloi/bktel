@@ -8,6 +8,7 @@ require('./bootstrap');
 require('./main');
 require('./adminlte');
 require('./dashboard3');
+require('./global');
 
 
 window.Vue = require('vue').default;

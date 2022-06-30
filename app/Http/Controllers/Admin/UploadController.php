@@ -43,7 +43,7 @@ class UploadController extends Controller
 
         $name = date('Ymd_His_') . $fullname;
 
-        $path = $request->file('student_file')->storeAs( 'data', $name);
+        $path = $request->file('student_file')->storeAs('data', $name);
 
         $userimport = new imports();
 
@@ -53,10 +53,9 @@ class UploadController extends Controller
         $userimport->note = "ok";
         $userimport->save();
 
-        StudentCsvUpload::dispatch($path,$userimport)->delay(10);
+        StudentCsvUpload::dispatch($path, $userimport)->delay(10);
 
         return response()->json('Adding Students successfully!');
-
     }
 
     public function importTeachers(Request $request)
@@ -68,7 +67,7 @@ class UploadController extends Controller
 
         $name = date('Ymd_His_') . $fullname;
 
-        $path = $request->file('file')->storeAs( 'data', $name);
+        $path = $request->file('file')->storeAs('data', $name);
 
         $userimport = new imports();
 
@@ -78,10 +77,9 @@ class UploadController extends Controller
         $userimport->note = "ok";
         $userimport->save();
 
-        UploadCsvFile::dispatch($path,$userimport)->delay(10);
+        UploadCsvFile::dispatch($path, $userimport)->delay(10);
 
         return response()->json('success!');
-
     }
 
     public function testLoop()
