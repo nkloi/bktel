@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Import;
 use App\Models\Student;
-use App\Models\Teacher;
 use App\Models\User;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -15,11 +14,10 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Hash;
 
-class ImportJob implements ShouldQueue
+class ImportStudent implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-     protected $path, $name, $import;
+    protected $path, $name, $import;
     /**
      * Create a new job instance.
      *
@@ -27,6 +25,7 @@ class ImportJob implements ShouldQueue
      */
     public function __construct($path, $name, Import $import)
     {
+        //
         $this->path = $path;
         $this->name = $name;
         $this->import = $import;
@@ -53,28 +52,28 @@ class ImportJob implements ShouldQueue
                     continue;
                 }
                 try {
-                    $teacher = new Teacher();
+                    $student = new Student();
                     $user = new User();
                     info($data);
-                    $teacher->first_name = $data[2];
-                    $teacher->last_name = $data[3];
-                    $teacher->teacher_code = $data[4];
-                    $teacher->department = $data[5];
-                    $teacher->faculty = $data[6];
-                    $teacher->address = $data[7];
-                    $teacher->phone = $data[8];
-                    $teacher->note = $data[9];
+                    $student->first_name = $data[2];
+                    $student->last_name = $data[3];
+                    $student->student_code = $data[4];
+                    $student->department = $data[5];
+                    $student->faculty = $data[6];
+                    $student->address = $data[7];
+                    $student->phone = $data[8];
+                    $student->note = $data[9];
 
                     $user->email = $data[0];
-                    $user->name = $teacher->first_name . $teacher->last_name;
+                    $user->name = $student->first_name . $student->last_name;
                     $user->password = Hash::make($data[1]);
-                    $user->role_id = '3';
+                    $user->role_id = '4';
                     $user->save();
 
-                    $teacher->save();
-                    $teacher->user()->save($user);
-                    $teacher->save();
-                    info($teacher);
+                    $student->save();
+                    $student->user()->save($user);
+                    $student->save();
+                    info($student);
                     info($user);
                     } catch (Exception $e) {
                         info($e->getMessage());
@@ -87,4 +86,3 @@ class ImportJob implements ShouldQueue
         $this->import->save();
     }
 }
-

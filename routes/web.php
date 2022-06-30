@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\TeachersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\checkuser;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -41,16 +42,20 @@ Route::group(['prefix' => 'students'], function () {
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'] ], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.home');
     Route::get('/import',[DashboardController::class, 'showform']) -> name('dashboard.showform');
     Route::post('/import',[DashboardController::class, 'import']) -> name('dashboard.import');
 
         Route::group(['prefix' => 'students'], function () {
                 Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');
+                Route::get('/import', [DashboardController::class, 'ShowformImportStudent'])->name('student.import.showform');
+                Route::post('/import',[DashboardController::class, 'ImportStudent']) -> name('student.import');
                  });
         Route::group(['prefix' => 'teachers'], function () {
               Route::get('/register', [DashboardController::class, 'RegisterTeacher'])->name('teacher.register');
+              Route::get('/import',[DashboardController::class, 'ShowformImportTeacher']) -> name('teacher.import.showform');
+              Route::post('/import',[DashboardController::class, 'ImportTeacher']) -> name('teacher.import');
                  });
 
 });
@@ -61,3 +66,6 @@ Route::group(['prefix' => 'teachers'], function () {
 	Route::post('/', [TeachersController::class, 'store2'])->name('teacher.store');
 
 });
+
+
+Route::get('/test', [DashboardController::class, 'test'])->middleware('auth')->name('test');

@@ -257,15 +257,15 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="pages/forms/editors.html" class="nav-link">
+                        <a :href="base_url + '/dashboard/teachers/import'" class="nav-link">
                         <i class="fa fa-circle nav-icon"></i>
-                        <p>Editors</p>
+                        <p>Import Teacher</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/forms/validation.html" class="nav-link">
+                        <a :href="base_url + '/dashboard/students/import'" class="nav-link">
                         <i class="fa fa-circle nav-icon"></i>
-                        <p>Validation</p>
+                        <p>Import Student </p>
                         </a>
                     </li>
 

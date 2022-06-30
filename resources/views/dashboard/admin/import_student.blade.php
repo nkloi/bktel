@@ -12,7 +12,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <div class="col-md-6" style = "margin: 0 auto ">
-                <h3 >Import CSV File into MySQL using PHP</h3>
+                <h3 >Import Students into MySQL using PHP</h3>
         </div>
                 <style>
                     .custom-file-input.selected:lang(en)::after {
@@ -33,7 +33,7 @@
         <body>
 
             <div class="col-md-6" style = "margin: 0 auto ">
-                <form action="{{route('dashboard.import')}}" method="POST" enctype='multipart/form-data' >
+                <form action="{{route('student.import')}}" method="POST" enctype='multipart/form-data' >
                     @csrf
                     <div class="input-group-append">
                             <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Name">
