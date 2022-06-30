@@ -855,6 +855,9 @@
                     <div id="app">
                         <student-register></student-register>
                     </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary float-right mr-3 mb-3" href="/home/add_student">Adding Student Using CVS File</a>
+                    </div>
             </section>
             <!-- /.content -->
         </div>
