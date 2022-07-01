@@ -31,7 +31,7 @@ Route::group(['prefix' => 'students'], function () {
 	Route::delete('/{student_id}',  [StudentsController::class, 'destroy'])->name('student.destroy');
 });
  //register_student street
- Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth',['redirectlogin']], function () {
 
 	Route::get('/', function() {
 		return view('dashboard.home');
@@ -41,6 +41,8 @@ Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
 		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
+		Route::get('/import', [StudentsController::class, 'showImport'])->name('student.import');
+		Route::post('/import', [StudentsController::class, 'storeImport'])->name('student.import.store');
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {

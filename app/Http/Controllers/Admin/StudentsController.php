@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ImportStudent;
+use App\Models\Import;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +21,9 @@ class StudentsController extends Controller
         return view('student.register');
     }
 
+    public function showImport() {
+        return view('student.import');
+    }
 
     //action with student_id
     public function show(Request $request, $student_id)
@@ -58,6 +63,26 @@ class StudentsController extends Controller
         $student = Student::find($student_id);
         $student->delete();
         return response('suceess', 200);
+    }
+
+    public function storeImport(Request $request){
+        $path = storage_path('app\data\\');
+        // $file_name = $request->file->getClientOriginalName();
+        $name = $request->name;
+
+        $generated_new_name = date('Ymd_His') . '_' . $request->file->getClientOriginalName();
+        $path_import = 'app\data\\' . $generated_new_name;
+        $request->file->move($path, $generated_new_name);
+
+        $import = new Import();
+        $import->name = $name;
+        $import->path = $path_import;
+        $import->status = 0;
+        $import->save();
+
+        dispatch(new ImportStudent($path_import, $request->name, $import));
+
+        
     }
 
 }

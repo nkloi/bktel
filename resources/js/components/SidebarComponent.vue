@@ -14,7 +14,7 @@
           <img :src="domain  + '/images/user2-160x160.jpg'" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Donald Phong</a>
         </div>
       </div>
 
@@ -236,6 +236,8 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+
             <div v-if="this.role_id==4">
               <li class="nav-item">
                 <a :href="domain + '/dashboard/students/register'" class="nav-link">
@@ -243,7 +245,15 @@
                   <p>Form Student</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a :href="domain + '/dashboard/students/import'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Importa Student</p>
+                </a>
+              </li>
             </div>
+
+
             <div v-else-if="this.role_id==1">
               <li class="nav-item">
                 <a :href="domain + '/dashboard/teachers/register'" class="nav-link">
@@ -251,7 +261,15 @@
                   <p>Form Teacher</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a :href="domain + '/dashboard/teachers/import'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Import Teacher</p>
+                </a>
+              </li>
               </div>
+
+
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>

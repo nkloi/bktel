@@ -27,6 +27,7 @@ Vue.component('home-component', require('./components/HomeComponent.vue').defaul
 Vue.component('register_student-component', require('./components/Student/RegisterStudentComponent.vue').default);
 Vue.component('register_teacher-component', require('./components/Teacher/RegisterTeacherComponent.vue').default);
 Vue.component('import_teacher-component', require('./components/Teacher/ImportTeacherComponent.vue').default);
+Vue.component('import_student-component', require('./components/Student/ImportStudentComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
