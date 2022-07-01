@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,10 @@ Route::get('/home/teacher', function (){
 Route::group(['prefix' => 'uploads'], function () {
 		Route::get('/teacher', [TeacherController::class, 'upload']);
 		Route::post('/teacherimp', [TeacherController:: class, 'importExport'])->name('import.teachers');
+		Route::get('/student', [StudentController::class, 'upload']);
+		Route::post('/studentimp', [StudentController:: class, 'importExport'])->name('import.students');
 });
+
 
 Route::post('/add.teacher', [App\Http\Controllers\TeacherController::class, 'store'])->name('add.teacher');
 
