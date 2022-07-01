@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTeacherIdToUsersTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddTeacherIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('teacher_id')->nullable()->constrained('teachers')->onDelete('cascade');
-        });
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('code')->nullable();
+            $table->string('note')->nullable();
+            });
     }
 
     /**
@@ -25,8 +28,6 @@ class AddTeacherIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('subjects');
     }
 }

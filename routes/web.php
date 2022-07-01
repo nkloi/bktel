@@ -57,6 +57,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
               Route::get('/import',[DashboardController::class, 'ShowformImportTeacher']) -> name('teacher.import.showform');
               Route::post('/import',[DashboardController::class, 'ImportTeacher']) -> name('teacher.import');
                  });
+        Route::group(['prefix' => 'admin'], function () {
+            Route::get('/import_subjects',[DashboardController::class, 'ShowImportSubject']) -> name('showimport.subject');
+            Route::get('/form_subjects',[DashboardController::class, 'ShowFormSubject']) -> name('showform.subjecct');
+            Route::post('/import_subjects',[DashboardController::class, 'ImportSubject']) -> name('import.subject');
+            Route::post('/form_subjects',[DashboardController::class, 'FormSubject']) -> name('form.subject');
+                 });
 
 });
 

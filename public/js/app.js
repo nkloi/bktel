@@ -6549,6 +6549,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     //this.users = JSON.parse(this.user);
@@ -33807,7 +33819,7 @@ var render = function () {
             _c("img", {
               staticClass: "img-circle elevation-2",
               attrs: {
-                src: _vm.base_url + "/images/user2-160x160.jpg",
+                src: _vm.base_url + "/images/ys.jpg",
                 alt: "User Image",
               },
             }),
@@ -33915,6 +33927,41 @@ var render = function () {
                       ]
                     ),
                   ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href:
+                            _vm.base_url + "/dashboard/admin/import_subjects",
+                        },
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Import Subject ")]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href: _vm.base_url + "/dashboard/admin/form_subjects",
+                        },
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Subject Form ")]),
+                      ]
+                    ),
+                  ]),
                 ]),
               ]),
               _vm._v(" "),
@@ -33973,7 +34020,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "info" }, [
       _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-        _vm._v("Alexander Pierce"),
+        _vm._v("Yasuo"),
       ]),
     ])
   },

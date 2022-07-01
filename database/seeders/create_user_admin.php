@@ -17,8 +17,8 @@ class create_user_admin extends Seeder
     {
 
         DB::table('users')->insert([
-            'name' => 'admin2',
-            'email' => 'admin2@hcmut.edu.vn',
+            'name' => 'admin',
+            'email' => 'admin@hcmut.edu.vn',
             'password' => Hash::make('123123123'),
             'role_id'=> 1,
         ]);

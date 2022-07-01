@@ -14,10 +14,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img :src="base_url + '/images/user2-160x160.jpg'" class="img-circle elevation-2" alt="User Image">
+          <img :src="base_url + '/images/ys.jpg'" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Yasuo</a>
         </div>
       </div>
 
@@ -266,6 +266,18 @@
                         <a :href="base_url + '/dashboard/students/import'" class="nav-link">
                         <i class="fa fa-circle nav-icon"></i>
                         <p>Import Student </p>
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                        <a :href="base_url + '/dashboard/admin/import_subjects'" class="nav-link">
+                        <i class="fa fa-circle nav-icon"></i>
+                        <p>Import Subject </p>
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                        <a :href="base_url + '/dashboard/admin/form_subjects'" class="nav-link">
+                        <i class="fa fa-circle nav-icon"></i>
+                        <p>Subject Form </p>
                         </a>
                     </li>
 
