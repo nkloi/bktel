@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Teachers;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+		Route::get('/import', [StudentsController::class, 'showImport'])->name('student.import');
+		Route::post('/import', [StudentsController::class, 'storeImport'])->name('student.import.store');
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {

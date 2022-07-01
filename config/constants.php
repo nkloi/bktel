@@ -18,5 +18,18 @@ return [
         'address' => 7,
         'phone' => 8,
         'note' => 9
+    ],
+    'column_student' => [
+        'email' => 0,
+        'password' => 1,
+        'first_name' => 2,
+        'last_name' => 3,
+        'student_code' => 4,
+        'department' => 5,
+        'faculty' => 6,
+        'address' => 7,
+        'phone' => 8,
+        'note' => 9
     ]
+
 ];
