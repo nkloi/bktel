@@ -30,6 +30,12 @@ return [
         'address' => 7,
         'phone' => 8,
         'note' => 9
+    ],
+
+    'column_subject' =>[
+        'name' => 0,
+        'code' => 1,
+        'note' => 2
     ]
 
 ];

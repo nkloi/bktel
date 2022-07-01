@@ -268,6 +268,19 @@
               </li>
             </div>
 
+            <li class="nav-item">
+                <a :href="domain + '/dashboard/subjects/import'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Import Subject</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="domain + '/dashboard/subjects/register'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Form Subject</p>
+                </a>
+              </li>
+
 
               <li class="nav-item">
                 <a href="../forms/editors.html" class="nav-link">
