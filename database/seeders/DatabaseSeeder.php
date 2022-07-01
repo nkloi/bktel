@@ -37,7 +37,7 @@ class createAdmin extends Seeder
 {
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('roles')->insert([
             
             'role_id' => 1,
             'email' => 'bmvt@hcmut.edu.vn',

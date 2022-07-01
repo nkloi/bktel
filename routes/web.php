@@ -22,9 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('student.admin');
 Route::group(['prefix' => 'students'], function () {
-	
 	
 	
 	Route::get('/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
