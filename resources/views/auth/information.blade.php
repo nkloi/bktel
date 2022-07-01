@@ -10,8 +10,7 @@
                     <div class="card-body p-4 p-md-5">
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Student Information Form</h3>
 
-                       
-
+                        
                         <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">

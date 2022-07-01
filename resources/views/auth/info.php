@@ -13,5 +13,17 @@
         <div>Note: <?php echo $info->note ?></div>
     <?php } ?>
 
-    <a href=""></a>
+    <!-- <a href="{{ route('edit') }}">
+        <button>
+            edit
+        </button>
+    </a>
+
+    <a href="{{ route('delete') }}">
+        <button>
+            delete
+        </button>
+    </a>     -->
+        
+    
 </div>

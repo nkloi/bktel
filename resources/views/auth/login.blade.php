@@ -14,6 +14,8 @@
                     <span class="login100-form-title">
                         Member Login
                     </span>
+
+                    <a href="{route('welcome')}">Trang chủ</a>
     
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email" placeholder="{{ __('Email Address') }}"
