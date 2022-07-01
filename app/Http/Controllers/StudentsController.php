@@ -6,33 +6,31 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class StudentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function store(Request $request)
     {
         $data = $request->all();
-        $user = User::where('email', $data["email"])->get();
-
-        $userArr = $user->toArray();
-
-        if ($userArr != null) {
-            Student::create([
-                'last_name' => $data["last_name"],
-                'first_name' => $data["first_name"],
-                'student_code' => $data["student_code"],
-                'department' => $data["department"],
-                'faculty' => $data["faculty"],
-                'address' => $data["address"],
-                'phone' => $data["phone"],
-                'note' => $data["note"],
-            ]);
-            $lastId = Student::max('id');
-            User::where('email', $data["email"])->update(['student_id' => $lastId]);
-            return redirect()->route('student.show', ['id' => $lastId]);
-        } else {
-            echo "<script type='text/javascript'>alert('Email not found');</script>";
-        }
+        $user = Auth::user()->id;
+        Student::create([
+            'last_name' => $data["last_name"],
+            'first_name' => $data["first_name"],
+            'student_code' => $data["student_code"],
+            'department' => $data["department"],
+            'faculty' => $data["faculty"],
+            'address' => $data["address"],
+            'phone' => $data["phone"],
+            'note' => $data["note"],
+        ]);
+        $lastId = Student::max('id');
+        User::where('id', $user)->update(['student_id' => $lastId]);
+        // return redirect()->route('student.show', ['id' => $lastId]);
     }
     public function create(Request $request)
     {

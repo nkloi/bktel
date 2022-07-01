@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('checkstudent')->name('home');
 Route::group(['prefix' => 'students'], function () {
     Route::get('/create', [App\Http\Controllers\StudentsController::class, 'create'])->name('student.create');
     Route::get('/{id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
@@ -28,3 +29,4 @@ Route::group(['prefix' => 'students'], function () {
     Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
     Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
 });
+Route::get('/home/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
