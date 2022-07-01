@@ -34,6 +34,8 @@ Vue.component('sidebar-component', require('./components/SidebarComponent.vue').
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 Vue.component('registerstudent-component', require('./components/students/RegisterStudentComponent.vue').default);
 Vue.component('registerteacher-component', require('./components/teachers/RegisterTeacherComponent.vue').default);
+Vue.component('importteacher-component', require('./components/teachers/ImportTeacherComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

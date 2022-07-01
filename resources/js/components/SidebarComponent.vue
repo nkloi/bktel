@@ -252,14 +252,14 @@
                   <p>Teachers</p>
                 </a>
               </li> 
-              </div>
-              
               <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+                <a href="/dashboard/teachers/import" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Editors</p>
+                  <p>Import Teachers</p>
                 </a>
               </li>
+              </div>
+              
               <li class="nav-item">
                 <a href="pages/forms/validation.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
