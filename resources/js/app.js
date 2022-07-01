@@ -35,6 +35,7 @@ Vue.component('footer-component', require('./components/FooterComponent.vue').de
 Vue.component('registerstudent-component', require('./components/students/RegisterStudentComponent.vue').default);
 Vue.component('registerteacher-component', require('./components/teachers/RegisterTeacherComponent.vue').default);
 Vue.component('importteacher-component', require('./components/teachers/ImportTeacherComponent.vue').default);
+Vue.component('importstudent-component', require('./components/students/ImportStudentComponent.vue').default);
 
 
 /**

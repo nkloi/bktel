@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ImportStudent;
+use App\Models\Import;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,5 +60,31 @@ class StudentsController extends Controller
 
         return response()->json($student);
     }
+
+    public function showImport() {
+        return view('students.import');
+    }
+
+    public function storeImport(Request $request)
+    {
+        $path = storage_path('app\data\\');
+        // $file_name = $request->file->getClientOriginalName();
+        $name = $request->name;
+
+        $generated_new_name = date('Ymd_His') . '_' . $request->file->getClientOriginalName();
+        $path_import = 'app\data\\' . $generated_new_name;
+        $request->file->move($path, $generated_new_name);
+
+        $import = new Import();
+        $import->name = $name;
+        $import->path = $path_import;
+        $import->status = 0;
+        $import->save();
+
+        dispatch(new ImportStudent($path_import, $request->name, $import));
+
+        return response()->json('success');
+    }
+
 
 }

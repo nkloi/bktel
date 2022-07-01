@@ -40,7 +40,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.index');
+		Route::get('/import',[StudentsController::class, 'showImport'])->name('student.showimport');
 		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
+		Route::post('/import', [StudentsController::class, 'storeImport'])->name('student.import.store');
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {

@@ -243,7 +243,7 @@
                   <i class="fa fa-circle nav-icon"></i>
                   <p>Students</p>
                 </a>
-              </li>  
+              </li> 
               </div>
               <div v-else-if="this.role_id==1">
               <li class="nav-item">
@@ -258,14 +258,13 @@
                   <p>Import Teachers</p>
                 </a>
               </li>
-              </div>
-              
               <li class="nav-item">
-                <a href="pages/forms/validation.html" class="nav-link">
+                <a href="/dashboard/students/import" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Validation</p>
+                  <p>Import Students</p>
                 </a>
               </li>
+              </div>
             </ul>
           </li>
           <li class="nav-item">
