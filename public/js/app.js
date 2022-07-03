@@ -5911,11 +5911,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    base_url: String,
-    user: String,
-    role_id: String
-  },
+  props: {},
   mounted: function mounted() {
     console.log("Component mounted.");
   }
@@ -5960,11 +5956,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
 //
 //
 //
@@ -33848,12 +33839,56 @@ var render = function () {
               _vm._v(" "),
               _vm._m(4),
               _vm._v(" "),
-              _vm._m(5),
+              _c("li", { staticClass: "nav-item" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav nav-treeview" }, [
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href:
+                            _vm.base_url +
+                            "/dashboard/admin/teacher_to_subjects",
+                        },
+                      },
+                      [
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Subjects to Teacher")]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href:
+                            _vm.base_url +
+                            "/dashboard/admin/teacher_to_subjects",
+                        },
+                      },
+                      [
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Teachers to Subject")]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(6),
+                ]),
+              ]),
               _vm._v(" "),
-              _vm._m(6),
+              _vm._m(7),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(7),
+                _vm._m(8),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   this.role_id == "1"
@@ -33868,7 +33903,7 @@ var render = function () {
                             },
                           },
                           [
-                            _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                            _c("i", { staticClass: "nav-icon fa fa-edit" }),
                             _vm._v(" "),
                             _c("p", [_vm._v(" Register Teacher")]),
                           ]
@@ -33886,7 +33921,7 @@ var render = function () {
                             },
                           },
                           [
-                            _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                            _c("i", { staticClass: "nav-icon fa fa-edit" }),
                             _vm._v(" "),
                             _c("p", [_vm._v("Register Student")]),
                           ]
@@ -33904,7 +33939,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
                         _vm._v(" "),
                         _c("p", [_vm._v("Import Teacher")]),
                       ]
@@ -33921,7 +33956,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
                         _vm._v(" "),
                         _c("p", [_vm._v("Import Student ")]),
                       ]
@@ -33939,7 +33974,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
                         _vm._v(" "),
                         _c("p", [_vm._v("Import Subject ")]),
                       ]
@@ -33956,7 +33991,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("i", { staticClass: "fa fa-circle nav-icon" }),
+                        _c("i", { staticClass: "nav-icon fa fa-edit" }),
                         _vm._v(" "),
                         _c("p", [_vm._v("Subject Form ")]),
                       ]
@@ -33966,7 +34001,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _vm._m(8),
+                _vm._m(9),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav nav-treeview" }, [
                   _c("li", { staticClass: "nav-item" }, [
@@ -33985,15 +34020,13 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _vm._m(9),
-                  _vm._v(" "),
                   _vm._m(10),
+                  _vm._v(" "),
+                  _vm._m(11),
                 ]),
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "nav-header" }, [_vm._v("EXAMPLES")]),
-              _vm._v(" "),
-              _vm._m(11),
               _vm._v(" "),
               _vm._m(12),
               _vm._v(" "),
@@ -34006,6 +34039,8 @@ var render = function () {
               _vm._m(16),
               _vm._v(" "),
               _vm._m(17),
+              _vm._v(" "),
+              _vm._m(18),
             ]
           ),
         ]),
@@ -34277,77 +34312,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fa fa-chart-pie" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                Charts\n                "),
-          _c("i", { staticClass: "right fa fa-angle-left" }),
-        ]),
-      ]),
+    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "nav-icon fa fa-plus-square" }),
       _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/charts/chartjs.html" },
-            },
-            [
-              _c("i", { staticClass: "fa fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("ChartJS")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/charts/flot.html" },
-            },
-            [
-              _c("i", { staticClass: "fa fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Flot")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/charts/inline.html" },
-            },
-            [
-              _c("i", { staticClass: "fa fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Inline")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/charts/uplot.html" },
-            },
-            [
-              _c("i", { staticClass: "fa fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("uPlot")]),
-            ]
-          ),
-        ]),
+      _c("p", [
+        _vm._v("\n                Teacher and Subject\n                "),
+        _c("i", { staticClass: "right fa fa-angle-left" }),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "pages/charts/uplot.html" } },
+        [
+          _c("i", { staticClass: "fa fa-circle nav-icon" }),
+          _vm._v(" "),
+          _c("p", [_vm._v("uPlot")]),
+        ]
+      ),
     ])
   },
   function () {
@@ -34489,7 +34476,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fa fa-edit" }),
+      _c("i", { staticClass: "fa fa-circle nav-icon" }),
       _vm._v(" "),
       _c("p", [
         _vm._v("\n                Register\n                "),

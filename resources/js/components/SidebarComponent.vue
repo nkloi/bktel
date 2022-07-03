@@ -138,29 +138,24 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-chart-pie"></i>
+              <i class="nav-icon fa fa-plus-square"></i>
               <p>
-                Charts
+                Teacher and Subject
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                <a :href="base_url + '/dashboard/admin/teacher_to_subjects'" class="nav-link">
+                  <i class="nav-icon fa fa-edit"></i>
+                  <p>Subjects to Teacher</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Flot</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                <a :href="base_url + '/dashboard/admin/teacher_to_subjects'" class="nav-link">
+                  <i class="nav-icon fa fa-edit"></i>
+                  <p>Teachers to Subject</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -232,7 +227,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
+              <i class="fa fa-circle nav-icon"></i>
               <p>
                 Register
                 <i class="fa fa-angle-left right"></i>
@@ -242,8 +237,8 @@
 
                     <li class="nav-item"
                      v-if="this.role_id == '1'">
-                        <a  :href=' base_url + "/dashboard/teachers/register" ' class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                        <a  :href='base_url + "/dashboard/teachers/register"' class="nav-link">
+                        <i class="nav-icon fa fa-edit"></i>
                         <p> Register Teacher</p>
                         </a>
                     </li>
@@ -251,32 +246,32 @@
                     <li class="nav-item"
                     v-else-if= "this.role_id == '4'">
                         <a :href="base_url + '/dashboard/students/register'" class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                         <i class="nav-icon fa fa-edit"></i>
                         <p>Register Student</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a :href="base_url + '/dashboard/teachers/import'" class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                        <i class="nav-icon fa fa-edit"></i>
                         <p>Import Teacher</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a :href="base_url + '/dashboard/students/import'" class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                         <i class="nav-icon fa fa-edit"></i>
                         <p>Import Student </p>
                         </a>
                     </li>
                       <li class="nav-item">
                         <a :href="base_url + '/dashboard/admin/import_subjects'" class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                        <i class="nav-icon fa fa-edit"></i>
                         <p>Import Subject </p>
                         </a>
                     </li>
                       <li class="nav-item">
                         <a :href="base_url + '/dashboard/admin/form_subjects'" class="nav-link">
-                        <i class="fa fa-circle nav-icon"></i>
+                        <i class="nav-icon fa fa-edit"></i>
                         <p>Subject Form </p>
                         </a>
                     </li>

@@ -115,14 +115,13 @@ class DashboardController extends Controller
     public function FormSubject(Request $request)
     {
         $subject = new Subject();
-
-        $subject->name = $request->name;
-        $subject->code = $request->code;
-        $subject->note = $request->note;
-        $subject-> save(); 
+        $subject->fill($request->all());
+        // $subject->name = $request->name;
+        // $subject->code = $request->code;
+        // $subject->note = $request->note;
+        $subject-> save();
         return response()->json('sucess');
     }
-
 
     public function test()
     {

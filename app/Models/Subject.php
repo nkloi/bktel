@@ -11,8 +11,8 @@ class Subject extends Model
 
     protected $fillable = [ 'name', 'code', 'note'];
 
-    // public function teachers(){
+    public function teacher(){
 
-    //     return $this->belongsToMany('App\Models\teachers', 'teacher_to_subjects', 'subject_id', 'teacher_id');
-    // }
+        return $this->belongsToMany(Teacher::class, 'teacher_to_subjects', 'subject_id', 'teacher_id');
+    }
 }

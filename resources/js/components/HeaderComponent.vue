@@ -140,10 +140,7 @@
 export default {
    props: {
 
-        base_url: String,
-        user: String,
-        role_id: String,
-    },
+       },
     mounted() {
         console.log("Component mounted.");
     },

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\TeachersController;
+use App\Http\Controllers\Admin\TeacherToSubjectsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\checkuser;
@@ -62,6 +63,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
             Route::get('/form_subjects',[DashboardController::class, 'ShowFormSubject']) -> name('showform.subjecct');
             Route::post('/import_subjects',[DashboardController::class, 'ImportSubject']) -> name('import.subject');
             Route::post('/form_subjects',[DashboardController::class, 'FormSubject']) -> name('form.subject');
+            Route::get('/teacher_to_subjects',[TeacherToSubjectsController::class, 'ShowTeachertoSubjects']) -> name('show.TeachertoSubjects');
+            Route::post('/teacher_to_subjects',[TeacherToSubjectsController::class, 'TeachertoSubjects']) -> name('TeachertoSubjects');
+
                  });
 
 });

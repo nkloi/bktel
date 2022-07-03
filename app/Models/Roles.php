@@ -12,4 +12,6 @@ class Roles extends Model
         return $this->hasOne(User::class, 'role_id');
     }
 
+  
+
 }
