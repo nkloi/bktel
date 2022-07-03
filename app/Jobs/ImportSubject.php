@@ -53,24 +53,12 @@ class ImportSubject implements ShouldQueue
                 }
                 try {
                     $subject = new Subject();
-                    $user = new User();
 
-                    
                     $subject->name = $data[config('constants.column_subject.name')];
                     $subject->code = $data[config('constants.column_subject.code')];
                     $subject->note = $data[config('constants.column_subject.note')];
 
-                    $user->email = $data[config('constants.column_subject.email')];
-                    $user->name = $subject->name;
-                    $user->password = Hash::make($data[config('constants.column_subject.password')]);
-                    $user->role_id = config('constants.role.role_subject.id');
-                    $user->save();
-
                     $subject->save();
-                    $subject->user()->save($user);
-                    $subject->save();
-                    info($subject);
-                    info($user);
                 } catch (Exception $e) {
                     info($e->getMessage());
                     $error = true;
