@@ -13,7 +13,8 @@ class subjects extends Model
 
     public function teachers(){
         
-        return $this->belongsToMany('App\Models\teachers', 'teacher_to_subjects', 'subject_id', 'teacher_id');
+        return $this->belongsToMany('App\Models\teachers', 'teacher_to_subjects', 'subject_id', 'teacher_id')->withPivot('semester');
+        
     }
 
 }
