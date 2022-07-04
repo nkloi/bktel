@@ -126,4 +126,14 @@ class TeacherToSubjectController extends Controller
             return $search;
         }
     }
+    public function getAllTeacherCode()
+    {
+        $all_teacher = Teacher::orderBy('first_name', 'asc')->get();
+        return $all_teacher;
+    }
+    public function getAllSubjectCode()
+    {
+        $all_subject = Subject::orderBy('name', 'asc')->get();
+        return $all_subject;
+    }
 }

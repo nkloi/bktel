@@ -17,15 +17,19 @@
                   </div> -->
                    <div class="form-group">
                     <label for="code">Lecturer's Code</label>
-                    <input type="text" class="form-control" id="code" v-model="form.code" placeholder="Code">
+                    <select v-model="form.code" id="code" class="form-select" aria-label="Default select example">
+                      <option :value="teacher.teacher_code" v-for="teacher in teachers">{{teacher.teacher_code+' - '+teacher.first_name+' '+teacher.last_name}}</option>
+                    </select>
                   </div>
                    <div class="form-group">
                     <label for="subject_code">Subject's Code</label>
-                    <input type="text" class="form-control" id="subject_code" v-model="form.subject_code" placeholder="Subject Code">
+                    <select v-model="form.subject_code" id="subject_code" class="form-select" aria-label="Default select example">
+                    <option :value="subject.code" v-for="subject in subjects">{{subject.code+' - '+subject.name}}</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="semester">Semester</label>
-                    <select v-model="form.semester" class="form-select" aria-label="Default select example">
+                    <select v-model="form.semester" id="semester" class="form-select" aria-label="Default select example">
                       <option value="1">HK1</option>
                       <option value="2">HK2</option>
                       <option value="3">HK3</option>
@@ -33,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label for="year">Year</label>
-                    <select v-model="form.year" required class="form-select" aria-label="Default select example">
+                    <select v-model="form.year" id="year" required class="form-select" aria-label="Default select example">
                       <option :value="year.pre" id="pre">{{year.pre}}</option>
                       <option :value="year.curr" id="cur">{{year.curr}}</option>
                       <option :value="year.fut" id="fut">{{year.fut}}</option>
@@ -91,7 +95,9 @@
               fut:''
             },
             results:[],
-            error:''
+            error:'',
+            teachers:[],
+            subjects:[]
         }
     },
         methods: {
@@ -101,6 +107,12 @@
             this.year.pre=year-1
             this.year.curr=year
             this.year.fut=year+1
+             axios.get('/home/get_teacher_code').then(response => {   
+             this.teachers=response.data
+      });
+       axios.get('/home/get_subject_code').then(response => {   
+             this.subjects=response.data
+      });
           },
        submit() {
       this.errors = {};
@@ -108,9 +120,16 @@
         if(Array.isArray(response.data)){
          this.results=response.data
          this.error=''
+         this.form.code=''
+         this.form.subject_code=''
+         this.form.semester=''
         }
         else{this.error=response.data
-        this.results=''}
+        this.results=''
+         this.form.code=''
+         this.form.subject_code=''
+         this.form.semester=''
+        }
        //window.location.href = '/home/search'
       });
     }

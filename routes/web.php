@@ -47,3 +47,5 @@ Route::get('/home/add_student', [App\Http\Controllers\HomeController::class, 'ad
 Route::get('/home/add_subject', [App\Http\Controllers\HomeController::class, 'add_subject'])->middleware('checkadmin')->name('home.add_subject');
 Route::get('/home/teacher_subject', [App\Http\Controllers\HomeController::class, 'teacher_subject'])->middleware('checkadmin')->name('home.teacher_subject');
 Route::post('/home/search', [App\Http\Controllers\TeacherToSubjectController::class, 'search'])->name('home.search');
+Route::get('/home/get_teacher_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllTeacherCode'])->name('home.get_teacher_code');
+Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllSubjectCode'])->name('home.get_subject_code');
