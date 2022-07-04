@@ -147,13 +147,13 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a :href="base_url + '/dashboard/admin/teacher_to_subjects'" class="nav-link">
+                <a :href="base_url + '/dashboard/admin/show-register-subjects'" class="nav-link">
                   <i class="nav-icon fa fa-edit"></i>
                   <p>Subjects to Teacher</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a :href="base_url + '/dashboard/admin/teacher_to_subjects'" class="nav-link">
+                <a :href="base_url + '/dashboard/admin/teacher-to-subjects'" class="nav-link">
                   <i class="nav-icon fa fa-edit"></i>
                   <p>Teachers to Subject</p>
                 </a>
@@ -264,13 +264,13 @@
                         </a>
                     </li>
                       <li class="nav-item">
-                        <a :href="base_url + '/dashboard/admin/import_subjects'" class="nav-link">
+                        <a :href="base_url + '/dashboard/admin/import-subjects'" class="nav-link">
                         <i class="nav-icon fa fa-edit"></i>
                         <p>Import Subject </p>
                         </a>
                     </li>
                       <li class="nav-item">
-                        <a :href="base_url + '/dashboard/admin/form_subjects'" class="nav-link">
+                        <a :href="base_url + '/dashboard/admin/form-subjects'" class="nav-link">
                         <i class="nav-icon fa fa-edit"></i>
                         <p>Subject Form </p>
                         </a>

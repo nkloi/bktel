@@ -460,3 +460,13 @@
       opacity: 1;
     }
   }
+  .new{
+    background-color: #f3dbdb;
+  }
+  .select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  }

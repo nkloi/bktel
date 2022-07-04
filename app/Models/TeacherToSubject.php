@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher_to_Subjects extends Model
+class TeacherToSubject extends Model
 {
     use HasFactory;
+
+    protected $table = "teacher_to_subjects";
     protected $fillable = [
         'teacher_id', 'subject_id', 'semester', 'year', 'note',
     ];

@@ -59,12 +59,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
               Route::post('/import',[DashboardController::class, 'ImportTeacher']) -> name('teacher.import');
                  });
         Route::group(['prefix' => 'admin'], function () {
-            Route::get('/import_subjects',[DashboardController::class, 'ShowImportSubject']) -> name('showimport.subject');
-            Route::get('/form_subjects',[DashboardController::class, 'ShowFormSubject']) -> name('showform.subjecct');
-            Route::post('/import_subjects',[DashboardController::class, 'ImportSubject']) -> name('import.subject');
-            Route::post('/form_subjects',[DashboardController::class, 'FormSubject']) -> name('form.subject');
-            Route::get('/teacher_to_subjects',[TeacherToSubjectsController::class, 'ShowTeachertoSubjects']) -> name('show.TeachertoSubjects');
-            Route::post('/teacher_to_subjects',[TeacherToSubjectsController::class, 'TeachertoSubjects']) -> name('TeachertoSubjects');
+            Route::get('/import-subjects',[DashboardController::class, 'ShowImportSubject']) -> name('showimport.subject');
+            Route::get('/form-subjects',[DashboardController::class, 'ShowFormSubject']) -> name('showform.subjecct');
+            Route::post('/import-subjects',[DashboardController::class, 'ImportSubject']) -> name('import.subject');
+            Route::post('/form-subjects',[DashboardController::class, 'FormSubject']) -> name('form.subject');
+            Route::get('/show-register-subjects',[TeacherToSubjectsController::class, 'ShowRegisterSubjects']) -> name('show.RegisterSubjects');
+            Route::post('/teacher-to-subjects',[TeacherToSubjectsController::class, 'storeTeachertoSubjects']) -> name('storeTeachertoSubjects');
+            Route::get('/teacher-to-subjects',[TeacherToSubjectsController::class, 'showInforTeacherAndSubject']) -> name('show.InforTeacherAndSubjects');
 
                  });
 

@@ -2983,8 +2983,20 @@
 	bottom: 0px;
 }
 
-
-
+.select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  }
+  .form-control-edit {
+    width: 100%;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #f1f1f1;
+  }
 
 
 

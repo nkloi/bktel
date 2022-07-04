@@ -20,7 +20,7 @@
         <body>
 
             <div class="col-md-6" style = "margin: 0 auto ">
-                <form action="{{route('TeachertoSubjects')}}" method="POST" enctype='multipart/form-data' >
+                <form action="{{route('storeTeachertoSubjects')}}" method="POST" enctype='multipart/form-data' >
                     @csrf
                     <div class="input-group-append">
                             <input type="text" name="teacher_id" class="form-control" id="exampleInputEmail1" placeholder="Fill The Teacher Code">
@@ -29,12 +29,22 @@
                             <input type="text" name="subject_id" class="form-control" id="exampleInputEmail1" placeholder="Fill The Subject Code">
                     </div>
                     <div class="input-group-append">
-                            <input type="text" name="year" class="form-control" id="exampleInputEmail1" placeholder="Year">
+                        <select name="year" id="exampleInputEmail1"  class="form-control-edit" >
+                                <option value="">--Please choose Year--</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                     </div>
+                    <div class="input-group-append"  style = "margin-top: 22px " >
+                            <select name="semester" id="exampleInputEmail1"  class="form-control-edit">
+                                <option value="">--Please choose Semester--</option>
+                                <option value="221">221</option>
+                                <option value="222">222</option>
+                                <option value="223">223</option>
+                            </select>
                     </div>
-                    <div class="input-group-append">
-                            <input type="text" name="semester" class="form-control" id="exampleInputEmail1" placeholder="Semester">
-                    </div>
-                    <div class="input-group-append">
+                    <div class="input-group-append" style = "margin-top:22px  ">
                             <input type="text" name="note" class="form-control" id="exampleInputEmail1" placeholder="Note">
                     </div>
                     <div class="col-md-6"  style = "margin: 0 87.5%" >
@@ -46,5 +56,7 @@
         </body>
 
     </html>
+
+
 
  @endsection

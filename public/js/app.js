@@ -33851,7 +33851,7 @@ var render = function () {
                         attrs: {
                           href:
                             _vm.base_url +
-                            "/dashboard/admin/teacher_to_subjects",
+                            "/dashboard/admin/show-register-subjects",
                         },
                       },
                       [
@@ -33870,7 +33870,7 @@ var render = function () {
                         attrs: {
                           href:
                             _vm.base_url +
-                            "/dashboard/admin/teacher_to_subjects",
+                            "/dashboard/admin/teacher-to-subjects",
                         },
                       },
                       [
@@ -33970,7 +33970,7 @@ var render = function () {
                         staticClass: "nav-link",
                         attrs: {
                           href:
-                            _vm.base_url + "/dashboard/admin/import_subjects",
+                            _vm.base_url + "/dashboard/admin/import-subjects",
                         },
                       },
                       [
@@ -33987,7 +33987,7 @@ var render = function () {
                       {
                         staticClass: "nav-link",
                         attrs: {
-                          href: _vm.base_url + "/dashboard/admin/form_subjects",
+                          href: _vm.base_url + "/dashboard/admin/form-subjects",
                         },
                       },
                       [
