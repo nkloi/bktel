@@ -86,5 +86,9 @@ class SubjectsController extends Controller
     
             return response()->json($request);
         }
+        public function getAllSubjects(Request $request)
+    {
+        return response()->json(Subject::all());
+    }
     }
     

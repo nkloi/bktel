@@ -57,4 +57,8 @@ class Teachers extends Controller
 
         return response()->json($request);
     }
+    public function getAllTeachers(Request $request)
+    {
+        return response()->json(Teacher::all());
+    }
 }

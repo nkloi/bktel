@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\Teachers;
+use App\Http\Controllers\TeacherToSubjectController;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -20,30 +21,33 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('redirectLogin')->name('home');
 Auth::routes();
 
 Route::group(['prefix' => 'students'], function () {
-	Route::get('/{student_id}', [StudentsController::class,'show'])->name('student.show');
-	Route::post('/',[StudentsController::class,'store'])->name('student.store');
-	Route::put('/{student_id}', [StudentsController::class,'update'])->name('student.update');
-	Route::delete('/{student_id}', [StudentsController::class,'destroy'])->name('student.destroy');
-
+	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
+	Route::post('/', [StudentsController::class, 'store'])->name('student.store');
+	Route::put('/{student_id}', [StudentsController::class, 'update'])->name('student.update');
+	Route::delete('/{student_id}', [StudentsController::class, 'destroy'])->name('student.destroy');
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
-	Route::get('/', function() {
+	Route::get('/', function () {
 		return view('dashboard.home');
 	})->name('dashboard.home');
-	
+
+	Route::get('/teacher-to-subject', [TeacherToSubjectController::class, 'getInfoTeacherAndSubject'])->name('teacher-to-subject.info');
+	Route::get('/lecture', [TeacherToSubjectController::class, 'showRegister'])->name('lecture.register');
+	Route::post('/teacher-to-subject', [TeacherToSubjectController::class, 'store'])->name('teacher-to-subject.store');
+
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
-		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
+		Route::get('/home', [StudentsController::class, 'index'])->name('student.home');
 		Route::get('/import', [StudentsController::class, 'showImport'])->name('student.import');
 		Route::post('/import', [StudentsController::class, 'storeImport'])->name('student.import.store');
 	});
@@ -53,13 +57,15 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/import', [Teachers::class, 'showImport'])->name('teacher.import');
 		Route::post('/import', [Teachers::class, 'storeImport'])->name('teacher.import.store');
 		Route::post('register', [Teachers::class, 'store'])->name('teacher.store');
+		Route::get('/getAll', [Teachers::class, 'getAllTeachers']);
 	});
-	
+
 
 	Route::group(['prefix' => 'subjects'], function () {
 		Route::get('/register', [SubjectsController::class, 'showRegister'])->name('subject.register');
 		Route::get('/import', [SubjectsController::class, 'showImport'])->name('subject.import');
 		Route::post('/import', [SubjectsController::class, 'storeImport'])->name('subject.import.store');
 		Route::post('/register', [SubjectsController::class, 'store'])->name('subject.store');
+		Route::get('/getAll', [SubjectsController::class, 'getAllSubjects']);
 	});
 });
