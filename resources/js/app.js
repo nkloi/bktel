@@ -37,6 +37,11 @@ Vue.component(
     require("./components/TeacherRegister.vue").default
 );
 Vue.component("add-subject", require("./components/AddSubject.vue").default);
+Vue.component(
+    "teacher-subject",
+    require("./components/TeacherSubject.vue").default
+);
+Vue.component("search", require("./components/Search.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

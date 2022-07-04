@@ -54,4 +54,9 @@ class HomeController extends Controller
 
         return view('addsubject');
     }
+    public function teacher_subject()
+    {
+
+        return view('teacher_subject');
+    }
 }

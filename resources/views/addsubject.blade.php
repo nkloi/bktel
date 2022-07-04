@@ -413,9 +413,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/validation.html" class="nav-link">
+                                    <a href="/home/teacher_subject" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Validation</p>
+                                        <p>Teacher - Subject</p>
                                     </a>
                                 </li>
                             </ul>

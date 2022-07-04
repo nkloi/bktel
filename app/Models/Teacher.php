@@ -15,4 +15,8 @@ class Teacher extends Model
     protected $hidden = [
         'remember_token'
     ];
+    public function subject()
+    {
+        return $this->belongsToMany('App\Models\Subject', 'teacher_to_subjects', 'teacher_id', 'subject_id')->withPivot('id', 'semester', 'year')->withTimestamps();
+    }
 }
