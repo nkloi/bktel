@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,14 @@ Route::group(['prefix' => 'uploads'], function () {
 		Route::post('/teacherimp', [TeacherController:: class, 'importExport'])->name('import.teachers');
 		Route::get('/student', [StudentController::class, 'upload']);
 		Route::post('/studentimp', [StudentController:: class, 'importExport'])->name('import.students');
+		Route::get('/subject', [SubjectController::class, 'upload']);
+		Route::post('/subjectimp', [SubjectController:: class, 'importExport'])->name('import.subjects');
 });
 
+Route::group(['prefix' => 'subjects'], function () {
+	Route::get('/byhand-subjects', [App\Http\Controllers\SubjectController::class, 'uploadbyhand'])->name('byhand.subjects');
+	Route::post('/createbyhand-subjects', [App\Http\Controllers\SubjectController::class, 'importbyhand'])->name('importbyhand.subjects');
+});
 
 Route::post('/add.teacher', [App\Http\Controllers\TeacherController::class, 'store'])->name('add.teacher');
 

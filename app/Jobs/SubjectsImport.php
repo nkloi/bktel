@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Imports\UsersStudentsImport;
+use App\Imports\UsersSubjectsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 
-class StudentsImport implements ShouldQueue
+class SubjectsImport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-   
+
     public $path;
     public $userimport;
     /**
@@ -39,7 +39,7 @@ class StudentsImport implements ShouldQueue
 
         $this->userimport->update(['status' => 1]);
         
-        Excel::import(new UsersStudentsImport, $this->path);
+        Excel::import(new UsersSubjectsImport, $this->path);
 
         $this->userimport->update(['status' => 2]);
 
