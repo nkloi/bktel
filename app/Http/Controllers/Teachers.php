@@ -16,7 +16,8 @@ class Teachers extends Controller
         return view('teacher.register');
     }
 
-    public function showImport(){
+    public function showImport()
+    {
         return view('teacher.import');
     }
 
@@ -37,8 +38,9 @@ class Teachers extends Controller
 
         return response()->json($teacher);
     }
-    
-    public function storeImport(Request $request){
+
+    public function storeImport(Request $request)
+    {
         $path = storage_path('app\data\\');
         // $file_name = $request->file->getClientOriginalName();
         $name = $request->name;
@@ -56,5 +58,10 @@ class Teachers extends Controller
         dispatch(new ImportTeacher($path_import, $request->name, $import));
 
         return response()->json($request);
+    }
+
+    public function getAllTeachers(Request $request)
+    {
+        return response()->json(Teacher::all());
     }
 }

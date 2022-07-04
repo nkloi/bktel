@@ -289,9 +289,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/validation.html" class="nav-link active">
+                <a :href="domain + '/dashboard/lecture'" class="nav-link active">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Validation</p>
+                  <p>Register Lecture</p>
                 </a>
               </li>
             </ul>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RolesTable extends Migration
+class CreateTeacherToSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class RolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('teacher_to_subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('teacher_id')->constrained('teachers');
+            $table->foreignId('subject_id')->constrained('subjects');
+            $table->integer('semester');
+            $table->integer('year');
             $table->string('note')->nullable();
-            
+            $table->timestamps();
         });
     }
 
@@ -28,6 +31,6 @@ class RolesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('teacher_to_subjects');
     }
 }
