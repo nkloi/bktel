@@ -40,6 +40,7 @@ class RolesDatabaseSeeder extends Seeder
         }
     }
 }
+
 class UserDatabaseSeeder extends Seeder
 {
     public function run()

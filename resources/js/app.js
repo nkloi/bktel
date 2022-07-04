@@ -30,7 +30,14 @@
      "student-register",
      require("./components/StudentRegister.vue").default
  );
- 
+ Vue.component(
+     "teacher-register",
+     require("./components/TeacherRegister.vue").default
+ );
+ Vue.component(
+    "calendar",
+    require("./components/Calendar.vue").default
+);
  /**
   * Next, we will create a fresh Vue application instance and attach it to
   * the page. Then, you may begin adding components to this application

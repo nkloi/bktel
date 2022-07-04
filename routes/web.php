@@ -29,4 +29,9 @@ Route::group(['prefix' => 'students'], function () {
     Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
     Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
 });
-Route::get('/home/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
+Route::group(['prefix' => 'teachers'], function () {
+    Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
+});
+Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
+Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
+Route::get('/home/calendar', [App\Http\Controllers\HomeController::class, 'calendar'])->name('home.calendar');

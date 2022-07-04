@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Register</title>
+    <title>Calendar</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -172,7 +172,7 @@
                         <img src="{{asset('images/dist/img/nt.jpg');}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Truong Nguyen</a>
+                        <a href="#" class="d-block">Student</a>
                     </div>
                 </div>
 
@@ -395,15 +395,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home/forms" class="nav-link active">
+                                    <a href="/home/student_form" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student Register</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/advanced.html" class="nav-link">
+                                    <a href="/home/teacher_form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Advanced Elements</p>
+                                        <p>Teacher Register</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -451,7 +451,7 @@
                         </li>
                         <li class="nav-header">EXAMPLES</li>
                         <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
+                            <a href="/home/calendar" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Calendar
@@ -838,12 +838,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Student Information</h1>
+                            <h1>Calendar</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active">Student Register</li>
+                                <!-- <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active">Student Register</li> -->
                             </ol>
                         </div>
                     </div>
@@ -853,8 +853,9 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    
                     <div id="app">
-                        <student-register></student-register>
+                        <calendar></calendar>
                     </div>
             </section>
             <!-- /.content -->
@@ -875,5 +876,4 @@
     </div>
 </body>
 
-</html>
 @endsections
