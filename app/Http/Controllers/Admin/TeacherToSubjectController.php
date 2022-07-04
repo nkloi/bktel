@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\subjects;
 use App\Models\teacher_to_subjects;
 use AuthorizesRequests;
+use phpDocumentor\Reflection\Types\Null_;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -18,6 +19,10 @@ class TeacherToSubjectController extends Controller
     public function show()
     {
         return view('auth.TeacherToSubject');
+    }
+    public function findform()
+    {
+        return view('auth.FindTeacherAndSubject');
     }
     
     public function AddSubjectToTeacher()
@@ -40,11 +45,12 @@ class TeacherToSubjectController extends Controller
 
     }
 
-    public function getAllteacherbySubject($id){
+    public function getAllteacherbySubject($id, $subjectid){
 
         $subjects = subjects::find($id);
         $teachers = $subjects->teachers;
         $teacher_id = $teachers[8]->pivot->semester;
+        $teacher_id = $teachers[8]->pivot->subject_id[$subjectid];
         
         // $semester = $teachers->pivot->semester;
 
@@ -54,13 +60,45 @@ class TeacherToSubjectController extends Controller
 
     }
 
-    public function getAllsubjectbyTeacher($id){
+    public function getAllsubjectbyTeacher($id,$subjectid){
 
         $teachers = teachers::find($id);
         $subjects = $teachers->subjects;
         $subject_id = $subjects[8]->pivot->semester;
 
         return response()->json($subject_id);
+
+    }
+
+    public function getSubjectAndTeacher(Request $request){
+
+        // $the_id = $request->all();
+        // $teacher_id = $the_id["teacher_id"];
+        // $subject_id = $the_id["subject_id"];
+        // $semester = $the_id["semester"];
+        // $semester = $the_id["year"];
+        // $outcome = teacher_to_subjects::where('teacher_id', $teacher_id)->where('subject_id', $subject_id)->where('semester', $semester)->get();
+
+        $outcome = teacher_to_subjects::select("*")
+        ->when($request->has('teacher_id'), function ($query) use ($request) {
+            $query->whereNotNull('teacher_id');
+            $query->where('teacher_id', $request->teacher_id);
+        })
+        ->when($request->has('subject_id'), function ($query) use ($request) {
+            $query->whereNotNull('subject_id');
+            $query->where('subject_id', $request->subject_id);
+        })
+        ->when($request->has('semester'), function ($query) use ($request) {
+            $query->whereNotNull('semester');
+            $query->where('semester', $request->semester);
+        })
+        ->when($request->has('year'), function ($query) use ($request) {
+            $query->whereNotNull('year');
+            $query->where('year', $request->year);
+        })
+        ->get();
+
+        return response()->json($outcome);
 
     }
 }

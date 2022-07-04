@@ -61,11 +61,14 @@ Route::group(['prefix' => 'subjects'], function () {
 Route::group(['prefix' => 'TeacherToSubject'], function () {
 	Route::get('/show', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'show'])->middleware('isAdmin')->name('teacher.subject');
 	Route::get('/add-subject', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'AddSubjectToTeacher'])->middleware('isAdmin')->name('add.subject');
+	Route::any('/get-teachers/{id}', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getAllteacherbySubject'])->middleware('isAdmin')->name('show.teachers');
+	Route::any('/get-subjects/{id}', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getAllsubjectbyTeacher'])->middleware('isAdmin')->name('show.subjects');
 
 });
 
-Route::any('/get-teachers/{id}', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getAllteacherbySubject'])->middleware('isAdmin')->name('show.teachers');
-Route::any('/get-subjects/{id}', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getAllsubjectbyTeacher'])->middleware('isAdmin')->name('show.subjects');
+Route::get('findsubject&teacherform', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'findform'])->name('findsubject&teacherform');
+Route::post('findsubject&teacher', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getSubjectAndTeacher'])->name('find.subject&teacher');
+
 
 
 Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
