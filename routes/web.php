@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\SubjectsController;
 use App\Http\Controllers\Admin\TeachersController;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,7 +52,16 @@ Route::group(['prefix' => 'students'], function () {
 		Route::get('/home',[TeachersController::class, 'index'])->name('teacher.home');
 		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
 		Route::post('/import', [TeachersController::class, 'storeImport'])->name('teacher.import.store');
+		Route::get('/getAll', [Teachers::class, 'getAllTeachers']);
 		
+	});
+
+	Route::group(['prefix' => 'subjects'], function () {
+		Route::get('/import', [SubjectsController::class, 'showImport'])->name('subject.import');
+		Route::post('/import', [SubjectsController::class, 'storeImport'])->name('subject.import.store');
+		Route::get('/register', [SubjectsController::class, 'showRegister'])->name('subject.register');
+		Route::post('/register', [SubjectsController::class, 'store'])->name('subject.store');
+		Route::get('/getAll', [SubjectsController::class, 'getAllSubjects']);
 	});
 });
 
