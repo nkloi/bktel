@@ -12,6 +12,10 @@ class teacher_to_subjects extends Model
     protected $fillable = [
         'teacher_id', 'subject_id', 'semester', 'year', 'note',
     ];
-
+    
+    public function teachers()
+    {
+        return $this->belongsTo(teachers::class, 'teacher_id', 'id', teacher_to_subjects::class);
+    }
     
 }

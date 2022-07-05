@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\imports;
 use App\Models\teachers;
 use Illuminate\Http\Request;
 use App\Models\subjects;
 use App\Models\teacher_to_subjects;
+use App\Models\User;
 use AuthorizesRequests;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -15,7 +17,6 @@ use function PHPUnit\Framework\returnSelf;
 class TeacherToSubjectController extends Controller
 {
     //
-
     public function show()
     {
         return view('auth.TeacherToSubject');
@@ -79,7 +80,9 @@ class TeacherToSubjectController extends Controller
         // $semester = $the_id["year"];
         // $outcome = teacher_to_subjects::where('teacher_id', $teacher_id)->where('subject_id', $subject_id)->where('semester', $semester)->get();
 
-        $outcome = teacher_to_subjects::select("*")
+        // $outcome = teacher_to_subjects::where('teacher_id', $teacher_id)->get();
+
+        $data = teacher_to_subjects::select("*")
         ->when($request->has('teacher_id'), function ($query) use ($request) {
             $query->whereNotNull('teacher_id');
             $query->where('teacher_id', $request->teacher_id);
@@ -98,7 +101,41 @@ class TeacherToSubjectController extends Controller
         })
         ->get();
 
-        return response()->json($outcome);
+        // $teacher_name = $data->teachers;
+
+        return response()->json($data);
+
+        // return view('home', ['user' => $data]);
 
     }
+
+    public function showdata()
+    {   
+        $user_id = 37;
+
+        $user = teacher_to_subjects::where('id', $user_id)->first();
+
+        $tecaher_name = $user->teachers;
+
+        return response()->json($tecaher_name->last_name.' '.$tecaher_name->first_name);
+
+        // return view('home', ['user' => 'DUY KHANH']);
+    }
+
+    public function uploadReport(Request $request) {
+
+        $file = $request->file('report');
+
+        $fullname = $file->getClientOriginalName();
+
+        $name = date('Ymd_His_') . $fullname;
+
+        $path = $request->file('student_file')->storeAs('data', $name);
+
+        $userimport = new imports();
+
+        return response()->json($path);
+
+    }
+
 }

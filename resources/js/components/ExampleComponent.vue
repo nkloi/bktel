@@ -70,6 +70,7 @@ import { data } from 'browserslist'
         methods:{
             getArticles(){
                 fetch('http://127.0.0.1:8000/getstudent', {
+                    
                     method:"GET",
                     headers:{
                         "Content-Type":"application/json"

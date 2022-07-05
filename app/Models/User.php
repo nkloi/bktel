@@ -42,23 +42,18 @@ class User extends Authenticatable
 
     public function received()
     {
-        return $this->belongsTo('App\Models\students');
+        return $this->belongsTo(students::class, 'student_id', 'id', User::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\Models\teachers');
+        return $this->belongsTo(teachers::class, 'teacher_id', 'id', User::class);
     }
 
     public function roles()
     {
-        return $this->belongsTo('App\Models\roles');
+        return $this->belongsTo(roles::class, 'role_id', 'id', User::class);
     }
-
-    // public function roles()
-    // {
-    //     return $this->belongsToMany('App\Models\roles');
-    // }
 
 
 }

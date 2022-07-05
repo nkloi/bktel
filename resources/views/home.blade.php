@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="hold-transition sidebar-mini">
+<div class="hold-transition sidebar-mini" id="app">
 
     <div class="wrapper">
 		<!-- Navbar -->
@@ -149,8 +149,8 @@
 			</ul>
 
 		</nav>
-    	<!-- /.navbar -->
 
+    	<!-- /.navbar -->
 
 		<!-- Main SideBar -->
 
@@ -158,7 +158,7 @@
 
 		<!-- Main content -->
 
-		<content-component></content-component>
+		<content-component users="{{ $user ?? '' }}" ></content-component>
 		
     	<!-- Main Footer -->
 

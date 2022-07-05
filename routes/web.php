@@ -45,6 +45,13 @@ Route::get('getCurrentUser', function () {
 	return response()->json($role);
 });
 
+Route::get('getStudentid', function () {
+
+	$role = Auth::user()->student_id;
+
+	return response()->json($role);
+});
+
 Route::group(['prefix' => 'teachers'], function () {
 	Route::get('/upload-teachers', [App\Http\Controllers\Admin\UploadController::class, 'uploadTeachers'])->middleware('isAdmin')->name('upload.teachers');
 	Route::post('/import-teachers', [App\Http\Controllers\Admin\UploadController::class, 'importTeachers'])->name('import.teachers');
@@ -67,7 +74,9 @@ Route::group(['prefix' => 'TeacherToSubject'], function () {
 });
 
 Route::get('findsubject&teacherform', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'findform'])->name('findsubject&teacherform');
-Route::post('findsubject&teacher', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getSubjectAndTeacher'])->name('find.subject&teacher');
+Route::any('findsubject&teacher', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'getSubjectAndTeacher'])->name('find.subject&teacher');
+Route::get('get_data_subject&teacher', [App\Http\Controllers\Admin\TeacherToSubjectController::class, 'showdata'])->name('showdata.SubjectTeacher');
+
 
 
 
@@ -76,3 +85,5 @@ Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, '
 Route::get('getstudent', [App\Http\Controllers\Admin\StudentsController::class, 'getstudent'])->name('get.student');
 Route::get('teacher_menu', [App\Http\Controllers\Admin\TeacherController::class, 'teacher_menu'])->name('get.teacher');
 Route::post('add_teacher', [App\Http\Controllers\Admin\TeacherController::class, 'add_teacher'])->name('add.teacher');
+
+Route::post('upload-reports', [App\Http\Controllers\Admin\UploadStudentReport::class, 'formSubmit'])->name('upload.report');

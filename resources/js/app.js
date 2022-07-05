@@ -42,6 +42,7 @@ Vue.component('sidebar-component', require('./components/Sidebar.vue').default);
 Vue.component('content-component', require('./components/NewContent.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 Vue.component('add-teacher', require('./components/Content.vue').default);
+Vue.component('upload-report-student', require('./components/UploadStudentReport.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -53,6 +54,3 @@ const app = new Vue({
     el: '#app',
 });
 
-const new_app = new Vue({
-    el: '#newapp',
-})

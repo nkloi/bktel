@@ -1,6 +1,5 @@
 <template>
 
-        
     <div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
@@ -23,12 +22,10 @@
 			<div class="container-fluid">
 				
 				<div class="row">
-					
-					<h1>This is Content</h1>
 
-					<example-component></example-component>
+					<upload-report-student></upload-report-student>
 
-					<add-teacher></add-teacher>
+
 
 				</div>
 				<!-- /.row -->
@@ -43,7 +40,9 @@
 </template>
 
 <script>
+import ExampleComponent from './ExampleComponent.vue'
 export default {
+
 
 }
 </script>
@@ -51,3 +50,4 @@ export default {
 <style>
 
 </style>
+ExampleComponent

@@ -5941,6 +5941,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
 //
 //
 //
@@ -5982,9 +5983,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -6690,6 +6689,176 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      teacher_id: '',
+      subject_id: '',
+      semester: '',
+      error: [],
+      outcome: '',
+      articles: [],
+      name: '',
+      file: '',
+      success: '',
+      currentUser: {}
+    };
+  },
+  created: function created() {
+    this.getCurrentUser();
+  },
+  methods: {
+    SearchSubject: function SearchSubject() {
+      var _this = this;
+
+      var currentObj = this;
+      axios.post("http://127.0.0.1:8000/findsubject&teacher", {
+        'teacher_id': this.teacher_id,
+        'subject_id': this.subject_id,
+        'semester': this.semester
+      }).then(function (response) {
+        currentObj.outcome = response.data;
+      })["catch"](function (e) {
+        _this.errors.push(e);
+      });
+    },
+    onFileChange: function onFileChange(e) {
+      console.log(e.target.files[0]);
+      this.file = e.target.files[0];
+    },
+    uploadFile: function uploadFile(e) {
+      e.preventDefault();
+      var currentObj = this;
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      var formData = new FormData();
+      formData.append('file', this.file);
+      formData.append('name', this.name); // formData.append('teacher_id', this.teacher_id);
+      // formData.append('subject_id', this.subject_id);
+      // formData.append('student_id', this.currentUser);
+
+      axios.post('http://127.0.0.1:8000/upload-reports', formData, config).then(function (response) {
+        currentObj.success = response.data.success;
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
+    },
+    getCurrentUser: function getCurrentUser() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/getCurrentUser').then(function (response) {
+        _this2.currentUser = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -9846,6 +10015,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('sidebar-component', (__we
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('content-component', (__webpack_require__(/*! ./components/NewContent.vue */ "./resources/js/components/NewContent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('footer-component', (__webpack_require__(/*! ./components/Footer.vue */ "./resources/js/components/Footer.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('add-teacher', (__webpack_require__(/*! ./components/Content.vue */ "./resources/js/components/Content.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('upload-report-student', (__webpack_require__(/*! ./components/UploadStudentReport.vue */ "./resources/js/components/UploadStudentReport.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -9854,9 +10024,6 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('add-teacher', (__webpack_
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   el: '#app'
-});
-var new_app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  el: '#newapp'
 });
 
 /***/ }),
@@ -49642,6 +49809,45 @@ component.options.__file = "resources/js/components/Sidebar.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/UploadStudentReport.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/UploadStudentReport.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UploadStudentReport.vue?vue&type=template&id=0281ddb3& */ "./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3&");
+/* harmony import */ var _UploadStudentReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UploadStudentReport.vue?vue&type=script&lang=js& */ "./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UploadStudentReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__.render,
+  _UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UploadStudentReport.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Content.vue?vue&type=script&lang=js&":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/Content.vue?vue&type=script&lang=js& ***!
@@ -49719,6 +49925,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Sidebar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploadStudentReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploadStudentReport.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UploadStudentReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -49803,6 +50025,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_template_id_81fbb27e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_template_id_81fbb27e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Sidebar.vue?vue&type=template&id=81fbb27e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=template&id=81fbb27e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UploadStudentReport_vue_vue_type_template_id_0281ddb3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UploadStudentReport.vue?vue&type=template&id=0281ddb3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3&");
 
 
 /***/ }),
@@ -50268,18 +50507,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "content" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _c("h1", [_vm._v("This is Content")]),
-            _vm._v(" "),
-            _c("example-component"),
-            _vm._v(" "),
-            _c("add-teacher"),
-          ],
-          1
-        ),
+        _c("div", { staticClass: "row" }, [_c("upload-report-student")], 1),
       ]),
     ]),
     _vm._v(" "),
@@ -51809,6 +52037,279 @@ var staticRenderFns = [
         ]),
       ]
     )
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/UploadStudentReport.vue?vue&type=template&id=0281ddb3& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          { staticClass: "card" },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Search Subject"),
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.SearchSubject()
+                  },
+                },
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.teacher_id,
+                      expression: "teacher_id",
+                    },
+                  ],
+                  attrs: {
+                    type: "number",
+                    placeholder: "Enter Teacher Code",
+                    name: "teacher_id",
+                  },
+                  domProps: { value: _vm.teacher_id },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.teacher_id = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.subject_id,
+                      expression: "subject_id",
+                    },
+                  ],
+                  attrs: {
+                    type: "number",
+                    placeholder: "Enter Subject Code",
+                    name: "subject_id",
+                  },
+                  domProps: { value: _vm.subject_id },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.subject_id = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.semester,
+                      expression: "semester",
+                    },
+                  ],
+                  attrs: {
+                    type: "number",
+                    placeholder: "Enter Semester",
+                    name: "semester",
+                  },
+                  domProps: { value: _vm.semester },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.semester = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", { attrs: { type: "submit", value: "Search" } }),
+              ]
+            ),
+            _vm._v(" "),
+            _c("strong", [_vm._v("Display")]),
+            _vm._v(" "),
+            _vm._l(_vm.outcome, function (article) {
+              return _c("div", { key: article.id, staticClass: "card-body" }, [
+                _c("p", { attrs: { id: "success" } }),
+                _vm._v(" "),
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(article.id)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(article.teacher_id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(article.subject_id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(article.semester))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(article.year))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(article.note))]),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                    ]),
+                  ]),
+                ]),
+              ])
+            }),
+          ],
+          2
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Laravel Vue JS File Upload Example - ItSolutionStuff.com"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm.success != ""
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-success",
+                    attrs: { role: "alert" },
+                  },
+                  [
+                    _vm._v(
+                      "\n                          " +
+                        _vm._s(_vm.success) +
+                        "\n                        "
+                    ),
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                attrs: { enctype: "multipart/form-data" },
+                on: { submit: _vm.uploadFile },
+              },
+              [
+                _c("strong", [_vm._v("Name:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("strong", [_vm._v("File:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "file" },
+                  on: { change: _vm.onFileChange },
+                }),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("Submit"),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Teacher_id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Subject_id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Semester")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Year")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Note")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-primary btn-xs",
+          staticStyle: { color: "black" },
+          attrs: { type: "button", "data-toggle": "modal", "data-target": "1" },
+        },
+        [_c("i", { staticClass: "fas fa-trash fa-lg" })]
+      ),
+    ])
   },
 ]
 render._withStripped = true
