@@ -102,7 +102,7 @@ export default {
               file: '',
               success: '',
 
-              currentUser: {}
+              currentUser: ''
 
             }
         },
@@ -150,9 +150,9 @@ export default {
 
                 formData.append('file', this.file);
                 formData.append('name', this.name);
-                // formData.append('teacher_id', this.teacher_id);
-                // formData.append('subject_id', this.subject_id);
-                // formData.append('student_id', this.currentUser);
+                formData.append('teacher_id', this.teacher_id);
+                formData.append('subject_id', this.subject_id);
+                formData.append('student_id', this.currentUser);
 
     
                 axios.post('http://127.0.0.1:8000/upload-reports', formData, config)
@@ -166,7 +166,7 @@ export default {
 
             getCurrentUser() {
 
-	    		axios.get('http://127.0.0.1:8000/getCurrentUser')
+	    		axios.get('http://127.0.0.1:8000/getStudentid')
 
 				.then(response => {
 					this.currentUser = response.data;

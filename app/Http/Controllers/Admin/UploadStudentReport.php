@@ -20,23 +20,21 @@ class UploadStudentReport extends Controller
 
         $path = $request->file('file')->storeAs('reports', $fileName);
 
-        // $teacher_to_subjects_id = teacher_to_subjects::where('teacher_id', $request->teacher_id)->where('subject_id', $request->subject_id)->get();
+        $teacher_to_subjects = teacher_to_subjects::where('teacher_id', $request->teacher_id)->where('subject_id', $request->subject_id)->first();
+
+        $teacher_to_subjects_id = $teacher_to_subjects->id;
 
         $report = new Report();
 
-        $report->student_id = 1;
-        $report->teacher_to_subject_id = 37;
+        $report->student_id = $request->student_id;
+        $report->teacher_to_subject_id = $teacher_to_subjects_id;
         $report->title = $request->name;
-        // $report->title = $request['name'];
         $report->path = $path;
         $report->save();
 
+        // return response()->json($teacher_to_subjects_id);
+
         return response()->json(['success'=>'You have successfully upload file.']);
-
-        // return response()->json($reports);
-
-        
-        
     }
 
 }

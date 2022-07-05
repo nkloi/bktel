@@ -6803,7 +6803,7 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       file: '',
       success: '',
-      currentUser: {}
+      currentUser: ''
     };
   },
   created: function created() {
@@ -6838,10 +6838,10 @@ __webpack_require__.r(__webpack_exports__);
       };
       var formData = new FormData();
       formData.append('file', this.file);
-      formData.append('name', this.name); // formData.append('teacher_id', this.teacher_id);
-      // formData.append('subject_id', this.subject_id);
-      // formData.append('student_id', this.currentUser);
-
+      formData.append('name', this.name);
+      formData.append('teacher_id', this.teacher_id);
+      formData.append('subject_id', this.subject_id);
+      formData.append('student_id', this.currentUser);
       axios.post('http://127.0.0.1:8000/upload-reports', formData, config).then(function (response) {
         currentObj.success = response.data.success;
       })["catch"](function (error) {
@@ -6851,7 +6851,7 @@ __webpack_require__.r(__webpack_exports__);
     getCurrentUser: function getCurrentUser() {
       var _this2 = this;
 
-      axios.get('http://127.0.0.1:8000/getCurrentUser').then(function (response) {
+      axios.get('http://127.0.0.1:8000/getStudentid').then(function (response) {
         _this2.currentUser = response.data;
       })["catch"](function (error) {
         console.log(error);
