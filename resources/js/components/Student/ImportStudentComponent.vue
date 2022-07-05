@@ -92,6 +92,7 @@
                         },
                     });
                     console.log(data);
+                    window.location.href="/dashboard";
                 } catch (error) {
                     console.log(error);
                 }

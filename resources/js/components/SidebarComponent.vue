@@ -248,7 +248,7 @@
               <li class="nav-item">
                 <a :href="domain + '/dashboard/students/import'" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Importa Student</p>
+                  <p>Import Student</p>
                 </a>
               </li>
             </div>
@@ -279,6 +279,12 @@
                 <a :href="domain + '/dashboard/subjects/import'" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
                   <p>Import Subject</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="domain + '/dashboard/lecture'" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Register Lecture</p>
                 </a>
               </li>
               <li class="nav-item">
