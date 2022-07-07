@@ -21,14 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('information', [App\Http\Controllers\StudentsController::class, 'information'])->name('student.information');
-// Route::get('show_user', [App\Http\Controllers\Admin\StudentsController::class, 'show_user'])->name('show.user');
-
-
-Route::get('/{student_id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
-Route::post('/', [App\Http\Controllers\StudentsController::class, 'store'])->name('student.store');
-Route::put('/{student_id}', [App\Http\Controllers\StudentsController::class, 'update'])->name('student.update');
-Route::delete('/{student_id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('checkstudent')->name('home');
+Route::group(['prefix' => 'students'], function () {
+    Route::get('/create', [App\Http\Controllers\StudentsController::class, 'create'])->name('student.create');
+    Route::get('/{id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
+    Route::post('/stored', [App\Http\Controllers\StudentsController::class, 'store'])->name('student.store');
+    Route::post('update/{id}', [App\Http\Controllers\StudentsController::class, 'update'])->name('student.update');
+    Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
+    Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
+});
+Route::get('/home/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
 

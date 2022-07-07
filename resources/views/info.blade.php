@@ -1,8 +1,9 @@
+@extends('layouts.app')
 
+@section('content')
 <div id="cover" style=" margin: auto;width: 50%;border: 3px solid green; padding: 10px;">
     <h2 style="text-align: center;">Information Page</h2>
-    
-        <?php if ($info) { ?>
+    <?php if ($info) { ?>
         <div>Student ID: <?php echo $info->id ?></div>
         <div>Full name: <?php echo $info->first_name . " " . $info->last_name ?></div>
         <div>Student code: <?php echo $info->student_code ?></div>
@@ -12,18 +13,5 @@
         <div>Phone: <?php echo $info->phone ?></div>
         <div>Note: <?php echo $info->note ?></div>
     <?php } ?>
-
-    <!-- <a href="{{ route('edit') }}">
-        <button>
-            edit
-        </button>
-    </a>
-
-    <a href="{{ route('delete') }}">
-        <button>
-            delete
-        </button>
-    </a>     -->
-        
-    
 </div>
+@endsection
