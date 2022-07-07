@@ -264,6 +264,18 @@
                   <p>Import Students</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/dashboard/subjects/import" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Import Subjects</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/subjects/form" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Form Import Subjects</p>
+                </a>
+              </li>
               </div>
             </ul>
           </li>

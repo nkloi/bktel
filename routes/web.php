@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -51,5 +52,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/home',[TeachersController::class, 'index'])->name('teacher.index');
 		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
 		Route::post('/import', [TeachersController::class, 'storeImport'])->name('teacher.import.store');
+	});
+
+	Route::group(['prefix' => 'subjects'], function () {
+		Route::get('/form', [SubjectsController::class, 'showForm'])->name('subject.form');
+		Route::get('/import', [SubjectsController::class, 'showImport'])->name('subject.showimport');
+		Route::get('/home',[SubjectsController::class, 'index'])->name('subject.index');
+		Route::post('/form', [SubjectsController::class, 'store'])->name('subject.store');
+		Route::post('/import', [SubjectsController::class, 'storeImport'])->name('subject.import.store');
 	});
 });
