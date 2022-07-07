@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 class roles extends Seeder
@@ -13,12 +12,11 @@ class roles extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
-            ['name' => 'Administrator'],
-            ['name' =>'Supervisor'],
-            ['name' =>'Teacher'],
-            ['name' =>'Student'],
-
-        ]);
+         DB::table('roles')->insert([
+             ['name' => 'Administrator'],
+             ['name' =>'Supervisor'],
+             ['name' =>'Teacher'],
+             ['name' =>'Student'],
+         ]);
     }
 }

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'roles_id','student_id'
+        'name', 'email', 'password', 'roles_id','student_id', 'teacher_id'
     ];
 
     /**
@@ -41,5 +41,18 @@ class User extends Authenticatable
     public function received()
     {
         return $this->belongsTo('App\Models\students');
+    }
+
+    public function students()
+    {
+        return $this->belongsTo('App\Models\Student');
+    }
+    public function teacher()
+    {
+        return $this->belongsTo('App\Models\teacher');
+    }
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\roles');
     }
 }

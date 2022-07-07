@@ -30,7 +30,7 @@
 <div class="wrapper">
   <div id="app">
   <header-component></header-component>
-  <sidebar-component domain="{{url('/')}}"></sidebar-component>
+  <sideber-component domain="{{url('/')}}"></sidebar>
   <content-component></content-component>
   <footer-component></footer-component>
   </div>

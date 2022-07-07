@@ -239,7 +239,7 @@
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Student Form</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -268,9 +268,7 @@
       <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
- 
 </template>
