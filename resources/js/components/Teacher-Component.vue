@@ -39,10 +39,10 @@
                   </div>
                   <div class="form-group mb-0">
                   </div>
-				  <div class="card-footer">
-  						<button type="submit" class="btn btn-primary">Submit</button>
+				          <div class="card-footer">
+  					      	<button type="submit" class="btn btn-primary">Submit</button>
                 	</div>
-                </div>
+                  </div>
           
            
 </template>

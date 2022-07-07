@@ -34,3 +34,7 @@ Route::group(['prefix' => 'students'], function () {
 });
 
 Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
+Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index']);
+Route::post('added', [App\Http\Controllers\SubjectController::class, 'store'])->name('add_subs');
+Route::get('/finding', [App\Http\Controllers\TeacherToSubjectController::class, 'index'])->name('find');
+Route::post('upl', [App\Http\Controllers\TeacherToSubjectController::class, 'SubjectAndTeacher'])->name('soupntea');

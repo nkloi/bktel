@@ -44,6 +44,10 @@ Vue.component(
     "sidebar",
     require("./components/Sidebar-Component.vue").default
 );
+Vue.component(
+    "subject",
+    require("./components/Subject-Component.vue").default
+);
 
 Vue.component('teacher-component', require("./components/Teacher-Component.vue").default);
 /**

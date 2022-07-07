@@ -12,8 +12,10 @@ class teacher extends Model
         'last_name','first_name', 'teacher_code', 'department', 'faculty', 'address', 'phone', 'note'
     ];
 
-    public function teacherid()
+
+    public function Subject()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->belongToMany('App\Models\Subject', 'subjects', 'teacher_id', 'subject_id', 'year')->withPivot('semester');
     }
+
 }
