@@ -87,3 +87,4 @@ Route::get('teacher_menu', [App\Http\Controllers\Admin\TeacherController::class,
 Route::post('add_teacher', [App\Http\Controllers\Admin\TeacherController::class, 'add_teacher'])->name('add.teacher');
 
 Route::post('upload-reports', [App\Http\Controllers\Admin\UploadStudentReport::class, 'formSubmit'])->name('upload.report');
+Route::post('confirm_subject', [App\Http\Controllers\Admin\UploadStudentReport::class, 'confirmation'])->name('subject.confirm');

@@ -6791,6 +6791,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6803,7 +6838,9 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       file: '',
       success: '',
-      currentUser: ''
+      currentUser: '',
+      output: '',
+      message: []
     };
   },
   created: function created() {
@@ -6839,8 +6876,8 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('file', this.file);
       formData.append('name', this.name);
-      formData.append('teacher_id', this.teacher_id);
-      formData.append('subject_id', this.subject_id);
+      formData.append('teacher_id', this.message.teacher_id);
+      formData.append('subject_id', this.message.subject_id);
       formData.append('student_id', this.currentUser);
       axios.post('http://127.0.0.1:8000/upload-reports', formData, config).then(function (response) {
         currentObj.success = response.data.success;
@@ -6855,6 +6892,22 @@ __webpack_require__.r(__webpack_exports__);
         _this2.currentUser = response.data;
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    confirmSubject: function confirmSubject(event, id, teacher_id, subject_id, semester, year) {
+      var _this3 = this;
+
+      var currentObj = this;
+      axios.post("http://127.0.0.1:8000/confirm_subject", {
+        'id': id,
+        'teacher_id': teacher_id,
+        'subject_id': subject_id,
+        'semester': semester,
+        'year': year
+      }).then(function (response) {
+        currentObj.message = response.data;
+      })["catch"](function (e) {
+        _this3.errors.push(e);
       });
     }
   }
@@ -52068,108 +52121,131 @@ var render = function () {
           "div",
           { staticClass: "card" },
           [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Search Subject"),
-            ]),
+            _c("div", { staticClass: "card-header" }),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.SearchSubject()
+            _c("div", { staticClass: "card card-primary" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.SearchSubject()
+                    },
                   },
                 },
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.teacher_id,
-                      expression: "teacher_id",
-                    },
-                  ],
-                  attrs: {
-                    type: "number",
-                    placeholder: "Enter Teacher Code",
-                    name: "teacher_id",
-                  },
-                  domProps: { value: _vm.teacher_id },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.teacher_id = $event.target.value
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.subject_id,
-                      expression: "subject_id",
-                    },
-                  ],
-                  attrs: {
-                    type: "number",
-                    placeholder: "Enter Subject Code",
-                    name: "subject_id",
-                  },
-                  domProps: { value: _vm.subject_id },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.subject_id = $event.target.value
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.semester,
-                      expression: "semester",
-                    },
-                  ],
-                  attrs: {
-                    type: "number",
-                    placeholder: "Enter Semester",
-                    name: "semester",
-                  },
-                  domProps: { value: _vm.semester },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.semester = $event.target.value
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("input", { attrs: { type: "submit", value: "Search" } }),
-              ]
-            ),
-            _vm._v(" "),
-            _c("strong", [_vm._v("Display")]),
+                [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                        _vm._v("Teacher Code"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.teacher_id,
+                            expression: "teacher_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          placeholder: "Enter Teacher Code",
+                          name: "teacher_id",
+                        },
+                        domProps: { value: _vm.teacher_id },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.teacher_id = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                        _vm._v("Subject Code"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.subject_id,
+                            expression: "subject_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          placeholder: "Enter Subject Code",
+                          name: "subject_id",
+                        },
+                        domProps: { value: _vm.subject_id },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.subject_id = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                        _vm._v("Semester"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.semester,
+                            expression: "semester",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          placeholder: "Enter Semester",
+                          name: "semester",
+                        },
+                        domProps: { value: _vm.semester },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.semester = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                ]
+              ),
+            ]),
             _vm._v(" "),
             _vm._l(_vm.outcome, function (article) {
               return _c("div", { key: article.id, staticClass: "card-body" }, [
                 _c("p", { attrs: { id: "success" } }),
                 _vm._v(" "),
                 _c("table", { staticClass: "table" }, [
-                  _vm._m(0, true),
+                  _vm._m(2, true),
                   _vm._v(" "),
                   _c("tbody", [
                     _c("tr", [
@@ -52177,9 +52253,9 @@ var render = function () {
                         _vm._v(_vm._s(article.id)),
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(article.teacher_id))]),
+                      _c("td", [_vm._v(_vm._s(article.teacher_name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(article.subject_id))]),
+                      _c("td", [_vm._v(_vm._s(article.subject_name))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(article.semester))]),
                       _vm._v(" "),
@@ -52187,7 +52263,33 @@ var render = function () {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(article.note))]),
                       _vm._v(" "),
-                      _vm._m(1, true),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-primary btn-xs",
+                            staticStyle: { color: "black" },
+                            attrs: {
+                              type: "submit",
+                              "data-toggle": "modal",
+                              "data-target": "1",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.confirmSubject(
+                                  $event,
+                                  article.id,
+                                  article.teacher_id,
+                                  article.subject_id,
+                                  article.semester,
+                                  article.year
+                                )
+                              },
+                            },
+                          },
+                          [_c("i", { staticClass: "fas fa-check fa-lg" })]
+                        ),
+                      ]),
                     ]),
                   ]),
                 ]),
@@ -52197,6 +52299,8 @@ var render = function () {
           2
         ),
       ]),
+      _vm._v(" "),
+      _c("div", [_c("pre", [_vm._v(_vm._s(_vm.message))])]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
@@ -52229,7 +52333,7 @@ var render = function () {
                 on: { submit: _vm.uploadFile },
               },
               [
-                _c("strong", [_vm._v("Name:")]),
+                _c("strong", [_vm._v("Title:")]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -52261,9 +52365,14 @@ var render = function () {
                   on: { change: _vm.onFileChange },
                 }),
                 _vm._v(" "),
-                _c("button", { staticClass: "btn btn-success" }, [
-                  _vm._v("Submit"),
-                ]),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: { "margin-top": "10px" },
+                  },
+                  [_vm._v("Submit")]
+                ),
               ]
             ),
           ]),
@@ -52273,6 +52382,26 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Search Subject")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Search")]
+      ),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -52293,22 +52422,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary btn-xs",
-          staticStyle: { color: "black" },
-          attrs: { type: "button", "data-toggle": "modal", "data-target": "1" },
-        },
-        [_c("i", { staticClass: "fas fa-trash fa-lg" })]
-      ),
     ])
   },
 ]

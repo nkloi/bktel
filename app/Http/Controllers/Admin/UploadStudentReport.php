@@ -37,4 +37,14 @@ class UploadStudentReport extends Controller
         return response()->json(['success'=>'You have successfully upload file.']);
     }
 
+    public function confirmation(Request $request){
+
+        // $data = teacher_to_subjects::where('id', $request->id)->get();
+        // return response()->json($data);
+
+        $data = $request->all();
+        return response()->json($data);
+
+    }
+
 }
