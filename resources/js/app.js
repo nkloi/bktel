@@ -31,6 +31,10 @@
     "student-register",
     require("./components/StudentRegister.vue").default
 );
+ Vue.component(
+    "teacher-register",
+    require("./components/TeacherRegister.vue").default
+);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

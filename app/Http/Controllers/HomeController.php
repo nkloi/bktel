@@ -26,8 +26,13 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function forms()
+    public function student_forms()
     {
-        return view('forms');
+        return view('student_forms');
+    }
+
+    public function teacher_forms()
+    {
+        return view('teacher_forms');
     }
 }
