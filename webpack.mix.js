@@ -12,13 +12,17 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue()
+    .vue('./components/StudentRegister.vue')
     .sass('resources/sass/app.scss', 'public/css',{
         sassOptions: {
           quietDeps: true,
         },
       })
     .css('resources/css/app.css', 'public/css');
-    
+
+mix.autoload({
+  jquery: ["$", "jQuery", "window.jQuery"],
+});
+
 // mix.js('resources/js/app.js', 'public/js')
 //     .sass('resources/sass/app.scss', 'public/css');

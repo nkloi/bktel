@@ -21,14 +21,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('checkstudent')->name('home');
+Route::get('/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('student.admin');
+
 Route::group(['prefix' => 'students'], function () {
-	
 	
 	Route::get('/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
 	Route::get('/{id}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
-	Route::post('/', [App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+	Route::post('/store', [App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
 	Route::any('update/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
 	Route::get('/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
 	Route::get('delete/{id}', [App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
