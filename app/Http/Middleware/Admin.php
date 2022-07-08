@@ -19,10 +19,18 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        if ($user->role_id != 1)
+        if (Auth::check()) {
+
+            if (Auth::user()->role_id == 1) {
+
                 return $next($request);
-        
-        return redirect()->route('teachers');
+            } else {
+
+                return response()->json('Unauthorized!');
+            }
+        } else {
+
+            return response()->json('Unauthorized!');
+        }
     }
 }

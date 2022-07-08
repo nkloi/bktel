@@ -16,4 +16,9 @@ class teacher extends Model
     {
         return $this->hasOne(User::class, 'teacher_id');
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Models\Subject', 'teacher_to_subjects', 'teacher_id', 'subject_id', 'year')->withPivot('semester');
+    }
 }

@@ -47,7 +47,7 @@ class TeacherController extends Controller
         return response()->json('success!');
     }
 
-    public function export() 
+    public function export()
     {
         
     }
@@ -67,7 +67,9 @@ class TeacherController extends Controller
    {
        return view('layouts.teacher');
    }
-   public function store(Request $request){
+
+   public function store(Request $request)
+   {
        info($request);
        $data = $request->all();
        teacher::create([

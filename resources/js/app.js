@@ -55,6 +55,10 @@ Vue.component(
     "subject-component",
     require("./components/Subject-Component.vue").default
 );
+Vue.component(
+    "subject",
+    require("./components/FormSubject-Component.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

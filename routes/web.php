@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherToSubjectController;
 
 
 /*
@@ -26,13 +27,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('admin')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/home/form', function (){
 	return view('layouts.form');
 })->name('forms');
-Route::get('/home/teacher', function (){
-	return view('layouts.teacher');
-})->name('teachers');
+
+Route::get('/home/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->middleware('admin')->name('teacher');
+
 Route::group(['prefix' => 'uploads'], function () {
 		Route::get('/teacher', [TeacherController::class, 'upload']);
 		Route::post('/teacherimp', [TeacherController:: class, 'importExport'])->name('import.teachers');
@@ -57,3 +58,7 @@ Route::group(['prefix' => 'students'], function () {
 });
 
 Route::get('information', [App\Http\Controllers\Admin\StudentsController::class, 'information'])->name('student.information');
+Route::get('subject', [App\Http\Controllers\TeacherToSubjectController::class, 'index']);
+Route::post('added', [App\Http\Controllers\TeacherToSubjectController::class, 'store'])->name('add_subs');
+Route::get('find', [App\Http\Controllers\TeacherToSubjectController::class, 'find'])->name('find');
+Route::post('show',[App\Http\Controllers\TeacherToSubjectController::class, 'show'])->name('show');

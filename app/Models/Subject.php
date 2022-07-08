@@ -11,4 +11,9 @@ class Subject extends Model
     protected $fillable = [
         'name', 'code', 'note'
     ];
+
+    public function teachers(){
+        
+        return $this->belongsToMany('App\Models\teacher', 'teacher_to_subjects', 'subject_id', 'teacher_id', 'year')->withPivot('semester');
+    }
 }

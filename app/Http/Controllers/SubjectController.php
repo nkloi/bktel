@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersSubjectsImport;
 use App\Models\import;
 use App\Models\Subject;
+use App\Models\teacher_to_subjects;
+use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
@@ -62,9 +64,4 @@ class SubjectController extends Controller
         return redirect()->route('byhand.subjects');
 
     }
-
-    public function export() 
-    {
-        
-    }   
 }
