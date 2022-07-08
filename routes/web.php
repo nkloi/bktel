@@ -31,8 +31,7 @@ Route::group(['prefix' => 'students'], function () {
     Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
 });
 Route::group(['prefix' => 'teachers'], function () {
-Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
+    Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
 });
-
-Route::get('/home/student_forms', [App\Http\Controllers\HomeController::class, 'student_forms'])->name('home.student_forms');
-Route::get('/home/teacher_forms', [App\Http\Controllers\HomeController::class, 'teacher_forms'])->middleware('checkadmin')->name('home.teacher_forms');
+Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
+Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');

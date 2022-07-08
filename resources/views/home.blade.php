@@ -411,23 +411,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home/student_forms" class="nav-link">
+                                    <a href="home/student_form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student Register</p>
                                     </a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a href="home/teacher_forms" class="nav-link">
+                                    <a href="home/teacher_form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Register</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Advanced Elements</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
