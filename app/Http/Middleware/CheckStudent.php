@@ -23,7 +23,7 @@ class CheckStudent
         if ($student_id[0]["student_id"] != NULL) {
             return $next($request);
         } else {
-            return redirect('/home/forms');
+            return redirect('/home/student_forms');
         }
     }
 }

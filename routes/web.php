@@ -34,5 +34,5 @@ Route::group(['prefix' => 'teachers'], function () {
 Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
 });
 
-Route::get('/home/student_forms', [App\Http\Controllers\HomeController::class, 'student_forms'])->name('home.forms');
+Route::get('/home/student_forms', [App\Http\Controllers\HomeController::class, 'student_forms'])->name('home.student_forms');
 Route::get('/home/teacher_forms', [App\Http\Controllers\HomeController::class, 'teacher_forms'])->middleware('checkadmin')->name('home.teacher_forms');

@@ -20,9 +20,8 @@ class Student extends Model
         'first_name', 'last_name', 'student_code', 'department', 'faculty', 'address', 'phone', 'note'
     ];
 
-    public function user()
-    {
-        return $this->hasOne(User::class, 'student_id');
-    }
+    protected $hidden = [
+        'remember_token'
+    ];
 
 }

@@ -395,7 +395,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/home/student_form" class="nav-link">
+                                    <a href="/home/student_forms" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student Register</p>
                                     </a>
