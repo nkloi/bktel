@@ -118,8 +118,8 @@ class TeacherToSubjectController extends Controller
                 $teacher = Teacher::where('id', $result->teacher_id)->get();
                 $teacher_name = $teacher[0]["first_name"] . " " . $teacher[0]["last_name"];
                 $subject_name = $subject[0]["name"];
-                $result->teacher_id = $teacher_name;
-                $result->subject_id = $subject_name;
+                $result->teacher_name = $teacher_name;
+                $result->subject_name = $subject_name;
             }
             return $search;
         } else {
