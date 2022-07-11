@@ -52,6 +52,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
                 Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');
                 Route::get('/import', [DashboardController::class, 'ShowformImportStudent'])->name('student.import.showform');
                 Route::post('/import',[DashboardController::class, 'ImportStudent']) -> name('student.import');
+                Route::get('/gettudentId', [StudentsController::class, 'getStudentId'])->name('get.student.id');
+
+                Route::get('/form-upload-file', [StudentsController::class, 'ShowformUploadFile'])->name('show.form.upload');
+                Route::post('/search-subject', [StudentsController::class, 'SearchSubject'])->name('search.subject');
+                Route::post('/confirm-subject', [StudentsController::class, 'ConfirmSubject'])->name('confirm.subject');
+
+                
+                Route::post('/upload-file',[StudentsController::class, 'UploadFileReport']) -> name('upload.file.report');
                  });
         Route::group(['prefix' => 'teachers'], function () {
               Route::get('/register', [DashboardController::class, 'RegisterTeacher'])->name('teacher.register');
@@ -69,12 +77,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
 
                  });
 
-});
+            });
 
-Route::group(['prefix' => 'teachers'], function () {
-    Route::get('/addteacher', [TeachersController::class, 'register'])->name('teacher.register');
-	Route::get('/{teacher_id}', [TeachersController::class, 'show2'])->name('teacher.show');
-	Route::post('/', [TeachersController::class, 'store2'])->name('teacher.store');
+        Route::group(['prefix' => 'teachers'], function () {
+            Route::get('/addteacher', [TeachersController::class, 'register'])->name('teacher.register');
+            Route::get('/{teacher_id}', [TeachersController::class, 'show2'])->name('teacher.show');
+            Route::post('/', [TeachersController::class, 'store2'])->name('teacher.store');
 
 });
 

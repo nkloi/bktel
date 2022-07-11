@@ -91,7 +91,7 @@ class DashboardController extends Controller
     public function ImportSubject(Request $request)
     {
         $path = storage_path('app\data\\');
-        $name = $request->name;;
+        $name = $request->name;
         $generated_new_name = date('Ymd_His') . '_' . $request-> file-> getClientOriginalName();
         $path_import = '\app\data\\' . $generated_new_name;
         $request->file->move($path, $generated_new_name);
@@ -116,9 +116,6 @@ class DashboardController extends Controller
     {
         $subject = new Subject();
         $subject->fill($request->all());
-        // $subject->name = $request->name;
-        // $subject->code = $request->code;
-        // $subject->note = $request->note;
         $subject-> save();
         return response()->json('sucess');
     }

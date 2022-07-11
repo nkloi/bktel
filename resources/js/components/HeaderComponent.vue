@@ -137,9 +137,11 @@
 </template>
 
 <script>
+import { stringify } from 'querystring';
+
 export default {
    props: {
-
+         base_url: String,
        },
     mounted() {
         console.log("Component mounted.");

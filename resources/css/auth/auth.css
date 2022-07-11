@@ -2997,7 +2997,14 @@
     border-radius: 0.25rem;
     background-color: #f1f1f1;
   }
-
+  .form-control-upload {
+    width: 100%;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #f1f1f1;
+  }
+  
 
 
 

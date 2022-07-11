@@ -31,9 +31,11 @@ class TeacherToSubjectsController extends Controller
     public function showInforTeacherAndSubject(Request $request)
     {
 
-        $request->teacher_id;
-        // 'teacher_id' => $request->teacher_id, 'subject_id' => $request->subject_id,
-        // 'semester' => $request->semester, 'year' => $request->year
+        // return response()->json(
+        //     TeacherToSubjects::where([
+        //         'teacher_id' => $request->teacher_id, 'subject_id' => $request->subject_id,
+        //         'semester' => $request->semester, 'year' => $request->year
+        //     ])
         $teacher_to_subject = DB::table('teacher_to_subjects')->where('teacher_id', '1')->where('subject_id','1')
                                 ->leftJoin('teachers', 'teachers.id', '=', 'teacher_id')
                                 ->leftJoin('subjects', 'subjects.id', '=', 'subject_id')

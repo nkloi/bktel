@@ -17,6 +17,8 @@ Vue.component('header-component', require('./components/HeaderComponent.vue').de
 Vue.component('register_teacher-component', require('./components/Teacher/TeacherComponent.vue').default);
 Vue.component('register_student-component', require('./components/Student/StudentComponent.vue').default);
 Vue.component('import_teacher-component', require('./components/Teacher/ImportComponent.vue').default);
+Vue.component('student_upload_file-component', require('./components/Student/UploadFileComponent.vue').default);
+
 
 Vue.component('test-component', require('./components/TestComponent.vue').default);
 /**

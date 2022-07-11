@@ -109,7 +109,7 @@
             async register() {
                 console.log(this.student);
                 try {
-                    const url = "/dashboard/students/register";
+                    const url = this.domain + "/dashboard/students/register";
                     const data = await axios.post(url, this.student);
                     console.log(data);
                     window.location.href = "/dashboard";

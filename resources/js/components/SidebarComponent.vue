@@ -80,22 +80,28 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-copy"></i>
               <p>
-                Layout Options
+                Student
                 <i class="fa fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a :href='base_url+"/dashboard/students/form-upload-file"' class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Form Upload file</p>
+                </a>
+
+              </li>
+              <li class="nav-item">
+                <a :href='base_url + "/dashboard/students/register"' class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Register Student</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
+                  <p>Sidebar</p>
                 </a>
               </li>
               <li class="nav-item">
