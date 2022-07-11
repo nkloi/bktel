@@ -85,7 +85,6 @@ class StudentsController extends Controller
     }
     public function UploadFileReport(Request $request)
     {
-        $fileName = '123321';
         $student_id = auth()->user()->student_id;
         $path = storage_path('app\reports\\');
         $generated_new_name = date('Ymd_His') . '_' . $request-> file-> getClientOriginalName();
@@ -97,7 +96,7 @@ class StudentsController extends Controller
         $report->teacher_to_subject_id = $request -> teacher_to_subject_id;
         $report->student_id = $student_id ;
         $report->title = $request->title;
-        $report->path = $path_import;
+        $report->path = $path_import ;
         $report->note = $request->note;
         $report->save();
 

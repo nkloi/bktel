@@ -106,16 +106,16 @@ export default {
                 error: null,
                 report:{
                     teacher_to_subject_id:"",
+                    teacher_id:"",
                     subject_id: "",
                     title:"",
                     note:"",
-
-
+                    file:"",
                     },
                 output:"",
                 success:"",
                 message:"",
-                file:"",
+
 
 
 
@@ -144,20 +144,23 @@ export default {
                 }
             },
             processFile(event) {
-                let formData = new FormData();
-                formData.append("file", event.target.files[0]);
-                this.form.teachers = formData;
+                console.log(event.target.files[0]);
+                this.report.file = event.target.files[0];
             },
             async UploadFile() {
                 console.log(this.report);
                 try {
                     const url = this.base_url + "/dashboard/students/upload-file";
                     const response = await axios.post(url, this.report,{
+                        headers: {
+                        "Content-Type": "multipart/form-data",
+                        },
                         'teacher_to_subject_id': this.teacher_to_subject_id,
                         'teacher_id': this.teacher_id,
                         'subject_id': this.subject_id,
                         'title':this.title,
                         'note':this.note,
+                        'file':this.file,
 
                     });
                     console.log(response.data);
@@ -167,9 +170,6 @@ export default {
                 }
 
             },
-
-
-
             async SelectRow(id, teacher_id, subject_id){
                 console.log(id, teacher_id, subject_id);
                 this.report.teacher_to_subject_id = id;

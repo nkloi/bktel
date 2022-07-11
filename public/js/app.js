@@ -6891,14 +6891,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       error: null,
       report: {
         teacher_to_subject_id: "",
+        teacher_id: "",
         subject_id: "",
         title: "",
-        note: ""
+        note: "",
+        file: ""
       },
       output: "",
       success: "",
-      message: "",
-      file: ""
+      message: ""
     };
   },
   created: function created() {},
@@ -6944,9 +6945,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     processFile: function processFile(event) {
-      var formData = new FormData();
-      formData.append("file", event.target.files[0]);
-      this.form.teachers = formData;
+      console.log(event.target.files[0]);
+      this.report.file = event.target.files[0];
     },
     UploadFile: function UploadFile() {
       var _this2 = this;
@@ -6962,11 +6962,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 url = _this2.base_url + "/dashboard/students/upload-file";
                 _context2.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, _this2.report, {
+                  headers: {
+                    "Content-Type": "multipart/form-data"
+                  },
                   'teacher_to_subject_id': _this2.teacher_to_subject_id,
                   'teacher_id': _this2.teacher_id,
                   'subject_id': _this2.subject_id,
                   'title': _this2.title,
-                  'note': _this2.note
+                  'note': _this2.note,
+                  'file': _this2.file
                 });
 
               case 5:
