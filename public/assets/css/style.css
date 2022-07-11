@@ -1,0 +1,290 @@
+/* Reset CSS */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+.clear {
+    clear: both;
+}
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+
+}
+
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-half {
+    width: 50%;
+}
+
+.col-half-half {
+    width: 25%;
+}
+
+.text-center {
+    text-align: center !important;
+
+}
+
+#main {
+
+}
+
+#header {
+    background: #3489eb;
+    height: 48px;
+    position: fixed; /* Header dính ở trên khi trượt */
+    top: 0; /* căn header ra các phía */
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+}
+
+#nav {
+    display: inline-block; /* Xếp các mục thành 1 hàng */
+}
+
+#nav, .subnav {
+    list-style-type: none; /* Bỏ dấu chấm đầu dóng */
+
+}
+
+#nav > li {
+    display: inline-block; /* Xếp các mục thành 1 hàng */
+}
+
+#nav li {
+    
+    position: relative; /* Định vị các mục tuyệt đối theo header */
+}
+
+#nav > li > a {
+    color: #fff;
+    text-transform: uppercase; /* Chỉnh các chữ của thẻ a là chữ hoa */
+}
+
+#nav li a {
+    text-decoration: none; /* Định dạng văn bản bình thường */
+    line-height: 46px;
+    padding: 0 20px;
+    display: block; /* các thẻ a được định dạng là các khối */
+
+}
+
+#nav li:hover .subnav {
+    display: block; /* định dạng là các khối */
+
+}
+
+#nav .subnav li:hover a,
+#nav > li:hover > a {
+    color: #000;
+    background-color: #84b0e3;
+} /* Dí chuột vào */
+
+#nav .subnav {
+    display: none;
+    position: absolute; /* Định vị các mục tương đối */
+    min-width: 160px;
+    top: 100%;
+    left: 0;
+    background-color: #3489eb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Tạo bóng mờ */
+}
+
+#nav .subnav a {
+    color: #fff;
+    padding: 0 12px;
+    line-height: 38px;
+}
+
+#nav .nav-arrow-down {
+    font-size: 10px;
+}
+
+#header .search-btn {
+    float: right; /* kéo biểu tượng tìm kiếm sang phải */
+   
+}
+
+#header .search-btn:hover {
+    background-color: #0066FF;
+    cursor: pointer; /* hiện bàn tay khi di chuột vào */
+}
+
+#header .search-icon {
+    line-height: 46px; /* Tăng khoảng cách các dòng */
+    padding: 0 21px;
+    color: #000;
+    font-size: 12px;
+}
+
+#slider {
+    position: relative;
+    margin-top: 46px;
+   width: 100%;
+}
+
+
+#content {
+    height: auto;
+    background: #fff;
+}
+
+#content .member-list {
+    margin-top: 64px;
+
+}
+
+#content .content-section {
+    width: 800px;
+    padding: 64px 0 112px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#content .section-heading {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 4px; /* khoảng cách chữ */
+
+}
+
+#content .section-sub-heading {
+    text-align: center; /* căn chữ ở giữa */
+    font-size: 15px;
+    margin-top: 25px;
+    font-style: italic; /* kiểu chữ nghiêng */
+    opacity: 0.6;   /* độ mờ của chữ */
+}
+
+#img-teacher {
+    max-width: 90%;
+    border-radius: 4px;  /* Bo góc */
+    border: 1px solid #000;
+}
+
+.text-teacher {
+    margin-top: 25px;
+    letter-spacing: 1px; /* khoảng cách chữ cái */
+    line-height: 1.6; /* Khoảng cách dòng */
+}
+.sologan-teacher {
+    margin:  25px 0;
+    font-style: italic; /* kiểu chữ nghiêng */
+    opacity: 0.6;   /* độ mờ của chữ */
+}
+
+#class {
+    background-color: #3489eb;
+    color: #fff;
+}
+
+.class-list {
+    list-style: none; /* bỏ dấu chấm đầu hàng */
+    background-color: #ccc;
+    margin-top: 40px;
+   
+}
+
+.class-list li {
+    color: #000;
+    font-size: 15px;
+    padding: 11px 16px;
+    border-bottom: 1px solid #000; /* kẻ dưới */
+}
+
+.class-list .full {
+    background-color: #f44336;
+    color: #fff;
+    padding: 4px 5px;
+    margin-left: 16px;
+}
+
+.class-list .quantity {
+    float: right;
+    width: 24px;
+    height: 24px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%; /* bo tròn */
+    text-align: center;
+    line-height: 24px;
+    margin-top: -3px; /* căn giữa hình tròn */
+}
+
+.room-list {
+    margin-top: 32px;
+}
+
+.room-img {
+    width: 100%;
+    display: block;
+}
+
+.room-img:hover {
+    opacity: 0.6;
+}
+
+.room-body {
+    background: #fff;
+    padding: 16px;
+    font-size: 15px;
+    color: #000;
+}
+
+.room-heading {
+    font-weight: 550;
+    font-size: 15px;
+}
+
+.room-content {
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.btn {
+    color: #fff;
+    background: #000;
+    text-decoration: none;
+    padding: 11px 16px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.btn:hover {
+    color: #000;
+    background-color: #757575;
+  
+}
+
+.room-time {
+    margin-top: 15px;
+    color: #757575;
+}
+
+#contact {
+
+}
+
+#footer {
+
+}
+

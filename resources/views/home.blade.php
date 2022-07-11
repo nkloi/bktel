@@ -188,7 +188,7 @@
                         <img src="images/dist/img/nt.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Hoang Nguyen</a>
+                        <a href="#" class="d-block">Truong Nguyen</a>
                     </div>
                 </div>
 
@@ -467,7 +467,7 @@
                         </li>
                         <li class="nav-header">EXAMPLES</li>
                         <li class="nav-item">
-                            <a href="home/calendar" class="nav-link">
+                            <a href="pages/calendar.html" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
                                     Calendar

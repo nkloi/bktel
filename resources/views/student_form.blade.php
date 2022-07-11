@@ -1,10 +1,9 @@
 @extends('layouts.app')
-@section('content')
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Calendar</title>
+    <title>Student Register</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -172,7 +171,7 @@
                         <img src="{{asset('images/dist/img/nt.jpg');}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Student</a>
+                        <a href="#" class="d-block">Truong Nguyen</a>
                     </div>
                 </div>
 
@@ -451,7 +450,7 @@
                         </li>
                         <li class="nav-header">EXAMPLES</li>
                         <li class="nav-item">
-                            <a href="/home/calendar" class="nav-link">
+                            <a href="../calendar.html" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Calendar
@@ -874,5 +873,3 @@
         <!-- /.control-sidebar -->
     </div>
 </body>
-
-@endsections

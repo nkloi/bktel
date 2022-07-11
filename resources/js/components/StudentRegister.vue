@@ -72,8 +72,7 @@
       axios.post('/students/stored',  this.form).then(response => {
        window.location.href = '/home'
       });
-    },
+    }
   },
     }
 </script>
-  
