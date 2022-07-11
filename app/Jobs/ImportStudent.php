@@ -58,15 +58,15 @@ class ImportStudent implements ShouldQueue
                     $student->first_name = $data[config('constant.column_student.first_name')];
                     $student->last_name = $data[config('constant.column_student.last_name')];
                     $student->student_code = $data[config('constant.column_student.student_code')];
-                    $student->department = $data[config('constant.column_student.​department')];
-                    $student->faculty = $data[config('constant.column_student.​faculty')];
+                    $student->department = $data[config('constant.column_student.department')];
+                    $student->faculty = $data[config('constant.column_student.faculty')];
                     $student->address = $data[config('constant.column_student.address')];
                     $student->phone = $data[config('constant.column_student.phone')];
                     $student->note = $data[config('constant.column_student.note')];
 
                     $user->email = $data[config('constant.column_student.email')];
                     $user->name = $student->first_name . $student->last_name;
-                    $user->password = Hash::make($data[config('constant.column_student.default password')]);
+                    $user->password = Hash::make($data[config('constant.column_student.password')]);
                     $user->role_id = config('constant.roles.student');
                     $user->save();
 

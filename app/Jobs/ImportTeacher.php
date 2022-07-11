@@ -58,15 +58,15 @@ class ImportTeacher implements ShouldQueue
                     $teacher->first_name = $data[config('constant.column_teacher.first_name')];
                     $teacher->last_name = $data[config('constant.column_teacher.last_name')];
                     $teacher->teacher_code = $data[config('constant.column_teacher.teacher_code')];
-                    $teacher->department = $data[config('constant.column_teacher.​department')];
-                    $teacher->faculty = $data[config('constant.column_teacher.​faculty')];
+                    $teacher->department = $data[config('constant.column_teacher.department')];
+                    $teacher->faculty = $data[config('constant.column_teacher.faculty')];
                     $teacher->address = $data[config('constant.column_teacher.address')];
                     $teacher->phone = $data[config('constant.column_teacher.phone')];
                     $teacher->note = $data[config('constant.column_teacher.note')];
 
                     $user->email = $data[config('constant.column_teacher.email')];
                     $user->name = $teacher->first_name . $teacher->last_name;
-                    $user->password = Hash::make($data[config('constant.column_teacher.default password')]);
+                    $user->password = Hash::make($data[config('constant.column_teacher.password')]);
                     $user->role_id = config('constant.roles.teacher');
                     $user->save();
 

@@ -9,29 +9,29 @@ return [
     ],
 
     'column_teacher' => [
-        'last_name' => 0,
-        'first_name' => 1,
-        'teacher_code' => 2,
-        'email' => 3,
-        'default password' => 4,
-        '​department' => 5,
-        '​faculty' => 6,
+        'email' => 0,
+        'password' => 1,
+        'first_name' => 2,
+        'last_name' => 3,
+        'teacher_code' => 4,
+        'department' => 5,
+        'faculty' => 6,
         'address' => 7,
         'phone' => 8,
-        'note' =>9,
+        'note' => 9
     ],
 
     'column_student' => [
-        'last_name' => 0,
-        'first_name' => 1,
-        'student_code' => 2,
-        'email' => 3,
-        'default password' => 4,
-        '​department' => 5,
-        '​faculty' => 6,
+        'email' => 0,
+        'password' => 1,
+        'first_name' => 2,
+        'last_name' => 3,
+        'student_code' => 4,
+        'department' => 5,
+        'faculty' => 6,
         'address' => 7,
         'phone' => 8,
-        'note' =>9,
+        'note' => 9
     ],
 
     'column_subject' =>[

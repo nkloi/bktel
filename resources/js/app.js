@@ -38,6 +38,7 @@ Vue.component('importteacher-component', require('./components/teachers/ImportTe
 Vue.component('importstudent-component', require('./components/students/ImportStudentComponent.vue').default);
 Vue.component('importsubject-component', require('./components/subjects/ImportSubjectComponent.vue').default);
 Vue.component('formsubject-component', require('./components/subjects/FormSubjectComponent.vue').default);
+Vue.component('register_lectures-component', require('./components/Lectures/RegisterLectureComponent.vue').default);
 
 
 /**

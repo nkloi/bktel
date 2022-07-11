@@ -3,6 +3,7 @@
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\TeacherToSubjectController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +39,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		return view('dashboard.home');
 	})->name('dashboard.home');
 	
+	Route::get('/teacher-to-subject', [TeacherToSubjectController::class, 'getInfoTeacherAndSubject'])->name('teacher-to-subject.info');
+	Route::post('/teacher-to-subject', [TeacherToSubjectController::class, 'store'])->name('teacher-to-subject.store');
+
+	Route::get('/lecture', [TeacherToSubjectController::class, 'showRegister'])->name('lecture.register');
+	
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.index');
@@ -52,6 +58,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/home',[TeachersController::class, 'index'])->name('teacher.index');
 		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
 		Route::post('/import', [TeachersController::class, 'storeImport'])->name('teacher.import.store');
+		Route::get('/getAll', [TeachersController::class, 'getAllTeachers']);
 	});
 
 	Route::group(['prefix' => 'subjects'], function () {
@@ -60,5 +67,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 		Route::get('/home',[SubjectsController::class, 'index'])->name('subject.index');
 		Route::post('/form', [SubjectsController::class, 'store'])->name('subject.store');
 		Route::post('/import', [SubjectsController::class, 'storeImport'])->name('subject.import.store');
+		Route::get('/getAll', [SubjectsController::class, 'getAllSubjects']);
 	});
 });

@@ -11,16 +11,13 @@ use Illuminate\Support\Facades\Hash;
 
 class TeachersController extends Controller
 {
-    public function index() {
-        return view('home');
-    }
-
-
-    public function showRegister() {
+    public function showRegister()
+    {
         return view('teachers.register');
     }
-    
-    public function showImport() {
+
+    public function showImport()
+    {
         return view('teachers.import');
     }
 
@@ -28,14 +25,14 @@ class TeachersController extends Controller
     {
         $user = new User();
         $teacher = new Teacher();
-        info($request->department);
 
         $user->email = $request->email;
         $user->password = Hash::make('Bmvt@2022');
         $user->name = $request->first_name . ' ' . $request->last_name;
-        $user->role_id = config('constant.roles.teacher');
+        $user->role_id = 3;
         $user->save();
         $teacher->fill($request->all())->save();
+
         $teacher->user()->save($user)->toArray();
         $teacher["email"] = $user->email;
 
@@ -60,6 +57,11 @@ class TeachersController extends Controller
 
         dispatch(new ImportTeacher($path_import, $request->name, $import));
 
-        return response()->json('success');
+        return response()->json($request);
+    }
+
+    public function getAllTeachers(Request $request)
+    {
+        return response()->json(Teacher::all());
     }
 }
