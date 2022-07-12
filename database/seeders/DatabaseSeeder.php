@@ -4,7 +4,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -37,12 +37,12 @@ class createAdmin extends Seeder
 {
     public function run()
     {
-        DB::table('roles')->insert([
+        DB::table('users')->insert([
             
             'role_id' => 1,
             'email' => 'bmvt@hcmut.edu.vn',
             'name' => 'BMVT',
-            'password' => 'Bmvt@hcmut',
+            'password' => Hash::make('Bmvt@hcmut'),
         ]);
     }
 }

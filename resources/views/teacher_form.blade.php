@@ -395,13 +395,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/forms" class="nav-link active">
+                                    <a href="/forms" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student Register</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/teacher_form" class="nav-link">
+                                    <a href="/teacher_form" class="nav-link  active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Register</p>
                                     </a>
@@ -838,12 +838,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Student Information</h1>
+                            <h1>Teacher Information</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active">Student Register</li>
+                                <li class="breadcrumb-item active">Teacher Register</li>
                             </ol>
                         </div>
                     </div>
@@ -854,7 +854,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <div id="app">
-                        <student-register></student-register>
+                        <teacher-register></teacher-register>
                     </div>
             </section>
             <!-- /.content -->

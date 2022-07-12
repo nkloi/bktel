@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('checkstudent')->name('home');
 Route::get('/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
+Route::get('/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('student.admin');
 
 Route::group(['prefix' => 'students'], function () {
@@ -34,6 +35,9 @@ Route::group(['prefix' => 'students'], function () {
 	Route::get('/edit/{id}', [App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
 	Route::get('delete/{id}', [App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
 	
-	
+});
+
+Route::group(['prefix' => 'teachers'], function() {
+	Route::post('/store', [App\Http\Controllers\TeacherController::class, 'store'])->name('teacher.store');
 });
 

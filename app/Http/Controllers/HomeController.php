@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('form');
     }
+
+    public function teacher_form()
+    {
+        return view('teacher_form');
+    }
 }

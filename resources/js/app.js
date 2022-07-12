@@ -12,7 +12,11 @@
  app.component(
     "student-register",
     require("./components/StudentRegister.vue").default
-);
+ );
+ app.component(
+    "teacher-register",
+    require("./components/TeacherRegister.vue").default
+ );
  app.mount("#app")
 
 // require('./bootstrap');

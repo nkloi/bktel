@@ -35,7 +35,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="./login" class="nav-link">Logout</a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                  document.getElementById('logout-form').submit();" class="nav-link">
+                  Logout
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" style="display:none;">
+                      @csrf
+                  </form>
+        </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -410,9 +416,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/teacher_form" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
+                  <p>Teacher Register</p>
                 </a>
               </li>
               <li class="nav-item">
