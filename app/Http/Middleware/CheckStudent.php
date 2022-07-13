@@ -19,8 +19,8 @@ class CheckStudent
     public function handle(Request $request, Closure $next)
     {
         $current_userid = Auth::user()->id;
-        $student_id = User::where('id', $current_userid)->get();
-        if ($student_id[0]["student_id"] != NULL) {
+        $check = User::where('id', $current_userid)->get();
+        if ($check[0]["student_id"] != NULL || $check[0]["role_id"] != 4) {
             return $next($request);
         } else {
             return redirect('/home/student_form');

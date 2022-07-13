@@ -22,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('checkstudent')->name('home');
+
 Route::group(['prefix' => 'students'], function () {
     Route::get('/create', [App\Http\Controllers\StudentsController::class, 'create'])->name('student.create');
     Route::get('/{id}', [App\Http\Controllers\StudentsController::class, 'show'])->name('student.show');
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'students'], function () {
 });
 Route::group(['prefix' => 'teachers'], function () {
     Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
+    Route::post('/uploaded', [App\Http\Controllers\TeachersController::class, 'upload'])->name('teacher.upload');
 });
 Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
 Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');

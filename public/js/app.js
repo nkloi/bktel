@@ -5103,15 +5103,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      var _this = this;
-
       this.errors = {};
       axios.post('/students/stored', this.form).then(function (response) {
         window.location.href = '/home';
-      })["catch"](function (error) {
-        if (error.response.status === 422) {
-          _this.errors = error.response.data.errors || {};
-        }
       });
     }
   }
@@ -49059,6 +49053,7 @@ var render = function () {
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                required: "",
                 id: "first-name",
                 placeholder: "First Name",
               },
@@ -49089,6 +49084,7 @@ var render = function () {
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                required: "",
                 id: "last-name",
                 placeholder: "Last Name",
               },
@@ -49121,6 +49117,7 @@ var render = function () {
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                required: "",
                 id: "student-code",
                 placeholder: "Student Code",
               },
@@ -49153,6 +49150,7 @@ var render = function () {
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                required: "",
                 id: "department",
                 placeholder: "Department",
               },
@@ -49181,7 +49179,12 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
-              attrs: { type: "text", id: "faculty", placeholder: "Faculty" },
+              attrs: {
+                type: "text",
+                required: "",
+                id: "faculty",
+                placeholder: "Faculty",
+              },
               domProps: { value: _vm.form.faculty },
               on: {
                 input: function ($event) {
@@ -49207,7 +49210,12 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
-              attrs: { type: "text", id: "address", placeholder: "Address" },
+              attrs: {
+                type: "text",
+                required: "",
+                id: "address",
+                placeholder: "Address",
+              },
               domProps: { value: _vm.form.address },
               on: {
                 input: function ($event) {
@@ -49233,7 +49241,12 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
-              attrs: { type: "text", id: "phone", placeholder: "Phone" },
+              attrs: {
+                type: "text",
+                required: "",
+                id: "phone",
+                placeholder: "Phone",
+              },
               domProps: { value: _vm.form.phone },
               on: {
                 input: function ($event) {

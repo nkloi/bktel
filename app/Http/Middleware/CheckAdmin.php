@@ -24,7 +24,7 @@ class CheckAdmin
         if ($check[0]["role_id"] == 1) {
             return $next($request);
         } else {
-            return redirect('/home');
+            return redirect('/home/teacher_form');
         }
     }
 }
