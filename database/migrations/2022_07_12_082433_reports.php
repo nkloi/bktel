@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Subjects extends Migration
+class Reports extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class Subjects extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('teacher_id')->nullable();
-            $table->bigInteger('subject_id')->nullable();
-            $table->integer('semester')->nullable();
-            $table->integer('year')->nullable();
+            $table->bigInteger('student_id');
+            $table->foreignId('teacher_to_subject_id')->constrained('teacher_to_subjects')->onDelete('cascade');
+            $table->text('title');
+            $table->text('path');
+            $table->integer('mark')->nullable();
             $table->text('note')->nullable();
         });
     }
+
     /**
      * Reverse the migrations.
      *

@@ -48,8 +48,10 @@ Vue.component(
     "subject",
     require("./components/Subject-Component.vue").default
 );
+Vue.component("search", require("./components/Search-Component").default);
 
 Vue.component('teacher-component', require("./components/Teacher-Component.vue").default);
+Vue.component('upload-component', require("./components/Upload-Component.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

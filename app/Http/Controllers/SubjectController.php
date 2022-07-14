@@ -23,7 +23,6 @@ class SubjectController extends Controller
             'semester' => $data["semester"],
             'year' => $data["year"],
             'note' => $data["note"],
-
         ]);
         
     } 

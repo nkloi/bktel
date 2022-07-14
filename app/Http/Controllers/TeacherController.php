@@ -49,7 +49,7 @@ class TeacherController extends Controller
            
        ]);
 
-       $lastId = teachers::max('id');
+       $lastId = teacher::max('id');
        User::where('email', $data["email"])->update(['teacher_id' => $lastId]);
 
        return response()->json($data);

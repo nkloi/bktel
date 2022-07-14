@@ -18,7 +18,10 @@ use App\Http\Controllers\TeacherController;
 Route::get('/', function () {
     return view('welcome');
 }); 
-
+Route::get('/getStudentid', function () {
+	$role = Auth::user()->student_id;
+	return response()->json($role);
+});
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
@@ -38,3 +41,11 @@ Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])
 Route::post('added', [App\Http\Controllers\SubjectController::class, 'store'])->name('add_subs');
 Route::get('/finding', [App\Http\Controllers\TeacherToSubjectController::class, 'index'])->name('find');
 Route::post('upl', [App\Http\Controllers\TeacherToSubjectController::class, 'SubjectAndTeacher'])->name('soupntea');
+
+Route::get('/project', [App\Http\Controllers\SearchController::class, 'index'])->middleware('auth');
+Route::post('/search', [App\Http\Controllers\SearchController::class, 'postSearch']);
+Route::post('file-upload', [App\Http\Controllers\FileUploadController::class, 'fileUploadPost'])->name('file.upload.post');
+Route::post('imp', [App\Http\Controllers\SearchController::class, 'importSub'])->name('importSub');
+Route::post('/addnew', [App\Http\Controllers\FileUploadController::class, 'confirm']);
+
+
