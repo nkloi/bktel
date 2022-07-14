@@ -1,6 +1,6 @@
 <template>
 <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-primary" v-if="role==='student'">
               <div class="card-header">
                 <h3 class="card-title">Search</h3>
               </div>
@@ -51,31 +51,37 @@
                   <button type="submit" class="btn btn-primary">Search</button>
                 </div>
               </form>
+              <div class="card-header">
+                <h3 class="card-title">Search Results</h3>
+              </div>
               <div id="results">
                 <!--table-->
                 <table class="table">
                   <thead>
                     <tr>
+                    <th scope="arrow">Select</th>
                     <th scope="col">Lecturer</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Semester</th>
                     <th scope="col">Year</th>
-                    <th scope="arrow"></th>
                     </tr>
                  </thead>
                   <tbody>
                   <tr v-for="result in results">
+                  <td><button @click="getData($event, result.id)" style="cursor:pointer"><i class="fas fa-arrow-circle-right"></i></button></td>
                   <th scope="row">{{result.teacher_name}}</th>
                   <td>{{result.subject_name}}</td>
                   <td>{{result.semester}}</td>
                   <td>{{result.year}}</td>
-                  <td><button @click="getData($event, result.id)" style="cursor:pointer"><i class="fas fa-arrow-circle-right"></i></button></td>
                   </tr>
                   </tbody>
                </table>
                <!--table-->
               </div>
               <!--upload-->
+              <div class="card-header">
+                <h3 class="card-title">Upload Report</h3>
+              </div>
                <form @submit.prevent="upload">
                 <div class="card-body">
                    <div class="form-group">
@@ -107,7 +113,117 @@
                 </div>
               </form>
             </div>
-            <!-- /.card -->
+
+            <!--for teacher-->
+            <div class="card card-primary" v-else-if="role==='teacher'">
+              <div class="card-header">
+                <h3 class="card-title">Search</h3>
+              </div>
+               <div v-if="error" class="card-body">
+              <strong style="color: red;"> {{error}}</strong>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form @submit.prevent="search_report">
+                <div class="card-body">
+                   <div class="form-group">
+                    <label for="year">Year</label>
+                    <select v-model="teacher_search_form.year" id="year" required class="form-select" aria-label="Default select example">
+                      <option :value="year.pre" id="pre">{{year.pre}}</option>
+                      <option :value="year.curr" id="cur">{{year.curr}}</option>
+                      <option :value="year.fut" id="fut">{{year.fut}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <select v-model="teacher_search_form.semester" required id="semester" class="form-select" aria-label="Default select example">
+                      <option value="1">HK1</option>
+                      <option value="2">HK2</option>
+                      <option value="3">HK3</option>
+                    </select>
+                  </div>
+                   <div class="form-group">
+                    <label for="subject_id">Subject's Code</label>
+                    <select v-model="teacher_search_form.subject_id" id="subject_id" class="form-select" aria-label="Default select example">
+                    <option :value="subject.id" v-for="subject in subjects">{{subject.code+' - '+subject.name}}</option>
+                    </select>
+                  </div>
+                   <div class="form-group">
+                    <label for="student_code">Student's Code</label>
+                    <input type="text" class="form-control" id="name" v-model="teacher_search_form.student_code" placeholder="Code">
+                  </div>
+                   <div class="form-group">
+                    <label for="student_name">Student's Name</label>
+                    <input type="text" class="form-control" id="name" v-model="teacher_search_form.student_name" placeholder="Name">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+              </form>
+              <div class="card-header">
+                <h3 class="card-title">Search Results</h3>
+              </div>
+               <div id="results">
+                <!--table-->
+                <table class="table">
+                  <thead>
+                    <tr>
+                    <th scope="arrow">Select</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Student Code</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Mark</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Open</th>
+                    </tr>
+                 </thead>
+                  <tbody>
+                  <tr v-for="result in results">
+                  <td><button @click="selectToSet($event, result.report_id)" style="cursor:pointer"><i class="fas fa-arrow-circle-right"></i></button></td>
+                  <th scope="row">{{result.first_name+' '+result.last_name}}</th>
+                  <td>{{result.student_code}}</td>
+                  <th scope="row">{{result.name}}</th>
+                  <td>{{result.title}}</td>
+                  <td>{{result.semester}}</td>
+                  <td>{{result.year}}</td>
+                  <th style="color:red">{{result.mark}}</th>
+                  <td>{{result.note}}</td>
+                  <td><button @click="open_file($event, result.report_id)" style="cursor:pointer"><i class="fas fa-book-open"></i></button></td>
+                  </tr>
+                  </tbody>
+               </table>
+               <!--table-->
+              </div>
+               <div class="card-header">
+                <h3 class="card-title">Set Mark</h3>
+              </div>
+               <form @submit.prevent="set_mark">
+                <div class="card-body">
+                   <div class="form-group">
+                    <label for="info"> <span style="color:red;">*</span>Information</label>
+                    <input type="text" readonly required class="form-control" id="info" placeholder="Search -> Select">
+                   <div v-if="noti_empty" class="card-body">
+                      <strong style="color: red;"> {{noti_empty}}</strong>
+                   </div>
+                   </div>
+                   <div clas="form-group">
+                    <label for="mark"> <span style="color:red;">*</span>Mark</label>
+                    <input type="text" v-model="setmark.mark" required class="form-control" id="mark" placeholder="ex: 10">
+                   </div>
+                </div>
+                 <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <svg v-if="success" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+             </svg>
+                </div>
+               </form>
+            </div>
 </template>
 <script>
     export default {
@@ -123,6 +239,13 @@
                 semester: '',
                 year: '',
             },
+            teacher_search_form:{
+              year:'',
+              semester:'',
+              subject_id:'',
+              student_code:'',
+              student_name:''
+            },
             file_upload:{
               id:'',
               title:'',
@@ -135,6 +258,10 @@
               semester:'',
               note:''
             },
+            setmark:{
+             report_id:'',
+             mark:''
+            },
              year:{
               pre:'',
               curr:'',
@@ -145,11 +272,15 @@
             teachers:[],
             subjects:[],
             noti_empty:'',
-            success:''
+            success:'',
+            role:'',
         }      
     },
         methods: {
            processLoad(){
+             axios.get('/home/get_role').then(response => {   
+             this.role=response.data
+      });
             const date = new Date();
            let year = date.getFullYear()
             this.year.pre=year-1
@@ -163,6 +294,7 @@
       });
           },
        submit() {
+        this.success=false
       this.errors = {};
       axios.post('/home/search',  this.form).then(response => {   
         if(Array.isArray(response.data)){
@@ -180,6 +312,39 @@
         }
        //window.location.href = '/home/search'
       });
+    },
+     search_report() {
+      this.success=false
+      this.errors = {};
+      axios.post('/home/search_report',  this.teacher_search_form).then(response => {   
+         if(response.data!=''){
+         this.results=response.data
+         this.error=''
+         this.teacher_search_form.subject_id=''
+         this.teacher_search_form.student_code=''
+         this.teacher_search_form.student_name=''
+         }else{
+         this.error='Not found!'
+          this.results=response.data
+         this.teacher_search_form.subject_id=''
+         this.teacher_search_form.student_code=''
+         this.teacher_search_form.student_name=''
+         }
+      });
+    },
+    set_mark(){
+      var info=document.getElementById('info')
+        if(info.value==''){this.noti_empty='Information must be filled!'}
+        else{  
+           axios.post('/home/set_mark', this.setmark).then((response) => {
+            if(response.data!='success'){
+          this.noti_empty='Fail!'
+          }else{this.success=true
+            this.setmark.mark=''
+          }
+         
+        });
+        }
     },
     uploadFile(e) {
         this.file_upload.file = e.target.files[0];
@@ -203,11 +368,15 @@
         axios.post('/home/upload_report', formData, { headers }).then((response) => {
           if(response.data!='success'){
           this.noti_empty='You are not student!'
-          }else{this.success=true}
+          }else{this.success=true
+          this.file_upload.title=''
+          this.file_upload.note=''
+          }
         });
         }
       },
     getData(event, id){
+      this.success=false
       for(let i=0;i<this.results.length;i++){
       if(this.results[i].id==id){
       this.file_upload.id=id
@@ -222,6 +391,22 @@
       }
       }
      
+    },
+    selectToSet(event, report_id){
+      this.success=false
+      this.noti_empty=''
+       for(let i=0;i<this.results.length;i++){
+      if(this.results[i].report_id==report_id){
+     this.setmark.report_id=this.results[i].report_id
+      var info=document.getElementById('info')
+         info.value=this.results[i].first_name+' '+this.results[i].last_name+' - '+this.results[i].student_code +' - '+this.results[i].title
+      }
+      }
+    },
+    open_file(event,report_id){
+      axios.get('/home/open_file',{params:{report_id:report_id}}).then((response) => {
+      window.open( "/home/open_file?report_id="+report_id, "_blank");
+    });
     }
   },
     }

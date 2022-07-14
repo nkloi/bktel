@@ -47,6 +47,10 @@ Route::get('/home/add_student', [App\Http\Controllers\HomeController::class, 'ad
 Route::get('/home/add_subject', [App\Http\Controllers\HomeController::class, 'add_subject'])->middleware('checkadmin')->name('home.add_subject');
 Route::get('/home/teacher_subject', [App\Http\Controllers\HomeController::class, 'teacher_subject'])->middleware('checkadmin')->name('home.teacher_subject');
 Route::post('/home/search', [App\Http\Controllers\TeacherToSubjectController::class, 'search'])->name('home.search');
+Route::post('/home/search_report', [App\Http\Controllers\ReportsController::class, 'search'])->name('home.search_report');
 Route::get('/home/get_teacher_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllTeacherCode'])->name('home.get_teacher_code');
 Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllSubjectCode'])->name('home.get_subject_code');
+Route::get('/home/get_role', [App\Http\Controllers\TeacherToSubjectController::class, 'getRole'])->name('home.get_role');
 Route::post('/home/upload_report', [App\Http\Controllers\ReportsController::class, 'upload'])->name('home.upload_report');
+Route::post('/home/set_mark', [App\Http\Controllers\ReportsController::class, 'set_mark'])->name('home.set_mark');
+Route::get('/home/open_file', [App\Http\Controllers\ReportsController::class, 'open_file'])->name('home.open_file');

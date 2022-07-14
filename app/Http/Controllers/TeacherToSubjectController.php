@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Subject;
 use Mockery\Matcher\Subset;
+use  Illuminate\Support\Facades\Auth;
 
 class TeacherToSubjectController extends Controller
 {
@@ -135,5 +136,15 @@ class TeacherToSubjectController extends Controller
     {
         $all_subject = Subject::orderBy('name', 'asc')->get();
         return $all_subject;
+    }
+    public function getRole()
+    {
+        $current_userrole = Auth::user()->role_id;
+        if ($current_userrole != 4) {
+            $role = 'teacher';
+        } else {
+            $role = 'student';
+        }
+        return $role;
     }
 }
