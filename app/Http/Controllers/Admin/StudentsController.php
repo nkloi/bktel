@@ -59,12 +59,6 @@ class StudentsController extends Controller
         $student->delete();
         return response('suceess', 200);
     }
-    public function getStudentId()
-    {
-        $role = auth()->user()->student_id;
-
-	    return response()->json($role);
-    }
 
     public function ShowformUploadFile()
     {
@@ -75,7 +69,8 @@ class StudentsController extends Controller
 
     {
         $teacher_id=$request -> teacher_id;
-        $subject_id=$request -> subject_id;
+        $subject_code=$request -> subject_code;
+        $subject_id = DB::table('subjects')->where('code', $subject_code)->value('id') ;
         $semester=$request -> semester;
         $data = DB::table('teacher_to_subjects')->where('teacher_id', $teacher_id)
                                                 ->where('subject_id', $subject_id)

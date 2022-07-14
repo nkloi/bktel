@@ -66,7 +66,7 @@ class DashboardController extends Controller
     public function ImportStudent(Request $request)
     {
         $path = storage_path('app\data\\');
-        $name = $request->name;;
+        $name = $request->name;
         $generated_new_name = date('Ymd_His') . '_' . $request-> file-> getClientOriginalName();
         $path_import = '\app\data\\' . $generated_new_name;
         $request->file->move($path, $generated_new_name);

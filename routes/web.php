@@ -52,19 +52,21 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
                 Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');
                 Route::get('/import', [DashboardController::class, 'ShowformImportStudent'])->name('student.import.showform');
                 Route::post('/import',[DashboardController::class, 'ImportStudent']) -> name('student.import');
-                Route::get('/gettudentId', [StudentsController::class, 'getStudentId'])->name('get.student.id');
 
                 Route::get('/form-upload-file', [StudentsController::class, 'ShowformUploadFile'])->name('show.form.upload');
                 Route::post('/search-subject', [StudentsController::class, 'SearchSubject'])->name('search.subject');
                 Route::post('/confirm-subject', [StudentsController::class, 'ConfirmSubject'])->name('confirm.subject');
 
-                
                 Route::post('/upload-file',[StudentsController::class, 'UploadFileReport']) -> name('upload.file.report');
                  });
         Route::group(['prefix' => 'teachers'], function () {
               Route::get('/register', [DashboardController::class, 'RegisterTeacher'])->name('teacher.register');
               Route::get('/import',[DashboardController::class, 'ShowformImportTeacher']) -> name('teacher.import.showform');
               Route::post('/import',[DashboardController::class, 'ImportTeacher']) -> name('teacher.import');
+
+              Route::get('/form-upload-mark', [TeachersController::class, 'ShowformUploadMark'])->name('show.form.upload.mark');
+              Route::post('/search-report', [TeachersController::class, 'SearchReport'])->name('teacher.search.report');
+              Route::post('/set-mark-report', [TeachersController::class, 'SetMarkReport'])->name('teacher.setmark.report');
                  });
         Route::group(['prefix' => 'admin'], function () {
             Route::get('/import-subjects',[DashboardController::class, 'ShowImportSubject']) -> name('showimport.subject');

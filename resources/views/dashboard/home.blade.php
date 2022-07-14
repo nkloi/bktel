@@ -23,7 +23,7 @@
 
         <!-- Main Footer -->
 
-</div>
+
 
 
 @endsection

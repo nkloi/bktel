@@ -474,3 +474,11 @@
   .option-1{
     padding:10px 10px ;
   }
+  .btn-download {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 15px;
+  }

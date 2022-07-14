@@ -85,12 +85,11 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a :href='base_url+"/dashboard/students/form-upload-file"' class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Form Upload file</p>
+                <li class="nav-item">
+                    <a :href='base_url+"/dashboard/students/form-upload-file"' class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Form Upload file</p>
                 </a>
-
               </li>
               <li class="nav-item">
                 <a :href='base_url + "/dashboard/students/register"' class="nav-link">
@@ -117,12 +116,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="pages/layout/fixed-topnav.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -140,6 +133,29 @@
                   <p>Collapsed Sidebar</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-copy"></i>
+              <p>
+                Teacher
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a :href='base_url+"/dashboard/teachers/form-upload-mark"' class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Upload Mark</p>
+                    </a>
+                </li>
+              <li class="nav-item">
+                <a :href='base_url + "/dashboard/teachers/register"' class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Register Subject</p>
+                    </a>
+                </li>
             </ul>
           </li>
           <li class="nav-item">

@@ -9,7 +9,7 @@
                         <form   enctype='multipart/form-data' id="quickForm" @submit.prevent="Search()">
                             <div class="form-group">
                             <input type="text" placeholder="Enter Teacher Code" name="teacher_id" v-model="information.teacher_id"  class="form-control">
-                            <input type="text" placeholder="Enter Subject Code" name="subject_id" v-model="information.subject_id"  class="form-control" >
+                            <input type="text" placeholder="Enter Subject Code" name="subject_code" v-model="information.subject_code"  class="form-control" >
                             <input type="text" placeholder="Enter Semester" name="semester" v-model="information.semester"  class="form-control">
                             <input type="text" placeholder="Year" name="year" v-model="information.year"  class="form-control">
                             <button type="submit" class="btn btn-primary" >Search</button>
@@ -98,7 +98,7 @@ export default {
             return {
                 information: {
                 teacher_id: "",
-                subject_id: "",
+                subject_code: "",
                 semester: "",
                 year: "",
                 },
@@ -115,10 +115,6 @@ export default {
                 output:"",
                 success:"",
                 message:"",
-
-
-
-
             }
         },
         created() {
@@ -131,12 +127,11 @@ export default {
                     const url = this.base_url + "/dashboard/students/search-subject";
                     const response = await axios.post(url, this.information,{
                         'teacher_id': this.teacher_id,
-                        'subject_id': this.subject_id,
+                        'subject_code': this.subject_code,
                         'semester': this.semester,
                         'year': this.year,
                     });
                     this.listTeacherToSubjects = response.data;
-
                     console.log(response.data);
                 }
                  catch (error) {
@@ -161,9 +156,10 @@ export default {
                         'title':this.title,
                         'note':this.note,
                         'file':this.file,
-
                     });
+                    window.location.href = "/dashboard";
                     console.log(response.data);
+
                 }
                  catch (error) {
                     console.log(error);
