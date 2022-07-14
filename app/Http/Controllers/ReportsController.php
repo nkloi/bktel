@@ -34,7 +34,8 @@ class ReportsController extends Controller
         if (isset($teacher_id)) {
             if ($request["subject_id"] == NULL && $request["student_code"] == NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -42,7 +43,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] == NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -50,7 +52,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] != NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -58,7 +61,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] == NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -67,7 +71,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] != NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -75,7 +80,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] != NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -84,7 +90,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] == NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -93,7 +100,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] != NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -104,7 +112,8 @@ class ReportsController extends Controller
         } else {
             if ($request["subject_id"] == NULL && $request["student_code"] == NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -112,7 +121,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] == NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -120,7 +130,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] != NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -128,7 +139,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] == NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -137,7 +149,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] != NULL && $request["student_name"] == NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -145,7 +158,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] == NULL  && $request["student_code"] != NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -154,7 +168,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] == NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -163,7 +178,8 @@ class ReportsController extends Controller
                     ->get();
             } else if ($request["subject_id"] != NULL  && $request["student_code"] != NULL && $request["student_name"] != NULL) {
                 $results = DB::table('teacher_to_subjects')
-                    ->select('reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name', 'students.last_name', 'teacher_to_subjects.subject_id', 'subjects.name', 'semester', 'year', 'reports.note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->select('teachers.teacher_code', 'teachers.first_name AS teacher_fname', 'teachers.last_name AS teacher_lname', 'reports.id AS report_id', 'students.student_code AS student_code', 'students.first_name AS student_fname', 'students.last_name AS student_lname', 'teacher_to_subjects.subject_id', 'subjects.code AS subject_code', 'subjects.name AS subject_name', 'semester', 'year', 'reports.note AS report_note', 'reports.mark', 'reports.title', 'reports.path')
+                    ->join('teachers', 'teacher_to_subjects.teacher_id', '=', 'teachers.id')
                     ->join('reports', 'teacher_to_subjects.id', '=', 'reports.teacher_to_subject_id')
                     ->join('students', 'students.id', '=', 'reports.student_id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_to_subjects.subject_id')
@@ -191,5 +207,31 @@ class ReportsController extends Controller
         $report_path = $report[0]["path"];
         $path = storage_path('\\app\\' . $report_path);
         return  response()->download($path);
+    }
+    public function export(Request $request)
+    {
+        if (isset($request["path"])) {
+            $submit = true;
+        } else {
+            $submit = false;
+        }
+        $file_path = storage_path('app\\exports\\');
+        $file = fopen($file_path . $request["subject_code"] . '_' . $request["title"] . '.csv', 'c');
+        $data = array(
+            array('Year', 'Yemester', 'Teacher_code', 'Teacher_name', 'Subject_code', 'Subject_name', 'Student_code', 'Student_name', 'SubmitOrNot', 'Mark'),
+            array($request["year"], $request["semester"], $request["teacher_code"], $request["teacher_name"], $request["subject_code"], $request["subject_name"], $request["student_code"], $request["student_name"], $submit, $request["mark"]),
+        );
+        foreach ($data as $row) {
+            fputcsv($file, $row);
+        }
+        fclose($file);
+        return [
+            'status' => 'success',
+            'export_path' => $file_path . $request["subject_code"] . '_' . $request["title"] . '.csv',
+        ];
+    }
+    public function download_export(Request $request)
+    {
+        return  response()->download($request["export_path"]);
     }
 }

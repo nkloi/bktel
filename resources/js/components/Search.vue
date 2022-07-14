@@ -180,21 +180,23 @@
                     <th scope="col">Year</th>
                     <th scope="col">Mark</th>
                     <th scope="col">Note</th>
-                    <th scope="col">Open</th>
+                    <th scope="col">Report</th>
+                    <th scope="col">Export</th>
                     </tr>
                  </thead>
                   <tbody>
                   <tr v-for="result in results">
                   <td><button @click="selectToSet($event, result.report_id)" style="cursor:pointer"><i class="fas fa-arrow-circle-right"></i></button></td>
-                  <th scope="row">{{result.first_name+' '+result.last_name}}</th>
+                  <th scope="row">{{result.student_fname+' '+result.student_lname}}</th>
                   <td>{{result.student_code}}</td>
-                  <th scope="row">{{result.name}}</th>
+                  <th scope="row">{{result.subject_name}}</th>
                   <td>{{result.title}}</td>
                   <td>{{result.semester}}</td>
                   <td>{{result.year}}</td>
                   <th style="color:red">{{result.mark}}</th>
                   <td>{{result.note}}</td>
-                  <td><button @click="open_file($event, result.report_id)" style="cursor:pointer"><i class="fas fa-book-open"></i></button></td>
+                  <td><button @click="open_file($event, result.report_id)" style="cursor:pointer"><i class="fas fa-download"></i></button></td>
+                  <td><button @click="export_mark($event, result.report_id)" style="cursor:pointer"><i class="fas fa-file-export"></i></button></td>
                   </tr>
                   </tbody>
                </table>
@@ -316,7 +318,9 @@
      search_report() {
       this.success=false
       this.errors = {};
-      axios.post('/home/search_report',  this.teacher_search_form).then(response => {   
+      axios.post('/home/search_report',  this.teacher_search_form).then(response => {  
+         var info=document.getElementById('info')
+             info.value='' 
          if(response.data!=''){
          this.results=response.data
          this.error=''
@@ -340,7 +344,14 @@
             if(response.data!='success'){
           this.noti_empty='Fail!'
           }else{this.success=true
-            this.setmark.mark=''
+             for(let i=0;i<this.results.length;i++){
+             if(this.results[i].report_id==this.setmark.report_id){
+             this.results[i].mark=parseInt(this.setmark.mark)
+             this.setmark.mark=''
+             var info=document.getElementById('info')
+             info.value=''
+          }
+          }
           }
          
         });
@@ -390,7 +401,6 @@
          info.value=this.results[i].teacher_name+' - '+this.results[i].subject_name+' - HK'+this.results[i].semester+' - '+this.results[i].year
       }
       }
-     
     },
     selectToSet(event, report_id){
       this.success=false
@@ -399,14 +409,36 @@
       if(this.results[i].report_id==report_id){
      this.setmark.report_id=this.results[i].report_id
       var info=document.getElementById('info')
-         info.value=this.results[i].first_name+' '+this.results[i].last_name+' - '+this.results[i].student_code +' - '+this.results[i].title
+         info.value=this.results[i].student_fname+' '+this.results[i].student_lname+' - '+this.results[i].student_code +' - '+this.results[i].title
       }
       }
     },
     open_file(event,report_id){
-      axios.get('/home/open_file',{params:{report_id:report_id}}).then((response) => {
-      window.open( "/home/open_file?report_id="+report_id, "_blank");
-    });
+     window.open( "/home/open_file?report_id="+report_id, "_blank");
+    },
+    export_mark(event,report_id){
+      this.success=false
+      const data=new FormData()
+      for(let i=0;i<this.results.length;i++){
+      if(this.results[i].report_id==report_id){
+      data.append('year',this.results[i].year)
+      data.append('title',this.results[i].title)
+      data.append('teacher_code',this.results[i].teacher_code)
+      data.append('teacher_name',this.results[i].teacher_fname+' '+this.results[i].teacher_lname)
+      data.append('subject_code',this.results[i].subject_code)
+      data.append('subject_name',this.results[i].subject_name)
+      data.append('student_code',this.results[i].student_code)
+      data.append('student_name',this.results[i].student_fname+' '+this.results[i].student_lname)
+      data.append('semester',this.results[i].semester)
+      data.append('mark',this.results[i].mark)
+      data.append('path',this.results[i].path)
+      }
+      }
+      axios.post('/home/export',data).then((response)=>{
+        if(response.data.status=='success'){this.success=true
+        window.open( "/home/download_export?export_path="+response.data.export_path, "_blank");}
+        
+      });
     }
   },
     }

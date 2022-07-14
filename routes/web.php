@@ -54,3 +54,5 @@ Route::get('/home/get_role', [App\Http\Controllers\TeacherToSubjectController::c
 Route::post('/home/upload_report', [App\Http\Controllers\ReportsController::class, 'upload'])->name('home.upload_report');
 Route::post('/home/set_mark', [App\Http\Controllers\ReportsController::class, 'set_mark'])->name('home.set_mark');
 Route::get('/home/open_file', [App\Http\Controllers\ReportsController::class, 'open_file'])->name('home.open_file');
+Route::post('/home/export', [App\Http\Controllers\ReportsController::class, 'export'])->name('home.export');
+Route::get('/home/download_export', [App\Http\Controllers\ReportsController::class, 'download_export'])->name('home.download_export');
