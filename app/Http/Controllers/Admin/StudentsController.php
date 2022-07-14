@@ -32,7 +32,6 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        //DD($user);
         $student = new Student();
         $student->fill($request->all());
         $student->save();

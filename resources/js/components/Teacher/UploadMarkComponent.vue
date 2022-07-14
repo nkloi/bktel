@@ -127,7 +127,7 @@ export default {
                 async setMark() {
                 console.log(this.setmark);
                 try {
-                    const url = this.base_url + "/dashboard/teacher/set-mark-report";
+                    const url = this.base_url + "/dashboard/teachers/set-mark-report";
                     const response = await axios.post(url, this.setmark,{
                         report_id:"",
                         mark:"",

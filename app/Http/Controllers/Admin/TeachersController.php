@@ -57,12 +57,22 @@ class TeachersController extends Controller
         // $subject_id = DB::table('subjects')->where('code', $subject_code)->value('id') ;
         $semester = $request -> semester;
         $data = DB::table('reports')->select('*', 'reports.note as report_note')
-                ->leftJoin('teacher_to_subjects', 'teacher_to_subjects.id', '=','reports.teacher_to_subject_id', 'teacher_to_subjects.note as teacher_to_subject_note')
+                // ->join('teacher_to_subjects', 'teacher_to_subjects.id','=','reports.teacher_to_subject_id')
                                     ->where('student_id', $student_id)
                                     // ->where('subject_id', $subject_id)
-                                    ->where('teacher_id', $teacher_id)
+                                    // ->where('teacher_id', $teacher_id)
                                     ->get();
         return response()->json($data);
+    }
+    public function SetMarkReport(Request $request)
+    {
+        $report_id= $request -> report_id;
+        $report = Teacher::find($report_id);
+        $report->mark= $request -> mark;
+        $report->save();
+        $data = $report;
+        return response()->json($data);
+
     }
 
 }

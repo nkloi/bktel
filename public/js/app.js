@@ -7884,7 +7884,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 console.log(_this2.setmark);
                 _context2.prev = 1;
-                url = _this2.base_url + "/dashboard/teacher/set-mark-report";
+                url = _this2.base_url + "/dashboard/teachers/set-mark-report";
                 _context2.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, _this2.setmark, {
                   report_id: "",
