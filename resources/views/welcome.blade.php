@@ -12,10 +12,10 @@
     <div id="main">
         <div id="header" class="clear">
             <ul id="nav">
-                <li><a href="">Trang chủ</a></li>
-                <li><a href="">Giảng viên</a></li>
-                <li><a href="">Khóa học</a></li>
-                <li><a href="">Liên hệ</a></li>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#content">Giảng viên</a></li>
+                <li><a href="#class">Khóa học</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
                 <li>
                     <a href="">
                         NHIỀU HƠN

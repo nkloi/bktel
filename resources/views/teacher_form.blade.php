@@ -862,9 +862,9 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group row">
-                                    {{-- Teacher's name --}}
+                                    {{-- Reminder name --}}
                                     <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
-                                        <span style="color:red;">*</span> Teacher's name</label>
+                                        <span style="color:red;">*</span>Reminder name</label>
                                         <input placeholder="Enter name" type="text" required class="form-control form-control-user @error('name') is-invalid @enderror" name="name">
                                         <span></span>Note</label>
                                         <input placeholder="Note (optional)" type="text" class="form-control form-control-user @error('note') is-invalid @enderror" id="exampleFile" name="note">

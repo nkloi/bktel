@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use  Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 
@@ -27,17 +29,24 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function student_form()
+    public function student_form(Request $request)
     {
-        return view('student_form');
+        $current_userid = Auth::user()->id;
+        $check = User::where('id', $current_userid)->get();
+        if ($check[0]["student_id"] == NULL || $check[0]["role_id"] != 4) {
+            return view('student_form');
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function teacher_form()
     {
 
         return view('teacher_form');
     }
-    public function calendar()
+    public function add_student()
     {
-        return view('calendar');
+
+        return view('addstudent');
     }
 }

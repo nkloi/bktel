@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\UpLoadCsvFile;
+use App\Jobs\UpLoadCsvFile_Teacher;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\User;
@@ -62,7 +62,7 @@ class TeachersController extends Controller
         while (!feof($file)) {
             $content[] = fgetcsv($file, 0, ',');
         }
-        UpLoadCsvFile::dispatch($content, $id)->delay(5);
+        UpLoadCsvFile_Teacher::dispatch($content, $id)->delay(5);
         return redirect()->route('home');
     }
 }
