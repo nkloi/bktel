@@ -49,6 +49,13 @@ Route::group(['prefix' => 'students'], function () {
 		Route::post('/register', [StudentsController::class, 'store'])->name('student.store');
 		Route::get('/import', [StudentsController::class, 'showImport'])->name('student.import');
 		Route::post('/import', [StudentsController::class, 'storeImport'])->name('student.import.store');
+		Route::get('/upload', [StudentsController::class, 'showUpload'])->name('student.upload');
+		Route::get('/studentID', [StudentsController::class, 'showStudentID'])->name('student.ID');
+		Route::post('/search-subject', [StudentsController::class, 'SearchSubject'])->name('search.subject');
+		Route::post('/confirm-subject', [StudentsController::class, 'ConfirmSubject'])->name('confirm.subject');
+		Route::post('/upload-file', [StudentsController::class, 'UploadFileReport'])->name('upload.file.report');
+
+
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {
@@ -58,7 +65,7 @@ Route::group(['prefix' => 'students'], function () {
 		Route::post('/register', [TeachersController::class, 'store'])->name('teacher.store');
 		Route::post('/import', [TeachersController::class, 'storeImport'])->name('teacher.import.store');
 		Route::get('/getAll', [TeachersController::class, 'getAllTeachers']);
-		
+		Route::get('/teacherID',[TeachersController::class, 'showTeacherID'])->name('teacher.ID');
 	});
 
 	Route::group(['prefix' => 'subjects'], function () {

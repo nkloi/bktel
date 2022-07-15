@@ -92,7 +92,7 @@ export default {
                     },
                 });
                 console.log(data);
-                window.location.href = "/dashboard";
+                // window.location.href = "/dashboard";
             } catch (error) {
                 console.log(error);
             }
