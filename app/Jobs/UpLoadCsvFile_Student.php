@@ -78,6 +78,6 @@ class UpLoadCsvFile_Student implements ShouldQueue
     {
         Import::where([
             'id' => $this->id,
-        ])->update(['status' => 3], ['note' => 'Data of file.csv was wrong']);
+        ])->update(['status' => 3, 'note' => 'Data of file.csv was wrong']);
     }
 }

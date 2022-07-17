@@ -63,6 +63,6 @@ class TeachersController extends Controller
             $content[] = fgetcsv($file, 0, ',');
         }
         UpLoadCsvFile_Teacher::dispatch($content, $id)->delay(5);
-        return redirect()->route('home');
+        return redirect()->route('home.teacher_form');
     }
 }
