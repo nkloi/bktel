@@ -25,8 +25,7 @@
                     <table class="table table-bordered" >
                             <thead>
                                 <th width="5%">STT</th>
-                                <th>Student_id</th>
-                                <th>TTS_id</th>
+                                <th width="10%">Student_id</th>                                
                                 <th>Subject_id</th>
                                 <th>Teacher_id</th>
                                 <th>Title</th>
@@ -37,17 +36,16 @@
                             <tbody>
 
                                 <tr v-for="reports in listReports" :key="reports.id">
-                                    <th scope="row">{{ reports.id }}</th>
+                                    <th scope="row">{{ reports.report_id }}</th>
                                     <td>{{ reports.student_id }}</td>
-                                    <td>{{ reports.teacher_to_subject_id }}</td>
                                     <td>{{ reports.subject_id }}</td>
                                     <td>{{ reports.teacher_id }}</td>
                                     <td>{{ reports.title }}</td>
                                     <td>{{ reports.report_note }}</td>
                                     <td>{{ reports.mark }}</td>
                                     <td>
-                                        <button class="btn-download"
-                                            @click.prevent="downloadFile(reports.id)">
+                                        <button class="btn-download" 
+                                            @click.prevent="downloadFile(reports.report_id, )" >
                                             <i class="fa fa-download">Download</i>
                                         </button>
                                     </td>
@@ -103,6 +101,7 @@ export default {
                 output:"",
                 success:"",
                 message:"",
+                download:{report_id:"",},
             }
         },
 
@@ -139,10 +138,18 @@ export default {
                 }
 
             },
-            async downloadFile(id){
-                this.setmark.report_id = id;
-                console.log(this.setmark);
-            }
+            async downloadFile(report_id)
+             {
+                this.setmark.report_id = report_id;
+                this.download.report_id = report_id;
+                axios.get('/dashboard/teachers/download-file-report',{params:{report_id:report_id}})
+                .then(
+                    (response) => {window.open( "/dashboard/teachers/download-file-report?report_id="+report_id, "_blank");
+                  });
+                                 
+                
+             }
+
         },
 
 

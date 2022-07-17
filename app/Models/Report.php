@@ -16,4 +16,12 @@ class Report extends Model
         'mark',
         'note',
         ];
+    public function TeacherToSubject()
+    {
+        return $this->hasOne(TeacherToSubject::class, 'teacher_to_subject_id');
+    }
+    public function Student()
+    {
+        return $this->hasMany(Student::class, 'student_id');
+    }
 }

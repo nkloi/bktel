@@ -13,4 +13,8 @@ class TeacherToSubject extends Model
     protected $fillable = [
         'teacher_id', 'subject_id', 'semester', 'year', 'note',
     ];
+    public function report()
+    {
+        return $this->belongsTo('App\Models\Report');
+    }
 }

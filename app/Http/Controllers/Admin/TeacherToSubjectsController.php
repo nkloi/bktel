@@ -44,6 +44,6 @@ class TeacherToSubjectsController extends Controller
 
         return response()->json($teacher_to_subject);
 
-    }
+        }
 
 }

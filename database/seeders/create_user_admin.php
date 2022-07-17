@@ -21,6 +21,8 @@ class create_user_admin extends Seeder
             'email' => 'admin@hcmut.edu.vn',
             'password' => Hash::make('123123123'),
             'role_id'=> 1,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
         ]);
 
 

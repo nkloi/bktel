@@ -66,6 +66,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
 
               Route::get('/form-upload-mark', [TeachersController::class, 'ShowformUploadMark'])->name('show.form.upload.mark');
               Route::post('/search-report', [TeachersController::class, 'SearchReport'])->name('teacher.search.report');
+              Route::get('/download-file-report', [TeachersController::class, 'DowloadfileReport'])->name('teacher.dowload.report');
               Route::post('/set-mark-report', [TeachersController::class, 'SetMarkReport'])->name('teacher.setmark.report');
                  });
         Route::group(['prefix' => 'admin'], function () {

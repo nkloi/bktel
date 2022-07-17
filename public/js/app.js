@@ -7806,8 +7806,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -7829,7 +7827,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       output: "",
       success: "",
-      message: ""
+      message: "",
+      download: {
+        report_id: ""
+      }
     };
   },
   methods: {
@@ -7910,7 +7911,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, null, [[1, 9]]);
       }))();
     },
-    downloadFile: function downloadFile(id) {
+    downloadFile: function downloadFile(report_id) {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
@@ -7918,10 +7919,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.setmark.report_id = id;
-                console.log(_this3.setmark);
+                _this3.setmark.report_id = report_id;
+                _this3.download.report_id = report_id;
+                axios__WEBPACK_IMPORTED_MODULE_0___default().get('/dashboard/teachers/download-file-report', {
+                  params: {
+                    report_id: report_id
+                  }
+                }).then(function (response) {
+                  window.open("/dashboard/teachers/download-file-report?report_id=" + report_id, "_blank");
+                });
 
-              case 2:
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -15191,7 +15199,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.invalid[data-v-c81a755a] {\n    margin-top: 0.25rem;\n    font-size: 80%;\n    color: #dc3545;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.invalid[data-v-c81a755a] {\r\n    margin-top: 0.25rem;\r\n    font-size: 80%;\r\n    color: #dc3545;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35031,7 +35039,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-tachometer-alt" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                Dashboard\n                "),
+          _vm._v("\r\n                Dashboard\r\n                "),
           _c("i", { staticClass: "right fa fa-angle-left" }),
         ]),
       ]),
@@ -35090,7 +35098,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "nav-icon fa fa-th" }),
           _vm._v(" "),
           _c("p", [
-            _vm._v("\n                Widgets\n                "),
+            _vm._v("\r\n                Widgets\r\n                "),
             _c("span", { staticClass: "right badge badge-danger" }, [
               _vm._v("New"),
             ]),
@@ -35107,7 +35115,7 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fa fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                Student\n                "),
+        _vm._v("\r\n                Student\r\n                "),
         _c("i", { staticClass: "fa fa-angle-left right" }),
       ]),
     ])
@@ -35231,7 +35239,7 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fa fa-copy" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                Teacher\n                "),
+        _vm._v("\r\n                Teacher\r\n                "),
         _c("i", { staticClass: "fa fa-angle-left right" }),
       ]),
     ])
@@ -35244,7 +35252,7 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fa fa-plus-square" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                Teacher and Subject\n                "),
+        _vm._v("\r\n                Teacher and Subject\r\n                "),
         _c("i", { staticClass: "right fa fa-angle-left" }),
       ]),
     ])
@@ -35274,7 +35282,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-tree" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                UI Elements\n                "),
+          _vm._v("\r\n                UI Elements\r\n                "),
           _c("i", { staticClass: "fa fa-angle-left right" }),
         ]),
       ]),
@@ -35407,7 +35415,7 @@ var staticRenderFns = [
       _c("i", { staticClass: "fa fa-circle nav-icon" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                Register\n                "),
+        _vm._v("\r\n                Register\r\n                "),
         _c("i", { staticClass: "fa fa-angle-left right" }),
       ]),
     ])
@@ -35420,7 +35428,7 @@ var staticRenderFns = [
       _c("i", { staticClass: "nav-icon fa fa-table" }),
       _vm._v(" "),
       _c("p", [
-        _vm._v("\n                Logout\n                "),
+        _vm._v("\r\n                Logout\r\n                "),
         _c("i", { staticClass: "fa fa-angle-left right" }),
       ]),
     ])
@@ -35472,7 +35480,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "nav-icon fa fa-calendar-alt" }),
           _vm._v(" "),
           _c("p", [
-            _vm._v("\n                Calendar\n                "),
+            _vm._v("\r\n                Calendar\r\n                "),
             _c("span", { staticClass: "badge badge-info right" }, [
               _vm._v("2"),
             ]),
@@ -35492,7 +35500,7 @@ var staticRenderFns = [
         [
           _c("i", { staticClass: "nav-icon fa fa-image" }),
           _vm._v(" "),
-          _c("p", [_vm._v("\n                Gallery\n              ")]),
+          _c("p", [_vm._v("\r\n                Gallery\r\n              ")]),
         ]
       ),
     ])
@@ -35508,7 +35516,9 @@ var staticRenderFns = [
         [
           _c("i", { staticClass: "nav-icon fa fa-columns" }),
           _vm._v(" "),
-          _c("p", [_vm._v("\n                Kanban Board\n              ")]),
+          _c("p", [
+            _vm._v("\r\n                Kanban Board\r\n              "),
+          ]),
         ]
       ),
     ])
@@ -35522,7 +35532,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-envelope" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                Mailbox\n                "),
+          _vm._v("\r\n                Mailbox\r\n                "),
           _c("i", { staticClass: "fa fa-angle-left right" }),
         ]),
       ]),
@@ -35584,7 +35594,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-book" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                Pages\n                "),
+          _vm._v("\r\n                Pages\r\n                "),
           _c("i", { staticClass: "fa fa-angle-left right" }),
         ]),
       ]),
@@ -35751,7 +35761,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-plus-square" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                Extras\n                "),
+          _vm._v("\r\n                Extras\r\n                "),
           _c("i", { staticClass: "fa fa-angle-left right" }),
         ]),
       ]),
@@ -35763,7 +35773,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "\n                    Login & Register v1\n                    "
+                "\r\n                    Login & Register v1\r\n                    "
               ),
               _c("i", { staticClass: "fa fa-angle-left right" }),
             ]),
@@ -35838,7 +35848,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "\n                    Login & Register v2\n                    "
+                "\r\n                    Login & Register v2\r\n                    "
               ),
               _c("i", { staticClass: "fa fa-angle-left right" }),
             ]),
@@ -36035,7 +36045,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fa fa-search" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v("\n                Search\n                "),
+          _vm._v("\r\n                Search\r\n                "),
           _c("i", { staticClass: "fa fa-angle-left right" }),
         ]),
       ]),
@@ -36684,7 +36694,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                                            Select\n                                        "
+                              "\r\n                                            Select\r\n                                        "
                             ),
                           ]
                         ),
@@ -37964,12 +37974,10 @@ var render = function () {
                 _vm._l(_vm.listReports, function (reports) {
                   return _c("tr", { key: reports.id }, [
                     _c("th", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(reports.id)),
+                      _vm._v(_vm._s(reports.report_id)),
                     ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(reports.student_id))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(reports.teacher_to_subject_id))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(reports.subject_id))]),
                     _vm._v(" "),
@@ -37989,7 +37997,7 @@ var render = function () {
                           on: {
                             click: function ($event) {
                               $event.preventDefault()
-                              return _vm.downloadFile(reports.id)
+                              return _vm.downloadFile(reports.report_id)
                             },
                           },
                         },
@@ -38102,9 +38110,7 @@ var staticRenderFns = [
     return _c("thead", [
       _c("th", { attrs: { width: "5%" } }, [_vm._v("STT")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Student_id")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("TTS_id")]),
+      _c("th", { attrs: { width: "10%" } }, [_vm._v("Student_id")]),
       _vm._v(" "),
       _c("th", [_vm._v("Subject_id")]),
       _vm._v(" "),

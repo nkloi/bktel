@@ -16,4 +16,9 @@ class Student extends Model
     {
         return $this->hasOne(User::class, 'student_id');
     }
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+
+    }
 }
