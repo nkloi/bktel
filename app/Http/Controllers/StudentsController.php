@@ -16,7 +16,13 @@ class StudentsController extends Controller
         return view('home');
     }
 
-    public function showImport(){
+    public function showReport()
+    {
+        return view('student.upload');
+    }
+
+    public function showImport()
+    {
         return view('student.import');
     }
 
@@ -28,16 +34,16 @@ class StudentsController extends Controller
     //action get student with id
     public function show($student_id)
     {
-        $student=Student::find($student_id);
+        $student = Student::find($student_id);
         $users = $student->user;
 
-        $email = $users-> email;
-        $studentfull= $student ->attributesToArray();
+        $email = $users->email;
+        $studentfull = $student->attributesToArray();
         $studentfull["email"] = $email;
-        return response()->json($studentfull);    
-    }  
-    
-     //save student
+        return response()->json($studentfull);
+    }
+
+    //save student
     public function store(Request $request)
     {
         info($request);
@@ -50,7 +56,7 @@ class StudentsController extends Controller
 
         return response()->json($user);
     }
-   
+
     //acction update student
     public function update(Request $request, $student_id)
     {
@@ -68,7 +74,8 @@ class StudentsController extends Controller
         return response('suceess', 200);
     }
 
-    public function storeImport(Request $request){
+    public function storeImport(Request $request)
+    {
         $path = storage_path('app\data\\');
         // $file_name = $request->file->getClientOriginalName();
         $name = $request->name;
@@ -88,4 +95,3 @@ class StudentsController extends Controller
         return response()->json($request);
     }
 }
-
