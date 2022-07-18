@@ -884,12 +884,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success btn-user float-right mb-3" href="/home">Upload</button>
+                                <a class="btn btn-primary float-right mr-3 mb-3" href="/home">Cancel</a>
+                            </div>
                     </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success btn-user float-right mb-3">Upload</button>
-                        <a class="btn btn-primary float-right mr-3 mb-3" href="/home">Cancel</a>
-                    </div>
+                    
                     </form>
                 </div>
                 <!-- end input file -->

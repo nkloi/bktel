@@ -9,6 +9,7 @@
  require("./dashboard3");
  require("./jquery.min");
  require("./adminlte");
+ require("./bs-custom-file-input.min");
  window.Vue = require("vue").default;
  
  /**

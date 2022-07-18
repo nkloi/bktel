@@ -45,28 +45,32 @@ class UpLoadCsvFile implements ShouldQueue
             'id' => $this->id,
         ]);
         $row->update(['status' => 1]);
-        for ($i = 1; $i < count($this->content); $i++) {
-            $compare = $this->content[$i][3];
-            if (preg_match($pattern, $compare)) {
-                Teacher::create([
-                    'last_name' => $this->content[$i][0],
-                    'first_name' => $this->content[$i][1],
-                    'teacher_code' => $this->content[$i][2],
-                    'department' => $this->content[$i][5],
-                    'faculty' => $this->content[$i][6],
-                    'address' => $this->content[$i][7],
-                    'phone' => $this->content[$i][8],
-                    'note' => $this->content[$i][9],
-                ]);
-                $lastId = Teacher::max('id');
-
-                User::create([
-                    'teacher_id' => $lastId,
-                    'role_id' => 3,
-                    'name' => $this->content[$i][1] . " " . $this->content[$i][0],
-                    'email' => $this->content[$i][3],
-                    'password' => Hash::make($this->content[$i][4]),
-                ]);
+        info($this->content);
+        for ($i = 0; $i < count($this->content); $i++) {
+            if ($this->content[$i]) {
+                $compare = $this->content[$i][3];
+                if (preg_match($pattern, $compare)) {
+                    Teacher::create([
+                        'last_name' => $this->content[$i][0],
+                        'first_name' => $this->content[$i][1],
+                        'teacher_code' => $this->content[$i][2],
+                        'department' => $this->content[$i][5],
+                        'faculty' => $this->content[$i][6],
+                        'address' => $this->content[$i][7],
+                        'phone' => $this->content[$i][8],
+                        'note' => $this->content[$i][9],
+                    ]);
+                    $lastId = Teacher::max('id');
+    
+                    User::create([
+                        'teacher_id' => $lastId,
+                        'role_id' => 3,
+                        'name' => $this->content[$i][1] . " " . $this->content[$i][0],
+                        'email' => $this->content[$i][3],
+                        'password' => Hash::make($this->content[$i][4]),
+                    ]);
+                    
+                }
             }
         }
         $row->update(['status' => 2]);

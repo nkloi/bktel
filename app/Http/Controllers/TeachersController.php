@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use App\Jobs\UpLoadCsvFile;
 use App\Models\Import;
 use App\Models\Teacher;
@@ -20,9 +22,9 @@ class TeachersController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $validatedData = $request->validate([
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/(.+)@hcmut.edu.vn/i'],
-        // ]);
+        $validatedData = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/(.+)@hcmut.edu.vn/i'],
+        ]);
 
         Teacher::create([
             'last_name' => $data["last_name"],
@@ -64,6 +66,10 @@ class TeachersController extends Controller
             $content[] = fgetcsv($file, 0, ',');
         }
         UpLoadCsvFile::dispatch($content, $id)->delay(5);
+        //return response()->json("upload success");
+        //return response()->json($content);
         return redirect()->route('home');
+        
+        
     }
 }

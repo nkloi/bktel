@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class User extends Authenticatable
 {
@@ -43,4 +44,13 @@ class User extends Authenticatable
     //     return $this->belongsTo(Students::class);
     
     // }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id');
+    }
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'student_id');
+    }
 }

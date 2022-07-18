@@ -422,6 +422,7 @@
                                         <p>Teacher Register</p>
                                     </a>
                                 </li>
+                                
                                 <li class="nav-item">
                                     <a href="pages/forms/editors.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
