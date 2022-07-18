@@ -30,6 +30,8 @@ Route::group(['prefix' => 'students'], function () {
     Route::post('update/{id}', [App\Http\Controllers\StudentsController::class, 'update'])->name('student.update');
     Route::get('/edit/{id}', [App\Http\Controllers\StudentsController::class, 'edit'])->name('student.edit');
     Route::any('/delete/{id}', [App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.destroy');
+
+    Route::post('/uploaded', [App\Http\Controllers\StudentsController::class, 'upload'])->name('student.upload');
 });
 Route::group(['prefix' => 'teachers'], function () {
     Route::post('/stored', [App\Http\Controllers\TeachersController::class, 'store'])->name('teacher.store');
@@ -37,3 +39,4 @@ Route::group(['prefix' => 'teachers'], function () {
 });
 Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
 Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
+Route::get('/home/add_student', [App\Http\Controllers\HomeController::class, 'add_student'])->middleware('checkadmin')->name('home.add_student');

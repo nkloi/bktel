@@ -17,7 +17,7 @@ use Illuminate\Queue\SerializesModels;
 use Throwable;
 
 
-class UpLoadCsvFile implements ShouldQueue
+class UpLoadCsvFile_Teacher implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected $content, $id;
@@ -45,7 +45,7 @@ class UpLoadCsvFile implements ShouldQueue
             'id' => $this->id,
         ]);
         $row->update(['status' => 1]);
-        info($this->content);
+        // info($this->content);
         for ($i = 0; $i < count($this->content); $i++) {
             if ($this->content[$i]) {
                 $compare = $this->content[$i][3];

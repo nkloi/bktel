@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
+use App\Jobs\UpLoadCsvFile_Student;
+use App\Models\Import;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -68,6 +70,30 @@ class StudentsController extends Controller
     {
         User::where('student_id', $id)->update(['student_id' => NULL]);
         Student::where('id', $id)->delete();
+        return redirect()->route('home');
+    }
+
+    public function upload(Request $request)
+    {
+        $data = $request->file("file");
+        $original_name = $data->getClientOriginalName();
+        $name = date('Ymd_His_') . $original_name;
+        $path = $data->storeAs('data', $name);
+        Import::create([
+            'name' => $request->name,
+            'path' => $path,
+            'status' => 0,
+            'created_by' => Auth::user()->name,
+            'note' => $request->note,
+        ]);
+        $id = Import::max('id');
+        $file_path = storage_path('app\\data\\' . $name);
+        $file = fopen($file_path, "r");
+        while (!feof($file)) {
+            $content[] = fgetcsv($file, 0, ',');
+        }
+        
+        UpLoadCsvFile_Student::dispatch($content, $id)->delay(5);
         return redirect()->route('home');
     }
 }
