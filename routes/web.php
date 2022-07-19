@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::get('/forms', [App\Http\Controllers\HomeController::class, 'forms'])->name('home.forms');
 Route::get('/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('student.admin');
-
+Route::get('/teacher_import', [App\Http\Controllers\HomeController::class, 'teacher_import'])->middleware('checkadmin')->name('home.teacher_import');
 Route::group(['prefix' => 'students'], function () {
 	
 	Route::get('/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
@@ -39,5 +39,6 @@ Route::group(['prefix' => 'students'], function () {
 
 Route::group(['prefix' => 'teachers'], function() {
 	Route::post('/store', [App\Http\Controllers\TeacherController::class, 'store'])->name('teacher.store');
+	Route::post('/upload', [App\Http\Controllers\TeacherController::class, 'upload'])->name('teacher.upload');
 });
 

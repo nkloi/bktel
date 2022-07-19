@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('teacher_form');
     }
+
+    public function teacher_import()
+    {
+        return view('teacher_import');
+    }
 }
