@@ -40,4 +40,9 @@ class HomeController extends Controller
     {
         return view('teacher_import');
     }
+
+    public function student_import()
+    {
+        return view('student_import');
+    }
 }

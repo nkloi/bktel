@@ -5,14 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Import Teacher</title>
+    <title>Import Student</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <!-- input file-->
 <div class="card shadow mb-4">
-    <form method="POST" action="{{route('teacher.upload')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('student.upload')}}" enctype="multipart/form-data">
     
         @csrf
         <div class="card-body">

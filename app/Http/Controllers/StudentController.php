@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Jobs\jobStudent;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Import;
+use Illuminate\Support\Facades\Auth;
 use Users;
 
 class StudentController extends Controller
@@ -95,6 +99,29 @@ class StudentController extends Controller
         $student ->delete();
         
 
+        return redirect()->route('home');
+    }
+
+    public function upload(Request $request)
+    {
+        $data = $request->file("file");
+        $original_name = $data->getClientOriginalName();
+        $name = date('Ymd_His_') . $original_name;
+        $path = $data->storeAs('data', $name);
+        Import::create([
+            'name' => $request->name,
+            'path' => $path,
+            'status' => 0,
+            'created_by' => Auth::user()->name,
+            'note' => $request->note,
+        ]);
+        $id = Import::max('id');
+        $file_path = storage_path('app\\data\\' . $name);
+        $file = fopen($file_path, "r");
+        while (!feof($file)) {
+            $content[] = fgetcsv($file, 0, ',');
+        }
+        jobStudent::dispatch($content, $id)->delay(5);
         return redirect()->route('home');
     }
 }
