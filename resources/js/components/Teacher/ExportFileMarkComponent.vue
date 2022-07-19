@@ -91,6 +91,7 @@ export default {
                 student_id:"",
                 },
                 listReports: [],
+                listReportsFilter: [],
                 error: null,
                 setmark:{
                     report_id:"",
@@ -162,14 +163,51 @@ export default {
                 //     fileLink.click();
                 // }
                 // )
-            
-                const data = JSON.stringify(this.listReports)
-                var fileURL = window.URL.createObjectURL(new Blob([data]));
-                var fileLink = document.createElement('a');
+
+                // const data = JSON.stringify(this.listReports)
+                
+                // var fileURL = window.URL.createObjectURL(new Blob([data]));
+                // var fileLink = document.createElement('a');
+                //     fileLink.href = fileURL;
+                //     fileLink.setAttribute('download', 'test.csv');
+                //     document.body.appendChild(fileLink);  
+                //     fileLink.click();
+                // console.log(data);
+                try {
+                    const url = this.base_url + "/dashboard/teachers/export-file-mark-csv";
+                    const response = await axios.post(url, this.listReports,{
+                        'report_id': this.report_id,
+                    });
+                    this.listReportsFilter = response.data;
+                    console.log(response.data);
+                   
+                }
+                 catch (error) {
+                    console.log(error);
+                }
+                    // const data = JSON.stringify(this.listReportsFilter)
+                    // var fileURL = window.URL.createObjectURL(new Blob([data]));
+                    // var fileLink = document.createElement('a');
+                    // fileLink.href = fileURL;
+                    // fileLink.setAttribute('download', 'test.csv');
+                    // document.body.appendChild(fileLink);  
+                    // fileLink.click();
+                    const object = this.listReportsFilter
+                    const header = Object.keys(object[0]);
+                    const replacer = function(key,value) {return value === null ? '' : value}
+                    const csv = [
+                        header.join(',')  ,  //header row first
+                        ...object.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer) ).join(','))                     
+                    ].join('\r\n')
+                    console.log(csv)
+
+                    var fileURL = window.URL.createObjectURL(new Blob([csv]));
+                    var fileLink = document.createElement('a');
                     fileLink.href = fileURL;
                     fileLink.setAttribute('download', 'test.csv');
                     document.body.appendChild(fileLink);  
                     fileLink.click();
+                    
                
             }
         },

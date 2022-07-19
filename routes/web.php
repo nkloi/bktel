@@ -70,7 +70,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
               Route::get('/download-file-report', [TeachersController::class, 'DowloadfileReport'])->name('teacher.dowload.report');
               Route::post('/set-mark-report', [TeachersController::class, 'SetMarkReport'])->name('teacher.setmark.report');
               Route::get('/form-export-file-mark', [TeachersController::class, 'FormExportFileMark'])->name('teacher.export.mark.form');
-              Route::get('/export-file-mark-csv', [TeachersController::class, 'ExportFileMarkCsv'])->name('teacher.export.mark');
+              Route::post('/export-file-mark-csv', [TeachersController::class, 'ExportFileMarkCsv'])->name('teacher.export.mark');
 
                  });
         Route::group(['prefix' => 'admin'], function () {

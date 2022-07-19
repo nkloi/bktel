@@ -117,15 +117,26 @@ class TeachersController extends Controller
     public function ExportFileMarkCsv(Request $request)
     {
         $report_id = $request -> report_id;
+        $subject_id=$request -> subject_id;
+        $teacher_id= auth()->user()->teacher_id;
         $semester = $request -> semester;
         $data = DB::table('reports')->join('teacher_to_subjects', 'teacher_to_subjects.id','=','reports.teacher_to_subject_id')
                                     ->join('teachers', 'teachers.id','=','teacher_to_subjects.teacher_id')
                                     ->join('subjects', 'subjects.id','=','teacher_to_subjects.subject_id')
                                     ->join('students', 'students.id','=','reports.student_id')
-                                    ->select('*', 'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_first_name')                                    
+                                    
+                                    ->select('*', 'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_first_name',)  
+                                    ->select('teacher_to_subjects.semester','teacher_to_subjects.year',
+                                                'teachers.id as teacher_id','teachers.first_name as teacher_name',
+                                                'subjects.id as subject_id','subjects.name',
+                                                'students.id as student_id','students.first_name as student_name',
+                                                'reports.mark'
+                                            )          
+                                    //->where('subject_id', $subject_id)
+                                    ->where('teacher_id', $teacher_id)                         
                                     // ->where('report_id', $report_id)
                                     ->get();
-        return response()->json($data);;
+        return response()->json($data);
     }
 
 
