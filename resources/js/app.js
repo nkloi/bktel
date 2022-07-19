@@ -19,6 +19,7 @@ Vue.component('register_student-component', require('./components/Student/Studen
 Vue.component('import_teacher-component', require('./components/Teacher/ImportComponent.vue').default);
 Vue.component('student_upload_file-component', require('./components/Student/UploadFileComponent.vue').default);
 Vue.component('teacher_upload_mark-component', require('./components/Teacher/UploadMarkComponent.vue').default);
+Vue.component('teacher_export_mark-component', require('./components/Teacher/ExportFileMarkComponent.vue').default);
 
 
 Vue.component('test-component', require('./components/TestComponent.vue').default);

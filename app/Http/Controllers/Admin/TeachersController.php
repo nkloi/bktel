@@ -62,7 +62,7 @@ class TeachersController extends Controller
                 
                                     ->where('student_id', $student_id)
                                     // ->where('subject_id', $subject_id)
-                                    // ->where('teacher_id', $teacher_id)
+                                    ->where('teacher_id', $teacher_id)
                                     ->get();
         return response()->json($data);
     }
@@ -91,5 +91,44 @@ class TeachersController extends Controller
         return response()->download($path);
 
     }
+
+    public function FormExportFileMark()
+    {
+        return view ('dashboard.teacher.export-mark');
+    }
+
+    public function SearchAllReport(Request $request)
+    {
+        $subject_id=$request -> subject_id;
+        $teacher_id= auth()->user()->teacher_id;
+        // $subject_id = DB::table('subjects')->where('code', $subject_code)->value('id') ;
+        $semester = $request -> semester;
+        $data = DB::table('reports')->join('teacher_to_subjects', 'teacher_to_subjects.id','=','reports.teacher_to_subject_id')
+                                    ->join('teachers', 'teachers.id','=','teacher_to_subjects.teacher_id')
+                                    ->join('subjects', 'subjects.id','=','teacher_to_subjects.subject_id')
+                                    ->join('students', 'students.id','=','reports.student_id')
+                                    ->select('*', 'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_first_name')                                    
+                                    ->where('subject_id', $subject_id)
+                                    ->where('teacher_id', $teacher_id)
+                                    ->get();
+        return response()->json($data);
+    }
+
+    public function ExportFileMarkCsv(Request $request)
+    {
+        $report_id = $request -> report_id;
+        $semester = $request -> semester;
+        $data = DB::table('reports')->join('teacher_to_subjects', 'teacher_to_subjects.id','=','reports.teacher_to_subject_id')
+                                    ->join('teachers', 'teachers.id','=','teacher_to_subjects.teacher_id')
+                                    ->join('subjects', 'subjects.id','=','teacher_to_subjects.subject_id')
+                                    ->join('students', 'students.id','=','reports.student_id')
+                                    ->select('*', 'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_first_name')                                    
+                                    // ->where('report_id', $report_id)
+                                    ->get();
+        return response()->json($data);;
+    }
+
+
+
 
 }

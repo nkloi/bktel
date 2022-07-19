@@ -66,8 +66,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ],
 
               Route::get('/form-upload-mark', [TeachersController::class, 'ShowformUploadMark'])->name('show.form.upload.mark');
               Route::post('/search-report', [TeachersController::class, 'SearchReport'])->name('teacher.search.report');
+              Route::post('/search-all-report', [TeachersController::class, 'SearchAllReport'])->name('teacher.search.allreport');
               Route::get('/download-file-report', [TeachersController::class, 'DowloadfileReport'])->name('teacher.dowload.report');
               Route::post('/set-mark-report', [TeachersController::class, 'SetMarkReport'])->name('teacher.setmark.report');
+              Route::get('/form-export-file-mark', [TeachersController::class, 'FormExportFileMark'])->name('teacher.export.mark.form');
+              Route::get('/export-file-mark-csv', [TeachersController::class, 'ExportFileMarkCsv'])->name('teacher.export.mark');
+
                  });
         Route::group(['prefix' => 'admin'], function () {
             Route::get('/import-subjects',[DashboardController::class, 'ShowImportSubject']) -> name('showimport.subject');

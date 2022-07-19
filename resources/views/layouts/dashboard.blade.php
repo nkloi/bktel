@@ -25,8 +25,10 @@
         <sidebar-component base_url="{{ url('/') }}" role_id="{{ auth()->user() -> role_id }}" ></sidebar-component>
         </div>
     </div>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('/js/adminlte.js') }}"></script>
+ 
 
     <!-- Bootstrap 4 -->
     <!-- jQuery -->

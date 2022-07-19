@@ -150,10 +150,16 @@
                     <p>Upload Mark</p>
                     </a>
                 </li>
-              <li class="nav-item">
-                <a :href='base_url + "/dashboard/teachers/register"' class="nav-link">
+                <li class="nav-item">
+                  <a :href='base_url + "/dashboard/teachers/register"' class="nav-link">
                     <i class="fa fa-circle nav-icon"></i>
-                    <p>Register Subject</p>
+                    <p>Register Teacher</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a :href='base_url + "/dashboard/teachers/form-export-file-mark"' class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Export File Mark</p>
                     </a>
                 </li>
             </ul>
