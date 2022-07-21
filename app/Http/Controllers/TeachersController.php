@@ -69,7 +69,7 @@ class TeachersController extends Controller
         UpLoadCsvFile_Teacher::dispatch($content, $id)->delay(5);
         //return response()->json("upload success");
         //return response()->json($content);
-        return redirect()->route('home');
+        return redirect()->route('home.teacher_form');
         
         
     }

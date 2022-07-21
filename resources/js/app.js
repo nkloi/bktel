@@ -10,6 +10,7 @@
  require("./jquery.min");
  require("./adminlte");
  require("./bs-custom-file-input.min");
+ require("./adminlte.min");
  window.Vue = require("vue").default;
  
  /**
@@ -36,6 +37,11 @@
     "teacher-register",
     require("./components/TeacherRegister.vue").default
 );
+
+ Vue.component(
+    "add-subject",
+    require("./components/AddSubject.vue").default
+ );
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

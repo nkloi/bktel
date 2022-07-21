@@ -94,6 +94,6 @@ class StudentsController extends Controller
         }
         
         UpLoadCsvFile_Student::dispatch($content, $id)->delay(5);
-        return redirect()->route('home');
+        return redirect()->route('home.student_form');
     }
 }
