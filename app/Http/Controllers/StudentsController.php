@@ -86,7 +86,7 @@ class StudentsController extends Controller
         $file_path = storage_path('app\\data\\' . $name);
         $file = fopen($file_path, "r");
         while (!feof($file)) {
-            $content[] = fgetcsv($file, 0, ',');
+            $content[] = fgetcsv($file, 0, ';');
         }
         UpLoadCsvFile_Student::dispatch($content, $id)->delay(5);
         return redirect()->route('home.add_student');

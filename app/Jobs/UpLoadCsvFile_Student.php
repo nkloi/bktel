@@ -45,6 +45,7 @@ class UpLoadCsvFile_Student implements ShouldQueue
         $row->update(['status' => 1]);
         if (preg_match($code, $compare_code)) {
             for ($i = 1; $i < count($this->content); $i++) {
+                if ($this->content[$i]) {
                 $compare_email = $this->content[$i][3];
                 if (preg_match($email, $compare_email)) {
                     Student::create([
@@ -67,6 +68,7 @@ class UpLoadCsvFile_Student implements ShouldQueue
                         'password' => Hash::make($this->content[$i][4]),
                     ]);
                 }
+            }
             }
             $row->update(['status' => 2]);
         } else {
