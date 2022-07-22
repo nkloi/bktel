@@ -66,6 +66,10 @@ Route::group(['prefix' => 'students'], function () {
 		Route::post('/import', [TeachersController::class, 'storeImport'])->name('teacher.import.store');
 		Route::get('/getAll', [TeachersController::class, 'getAllTeachers']);
 		Route::get('/teacherID',[TeachersController::class, 'showTeacherID'])->name('teacher.ID');
+		Route::get('/upload-mark',[TeachersController::class, 'showUploadMark'])->name('teacher.uploadmark');
+		Route::get('/download-file-report',[TeachersController::class, 'DownloadFileReport'])->name('teacher.downloadfile');
+		Route::post('/search-report',[TeachersController::class, 'SearchReport'])->name('teacher.search.report');
+		Route::post('/set-mark-report',[TeachersController::class, 'SetMarkReport'])->name('teacher.set.mark.report');
 	});
 
 	Route::group(['prefix' => 'subjects'], function () {

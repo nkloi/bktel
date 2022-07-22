@@ -136,17 +136,18 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-chart-pie"></i>
+              <i class="nav-icon fa fa-copy"></i>
               <p>
-                Charts
-                <i class="right fa fa-angle-left"></i>
+                Teacher
+                <i class="fa fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a :href="domain + '/dashboard/teachers/upload-mark'" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Form Upload Mark</p>
                 </a>
               </li>
               <li class="nav-item">
