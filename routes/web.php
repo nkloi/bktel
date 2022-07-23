@@ -43,10 +43,10 @@ Route::group(['prefix' => 'students'], function () {
 Route::post('information', [StudentsController::class, 'information'])->middleware('auth')->name('auth.information');
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['checkuser'] ], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'], ['checkuser'] ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.home');
-    Route::get('/import',[DashboardController::class, 'showform']) -> name('dashboard.showform');
-    Route::post('/import',[DashboardController::class, 'import']) -> name('dashboard.import');
+    Route::get('/upload-user-avatar',[DashboardController::class, 'UploadUserAvatar']) -> name('dashboard.upload.avatar');
+    Route::post('/upload-user-avatar',[DashboardController::class, 'SaveUserAvatar']) -> name('dashboard.save.avatar');
 
         Route::group(['prefix' => 'students'], function () {
                 Route::get('/register', [DashboardController::class, 'RegisterStudent'])->name('student.register');

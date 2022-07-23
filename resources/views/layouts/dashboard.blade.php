@@ -1,3 +1,20 @@
+<?php
+
+use App\Models\Roles;
+use Illuminate\Support\Facades\DB;
+
+    $user = auth() -> user();
+    $role_id = $user -> role_id ;
+    $role_name = DB::table('users') ->join('roles', 'roles.id', '=', 'users.role_id' )
+                                    ->where('users.id', $user -> id) 
+                                    ->select('roles.name as role_name') 
+                                    ->value('roles.name');                                                                                      
+    $profile_image_url = $user -> profile_image_url;
+    $name= substr( $profile_image_url , 12 , 100 );
+    $path= '\storage\\' . $name;
+    
+?>
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -18,11 +35,20 @@
 </head>
 
 <body>
+    
         <div id="app">
         <div class="wrapper">
+       
         <header-component base_url="{{ url('/') }}" ></header-component>
             @yield('content')
-        <sidebar-component base_url="{{ url('/') }}" role_id="{{ auth()->user() -> role_id }}" ></sidebar-component>
+            <sidebar-component  base_url="{{ url('/') }}" 
+                                role_id="{{ auth()->user() -> role_id }}" 
+                                :profile_image_url="{{ json_encode($profile_image_url) }}"
+                                :user="{{ json_encode($user) }}"
+                                :path="{{ json_encode($path) }}"
+                                :role_name="{{ json_encode($role_name) }}"
+                                > 
+            </sidebar-component>
         </div>
     </div>
 

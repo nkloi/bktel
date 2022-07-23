@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "vuetify": "^2.6.7"
     }
 }

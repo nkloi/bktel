@@ -49,10 +49,10 @@
                                     <td>{{ reports.report_note }}</td>
                                     <td>{{ reports.mark }}</td>
                                     <td>
-                                        <button class="btn btn-success"
-                                            @click.prevent="ExportMark(reports.report_id)">
-                                            Export Mark
-                                         </button>
+                                      <button class="btn-download" 
+                                            @click.prevent="downloadFile(reports.report_id, )" >
+                                            <i class="fa fa-download">Download</i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -150,29 +150,7 @@ export default {
              },
             async ExportMark(listReports,report_id)
             {
-                // axios.get('/dashboard/teachers/export-file-mark-csv',
-                //     {params:{report_id:report_id}},
-                //     {responseType: 'arraybuffer'})
-                
-                // .then(response => {
-                //     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                //     var fileLink = document.createElement('a');
-                //     fileLink.href = fileURL;
-                //     fileLink.setAttribute('download', 'test.csv');
-                //     document.body.appendChild(fileLink);
-                //     fileLink.click();
-                // }
-                // )
-
-                // const data = JSON.stringify(this.listReports)
-                
-                // var fileURL = window.URL.createObjectURL(new Blob([data]));
-                // var fileLink = document.createElement('a');
-                //     fileLink.href = fileURL;
-                //     fileLink.setAttribute('download', 'test.csv');
-                //     document.body.appendChild(fileLink);  
-                //     fileLink.click();
-                // console.log(data);
+             
                 try {
                     const url = this.base_url + "/dashboard/teachers/export-file-mark-csv";
                     const response = await axios.post(url, this.listReports,{

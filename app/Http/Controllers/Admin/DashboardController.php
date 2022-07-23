@@ -8,11 +8,13 @@ use App\Jobs\ImportStudent;
 use App\Jobs\ImportSubject;
 use App\Models\Import;
 use App\Models\Subject;
+use App\Models\User;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PhpOption\None;
 
 class DashboardController extends Controller
 {
@@ -20,7 +22,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard.home');
+        $user = auth() -> user();
+        return view('layouts.dashboard', compact('user'));
     }
     public function RegisterStudent()
     {
@@ -124,5 +127,27 @@ class DashboardController extends Controller
     {
         return view('test');
     }
+    public function UploadUserAvatar()
+    {
+        $user = auth() -> user();
+        $profile_image_url = $user -> profile_image_url;
+        $name= substr( $profile_image_url , 12 , 100 );
+        $path= '\storage\\' . $name;
+        return view('dashboard.user.upload_user_avatar', compact('user','path','profile_image_url'));
+    } 
+    public function SaveUserAvatar(Request $request)
+    {   
+        $path = storage_path('app\public\profile_image\\');
+        $user_id = auth()->user()->id;
+        $file_name = $request-> file('image') -> getClientOriginalName();
+        $name = '\app\public\profile_image\\' . $file_name;
+        $request->file('image')->move($path, $file_name);
+        $profile_image_url = '\app\public\profile_image\\' . $file_name;
+        $user = User::find($user_id); 
+        $user -> profile_image_url = $profile_image_url;
+        $user ->save();
+        return response()->json($file_name);
+
+    } 
 
 }

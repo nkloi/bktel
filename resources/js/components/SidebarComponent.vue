@@ -1,23 +1,32 @@
 <template>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
+  <!-- <h3>{{path}}</h3> -->
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
+      
         <img :src="base_url + '/images/AdminLTELogo.png'" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      
+      <span class="brand-text font-weight-light">{{role_name}}</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img :src="base_url + '/images/ys.jpg'" class="img-circle elevation-2" alt="User Image">
-        </div>
+          <div class="image" v-if="this.profile_image_url == null">
+          <a :href='base_url + "/dashboard/upload-user-avatar"' >
+            <img :src="base_url + '/storage/blank avatar.jpg' " class="img-circle elevation-2" alt="User Image">
+          </a>
+          </div>
+          <div class="image" v-else-if="this.profile_image_url != null">
+          <a :href='base_url + "/dashboard/upload-user-avatar"' >
+            <img :src="base_url + path" class="img-circle elevation-2" alt="User Image">
+          </a>
+          </div>
+          
         <div class="info">
-          <a href="#" class="d-block">Yasuo</a>
+          <a href="#" class="d-block">{{user.name}}</a>
         </div>
       </div>
 
@@ -633,23 +642,29 @@ export default {
     props: {
 
         base_url: String,
-        user: String,
+        user: Object,
         role_id: String,
+        profile_image_url: String ,
+        path:String,
+        role_name:String,
+
     },
    methods: {
-            logout() {
-                axios.post('/logout').then(response => {
-                    this.$router.push("/login")
+      logout() {
+        axios.post('/logout').then(response => {
+            this.$router.push("/login")
 
-                }).catch(error => {
-                    location.reload();
-                });
+        }).catch(error => {
+            location.reload();
+        });
             }
             },
        data() {
         return {
             users: {},
         };
+      
+
     },
 }
 </script>

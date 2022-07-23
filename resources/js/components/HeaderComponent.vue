@@ -137,7 +137,6 @@
 </template>
 
 <script>
-import { stringify } from 'querystring';
 
 export default {
    props: {
