@@ -52,6 +52,8 @@ Route::get('/home/get_teacher_code', [App\Http\Controllers\TeacherToSubjectContr
 Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllSubjectCode'])->name('home.get_subject_code');
 Route::get('/home/get_role', [App\Http\Controllers\TeacherToSubjectController::class, 'getRole'])->name('home.get_role');
 Route::post('/home/upload_report', [App\Http\Controllers\ReportsController::class, 'upload'])->name('home.upload_report');
+Route::get('/home/upload_proimage', [App\Http\Controllers\HomeController::class, 'upload_proimage'])->name('home.upload_proimage');
+Route::post('/home/save_proimage', [App\Http\Controllers\HomeController::class, 'save_proimage'])->name('home.save_proimage');
 Route::post('/home/set_mark', [App\Http\Controllers\ReportsController::class, 'set_mark'])->name('home.set_mark');
 Route::get('/home/open_file', [App\Http\Controllers\ReportsController::class, 'open_file'])->name('home.open_file');
 Route::post('/home/export', [App\Http\Controllers\ReportsController::class, 'export'])->name('home.export');
