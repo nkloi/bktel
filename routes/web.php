@@ -39,13 +39,14 @@ Route::group(['prefix'=>'subjects'], function (){
     Route::post('/uploaded' , [App\Http\Controllers\SubjectsController::class, 'upload'])->name('subject.upload');
 });
 Route::group(['prefix' => 'teacher_subject'], function () {
-    Route::post('/stored', [App\Http\Controllers\TeacherTosubjectController::class, 'store'])->name('teacher_subject.store');
+    Route::post('/stored', [App\Http\Controllers\TeacherToSubjectController::class, 'store'])->name('teacher_subject.store');
 });
 Route::get('/home/student_form', [App\Http\Controllers\HomeController::class, 'student_form'])->name('home.student_form');
 Route::get('/home/teacher_form', [App\Http\Controllers\HomeController::class, 'teacher_form'])->middleware('checkadmin')->name('home.teacher_form');
 Route::get('/home/add_student', [App\Http\Controllers\HomeController::class, 'add_student'])->middleware('checkadmin')->name('home.add_student');
 Route::get('/home/add_subject', [App\Http\Controllers\HomeController::class, 'add_subject'])->middleware('checkadmin')->name('home.add_subject');
 Route::get('/home/teacher_subject', [App\Http\Controllers\HomeController::class, 'teacher_subject'])->middleware('checkadmin')->name('home.teacher_subject');
-Route::post('/home/search', [App\Http\Controllers\TeacherTosubjectController::class, 'searh'])->name('home.search');
-Route::get('/hoem/get_teacher_code', [App\Http\Controllers\TeacherTosubjectController::class, 'getAllteachercode'])->name('home.get_teacher_code');
-Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherTosubjectController::class, 'getAllsubjectcode'])->name('home.get_subject_code');
+Route::post('/home/search', [App\Http\Controllers\TeacherToSubjectController::class, 'search'])->name('home.search');
+Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllSubjectCode'])->name('home.get_subject_code');
+Route::get('/home/get_teacher_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllTeacherCode'])->name('home.get_teacher_code');
+Route::post('/home/upload_report', [App\Http\Controllers\ReportsController::class, 'upload'])->name('home.upload_report');

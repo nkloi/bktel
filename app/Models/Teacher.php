@@ -17,6 +17,6 @@ class Teacher extends Model
     ];
     public function subject()
     {
-        return $this->belongsToMany('App\Models\Subject', 'teacher_to_subjct', 'teaachet_id', 'subject_id')->withPivot('id', 'semester', 'year')->withTimestamps();
+        return $this->belongsToMany('App\Models\Subject', 'teacher_to_subjects', 'teacher_id', 'subject_id')->withPivot('id', 'semester', 'year')->withTimestamps();
     }
 }
