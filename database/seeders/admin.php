@@ -16,16 +16,11 @@ class admin extends Seeder
      */
     public function run()
     {
-        Student::create([
-        'student_code' => '11231' 
-        ]);
-
-        User::create([
-        'name' => 'BMVT',
-        'email' => 'bmvt1@hcmut.edu.vn',
-        'student_id' => '131289',
-        'password' => Hash::make('Bmvt@hcmut'),
-        'role_id' => '1'
+      
+        DB::table('users')->insert([
+            'email' => Str::random(10),
+            'email' => Str::random(10).'@gmail.com',
+            'password' => Hash::make('password'),
         ]);
     }
 }

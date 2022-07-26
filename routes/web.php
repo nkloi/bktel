@@ -26,7 +26,6 @@ Route::get('/getStudentid', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::post('add_teacher', [App\Http\Controllers\TeacherController::class, 'store'])->name('add.teacher');
-Route::get('getCurrentUser', function () {$role = Auth::user()->role_id; return response()->json($role);});
 route::get('/teacher-imp', [App\Http\Controllers\TeacherController::class, 'index'])->middleware('auth', 'admin');
 
 Route::group(['prefix' => 'students'], function () {
@@ -44,8 +43,8 @@ Route::post('upl', [App\Http\Controllers\TeacherToSubjectController::class, 'Sub
 
 Route::get('/project', [App\Http\Controllers\SearchController::class, 'index'])->middleware('auth');
 Route::post('/search', [App\Http\Controllers\SearchController::class, 'postSearch']);
-Route::post('file-upload', [App\Http\Controllers\FileUploadController::class, 'fileUploadPost'])->name('file.upload.post');
-Route::post('imp', [App\Http\Controllers\SearchController::class, 'importSub'])->name('importSub');
+Route::post('file-upload', [App\Http\Controllers\FileUploadController::class, 'fileUploadPost']);
+Route::post('a', [App\Http\Controllers\SearchController::class, 'importSub'])->name('importSub');
 Route::post('/addnew', [App\Http\Controllers\FileUploadController::class, 'confirm']);
 
 

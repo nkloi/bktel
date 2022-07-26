@@ -5788,6 +5788,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addnew: function addnew(event, id, teacher_id, subject_id, semester, year) {
+      var _this2 = this;
+
       axios.post("http://localhost:8000/addnew", {
         'ID': id,
         'teacher_id': teacher_id,
@@ -5795,7 +5797,7 @@ __webpack_require__.r(__webpack_exports__);
         'semester': semester,
         'year': year
       }).then(function (response) {
-        this.message = response.data;
+        _this2.message = response.data;
       });
     }
   }
@@ -6644,32 +6646,110 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      teacher_id: '',
       subject_id: '',
-      currentUser: '',
-      name: '',
       message: [],
-      file: ''
+      success: '',
+      data: '',
+      file: '',
+      teacher_id: '',
+      semester: '',
+      year: '',
+      currentUser: '',
+      searchArrs: [],
+      searchArr: '',
+      name: ''
     };
   },
   created: function created() {
     this.getCurrentUser();
   },
   methods: {
-    getCurrentUser: function getCurrentUser() {
+    search: function search() {
       var _this = this;
 
+      axios.post('http://localhost:8000/search', {
+        'teacher_id': this.teacher_id,
+        'subject_id': this.subject_id,
+        'semester': this.semester,
+        'year': this.year
+      }).then(function (response) {
+        _this.searchArrs = response.data;
+      });
+    },
+    onFileChange: function onFileChange(e) {
+      console.log(e.target.files[0]);
+      this.file = e.target.files[0];
+    },
+    addnew: function addnew(event, id, teacher_id, subject_id, semester, year) {
+      var _this2 = this;
+
+      axios.post("http://localhost:8000/addnew", {
+        'ID': id,
+        'teacher_id': teacher_id,
+        'subject_id': subject_id,
+        'semester': semester,
+        'year': year
+      }).then(function (response) {
+        _this2.message = response.data;
+      });
+    },
+    getCurrentUser: function getCurrentUser() {
+      var _this3 = this;
+
       axios.get('http://localhost:8000/getStudentid').then(function (response) {
-        _this.currentUser = response.data;
+        _this3.currentUser = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    uploadFile: function uploadFile(e) {
-      e.preventDefault();
+    uploadFile: function uploadFile() {
+      var currentObj = this;
       var config = {
         headers: {
           'content-type': 'multipart/form-data'
@@ -6681,10 +6761,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('teacher_id', this.message.teacher_id);
       formData.append('subject_id', this.message.subject_id);
       formData.append('student_id', this.currentUser);
-      axios.post('http://localhost:8000/imp', formData, config).then(function (response) {
-        this.success = response.data.success;
-      })["catch"](function (error) {
-        this.output = error;
+      axios.post('http://localhost:8000/file-upload', formData, config).then(function (response) {
+        currentObj.success = response.data.success;
       });
     }
   }
@@ -48117,60 +48195,253 @@ var render = function () {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "form",
-          {
-            attrs: { enctype: "multipart/form-data" },
-            on: {
-              submit: function ($event) {
-                return _vm.uploadFile()
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.search()
+                },
               },
             },
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "file", name: "file" },
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name",
-                    },
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "string",
-                    name: "title",
-                    placeholder: "title",
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.teacher_id,
+                    expression: "teacher_id",
                   },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "bigInteger", placeholder: "Teacher ID" },
+                domProps: { value: _vm.teacher_id },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.teacher_id = $event.target.value
                   },
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "string", name: "note", placeholder: "note" },
-                }),
-              ]),
+                },
+              }),
               _vm._v(" "),
-              _vm._m(0),
-            ]),
-          ]
-        ),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.subject_id,
+                    expression: "subject_id",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "bigInteger", placeholder: "Subject ID" },
+                domProps: { value: _vm.subject_id },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.subject_id = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.semester,
+                    expression: "semester",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "integer", placeholder: "Semester" },
+                domProps: { value: _vm.semester },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.semester = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.year,
+                    expression: "year",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "integer", placeholder: "Year" },
+                domProps: { value: _vm.year },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.year = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            _vm._l(_vm.searchArrs, function (searchArr) {
+              return _c("ul", { key: searchArr.id }, [
+                _c("p", { attrs: { id: "success" } }),
+                _vm._v(" "),
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(searchArr.id)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(searchArr.teacher_id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(searchArr.subject_id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(searchArr.semester))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(searchArr.year))]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.addnew(
+                                $event,
+                                searchArr.id,
+                                searchArr.teacher_id,
+                                searchArr.subject_id,
+                                searchArr.semester,
+                                searchArr.year
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-check",
+                            attrs: { "aria-hidden": "true" },
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ])
+            }),
+            0
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _vm.success != ""
+            ? _c(
+                "div",
+                {
+                  staticClass: "alert alert-success",
+                  attrs: { role: "alert" },
+                },
+                [
+                  _vm._v(
+                    "\n                          " +
+                      _vm._s(_vm.success) +
+                      "\n                        "
+                  ),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              attrs: { enctype: "multipart/form-data" },
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.uploadFile()
+                },
+              },
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "file", name: "file" },
+                    on: { change: _vm.onFileChange },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "string",
+                      name: "title",
+                      placeholder: "title",
+                    },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.name = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "string",
+                      name: "note",
+                      placeholder: "note",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" },
+                    },
+                    [_vm._v("Upload")]
+                  ),
+                ]),
+              ]),
+            ]
+          ),
+        ]),
       ]),
     ]),
   ])
@@ -48180,12 +48451,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Upload")]
-      ),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Teacher ID")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Subject ID")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Semester")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Year")]),
+      ]),
     ])
   },
 ]

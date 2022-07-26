@@ -86,7 +86,7 @@
                     'semester': semester,
                     'year': year,
                  })
-                .then( function(response){
+                .then((response) => {
                         this.message = response.data;
                     })
                 

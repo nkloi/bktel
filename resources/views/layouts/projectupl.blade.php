@@ -2,6 +2,5 @@
 
 @section('content')
 
-<search></search>
 <upload-component></upload-component>
 @endsection
