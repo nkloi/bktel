@@ -16,10 +16,11 @@ class student extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'nductri',
-            'email' => 'nductri@hcmut.edu.vn',
-            'password' => Hash::make('Nductri@hcmut'),
-            'role_id' => '4'
+            'name' => 'tringuyen',
+            'email' => 'tringuyen@hcmut.edu.vn',
+            'password' => Hash::make('TriNguyen@hcmut'),
+            'role_id' => '4',
+            'student_id'=> '1'
             ]);
     }
 }

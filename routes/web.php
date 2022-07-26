@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\TeacherToSubjectController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -22,6 +22,11 @@ use App\Http\Controllers\TeacherToSubjectController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/getStudentId', function () {
+	$role = Auth::user()->student_id;
+	return response()->json($role);
 });
 
 
@@ -62,3 +67,12 @@ Route::get('subject', [App\Http\Controllers\TeacherToSubjectController::class, '
 Route::post('added', [App\Http\Controllers\TeacherToSubjectController::class, 'store'])->name('add_subs');
 Route::get('find', [App\Http\Controllers\TeacherToSubjectController::class, 'find'])->name('find');
 Route::post('show',[App\Http\Controllers\TeacherToSubjectController::class, 'show'])->name('show');
+
+
+Route::group(['prefix' => 'uploadStudentReport'], function (){
+	Route::get('/main', [SearchController::class, 'index'])->name('main');
+	Route::post('/search', [SearchController::class, 'postSearch'])->name('search');
+	Route::post('/addnew', [SearchController::class, 'confirmation'])->name('addnew');
+	Route::post('/imp', [SearchController::class, 'store'])->name('imp.report');
+	
+});

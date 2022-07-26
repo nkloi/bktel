@@ -53,11 +53,12 @@
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
-  <script>
+  
+  <!-- <script>
   $(function () {
     bsCustomFileInput.init();
   });
-  </script>
+  </script> -->
 
 
 </body>
