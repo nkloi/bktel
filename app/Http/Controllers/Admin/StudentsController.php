@@ -110,7 +110,8 @@ class StudentsController extends Controller
                                                -> where('teacher_id',$teacher_id)
                                                -> where('subject_id',$subject_id)
                                                -> where('semester',$semester)
-                                               -> get();
+                                               -> get();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                               
         return response()->json($data);
     }
 

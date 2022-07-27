@@ -144,7 +144,9 @@ import axios from 'axios'
         },
         methods: {
           logout() {
-            console.log("logout");
+              axios.post('/logout').then(response => {
+              this.$router.push("/login")}).catch(error => {location.reload();});
+            
             // try {
             //   axios.post("http://localhost:8000/logout")
             // } catch (error) {

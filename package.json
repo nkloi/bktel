@@ -25,6 +25,7 @@
         "webpack-cli": "^4.9.2"
     },
     "dependencies": {
-        "font-awesome": "^4.7.0"
+        "font-awesome": "^4.7.0",
+        "vue2-dropzone": "^3.6.0"
     }
 }

@@ -151,15 +151,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a :href="domain + '/dashboard/teachers/form-export-file-mark'" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Form Export File Mark</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="pages/charts/flot.html" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>Flot</p>
                 </a>
               </li>
               <li class="nav-item">

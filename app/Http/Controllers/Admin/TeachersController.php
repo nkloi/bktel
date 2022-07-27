@@ -7,6 +7,8 @@ use App\Jobs\Import as JobsImport;
 use App\Jobs\ImportTeacher;
 use App\Models\Import;
 use App\Models\Report;
+use App\Models\Student;
+use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -76,22 +78,23 @@ class TeachersController extends Controller
     }
 
     public function SearchReport(Request $request){
-        $subject_id = $request -> subject_id;
+        $code = $request -> subject_code;
+        $subject_id = DB::table('subjects')->where('code', $code)->value('id') ;
         $student_id = $request -> student_id;
         $teacher_id = auth() -> user() -> teacher_id;
         $semester = $request -> semester;
         $year = $request -> year;
         $data = DB::table('reports') -> join('teacher_to_subjects','teacher_to_subjects.id','=','reports.teacher_to_subject_id')
-        -> join('teachers','teachers.id','=','teacher_to_subjects.teacher_id')                                  
-        -> join('subjects','subjects.id','=','teacher_to_subjects.subject_id')
-        -> join('students','students.id','=','reports.student_id')
-        -> select("*",'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_fname',
+                                     -> join('teachers','teachers.id','=','teacher_to_subjects.teacher_id')                                  
+                                     -> join('subjects','subjects.id','=','teacher_to_subjects.subject_id')
+                                     -> join('students','students.id','=','reports.student_id')
+                                     -> select("*",'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_fname',
                                                 'teachers.last_name as teacher_lname','students.first_name as student_fname','students.last_name as student_lname')
                                      
                                     //  -> where('student_id',$student_id)
-                                    //  -> where('teacher_id',$teacher_id)
-                                    //  -> where('subject_id',$subject_id)
-                                    //  -> where('semester',$semester)
+                                     -> where('teacher_id',$teacher_id)
+                                     -> where('subject_id',$subject_id)
+                                     -> where('semester',$semester)
                                      -> where('year',$year)
                                      -> get();
         return response()->json($data);
@@ -120,6 +123,53 @@ class TeachersController extends Controller
         $data = $report;
         return response() -> json($data);
 
+    }
+
+    public function SearchAllReport(Request $request)
+    {
+        $code = $request -> subject_code;
+        $subject_id = DB::table('subjects')->where('code', $code)->value('id') ;
+        $student_id = $request -> student_id;
+        $teacher_id = auth() -> user() -> teacher_id;
+        $semester = $request -> semester;
+        $data = DB::table('reports')->join('teacher_to_subjects', 'teacher_to_subjects.id','=','reports.teacher_to_subject_id')
+                                    ->join('teachers', 'teachers.id','=','teacher_to_subjects.teacher_id')
+                                    ->join('subjects', 'subjects.id','=','teacher_to_subjects.subject_id')
+                                    ->join('students', 'students.id','=','reports.student_id')
+                                    ->select('*', 'reports.note as report_note','reports.id as report_id','teachers.first_name as teacher_fname','teachers.last_name as teacher_lname',
+                                            'students.first_name as student_fname','students.last_name as student_lname')                                    
+                                    ->where('subject_id', $subject_id)
+                                    ->where('teacher_id', $teacher_id)
+                                    // ->where('student_id', $student_id)
+                                    ->get();
+        foreach($data as $item){
+            $item->SubmitOrNot=true;
+        }
+        return response()->json($data);
+    }
+
+    public function FormExportFileMark(){
+        return view('teacher.exportmark');
+    }
+
+    public function ExportMarkFileCSV(Request $request){
+        $report_id = $request -> report_id;
+        $subject_id = $request -> subject_id;
+        $teacher_id = auth() -> user() -> teacher_id;
+        $semester = $request -> semester;
+        $data = DB::table('reports') -> join('teacher_to_subjects','teacher_to_subjects.id','=','reports.teacher_to_subject_id')
+                                     -> join('teachers','teachers.id','=','teacher_to_subjects.teacher_id')                                  
+                                     -> join('subjects','subjects.id','=','teacher_to_subjects.subject_id')
+                                     -> join('students','students.id','=','reports.student_id')
+                                     -> select('teacher_to_subjects.year','teacher_to_subjects.semester','teachers.teacher_code as teacher_code',
+                                               'teachers.first_name as teacher_fname','teachers.last_name as teacher_lname',
+                                               'subjects.code as subject_code','subject.name','students.student_code as student_code',
+                                               'students.first_name as student_fname','students.last_name as student_lname',
+                                               'reports.mark')
+                                    //  -> where('teacher_id',$teacher_id)
+                                    
+                                    -> get();
+        return response() -> json($data);
     }
 
 }

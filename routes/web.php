@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('redirectlogin')->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'students'], function () {
 	Route::get('/{student_id}', [StudentsController::class, 'show'])->name('student.show');
@@ -69,7 +69,10 @@ Route::group(['prefix' => 'students'], function () {
 		Route::get('/upload-mark',[TeachersController::class, 'showUploadMark'])->name('teacher.uploadmark');
 		Route::get('/download-file-report',[TeachersController::class, 'DownloadFileReport'])->name('teacher.downloadfile');
 		Route::post('/search-report',[TeachersController::class, 'SearchReport'])->name('teacher.search.report');
+		Route::post('/search-all-report',[TeachersController::class, 'SearchAllReport'])->name('teacher.search.all.report');
 		Route::post('/set-mark-report',[TeachersController::class, 'SetMarkReport'])->name('teacher.set.mark.report');
+		Route::post('/export-file-mark-csv',[TeachersController::class, 'ExportMarkFileCSV'])->name('teacher.export.mark');
+		Route::get('/form-export-file-mark',[TeachersController::class, 'FormExportFileMark'])->name('teacher.form.export.file.mark');
 	});
 
 	Route::group(['prefix' => 'subjects'], function () {

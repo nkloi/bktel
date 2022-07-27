@@ -27,7 +27,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Student Code</label>
-                                            <input required type="text" class="form-control" placeholder="Enter Studnet Code" name="student_code" v-model="information.student_code">
+                                            <input required type="text" class="form-control" placeholder="Enter Student Code" name="student_code" v-model="information.student_code">
                                         </div>
 
                                     </div>
@@ -48,9 +48,9 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <th width="5%">STT</th>
-                                        <th>Name's Student</th>
-                                        <th>Subject Code</th>
-                                        <th>Name's Teacher</th>
+                                        <th>Student's Name</th>
+                                        <th>Subject Code</th> 
+                                        <th>Teacher's Name</th>
                                         <th>Semester</th>
                                         <th>Year</th>
                                         <th>Title</th>
@@ -136,7 +136,7 @@
                 try{
                     const url=this.domain + "/dashboard/teachers/search-report";
                     const response = await axios.post(url, this.information,{
-                        'student_code': this.teacher_code,
+                        'student_code': this.student_code,
                         'code': this.subject_code,
                         'semester': this.semester,
                         'year': this.year,
