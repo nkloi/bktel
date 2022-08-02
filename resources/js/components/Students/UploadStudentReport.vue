@@ -1,277 +1,209 @@
 <template>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 1345.6px">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Upload Report</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">Logout</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- jquery validation -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header"></div>
+
+
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Quick Example
-                                    <small>jQuery Validation</small>
-                                </h3>
+                                <h3 class="card-title">Search Subject</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-
-                            <div class="card">
-                                <div class="card-header" style="width: 25 rem">
-                                    <label>Search Teacher</label>
-                                    <form
-                                        enctype="multipart/form-data"
-                                        id="quickForm"
-                                        @submit.prevent="Search()"
-                                    >
+                                <form @submit.prevent="SearchSubject()">
+                                    <div class="card-body">
                                         <div class="form-group">
-                                            <input
-                                                type="text"
-                                                placeholder="Enter Teacher Code"
-                                                name="teacher_id"
-                                                v-model="information.teacher_id"
-                                                class="form-control"
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="Enter Subject Code"
-                                                name="subject_id"
-                                                v-model="information.subject_id"
-                                                class="form-control"
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="Enter Semester"
-                                                name="semester"
-                                                v-model="information.semester"
-                                                class="form-control"
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="Year"
-                                                name="year"
-                                                v-model="information.year"
-                                                class="form-control"
-                                            />
-                                            <button
-                                                type="submit"
-                                                class="btn btn-primary"
-                                            >
-                                                Search
-                                            </button>
+                                            <label for="exampleInputEmail1">Teacher Code</label>
+                                            <input required type="text" class="form-control" placeholder="Enter Teacher Code" name="teacher_code" v-model="information.teacher_code">
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Subject Code</label>
+                                            <input required type="text" class="form-control" placeholder="Enter Subject Code" name="code" v-model="information.subject_code">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Semester</label>
+                                            <input required type="text" class="form-control" placeholder="Enter Semester" name="semester" v-model="information.semester">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Year</label>
+                                            <input required type="text" class="form-control" placeholder="Enter Year" name="year" v-model="information.year">
+                                        </div>
+                                        
 
-                            <form id="quickForm" @submit.prevent="register()">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputTeacherName"
-                                            >Teacher Name</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="form.teacher_id"
-                                        >
-                                            <option
-                                                v-for="(
-                                                    teacher, index
-                                                ) in teachers"
-                                                :key="index"
-                                                :value="teacher.id"
-                                            >
-                                                {{
-                                                    teacher.first_name +
-                                                    " " +
-                                                    teacher.last_name
-                                                }}
-                                            </option>
-                                        </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputSubjectName"
-                                            >Subject Name</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="form.subject_id"
-                                        >
-                                            <option
-                                                v-for="(
-                                                    subject, index
-                                                ) in subjects"
-                                                :key="index"
-                                                :value="subject.id"
-                                            >
-                                                {{ subject.name }}
-                                            </option>
-                                        </select>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <button type="submit" @click="search(information.teacher_code, information.subject_code, information.semester, information.year)" class="btn btn-primary">Search</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputSemester"
-                                            >Semester</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="form.semester"
-                                        >
-                                            <option value="1">HK1</option>
-                                            <option value="2">HK2</option>
-                                            <option value="3">HK3</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputYear"
-                                            >Year</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="form.year"
-                                        >
-                                            <option :value="currentYear - 1">
-                                                {{ currentYear - 1 }}
-                                            </option>
-                                            <option :value="currentYear">
-                                                {{ currentYear }}
-                                            </option>
-                                            <option :value="currentYear + 1">
-                                                {{ currentYear + 1 }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputFile"
-                                            >File</label
-                                        >
-                                        <input
-                                            type="file"
-                                            name="students"
-                                            @change="processFile($event)"
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleTitle">Title</label>
-                                        <input
-                                            type="text"
-                                            v-model="form.title"
-                                            name="Title"
-                                            class="form-control"
-                                            id="exampleInputTitle"
-                                            placeholder="Title"
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleNote">Note</label>
-                                        <input
-                                            type="text"
-                                            v-model="form.note"
-                                            name="note"
-                                            class="form-control"
-                                            id="exampleInputNote"
-                                            placeholder="Note"
-                                        />
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button
-                                        type="submit"
-                                        class="btn btn-primary"
-                                    >
-                                        Search
-                                    </button>
-                                </div>
-                            </form>
+
+                                </form>
                         </div>
-                        <!-- /.card -->
-                    </div>
-                    <!--/.col (left) -->
-                    <!-- right column -->
-                    <div class="col-md-6"></div>
-                    <!--/.col (right) -->
+                        <!-- <pre>{{outcome}}</pre> -->
+
+                    
+                        <div class="card">
+                            <div class="card-body" style="width: 20 rem;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Result List</h3>
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th width="5%">STT</th>
+                                        <th>Name's Teacher</th>
+                                        <th>Subject Code</th>
+                                        <th>Semester</th>
+                                        <th>Year</th>
+                                        <th>Note</th>
+                                        <th>Status</th>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr v-for="teacher_to_subjects in listTeacherToSubjects" :key="teacher_to_subjects.id">
+                                            <th scope="row">{{ teacher_to_subjects.id }}</th>
+                                            <td>{{ teacher_to_subjects.teacher_fname+' '+teacher_to_subjects.teacher_lname }}</td>
+                                            <td>{{ teacher_to_subjects.code }}</td>
+                                            <td>{{ teacher_to_subjects.semester }}</td>
+                                            <td>{{ teacher_to_subjects.year }}</td>
+                                            <td>{{ teacher_to_subjects.note }}</td>
+                                            <td>
+                                                <button class="btn btn-success"
+                                                    @click.prevent="SelectRow(teacher_to_subjects.id, teacher_to_subjects.teacher_fname+' '+teacher_to_subjects.teacher_lname, teacher_to_subjects.code)">Select</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                
+                      
+                            
+                                <form   enctype='multipart/form-data' id="quickForm"  @submit.prevent="uploadFile()" >
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">STT</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" v-model="report.teacher_to_subject_id">
+                                                <label for="exampleFormControlInput1">Teacher's Name</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" v-model="report.teacher_name">
+                                                <label for="exampleFormControlInput1">Subject Code</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"  v-model="report.subject_code">
+                                                <label for="exampleFormControlInput1">Title</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" v-model="report.title">
+                                                <label for="exampleFormControlTextarea1">Note</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="report.note" type="text" ></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlFile1">Attached files</label>
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" @change="processFile($event)">
+                                            </div>
+                                            <div> <button type="submit" class="btn btn-primary">Import</button> </div>
+                                        </div>
+                                    </div>
+                                </form>
+                        
+                    </div>    
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+        </div>
     </div>
-    <!-- /.content-wrapper -->
+    
 </template>
 
 <script>
-import axios from "axios";
-export default {
-    data() {
-        return {
-            teachers: null,
-            subjects: null,
-            information: {
-                teacher_id: "",
-                subject_id: "",
-                semester: "",
-                year: "",
-            },
-            form: {
-                teacher_id: null,
-                subject_id: null,
-                semester: null,
-                year: null,
-            },
-        };
-    },
-    props: {
-        domain: String,
-    },
-    computed: {
-        currentYear() {
-            return new Date().getFullYear();
+    import axios from 'axios'
+    export default {
+        props: {
+            domain: String
         },
-    },
-    methods: {
-        async register() {
-            console.log(this.form);
-            try {
-                const url = this.domain + "/dashboard/teacher-to-subject";
-                const data = await axios.post(url, this.form);
-                console.log(data);
-                window.location.href = "/dashboard";
-            } catch (error) {
-                console.log(error);
+        data() {
+            return {
+                information: {
+                    teacher_code: "",
+                    subject_code: "",
+                    semester: "",
+                    year: "",
+                },
+                listTeacherToSubjects: [],
+                error: null,
+                report:{
+                    teacher_to_subject_id:"",
+                    teacher_name:"",
+                    subject_code: "",
+                    title:"",
+                    note:"",
+                    },
+                output:"",
+                success:"",
+                message:"",
+                file:"",
             }
         },
-    },
-    mounted() {
-        axios
-            .get(this.domain + "/dashboard/teachers/getAll")
-            .then((data) => (this.teachers = data.data))
-            .catch((error) => console.log(error));
-        axios
-            .get(this.domain + "/dashboard/subjects/getAll")
-            .then((data) => (this.subjects = data.data))
-            .catch((error) => console.log(error));
-    },
-};
+        methods: {
+            async SearchSubject(){
+                console.log(this.information);
+                try{
+                    const url=this.domain + "/dashboard/students/search-subject";
+                    const response = await axios.post(url, this.information,{
+                        'teacher_code': this.teacher_code,
+                        'code': this.subject_code,
+                        'semester': this.semester,
+                        'year': this.year,
+                        'teacher_fname':this.teacher_fname,
+                        'teacher_lname':this.teacher_lname
+                    });
+                    this.listTeacherToSubjects=response.data;
+                    console.log(response.data)
+                }
+                catch(error){
+                    console.log(error)
+                }
+            },
+            processFile(event){
+                console.log(event.target.files[0]);
+                this.report.file = event.target.files[0];
+            },
+            async uploadFile(){
+                console.log(this.report);
+                try{
+                    const url=this.domain + "/dashboard/students/upload-file";
+                    const response = await axios.post(url, this.report,{
+                        headers: {
+                        "Content-Type": "multipart/form-data",
+                        },
+                        'teacher_to_subject_id': this.teacher_to_subject_id,
+                        'teacher_code': this.teacher_code,
+                        'code': this.subject_code,
+                        'title': this.title,
+                        'note': this.note,
+                        'file':this.file
+                    });
+                    console.log(response.data)
+                }
+                catch(error){
+                    console.log(error)
+                }
+            },
+            async SelectRow(id, teacher_name, code){
+                this.report.teacher_to_subject_id = id;
+                this.report.teacher_name = teacher_name;
+                this.report.subject_code = code;
+               
+            },
+            search(teacherCode, subjectCode, semester, year) {
+                axios.get(this.domain + "/dashboard/students/report/search", {
+                    params: {
+                        information
+                    }
+                })
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
+            }
+        },
+        mounted() {
+            console.log('Component mounted.')
+        },
+    }
 </script>

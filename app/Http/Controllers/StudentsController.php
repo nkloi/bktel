@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ImportStudent;
 use App\Models\Import;
+use App\Models\Report;
 use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Students;
 
 class StudentsController extends Controller
@@ -93,5 +97,41 @@ class StudentsController extends Controller
         dispatch(new ImportStudent($path_import, $request->name, $import));
 
         return response()->json($request);
+    }
+    
+    public function SearchSubject(Request $request){
+        $teacher=Teacher::where('teacher_code',$request->teacher_code)->get();
+        $teacher_id=$teacher[0]["id"];
+        $subject=Subject::where('code',$request->subject_code)->get();
+        $subject_id=$subject[0]["id"];
+        $semester=$request->semester;
+        $data=DB::table('teacher_to_subjects') -> select("*",'teachers.first_name as teacher_fname','teachers.last_name as teacher_lname')
+                                               -> join('teachers','teachers.id','=','teacher_to_subjects.teacher_id')                                  
+                                               -> join('subjects','subjects.id','=','teacher_to_subjects.subject_id')                                     
+                                               -> where('teacher_id',$teacher_id)
+                                               -> where('subject_id',$subject_id)
+                                               -> where('semester',$semester)
+                                               -> get();
+        return response()->json($data);
+    }
+    public function UploadFileReport(Request $request){
+
+        $student_id=auth()->user()->student_id;
+        $path = storage_path('app\reports\\');
+        $generated_new_name = date('Ymd_His') . '_' . $request-> file-> getClientOriginalName();
+        $path_import = '\app\reports\\' . $generated_new_name;
+        $request->file->move($path, $generated_new_name);
+
+        $report = new Report();
+
+        $report -> teacher_to_subject_id = $request -> teacher_to_subject_id;
+        $report -> student_id = $student_id;
+        $report -> title = $request -> title;
+        $report -> path = $path_import;
+        $report -> note = $request -> note;
+        $report -> save();
+
+        return response()->json('upload sucess');
+
     }
 }

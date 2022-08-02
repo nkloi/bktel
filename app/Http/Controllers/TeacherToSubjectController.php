@@ -33,4 +33,5 @@ class TeacherToSubjectController extends Controller
         $teacher_to_subjects->save();
         return response()->json('success');
     }
+
 }

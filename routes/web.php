@@ -53,6 +53,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 		Route::get('/report', [StudentsController::class, 'showReport'])->name('student.report');
 		Route::post('/report', [StudentsController::class, 'storeReport'])->name('student.report.store');
+		Route::get('/studentID', [StudentsController::class, 'showStudentID'])->name('student.ID');
+		Route::post('/search-subject', [StudentsController::class, 'SearchSubject'])->name('search.subject');
+		Route::post('/confirm-subject', [StudentsController::class, 'ConfirmSubject'])->name('confirm.subject');
+		Route::post('/upload-file', [StudentsController::class, 'UploadFileReport'])->name('upload.file.report');
 	});
 
 	Route::group(['prefix' => 'teachers'], function () {
