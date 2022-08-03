@@ -2,19 +2,23 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img :src="domain + '/images/AdminLTELogo.png'" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <a :href='domain + "/dashboard/users/upload-image"' >
+        <img src=https://cdn.pixabay.com/photo/2020/05/18/19/02/watercolour-flowers-5188030_960_720.png alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:50px ;opacity: .8">
+        <span style="color: yellow; font-size:20px; " class="brand-text font-weight-light">{{role_name}}</span>
+      </a>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <a :href ='domain + "/dashboard/users/upload-image"' >
         <div class="image">
-          <img :src="domain  + '/images/user2-160x160.jpg'" class="img-circle elevation-2" alt="User Image">
+          <img :src="domain + path" class="img-circle elevation-2" alt="User Image" style="height:40px; width:40px;">
         </div>
+        </a>
         <div class="info">
-          <a href="#" class="d-block">Donald Phong</a>
+          <a href="#" class="d-block" style="color: white; font-size:18px;">{{user.name}}</a>
         </div>
       </div>
 
@@ -720,6 +724,9 @@
         props: {
             domain: String, 
             role_id: String,
+            path: String,
+            user:String,
+            role_name:String,
         },
         methods: {
             

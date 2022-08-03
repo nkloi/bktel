@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\SubjectsController;
 use App\Http\Controllers\Admin\TeachersController;
 use App\Http\Controllers\Admin\TeacherToSubjectController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -43,6 +44,11 @@ Route::group(['prefix' => 'students'], function () {
 	Route::get('/lecture', [TeacherToSubjectController::class, 'showRegister'])->name('lecture.register');
 	Route::post('/teacher-to-subject', [TeacherToSubjectController::class, 'store'])->name('teacher-to-subject.store');
 
+	Route::group(['prefix' => 'users'], function (){
+		Route::get('/upload-image',[UsersController::class, 'UploadImage'])->name('user.uploadimage');
+		Route::post('/upload-user-avatar',[UsersController::class, 'SaveImage'])->name('user.saveimage');
+	});
+	
 	Route::group(['prefix' => 'students'], function () {
 		Route::get('/register', [StudentsController::class, 'showRegister'])->name('student.register');
 		Route::get('/home',[StudentsController::class, 'index'])->name('student.home');
