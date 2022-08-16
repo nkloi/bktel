@@ -409,13 +409,13 @@
                                 <li class="nav-item">
                                     <a href="/home/add_subject" class="nav-link  active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Subjects</p>
+                                        <p>Subjects</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/validation.html" class="nav-link">
+                                    <a href="/home/teacher_subject" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Validation</p>
+                                        <p>Teacher - Subject</p>
                                     </a>
                                 </li>
                             </ul>
@@ -843,7 +843,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active">Add Subject</li>
+                                <li class="breadcrumb-item active">Subject</li>
                             </ol>
                         </div>
                     </div>
@@ -876,7 +876,7 @@
                                 <div class="form-group row">
                                     {{-- File Input --}}
                                     <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
-                                        <span style="color:red;">*</span>File Input (File.csv)</label>
+                                        <span style="color:red;">*</span>File Input (.CSV)</label>
                                         <input type="file" required class="form-control form-control-user @error('file') is-invalid @enderror" id="exampleFile" name="file">
                                         <!-- @error('file')
                                         <span class="text-danger">{{$message}}</span>

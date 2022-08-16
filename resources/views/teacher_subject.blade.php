@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Teacher Register</title>
+    <title>Teacher - Subject</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -401,7 +401,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/home/teacher_form" class="nav-link active">
+                                    <a href="/home/teacher_form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Register</p>
                                     </a>
@@ -413,7 +413,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/home/teacher_subject" class="nav-link">
+                                    <a href="/home/teacher_subject" class="nav-link   active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher - Subject</p>
                                     </a>
@@ -838,12 +838,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Teacher Information</h1>
+                            <h1>Teacher - Subject</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active">Teacher Register</li>
+                                <li class="breadcrumb-item active">Teacher - Subject</li>
                             </ol>
                         </div>
                     </div>
@@ -854,11 +854,11 @@
             <section class="content">
                 <div class="container-fluid">
                     <div id="app">
-                        <teacher-register></teacher-register>
+                        <teacher-subject></teacher-subject>
                     </div>
                     <!-- input file-->
-                    <div class="card shadow mb-4">
-                        <form method="POST" action="{{route('teacher.upload')}}" enctype="multipart/form-data">
+                    <!-- <div class="card shadow mb-4">
+                        <form method="POST" action="{{route('subject.upload')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group row">
@@ -867,21 +867,21 @@
                                         <span style="color:red;">*</span>Reminder name</label>
                                         <input placeholder="Enter name" type="text" required class="form-control form-control-user @error('name') is-invalid @enderror" name="name">
                                         <span></span>Note</label>
-                                        <input placeholder="Note (optional)" type="text" class="form-control form-control-user @error('note') is-invalid @enderror" id="exampleFile" name="note">
-                                        <!-- @error('name')
+                                        <input placeholder="Note (optional)" type="text" class="form-control form-control-user @error('note') is-invalid @enderror" id="exampleFile" name="note"> -->
+                    <!-- @error('name')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror -->
-                                    </div>
+                    <!-- </div>
                                 </div>
                                 <div class="form-group row">
                                     {{-- File Input --}}
                                     <div class="col-sm-12 mb-3 mt-3 mb-sm-0">
                                         <span style="color:red;">*</span>File Input (.CSV)</label>
-                                        <input type="file" required class="form-control form-control-user @error('file') is-invalid @enderror" id="exampleFile" name="file">
-                                        <!-- @error('file')
+                                        <input type="file" required class="form-control form-control-user @error('file') is-invalid @enderror" id="exampleFile" name="file"> -->
+                    <!-- @error('file')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror -->
-                                    </div>
+                    <!-- </div>
                                 </div>
                             </div>
                     </div>
@@ -891,9 +891,9 @@
                         <a class="btn btn-primary float-right mr-3 mb-3" href="/home">Cancel</a>
                     </div>
                     </form>
-                </div>
-                <!-- end input file -->
-                <!-- /.container-fluid -->
+                </div> -->
+                    <!-- end input file -->
+                    <!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>

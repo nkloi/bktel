@@ -42,6 +42,17 @@
     "add-subject",
     require("./components/AddSubject.vue").default
  );
+
+ Vue.component(
+    "teacher-subject",
+    require("./components/TeacherSubject.vue").default
+ );
+
+ Vue.component(
+    "search",
+    require("./components/Search.vue").default
+ );
+ 
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

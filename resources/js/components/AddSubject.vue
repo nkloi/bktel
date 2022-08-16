@@ -9,15 +9,15 @@
               <form @submit.prevent="submit">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="first-name">Name</label>
+                    <label for="name">Name</label>
                     <input type="text" required class="form-control" id="name" v-model="form.name" placeholder="Name">
                   </div>
                    <div class="form-group">
-                    <label for="student-code">Code</label>
+                    <label for="code">Code</label>
                     <input type="text" required class="form-control" id="code" v-model="form.code" placeholder="Code">
                   </div>
                   <div class="form-group">
-                    <label for="last-name">Note</label>
+                    <label for="note">Note</label>
                     <input type="text"  class="form-control" id="note" v-model="form.note" placeholder="Note">
                   </div>
                 </div>
