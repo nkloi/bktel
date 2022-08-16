@@ -57,3 +57,5 @@ Route::get('/home/get_teacher_code', [App\Http\Controllers\TeacherToSubjectContr
 Route::get('/home/get_subject_code', [App\Http\Controllers\TeacherToSubjectController::class, 'getAllSubjectCode'])->name('home.get_subject_code');
 
 Route::post('/home/search', [App\Http\Controllers\TeacherToSubjectController::class, 'search'])->name('home.search');
+
+Route::post('/home/upload_report', [App\Http\Controllers\ReportsController::class, 'upload'])->name('home.upload_report');

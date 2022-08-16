@@ -5176,6 +5176,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     var _this = this;
@@ -5193,6 +5227,18 @@ __webpack_require__.r(__webpack_exports__);
         semester: '',
         year: ''
       },
+      file_upload: {
+        id: '',
+        title: '',
+        file: '',
+        teacher_id: '',
+        subject_id: '',
+        subject_name: '',
+        teacher_name: '',
+        year: '',
+        semester: '',
+        note: ''
+      },
       year: {
         pre: '',
         curr: '',
@@ -5201,7 +5247,9 @@ __webpack_require__.r(__webpack_exports__);
       results: [],
       error: '',
       teachers: [],
-      subjects: []
+      subjects: [],
+      noti_empty: '',
+      success: ''
     };
   },
   methods: {
@@ -5240,6 +5288,57 @@ __webpack_require__.r(__webpack_exports__);
         } //window.location.href = '/home/search'
 
       });
+    },
+    uploadFile: function uploadFile(e) {
+      this.file_upload.file = e.target.files[0];
+    },
+    upload: function upload() {
+      var _this4 = this;
+
+      var info = document.getElementById('info');
+
+      if (info.value == '') {
+        this.noti_empty = 'Information must be filled!';
+      } else {
+        var formData = new FormData();
+        formData.append('id', this.file_upload.id);
+        formData.append('file', this.file_upload.file);
+        formData.append('title', this.file_upload.title);
+        formData.append('teacher_id', this.file_upload.teacher_id);
+        formData.append('subject_id', this.file_upload.subject_id);
+        formData.append('teacher_name', this.file_upload.teacher_name);
+        formData.append('subject_name', this.file_upload.subject_name);
+        formData.append('semester', this.file_upload.semester);
+        formData.append('year', this.file_upload.year);
+        formData.append('note', this.file_upload.note);
+        var headers = {
+          'Content-Type': 'multipart/form-data'
+        };
+        axios.post('/home/upload_report', formData, {
+          headers: headers
+        }).then(function (response) {
+          if (response.data != 'success') {
+            _this4.noti_empty = 'You are not student!';
+          } else {
+            _this4.success = true;
+          }
+        });
+      }
+    },
+    getData: function getData(event, id) {
+      for (var i = 0; i < this.results.length; i++) {
+        if (this.results[i].id == id) {
+          this.file_upload.id = id;
+          this.file_upload.teacher_id = this.results[i].teacher_id;
+          this.file_upload.subject_id = this.results[i].subject_id;
+          this.file_upload.teacher_name = this.results[i].teacher_name;
+          this.file_upload.subject_name = this.results[i].subject_name;
+          this.file_upload.semester = this.results[i].semester;
+          this.file_upload.year = this.results[i].year;
+          var info = document.getElementById('info');
+          info.value = this.results[i].teacher_name + ' - ' + this.results[i].subject_name + ' - HK' + this.results[i].semester + ' - ' + this.results[i].year;
+        }
+      }
     }
   }
 });
@@ -51117,6 +51216,66 @@ var render = function () {
       [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "year" } }, [_vm._v("Year")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.year,
+                    expression: "form.year",
+                  },
+                ],
+                staticClass: "form-select",
+                attrs: {
+                  id: "year",
+                  required: "",
+                  "aria-label": "Default select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "year",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { id: "pre" }, domProps: { value: _vm.year.pre } },
+                  [_vm._v(_vm._s(_vm.year.pre))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { id: "cur" }, domProps: { value: _vm.year.curr } },
+                  [_vm._v(_vm._s(_vm.year.curr))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { id: "fut" }, domProps: { value: _vm.year.fut } },
+                  [_vm._v(_vm._s(_vm.year.fut))]
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "code" } }, [
               _vm._v("Lecturer's Code"),
             ]),
@@ -51267,66 +51426,6 @@ var render = function () {
               ]
             ),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "year" } }, [_vm._v("Year")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.year,
-                    expression: "form.year",
-                  },
-                ],
-                staticClass: "form-select",
-                attrs: {
-                  id: "year",
-                  required: "",
-                  "aria-label": "Default select example",
-                },
-                on: {
-                  change: function ($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function (o) {
-                        return o.selected
-                      })
-                      .map(function (o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.form,
-                      "year",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  },
-                },
-              },
-              [
-                _c(
-                  "option",
-                  { attrs: { id: "pre" }, domProps: { value: _vm.year.pre } },
-                  [_vm._v(_vm._s(_vm.year.pre))]
-                ),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  { attrs: { id: "cur" }, domProps: { value: _vm.year.curr } },
-                  [_vm._v(_vm._s(_vm.year.curr))]
-                ),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  { attrs: { id: "fut" }, domProps: { value: _vm.year.fut } },
-                  [_vm._v(_vm._s(_vm.year.fut))]
-                ),
-              ]
-            ),
-          ]),
         ]),
         _vm._v(" "),
         _vm._m(1),
@@ -51342,18 +51441,165 @@ var render = function () {
           _vm._l(_vm.results, function (result) {
             return _c("tr", [
               _c("th", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(result.teacher_id)),
+                _vm._v(_vm._s(result.teacher_name)),
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.subject_id))]),
+              _c("td", [_vm._v(_vm._s(result.subject_name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(result.semester))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(result.year))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticStyle: { cursor: "pointer" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getData($event, result.id)
+                      },
+                    },
+                  },
+                  [_c("i", { staticClass: "fas fa-arrow-circle-right" })]
+                ),
+              ]),
             ])
           }),
           0
         ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("form", { on: { submit: _vm.upload } }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              readonly: "",
+              required: "",
+              id: "info",
+              placeholder: "Search -> Select",
+            },
+          }),
+          _vm._v(" "),
+          _vm.noti_empty
+            ? _c("div", { staticClass: "card-body" }, [
+                _c("strong", { staticStyle: { color: "red" } }, [
+                  _vm._v(" " + _vm._s(_vm.noti_empty)),
+                ]),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.file_upload.title,
+                expression: "file_upload.title",
+              },
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              required: "",
+              id: "title",
+              placeholder: "Title",
+            },
+            domProps: { value: _vm.file_upload.title },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.file_upload, "title", $event.target.value)
+              },
+            },
+          }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "note" } }, [_vm._v("Note")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.file_upload.note,
+                expression: "file_upload.note",
+              },
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "note", placeholder: "Note" },
+            domProps: { value: _vm.file_upload.note },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.file_upload, "note", $event.target.value)
+              },
+            },
+          }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _vm._m(5),
+          _vm._v(" "),
+          _c("input", {
+            ref: "file",
+            staticClass: "form-control",
+            attrs: {
+              type: "file",
+              required: "",
+              id: "file",
+              placeholder: "File",
+            },
+            on: { change: _vm.uploadFile },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Upload")]
+        ),
+        _vm._v(" "),
+        _vm.success
+          ? _c(
+              "svg",
+              {
+                staticClass: "checkmark",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 52 52",
+                },
+              },
+              [
+                _c("circle", {
+                  staticClass: "checkmark__circle",
+                  attrs: { cx: "26", cy: "26", r: "25", fill: "none" },
+                }),
+                _vm._v(" "),
+                _c("path", {
+                  staticClass: "checkmark__check",
+                  attrs: { fill: "none", d: "M14.1 27.2l7.1 7.2 16.7-16.8" },
+                }),
+              ]
+            )
+          : _vm._e(),
       ]),
     ]),
   ])
@@ -51392,7 +51638,36 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Semester")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Year")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "arrow" } }),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "info" } }, [
+      _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")]),
+      _vm._v("Information"),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "title" } }, [
+      _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")]),
+      _vm._v("Enter Title"),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "file" } }, [
+      _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")]),
+      _vm._v("File"),
     ])
   },
 ]
