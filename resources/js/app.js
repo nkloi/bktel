@@ -64,10 +64,10 @@ Vue.component(
     "upload-report",
     require("./components/Upload-Component.vue").default
 );
-// Vue.component(
-//     "find-student-report",
-//     require("./components/FindStudent-Report.vue").default
-// );
+Vue.component(
+    "set-mark",
+    require("./components/SetMark-Component.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

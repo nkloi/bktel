@@ -7,6 +7,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SetMarkController;
 
 
 /*
@@ -26,6 +27,11 @@ Route::get('/', function () {
 
 Route::get('/getStudentId', function () {
 	$role = Auth::user()->student_id;
+	return response()->json($role);
+});
+
+Route::get('/getTeacherId', function () {
+	$role = Auth::user()->teacher_id;
 	return response()->json($role);
 });
 
@@ -74,5 +80,11 @@ Route::group(['prefix' => 'uploadStudentReport'], function (){
 	Route::post('/search', [SearchController::class, 'postSearch'])->name('search');
 	Route::post('/addnew', [SearchController::class, 'confirmation'])->name('addnew');
 	Route::post('/imp', [SearchController::class, 'store'])->name('imp.report');
-	
+});
+
+Route::group(['prefix' => 'SetMark'], function (){
+	Route::get('/set-mark', [SetMarkController::class, 'index'])->name('set-mark');
+	Route::post('/search', [SearchController::class, 'reportSearch'])->name('search');
+	Route::get('/download', [SetMarkController::class, 'download'])->name('download-file');
+
 });

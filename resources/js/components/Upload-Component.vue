@@ -50,9 +50,9 @@
             <form @submit.prevent="uploadFile()" enctype="multipart/form-data">    
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="file" name="file" class="form-control"  v-on:change="onFileChange" >
+                        <input type="file" name="file" class="form-control"  v-on:change="onFileChange">
                         <input type="string" name="title" class="form-control" v-model="name" placeholder="title">
-                        <input type="string" name="note" class="form-control" placeholder="note">
+                        <input type="string" name="note" class="form-control" v-model="note" placeholder="note">
                         <button type="submit" class="btn btn-success">Upload</button>
                     </div>               
                 </div>   
@@ -68,7 +68,6 @@
 export default {
     	 data(){
             return { 
-                
 			    subject_id: '',
                 message: [],
                 success: '',
@@ -81,6 +80,7 @@ export default {
                 searchArrs: [],
                 searchArr: '',
                 name:'',
+                note:'',
                 
             }
         },
@@ -137,6 +137,7 @@ export default {
                  let formData = new FormData();
                 formData.append('file', this.file);
                 formData.append('name', this.name);
+                formData.append('note', this.note);
                 formData.append('teacher_id', this.message.teacher_id);
                 formData.append('subject_id', this.message.subject_id);
                 formData.append('student_id', this.currentUser);
