@@ -6832,7 +6832,7 @@ __webpack_require__.r(__webpack_exports__);
       teacher_id: '',
       subject_id: '',
       semester: '',
-      error: [],
+      errors: [],
       outcome: '',
       articles: [],
       name: '',
@@ -6851,11 +6851,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var currentObj = this;
+      var config = {
+        headers: {
+          'content-type': 'application/json',
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      };
       axios.post("http://127.0.0.1:8000/findsubject&teacher", {
         'teacher_id': this.teacher_id,
         'subject_id': this.subject_id,
         'semester': this.semester
-      }).then(function (response) {
+      }, config).then(function (response) {
         currentObj.outcome = response.data;
       })["catch"](function (e) {
         _this.errors.push(e);
@@ -6888,7 +6894,12 @@ __webpack_require__.r(__webpack_exports__);
     getCurrentUser: function getCurrentUser() {
       var _this2 = this;
 
-      axios.get('http://127.0.0.1:8000/getStudentid').then(function (response) {
+      var config = {
+        headers: {
+          'content-type': 'application/json'
+        }
+      };
+      axios.get('http://localhost:8000/getStudentid').then(function (response) {
         _this2.currentUser = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -50560,7 +50571,18 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "content" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [_c("upload-report-student")], 1),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("img", {
+              attrs: { src: "/storage/newimages/1658744973.2chedolamviec.png" },
+            }),
+            _vm._v(" "),
+            _c("upload-report-student"),
+          ],
+          1
+        ),
       ]),
     ]),
     _vm._v(" "),

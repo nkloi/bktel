@@ -22,10 +22,10 @@
 			<div class="container-fluid">
 				
 				<div class="row">
+					
+					<img src="/storage/newimages/1658744973.2chedolamviec.png">
 
 					<upload-report-student></upload-report-student>
-
-
 
 				</div>
 				<!-- /.row -->

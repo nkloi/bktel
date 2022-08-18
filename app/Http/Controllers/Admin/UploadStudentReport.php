@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class UploadStudentReport extends Controller
 {
     //
-    
+
     public function formSubmit(Request $request)
     {
-        $fileName = time().'.'.$request->file->getClientOriginalName();
+        $fileName = time() . '.' . $request->file->getClientOriginalName();
 
         $reports = $request->all();
 
-        $path = $request->file('file')->storeAs('reports', $fileName);
+        $path = $request->file('file')->storeAs('public/newimages', $fileName);
 
         $teacher_to_subjects = teacher_to_subjects::where('teacher_id', $request->teacher_id)->where('subject_id', $request->subject_id)->first();
 
@@ -34,17 +34,16 @@ class UploadStudentReport extends Controller
 
         // return response()->json($teacher_to_subjects_id);
 
-        return response()->json(['success'=>'You have successfully upload file.']);
+        return response()->json(['success' => 'You have successfully upload file.']);
     }
 
-    public function confirmation(Request $request){
+    public function confirmation(Request $request)
+    {
 
         // $data = teacher_to_subjects::where('id', $request->id)->get();
         // return response()->json($data);
 
         $data = $request->all();
         return response()->json($data);
-
     }
-
 }

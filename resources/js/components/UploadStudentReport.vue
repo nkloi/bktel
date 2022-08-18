@@ -130,7 +130,7 @@ export default {
               teacher_id: '',
 			  subject_id: '',
 			  semester: '',
-			  error: [],
+			  errors: [],
               outcome: '',
               articles: [],
               name: '',
@@ -152,6 +152,14 @@ export default {
             SearchSubject() {
 			
                 let currentObj = this;
+                
+                let config = {
+
+                    headers: { 
+                        'content-type': 'application/json',
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                     }
+                }
 
                 axios.post(`http://127.0.0.1:8000/findsubject&teacher`, {
 
@@ -159,7 +167,7 @@ export default {
                         'subject_id': this.subject_id,
                         'semester': this.semester,
 
-                    })
+                    },config )
                     .then( function(response){
                         currentObj.outcome = response.data;
                     })
@@ -203,7 +211,10 @@ export default {
 
             getCurrentUser() {
 
-	    		axios.get('http://127.0.0.1:8000/getStudentid')
+                const config = {
+                    headers: { 'content-type': 'application/json' }
+                }
+	    		axios.get('http://localhost:8000/getStudentid',)
 
 				.then(response => {
 					this.currentUser = response.data;
