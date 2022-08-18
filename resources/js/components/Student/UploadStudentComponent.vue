@@ -44,7 +44,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Result List</h3>
                                 </div>
-                                <table class="table table-bordered">
+                                <table class="tableStyle table table-bordered">
                                     <thead>
                                         <th width="5%">STT</th>
                                         <th>Name's Teacher</th>
@@ -198,3 +198,8 @@
         }
     }
 </script>
+<style scoped>
+.tableStyle{
+    font-size: x-small;
+}
+</style>
