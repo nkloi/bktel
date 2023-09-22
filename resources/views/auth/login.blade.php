@@ -6,7 +6,7 @@
         <div class="modal-login row align-items-center">
             <div class="wrap-login100 align-items-center">
                 <div class="pb-5" data-tilt>
-                    <img src="images/img-01.png" alt="IMG">
+                    <img src="images/img-02.png" alt="IMG" style="height: 316px;">
                 </div>
     
                 <form class="login100-form validate-form"  action="{{ route('login') }}">
